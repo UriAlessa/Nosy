@@ -1,0 +1,46 @@
+.container {
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 40px;
+}
+
+.title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 38px;
+    color: #88f0c0;
+    line-height: 44px;
+    letter-spacing: 1.4px;
+    font-weight: 100;
+}
+
+.container p {
+    opacity: .98;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 19px;
+    color: #fff;
+    letter-spacing: 0;
+    line-height: 24px;
+    margin: 20px 20px 20px 0;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.buttons p {
+    width: 280px;
+    letter-spacing: 1.4px;
+    text-align: center;
+}
+
+.socialMedia {
+    width: 270px;
+    display: flex;
+    justify-content: space-between;
+}
+/* font-family: 'Ubuntu', sans-serif;  */

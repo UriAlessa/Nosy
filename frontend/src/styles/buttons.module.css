@@ -1,0 +1,69 @@
+.playButton {
+    width: 267px;
+    height: 60px;
+    color: #261f69;
+    font-size: 19px;
+    letter-spacing: 0.05em;
+    font-family: 'Fredoka One', cursive;
+    background: none;
+    border: none;
+    background-size: cover;
+    background-image: url('../assets/buttons/playButton.svg');
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.playButton:hover {
+    background-image: url('../assets/buttons/playButton-hover.svg');
+}
+
+.playButton strong {
+    width: 70%;
+}
+
+.buttonPlayButton {
+    width: 20px;
+    fill: white;
+    margin-left: 25px;
+}
+
+.socialMediaHeroButton {
+    width: 64px;
+    height: 60px;
+    background: none;
+    border: none;
+    background-size: cover;
+    background-image: url('../assets/buttons/socialMediaHero.svg');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.socialMediaHeroButton:hover {
+    background-image: url('../assets/buttons/socialMediaHero-hover.svg');
+}
+
+.socialMediaHeroButton svg {
+    width: 20px;
+    fill:white
+}
+
+.socialMediaFooterButton {
+    width: 39px;
+    height: 35px;
+    background: none;
+    border: none;
+    background-size: cover;
+    background-image: url('../assets/buttons/socialMediaFooterButton.svg');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.socialMediaFooterButton svg {
+    width: 20px;
+    fill:white
+}

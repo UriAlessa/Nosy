@@ -4,6 +4,7 @@ const App = () => {
 
   return (
     <>
+      <Home />
       <Rules />
       <GamesCards />
     </>
