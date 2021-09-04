@@ -1,10 +1,11 @@
 import Rules from "./pages/Rules"
 
-const App =()=> {
-  
+const App = () => {
+
   return (
     <>
-      <Rules/>
+      <Rules />
+      <GamesCards />
     </>
   )
 }
