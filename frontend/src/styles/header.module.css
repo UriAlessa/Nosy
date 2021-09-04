@@ -1,0 +1,47 @@
+header {
+  display: flex;
+  flex-direction: column;
+  background-color: #453ab7;
+  min-height: 100vh;
+  background-image: url(https://stopots.com/images/hotsite/header_es.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.content {
+  width: 65%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+/* Content > Top */
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.top > img {
+  width: 180px;
+}
+
+.top > div {
+  width: 60%;
+}
+
+.headerNav {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 1.22px;
+  margin: 0 15px;
+  font-family: "ubuntumedium", sans-serif;
+}
