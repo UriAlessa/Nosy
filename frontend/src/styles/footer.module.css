@@ -1,0 +1,41 @@
+footer {
+  background-color: #1c1659;
+}
+
+.content {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.navContainer {
+  width: 30%;
+}
+
+.footerNav {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 1.22px;
+  margin: 0 15px;
+  font-family: "ubuntumedium", sans-serif;
+}
+
+@media (min-width: 300px) and (max-width: 768px) {
+  .content {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .navContainer {
+    display: none;
+  }
+
+  .content > img {
+    display: none;
+  }
+}
