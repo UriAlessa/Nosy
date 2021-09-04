@@ -71,12 +71,3 @@ const SocialMediaFooterButton = ({icon}) => {
 }
 
 export {PlayButton, SocialMediaHeroButton, SocialMediaFooterButton}
-
-{/* <PlayButton text="PLAY NOW"/>
-<SocialMediaHeroButton icon="facebook"/>
-<SocialMediaHeroButton icon="google" />
-<SocialMediaHeroButton icon="twitter" />
-<SocialMediaFooterButton icon="instagram"/>
-<SocialMediaFooterButton icon="youtube"/>
-<SocialMediaFooterButton icon="discord"/>
-<SocialMediaFooterButton icon="twitter"/> */}
