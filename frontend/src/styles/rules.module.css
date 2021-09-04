@@ -2,13 +2,12 @@ html * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #433eae;
 }
 
 .section {
     font-family: 'Fredoka One', cursive;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 }
 .section h2{
     color:#84eeb7;
@@ -98,9 +97,9 @@ html * {
        width: 70%;
        height: 60%
     }
-    .section{
+    /* .section{
         height: 200vh
-    }
+    } */
     .containerCards{
     flex-direction: column;
        gap:2rem

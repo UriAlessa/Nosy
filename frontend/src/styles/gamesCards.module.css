@@ -1,5 +1,4 @@
 .sectionGames{
-    background-color: rgb(43,32,149);
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -43,6 +42,7 @@
 .pDescription{
     font-family: 'Ubuntu', sans-serif;
     color: rgb(225,223,255);
+    font-size:  3vmin;;
 }
 .buttonDescription{
     font-family: 'Fredoka One', cursive;

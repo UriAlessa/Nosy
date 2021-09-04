@@ -1,19 +1,10 @@
-import './App.css';
-import Rules from "./pages/Rules"
-import Footer from './components/Footer'
-import Header from './components/Header'
+import "./App.css";
+// import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
+  return <NotFound />;
+  // <Home />;
+};
 
-  return (
-    <>
-      <Header />
-      <Home />
-      <Rules />
-      <GamesCards />
-      <Footer />
-    </>
-  )
-}
-
-export default App
+export default App;

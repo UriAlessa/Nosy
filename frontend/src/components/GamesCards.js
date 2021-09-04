@@ -23,8 +23,8 @@ const GamesCards = () => {
     <section className={styles.sectionGames}>
       <h1 className={styles.title}>Next Games!</h1>
       <article className={styles.articleGames}>
-        {data.map((data) => (
-          <div className={styles.divGame}>
+        {data.map((data, index) => (
+          <div key={index} className={styles.divGame}>
             <div
               className={styles.picGame}
               style={{ backgroundImage: `url("/assets/${data.pic}")` }}></div>
