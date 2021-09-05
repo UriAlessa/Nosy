@@ -58,6 +58,8 @@ const usersAccountControllers = {
     }
   },
 
+  addFriend: async (req, res) => {},
+
   verifyToken: async (req, res) => {
     res.json({
       success: true,
