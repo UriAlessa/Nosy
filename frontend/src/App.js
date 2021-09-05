@@ -7,6 +7,7 @@ import Home from "./pages/Home"
 import Terms from "./pages/Terms"
 import Privacy from "./pages/Privacy"
 import NotFound from './pages/NotFound'
+import AccountSection from './components/AccountSection'
 
 const App = (props) => {
 
@@ -23,6 +24,7 @@ const App = (props) => {
         <Route path='/terms' component={Terms} />
         <Route path='/privacy' component={Privacy} />
         <Route path='/notfound' component={NotFound} />
+        <Route path='/accounts' component={AccountSection} />
         <Redirect to='/' />
       </Switch>
     </BrowserRouter>
