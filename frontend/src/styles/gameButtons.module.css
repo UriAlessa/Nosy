@@ -1,0 +1,97 @@
+.sectionGameButtons{
+    width: 100vw;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.articleGameButtons{
+    width: 60vw;
+    height: 95vh;
+    background-color: rgb(97,89,198);
+    border: 2.5px solid rgb(160,153,255);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap:3rem;
+}
+.divGameButtons{
+    width: 45%;
+    height: 40vh;
+    box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.divContainerCards{
+    display: flex;
+    width: 100%;
+    height: 70%;
+    gap: 1rem;
+    justify-content: center;
+    /* align-items: center; */
+}
+.avatars{
+    width: 10vw;
+}
+.titleArticle{
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 4vh;
+}
+.logo{
+    width: 20vw;
+  
+}
+.socialMedia{
+    display: flex;
+    justify-content: space-between;
+    gap:1rem;
+}
+.footerArticle{
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color:rgb(66,60,150)  ;
+}
+.pContact{
+    color: rgb(125,122,229);
+    text-transform: uppercase;
+    font-family: "Ubuntu", sans-serif;
+}
+.pCopyrigth, .apps{
+    color: rgb(125,122,229);
+    font-family: "Ubuntu", sans-serif;
+    font-size: 1vw;
+    text-align: center;
+}
+.divApps{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+}
+.apps{
+font-size: 1.7vw;
+}
+.picApp {
+    width: 2vw;
+}
+.picAppPS{
+    width: 1.8vw;
+}
+.containerApps{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}

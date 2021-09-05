@@ -1,10 +1,12 @@
 import "./App.css";
-// import Home from "./pages/Home";
+import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import GameButtons from "./components/GameButtons"
 
 const App = () => {
-  return <NotFound />;
+  return  <GameButtons/>
   // <Home />;
+//  <NotFound />;
 };
 
 export default App;
