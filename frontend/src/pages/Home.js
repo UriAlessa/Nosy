@@ -8,7 +8,7 @@ const Home = () => {
 
   return (
     <>
-      <div style={{ width: "82%", margin: "45px 9%" }}>
+      <div className="heroHome">
         <Header />
         <HeroHome />
       </div>
