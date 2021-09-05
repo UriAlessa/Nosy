@@ -27,7 +27,8 @@ const GamesCards = () => {
           <div className={styles.divGame}>
             <div
               className={styles.picGame}
-              style={{ backgroundImage: `url("/assets/${data.pic}")` }}></div>
+              style={{ backgroundImage: `url("/assets/${data.pic}")` }}
+            ></div>
             <div className={styles.descriptionGame}>
               <h2 className={styles.titleDescription}>{data.title}</h2>
               <h4 className={styles.subtitleDescription}>{data.subtitle}</h4>
