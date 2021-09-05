@@ -1,13 +1,7 @@
 html * {
-<<<<<<< HEAD
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-=======
   margin: 0;
   padding: 0;
   box-sizing: border-box;
->>>>>>> 5c8702257ddcca39457eec2d4f534d95c76733c1
 }
 
 .section {
@@ -100,29 +94,6 @@ html * {
   }
 }
 
-<<<<<<< HEAD
-    .card{
-       width: 70%;
-       min-height: 60%
-    }
-    .section{
-        min-height: 200vh
-    }
-    .containerCards{
-    flex-direction: column;
-       gap:2rem
-    }
-    .card img{
-        width: 30%;
-    }
-    .card p{
-        font-size: 1.5rem;
-    }
-    .card h3{
-        font-size: 2rem;
-    }
-}  
-=======
 @media only screen and (max-width: 768px) {
   .card {
     width: 70%;
@@ -145,7 +116,6 @@ html * {
     font-size: 2rem;
   }
 }
->>>>>>> 5c8702257ddcca39457eec2d4f534d95c76733c1
 
 @media only screen and (max-width: 600px) {
   .card {
