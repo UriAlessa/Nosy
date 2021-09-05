@@ -1,86 +1,94 @@
 .sectionGames{
+    margin: 5% 9%;
     display:flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    min-height: 80vh;
+}
+
+.sectionGames h2 {
     width: 100%;
+    text-align: center;
+    font-size: 34px;
+    font-family: 'Fredoka One', cursive;
+    color: rgb(136,240,192);
+    text-shadow: -1px 2px 0 #389067;
+    letter-spacing: 4px;
+    margin: 50px 0;
 }
 
-.divGame {
-  width: 42vw;
-  height: 75vh;
-  background-color: rgb(109, 98, 231);
-  margin: 1vw;
-  border-radius: 15px;
-  display: flex;
-  justify-content: space-around;
-  box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
-}
-.descriptionGame {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 40%;
-}
-.titleDescription {
-  text-transform: uppercase;
-  font-family: "Fredoka One", cursive;
-  color: rgb(245, 209, 35);
-  letter-spacing: 2px;
-}
-
-.subtitleDescription {
-  text-transform: uppercase;
-  font-family: "Fredoka One", cursive;
-  color: rgb(225, 223, 255);
-  letter-spacing: 1.5px;
-  font-weight: 200;
-  font-size: 1.3vw;
-}
-.pDescription {
-  font-family: "Ubuntu", sans-serif;
-  color: rgb(225, 223, 255);
-}
-.buttonDescription {
-  font-family: "Fredoka One", cursive;
-  text-transform: uppercase;
-  color: rgb(109, 98, 231);
-  background-color: rgb(225, 223, 255);
-  border: none;
-  height: 13vh;
-  width: 15vw;
-  border-radius: 10px;
-  font-size: 1.5vw;
-}
-.picGame {
-  margin: auto 0vw;
-  width: 45%;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  border-radius: 20px;
-  height: 60vh;
-}
 .articleGames {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5vmin;
 }
-.title {
-  font-family: "Fredoka One", cursive;
-  text-transform: uppercase;
-  color: rgb(136, 240, 192);
-  text-shadow: -1.5px 3px 0 #389067;
-  font-size: 3vw;
-  letter-spacing: 4px;
+
+.divGame{
+    display: flex;
+    justify-content: flex-start;
+    background-color: rgb(109,98,231);
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 40% 50%;
+    gap: 3vmin;
+    box-shadow: 0 5px 16px 0 rgb(0 0 0 / 25%);
+    padding: 2vmin;
 }
-@media (min-width: 400px) and (max-width: 550px) {
-  .articleGames {
+
+.picGame{
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    height: 100%
+}
+
+.descriptionGame{
+    display: flex;
     flex-direction: column;
-  }
-  .title {
+    align-items: center;
+    gap: 15px;
+}
+
+
+.titleDescription{
+    text-transform: uppercase;
+    font-family: 'Fredoka One', cursive;
+    color: rgb(245,209,35);
+    letter-spacing: 2px;
+}
+
+.subtitleDescription{
+    text-transform: uppercase;
+    font-family: 'Fredoka One', cursive;
+    color: rgb(225,223,255);
+    letter-spacing: 1.5px;
+    font-weight: 200;
+    font-size: 1.3vw;
+}
+.pDescription{
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(225,223,255);
+}
+.buttonDescription{
+    font-family: 'Fredoka One', cursive;
+    text-transform: uppercase;
+    color: rgb(109,98,231);
+    background-color: rgb(225,223,255);
+    border:none;
+    width: 15vw;
+    border-radius: 8px;
+    font-size: 18px;
+    padding: 2vmin 0;
+}
+
+
+@media (min-width: 400px) and (max-width: 550px){
+    .articleGames {
+        flex-direction: column;
+    }
+    .title {
     font-size: 8vw;
   }
   .titleDescription {
