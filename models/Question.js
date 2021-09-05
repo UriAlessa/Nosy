@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const questionSchema = mongoose.Schema({
   category: { type: String, required: true },
+  difficulty: { type: String, required: true },
   question: { type: String, required: true },
   quesetionImg: { type: String },
   possibleAnswers: {
@@ -8,6 +9,7 @@ const questionSchema = mongoose.Schema({
     answers: [{ type: String, required: true }],
   },
   correctAnswer: { type: String, required: true },
-  difficulty: { type: String, required: true },
+  status: { type: Boolean, default: false },
+  creator: { type: mongoose.Types.ObjectId, path: "user" },
 });
 module.exports = mongoose.model("question", questionSchema);
