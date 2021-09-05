@@ -2,7 +2,6 @@ html * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #433eae;
 }
 
 .section {
@@ -83,11 +82,15 @@ html * {
 }
 
 
+
+
 @media only screen and (max-width:1024px){
 
     .containerCards{
         width: 90%;
-        height: 80%;
+    }
+    .card p{
+        font-size: 3vmin;
     }
 
 } 
@@ -99,7 +102,7 @@ html * {
        height: 60%
     }
     .section{
-        height: 200vh
+        height: 200vh;
     }
     .containerCards{
     flex-direction: column;
@@ -116,6 +119,7 @@ html * {
     }
 
 }  
+
 
 @media only screen and (max-width:600px){
     .card{
@@ -137,6 +141,7 @@ html * {
     .section p{
         font-size: 1.5rem;
     }
+  
 }
 @media only screen and (max-width:500px){
     

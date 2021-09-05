@@ -1,5 +1,5 @@
 import styles from "../styles/rules.module.css"
-import RuleCard from "../components/RuleCard"
+import RuleCard from "./RuleCard"
 
 const Rules = ()=>{
   const InfoCards=[
