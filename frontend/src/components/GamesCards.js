@@ -7,7 +7,7 @@ const GamesCards = () => {
       subtitle: "app . desktop . pwa",
       description:
         "To the difficulties of drawing from your notebook, it is added that the words are selected by the opponent and on the screen different clues will appear for each participant. Laughing has never been easier! Are you interested?",
-      buttonText: "hurry up !!!",
+      buttonText: "hurry up!",
       pic: "pic1.png",
     },
     {
@@ -20,21 +20,20 @@ const GamesCards = () => {
     },
   ];
   return (
-    <section className={styles.sectionGames}>
-      <h1 className={styles.title}>Next Games!</h1>
+    <section id="nextGames" className={styles.sectionGames}>
+      <h2>NEXT GAMES!</h2>
       <article className={styles.articleGames}>
-        {data.map((data) => (
-          <div className={styles.divGame}>
+        {data.map((data, index) => (
+          <div key={index} className={styles.divGame}>
             <div
               className={styles.picGame}
-              style={{ backgroundImage: `url("/assets/${data.pic}")` }}></div>
+              style={{ backgroundImage: `url("/assets/${data.pic}")` }}>
+            </div>
             <div className={styles.descriptionGame}>
-              <h2 className={styles.titleDescription}>{data.title}</h2>
+              <h3 className={styles.titleDescription}>{data.title}</h3>
               <h4 className={styles.subtitleDescription}>{data.subtitle}</h4>
               <p className={styles.pDescription}>{data.description}</p>
-              <button className={styles.buttonDescription}>
-                {data.buttonText}
-              </button>
+              <button className={styles.buttonDescription}>{data.buttonText}</button>
             </div>
           </div>
         ))}

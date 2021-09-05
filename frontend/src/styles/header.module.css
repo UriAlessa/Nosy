@@ -1,47 +1,67 @@
 header {
-  display: flex;
-  flex-direction: column;
-  background-color: #453ab7;
-  min-height: 100vh;
-  background-image: url(https://stopots.com/images/hotsite/header_es.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-.content {
-  width: 65%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-}
-
-/* Content > Top */
-
-.top {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
 }
 
 .top > img {
-  width: 180px;
+  width: 300px;
 }
 
-.top > div {
-  width: 60%;
+.logo {
+  width: 192px;
+  height: 95px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.headerNav {
+nav {
   display: flex;
   justify-content: space-between;
   color: white;
   font-weight: 800;
   font-size: 14px;
   letter-spacing: 1.22px;
+  font-family: 'Ubuntu', sans-serif;
+  /* width: 60%; */
+}
+
+nav a {
+  cursor: pointer;
   margin: 0 15px;
+  height: 17px;
+  text-decoration: none;
+  color: white;
+}
+
+nav a:hover {
+  border-bottom: 1px solid white;
+}
+
+/* Content Mid */
+
+.middle {
+  margin: 10vh 0;
+  align-self: stretch;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content PageDown */
+
+.pageDown > span {
   font-family: "ubuntumedium", sans-serif;
+  font-size: 15px;
+  color: #fff;
+  letter-spacing: 2px;
+  text-align: center;
+  line-height: 27px;
 }

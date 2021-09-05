@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+.mainContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(https://stopots.com/images/background.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.midContainer {
+  height: 80vh;
+  width: 60%;
+  display: flex;
+  border-radius: 2%;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.inputForm {
+  background-color: #ddd;
+  border: none;
+  border-radius: 15px;
+  padding: 12px 15px;
+  margin: 4px 0;
+  width: 100%;
+  outline: none;
+}
+
+/* Login */
+
+.signup,
+.login,
+.welcomeLogin,
+.welcomeSignup {
+  width: 50%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10vh 1vw;
+}
+
+.welcomeLogin,
+.welcomeSignup {
+  background-color: #453ab7;
+}
+
+.welcomeLogin > h2,
+.welcomeSignup > h2 {
+  font-family: "Fredoka One", cursive;
+  color: #fff;
+}
+.welcomeLogin > p,
+.welcomeSignup > p {
+  color: white;
+}
+
+.welcomeLogin > p,
+.login > p,
+.signup > p,
+.welcomeSignup > p {
+  font-family: "Ubuntu", sans-serif;
+}
+
+.login,
+.welcomeSignup {
+  border-top-left-radius: 2%;
+  border-bottom-left-radius: 2%;
+}
+
+.login > h1,
+.signup > h1 {
+  font-family: "Fredoka One", cursive;
+}
+
+.socialMediaLogin {
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+}
+
+/* Sign up */
+
+.signup,
+.welcomeLogin {
+  border-top-right-radius: 2%;
+  border-bottom-right-radius: 2%;
+}
+
+/* Button */
+
+.playButton {
+  width: 267px;
+  height: 60px;
+  color: #261f69;
+  font-size: 19px;
+  letter-spacing: 0.05em;
+  font-family: "Fredoka One", cursive;
+  background: none;
+  border: none;
+  background-size: cover;
+  background-image: url("../assets/buttons/playButton.svg");
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.playButton:hover {
+  background-image: url("../assets/buttons/playButton-hover.svg");
+}
+
+.playButton strong {
+  width: 70%;
+}
+
+.buttonPlayButton {
+  width: 20px;
+  fill: white;
+  margin-left: 25px;
+}
