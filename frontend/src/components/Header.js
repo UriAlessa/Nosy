@@ -6,7 +6,7 @@ const Header = () => {
         <header className={styles.header}>
             <div className={styles.content}>
                 <div className={styles.top}>
-                    <img src='https://cdn.discordapp.com/attachments/883719217290018827/883823758018744360/logoSoloLetras.png' />
+                    <img src='https://cdn.discordapp.com/attachments/883719217290018827/883823758018744360/logoSoloLetras.png' alt='logo' />
                     <div>
                         <nav className={styles.headerNav}>
                             <p>HOW IT WORKS?</p>
