@@ -1,6 +1,6 @@
 import styles from "../styles/rules.module.css"
 const RuleCard = (props)=>{
-    
+
     return(
         <div className={styles.card}>
              <div className="imgCard"  style={{backgroundImage:`url("${props.infoCard.src}}")` }}></div> 

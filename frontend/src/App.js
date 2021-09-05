@@ -1,12 +1,19 @@
-import "./App.css";
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
-import GameButtons from "./components/GameButtons"
+import './App.css';
+import Rules from "./pages/Rules"
+import Footer from './components/Footer'
+import Header from './components/Header'
+import GamesCards from './components/GamesCards'
+import AccountSection from './components/AccountSection';
 
 const App = () => {
-  return  <GameButtons/>
-  // <Home />;
-//  <NotFound />;
-};
-
-export default App;
+  return (
+    <>
+      <Header />
+      <Rules />
+      <GamesCards />
+      <Footer />
+      <AccountSection />
+    </>
+  )
+}
+export default App
