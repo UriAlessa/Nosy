@@ -2,7 +2,6 @@ html * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #433eae;
 }
 
 .section {
@@ -96,10 +95,10 @@ html * {
 
     .card{
        width: 70%;
-       height: 60%
+       min-height: 60%
     }
     .section{
-        height: 200vh
+        min-height: 200vh
     }
     .containerCards{
     flex-direction: column;
@@ -114,7 +113,6 @@ html * {
     .card h3{
         font-size: 2rem;
     }
-
 }  
 
 @media only screen and (max-width:600px){
