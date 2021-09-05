@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const questionSchema = mongoose.Schema({
   category: { type: String, required: true },
+  difficulty: { type: String, required: true },
   question: { type: String, required: true },
   questionImg: { type: String },
   possibleAnswers: {
@@ -15,3 +16,4 @@ const questionSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model("question", questionSchema);
+
