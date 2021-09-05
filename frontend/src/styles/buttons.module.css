@@ -19,13 +19,15 @@
 }
 
 .playButton strong {
-    width: 70%;
+    width: 80%;
+    font-weight: 100;
 }
 
 .buttonPlayButton {
-    width: 20px;
+    width: 15px;
     fill: white;
-    margin-left: 25px;
+    margin-left: 24px;
+    margin-right: 3px;
 }
 
 .socialMediaHeroButton {

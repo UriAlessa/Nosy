@@ -1,0 +1,69 @@
+dl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10vh;
+}
+
+dd {
+    width: 81.5%;
+    border-bottom: 1px #8e84f6 solid;
+    padding: 25px 0;
+}
+
+.seven {
+    border-bottom: none;
+}
+
+dd a {
+    color: white;
+}
+
+.marginleft {
+    margin-left: 20px;
+}
+
+
+.title {
+    display: flex;
+}
+
+.title svg {
+    width: 26px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.roteDown {
+    transform: rotate(90deg);
+    transition: 0.5s;
+}
+
+.roteUp {
+    transform: rotate(0deg);
+    transition: 0.5s;
+}
+
+span {
+    display: flex;
+    flex-direction: column;
+    margin-left: 4%;
+}
+
+span p {
+    margin: 7px 0;
+    line-height: 20px;
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 17px;
+    /* font-weight: 4; */
+}
+
+.title h5 {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 26px;
+    color: white;
+    letter-spacing: 0;
+    line-height: 27px;
+    cursor: pointer;
+}

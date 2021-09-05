@@ -20,7 +20,7 @@ const GamesCards = () => {
     },
   ];
   return (
-    <section className={styles.sectionGames}>
+    <section id="nextGames" className={styles.sectionGames}>
       <h1 className={styles.title}>Next Games!</h1>
       <article className={styles.articleGames}>
         {data.map((data) => (

@@ -79,4 +79,4 @@ export {PlayButton, SocialMediaHeroButton, SocialMediaFooterButton}
 <SocialMediaFooterButton icon="instagram"/>
 <SocialMediaFooterButton icon="youtube"/>
 <SocialMediaFooterButton icon="discord"/>
-<SocialMediaFooterButton icon="twitter"/> */}
+<SocialMediaFooterButton icon="twitter"/> */} 
