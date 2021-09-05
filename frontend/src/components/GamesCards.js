@@ -21,7 +21,7 @@ const GamesCards = () => {
   ];
   return (
     <section id="nextGames" className={styles.sectionGames}>
-      <h1 className={styles.title}>Next Games!</h1>
+      <h2 className={styles.title}>Next Games!</h2>
       <article className={styles.articleGames}>
         {data.map((data) => (
           <div className={styles.divGame}>
@@ -29,7 +29,7 @@ const GamesCards = () => {
               className={styles.picGame}
               style={{ backgroundImage: `url("/assets/${data.pic}")` }}></div>
             <div className={styles.descriptionGame}>
-              <h2 className={styles.titleDescription}>{data.title}</h2>
+              <h3 className={styles.titleDescription}>{data.title}</h3>
               <h4 className={styles.subtitleDescription}>{data.subtitle}</h4>
               <p className={styles.pDescription}>{data.description}</p>
               <button className={styles.buttonDescription}>

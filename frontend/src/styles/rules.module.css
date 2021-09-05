@@ -12,39 +12,36 @@ html * {
 .section h2{
     color:#84eeb7;
     margin-top: 1rem;
-    font-size: 6vmin;
-    text-shadow: -1.5px 3px 0 #389067;
+    font-size: 34px;
+    text-shadow: -1px 2px 0 #389067;
 }
 .section h2, .section p{
     text-align: center;
-    margin-bottom:1rem;
 }
+
 .section p{
     color: white;
-    margin-bottom:1rem;
-    font-size: 3vmin; 
+    margin-bottom: 50px;
+    font-size: 19px; 
     font-family: 'Ubuntu', sans-serif;
 }
 
 .containerCards{
-    
+    margin: 0 9%;
     display: flex;
-    margin:auto auto;
-    height: 90%;
-    width: 80%;  
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 28%);
+    gap: 6vmin;
 }
 .card{
     background-color: #665fdf;
     font-family: 'Ubuntu', sans-serif;
-    width: 31%;
-    height: 80%;
+    height: 480px;
     display:flex;
     flex-direction: column;
     align-items: center;
     border-radius: 3%;
-    gap:2rem;
     box-shadow: 0 7px 5px 0 rgb(0 0 0 / 35%);
     padding: 0.5rem;
     
@@ -53,8 +50,9 @@ html * {
     background-color: transparent;
     color: #e3be31;
     text-align: center;
-    font-size: 4vmin;
+    font-size: 19px;
     font-weight: bold;
+    /* margin: 0 25px; */
 
 }
 .card img, .card p{
@@ -62,7 +60,8 @@ html * {
     font-family: 'Ubuntu', sans-serif;
 }
 .card img{
-    width: 50%;
+    height: 35%;
+    margin: 25px 0;
 }
 .imgCard{
     width: 500px;
@@ -73,7 +72,9 @@ html * {
 }
 
 .card p{
-    font-size: 2.8vmin;
+    font-size: 17px;
+    margin: 10px 20px;
+    font-weight: 401;
 }
 @media only screen and (max-width:1335px) {
     .card{

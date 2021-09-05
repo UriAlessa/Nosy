@@ -69,14 +69,15 @@
     justify-content: center;
     align-items: center;
 }
-.title {
+h2 {
     font-family: 'Fredoka One', cursive;
     text-transform: uppercase;
     color: rgb(136,240,192);
-    text-shadow: -1.5px 3px 0 #389067;
-    font-size: 3vw;
+    text-shadow: -1px 2px 0 #389067;
+    font-size: 34px;
     letter-spacing: 4px;
 }
+
 @media (min-width: 400px) and (max-width: 550px){
     .articleGames {
         flex-direction: column;
