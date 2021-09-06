@@ -12,3 +12,17 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+
+.heroHome {
+  width: 82%;
+  margin: 45px 9%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .heroHome {
+    align-items: center;
+  }
+}

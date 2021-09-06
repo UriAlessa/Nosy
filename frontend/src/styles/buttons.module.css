@@ -1,8 +1,8 @@
 .playButton {
-    width: 267px;
-    height: 60px;
+    width: 63vmin;
+    height: 14.3vmin;
     color: #261f69;
-    font-size: 19px;
+    font-size: 4vmin;
     letter-spacing: 0.05em;
     font-family: 'Fredoka One', cursive;
     background: none;
@@ -24,15 +24,15 @@
 }
 
 .buttonPlayButton {
-    width: 15px;
+    width: 4vmin;
     fill: white;
-    margin-left: 24px;
+    margin-left: 5.4vmin;
     margin-right: 3px;
 }
 
 .socialMediaHeroButton {
-    width: 64px;
-    height: 60px;
+    width: 9.5vmin;
+    height: 9vmin;
     background: none;
     border: none;
     background-size: cover;
@@ -48,7 +48,7 @@
 }
 
 .socialMediaHeroButton svg {
-    width: 20px;
+    width: 3.2vmin;
     fill:white
 }
 
@@ -68,4 +68,12 @@
 .socialMediaFooterButton svg {
     width: 20px;
     fill:white
+}
+
+@media (max-width: 500px) {
+
+    .socialMediaHeroButton {
+        width: 11vmin;
+        height: 10.2vmin;
+    }
 }

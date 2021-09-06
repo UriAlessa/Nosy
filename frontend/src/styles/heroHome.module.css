@@ -8,9 +8,8 @@
 
 .title {
     font-family: 'Fredoka One', cursive;
-    font-size: 38px;
+    font-size: 6vmin;
     color: #88f0c0;
-    line-height: 44px;
     letter-spacing: 1.4px;
     font-weight: 100;
 }
@@ -18,7 +17,7 @@
 .container p {
     opacity: .98;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 19px;
+    font-size: 3vmin;
     color: #fff;
     letter-spacing: 0;
     line-height: 24px;
@@ -39,8 +38,37 @@
 }
 
 .socialMedia {
-    width: 270px;
+    width: 40vmin;
     display: flex;
     justify-content: space-between;
 }
-/* font-family: 'Ubuntu', sans-serif;  */
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        margin: 45px 0;
+        align-self: center;
+        text-align: center;
+    }
+
+    .buttons {
+        align-items: center;
+    }
+}
+
+@media (max-width: 620px) {
+    .title {
+        font-size: 5vmin;
+    }
+
+    .container p {
+        font-size: 3.5vmin;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .container p {
+        font-size: 4vmin;
+    }
+}
