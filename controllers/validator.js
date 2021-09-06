@@ -18,7 +18,8 @@ const validator = (req, res, next) => {
     }),
     facebook: joi.boolean().default(false),
     google: joi.boolean().default(false),
-  });
+  }
+  );
   const validation = schema.validate(req.body, { abortEarly: false });
   if (!validation.error) {
     next();

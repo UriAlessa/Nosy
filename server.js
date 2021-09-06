@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 require("./config/database");
-// require("./config/passport");
+require("./config/passport");
 const router = require("./routes/index");
 const admin = require("./routes/admin");
 const path = require("path");
