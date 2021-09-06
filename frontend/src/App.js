@@ -9,6 +9,7 @@ import Privacy from "./pages/Privacy"
 import NotFound from './pages/NotFound'
 import AccountSection from './components/AccountSection'
 import GamepadButton from './pages/GameButtons'
+import Game from './pages/Game'
 
 const App = (props) => {
 
@@ -25,6 +26,7 @@ const App = (props) => {
         <Route path='/terms' component={Terms} />
         <Route path='/privacy' component={Privacy} />
         <Route path='/notfound' component={NotFound} />
+        <Route path='/game' component={Game} />
         <Route path='/accounts' component={AccountSection} />
         <Route path='/selectgame' component={GamepadButton} />
         <Redirect to='/' />
