@@ -1,4 +1,3 @@
-//crear data
 const passport = require("passport");
 const jwtStrategy = require("passport-jwt").Strategy;
 const extractJwt = require("passport-jwt").ExtractJwt;
@@ -21,4 +20,4 @@ module.exports = passport.use(
         .catch((err) => done(err, false));
     }
   )
-);
+)
