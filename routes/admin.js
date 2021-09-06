@@ -1,4 +1,5 @@
 const express = require("express");
+const adminGameControllers = require("../controllers/adminControllers/adminGameControllers");
 const router = express.Router();
 const adminQuestionsControllers = require("../controllers/adminControllers/adminQuestionsControllers");
 const adminUsersControllers = require("../controllers/adminControllers/adminUsersControllers");
@@ -33,4 +34,7 @@ router
   .get(adminUsersControllers.getUsers)
   .put(adminUsersControllers.updateUser)
   .delete(adminUsersControllers.deleteUser);
+
+//ADMIN GAME CONTROLLERS
+router.route("/game").get(adminGameControllers.getGames);
 module.exports = router;
