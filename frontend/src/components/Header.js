@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import styles from '../styles/header.module.css'
 
 const Header = () => {
@@ -9,6 +10,7 @@ const Header = () => {
                     <a href="#howToPlay">HOW TO PLAY</a>
                     <a href="#nextGames">NEXT GAMES</a>
                     <a href="#reviews">REVIEWS</a>
+                    <NavLink to='/accounts'>LOG IN/SIGN UP</NavLink>
                 </nav>
             </div>
         </header>

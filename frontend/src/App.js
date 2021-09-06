@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -26,6 +27,29 @@ const App = (props) => {
       console.log(username);
     });
   }
+=======
+import './App.css'
+import React, { useEffect } from 'react'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+import Home from "./pages/Home"
+import Terms from "./pages/Terms"
+import Privacy from "./pages/Privacy"
+import NotFound from './pages/NotFound'
+import AccountSection from './components/AccountSection'
+import GamepadButton from './pages/GameButtons'
+import usersActions from './redux/actions/usersActions'
+
+const App = (props) => {
+
+  useEffect( () => {
+    if(localStorage.getItem('token')) {
+      props.logInLS()
+    }
+  }, [])
+
+>>>>>>> origin/uriel
   return (
     <BrowserRouter>
       <Switch>
@@ -41,16 +65,12 @@ const App = (props) => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {
+const mapDispatchToProps = {
+  logInLS: usersActions.logInLS
+}
 
-//   }
-// }
-
-// const mapDispatchToProps = {
-
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App)
-
+<<<<<<< HEAD
 export default App;
+=======
+export default connect(null, mapDispatchToProps)(App)
+>>>>>>> origin/uriel

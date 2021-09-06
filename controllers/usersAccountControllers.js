@@ -66,8 +66,12 @@ const usersAccountControllers = {
       user: {
         username: req.user.username,
         avatar: req.user.avatar,
+<<<<<<< HEAD
       },
       token: req.body.token,
+=======
+      }
+>>>>>>> origin/uriel
     });
   },
 };
