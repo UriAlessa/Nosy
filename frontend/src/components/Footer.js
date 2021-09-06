@@ -22,12 +22,12 @@ const Footer = () => {
                             <p>ASSETS</p>
                         </Link>
                     </nav>
-                    <div style={{display: "flex", justifyContent: "space-between"}}>
+                    {/* <div style={{display: "flex", justifyContent: "space-between"}}>
                         <SocialMediaFooterButton icon="instagram"/>
                         <SocialMediaFooterButton icon="youtube"/>
                         <SocialMediaFooterButton icon="discord"/>
                         <SocialMediaFooterButton icon="twitter"/>
-                    </div>
+                    </div> */}
                 </div>
                 <img src='https://stopots.com/images/hotsite/onrizon.svg' />
             </div>
