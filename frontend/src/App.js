@@ -9,6 +9,7 @@ import Privacy from "./pages/Privacy"
 import NotFound from './pages/NotFound'
 import AccountSection from './components/AccountSection'
 import GamepadButton from './pages/GameButtons'
+import QuestionCard from './components/QuestionCard';
 
 const App = (props) => {
 
@@ -21,6 +22,7 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path='/prueba' component={QuestionCard}/>
         <Route exact path='/' component={Home} />
         <Route path='/terms' component={Terms} />
         <Route path='/privacy' component={Privacy} />
