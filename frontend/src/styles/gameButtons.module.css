@@ -40,18 +40,22 @@
     width: 10vw;
 }
 .titleArticle{
-    width: 70%;
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     margin-top: 4vh;
+  /*   background-color: red; */
+    gap:0.5rem;
+    padding:0 1rem;
 }
 .logo{
     width: 20vw;
+    align-self: center;
   
 }
 .socialMedia{
     display: flex;
-    justify-content: space-between;
+    width: 100%;
     gap:1rem;
 }
 .footerArticle{
@@ -95,3 +99,97 @@ font-size: 1.7vw;
     align-items: center;
     gap: 0.5rem;
 }
+
+
+@media only screen and (max-width: 1024px) {
+    .divContainerCards{
+        flex-direction: column;
+        align-items: center;
+    }
+    .divGameButtons{
+        width: 60%;
+    }
+     .articleGameButtons{
+        height: 125vh;
+        width: 60vw;
+        gap:1.5rem;
+    } 
+    .sectionGameButtons{
+        height: 150vh;
+    }
+    .footerArticle{
+        height: 20vh;
+    }
+    .avatars{
+        width: 13vw;
+    }
+    .logo{
+        width: 20vw;
+    }
+  }
+  @media only screen and (max-width: 870px){
+    .logo{
+        width: 25vw;
+    }
+  }
+  @media only screen and (max-width: 870px){
+    .logo{
+        width: 25vw;
+    }
+    .articleGameButtons{
+        width:70%;
+    } 
+    .divGameButtons{
+        width: 70%;
+    }
+  }
+  @media only screen and (max-width: 768px){
+    .articleGameButtons{
+        height: 140vh;
+        width:70%;
+        gap:2rem;
+    } 
+    .sectionGameButtons{
+        height: 150vh;
+    }
+    .logo{
+        width: 30vw;
+    }
+    .picAppPS{
+        width: 3vw
+    }
+    .picApp{
+        width: 4vw
+    }
+    .pCopyrigth{
+        font-size: 2vmin;
+    }
+  }
+  @media only screen and (max-width: 630px){
+    .articleGameButtons{
+        width:90%;
+        gap:2rem;
+    } 
+
+    .avatars{
+        width: 15vw;
+    }
+    .logo{
+        width: 30vw;
+    }
+    .apps{
+        font-size: 2.5vmin;
+    }
+  }
+  @media only screen and (max-width: 470px){
+    .divGameButtons{
+        width: 80%;
+    }
+    .logo{
+        width: 42vw;
+    }
+    .avatars{
+        width: 23vw;
+    }
+    
+  }

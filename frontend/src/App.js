@@ -7,6 +7,7 @@ import Home from "./pages/Home"
 import Terms from "./pages/Terms"
 import Privacy from "./pages/Privacy"
 import NotFound from './pages/NotFound'
+import GamepadButton from './pages/GameButtons'
 
 const App = (props) => {
 
@@ -19,10 +20,11 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/terms' component={Terms} />
-        <Route path='/privacy' component={Privacy} />
-        <Route path='/notfound' component={NotFound} />
+          <Route exact path='/' component={Home} />
+          <Route path='/terms' component={Terms} />
+          <Route path='/privacy' component={Privacy} />
+          <Route path='/notfound' component={NotFound} />
+          <Route path='/selectgame' component={GamepadButton}/>
         <Redirect to='/' />
       </Switch>
     </BrowserRouter>
