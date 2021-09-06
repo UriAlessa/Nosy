@@ -2,13 +2,12 @@
     margin: 5% 9%;
     display:flex;
     flex-direction: column;
-    min-height: 80vh;
+    align-items: center;
 }
 
 .sectionGames h2 {
-    width: 100%;
     text-align: center;
-    font-size: 34px;
+    font-size: 5vmin;
     font-family: 'Fredoka One', cursive;
     color: rgb(136,240,192);
     text-shadow: -1px 2px 0 #389067;
@@ -19,6 +18,7 @@
 .articleGames {
     display: flex;
     justify-content: center;
+    align-items: center;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 5vmin;
@@ -48,7 +48,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 3vmin;
 }
 
 
@@ -79,54 +79,57 @@
     border:none;
     width: 15vw;
     border-radius: 8px;
-    font-size: 18px;
+    font-size: 2.8vmin;
     padding: 2vmin 0;
 }
 
-
-@media (min-width: 400px) and (max-width: 550px){
+@media (min-width: 916px) and (max-width: 1100px) {
     .articleGames {
-        flex-direction: column;
+        grid-template-columns: 70%;
     }
-    .title {
-    font-size: 8vw;
+        
+  .sectionGames h2 {
+    font-size: 4vw;
+  }
+  .titleDescription {
+    font-size: 3vw;
+  }
+  .subtitleDescription {
+    font-size: 2vw;
+  }
+  .buttonDescription {
+    width: 25vw;
+    font-size: 2vw;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 916px) {
+    .articleGames {
+        grid-template-columns: 90%;
+    }
+    
+  .sectionGames h2 {
+    font-size: 4.5vw;
   }
   .titleDescription {
     font-size: 3.5vw;
-    text-align: center;
-  }
-  .divGame {
-    width: 90vw;
-    height: 60vh;
   }
   .subtitleDescription {
     font-size: 2.5vw;
   }
-  .picGame {
-    width: 50%;
-    height: 60vh;
-  }
   .buttonDescription {
-    height: 10vh;
-    min-width: 25vw;
-    font-size: 3.5vw;
-    align-self: center;
-  }
-  .pDescription {
-    font-size: 3.3vw;
+    width: 25vw;
+    font-size: 2.5vw;
   }
 }
 
 @media (min-width: 550px) and (max-width: 768px) {
-  .divGame {
-    height: 70vh;
-    width: 90vw;
-  }
-  .articleGames {
-    flex-direction: column;
-  }
-  .title {
-    font-size: 6vw;
+    .articleGames {
+        grid-template-columns: 100%;
+    }
+
+  .sectionGames h2 {
+    font-size: 4.5vw;
   }
   .titleDescription {
     font-size: 4vw;
@@ -135,32 +138,38 @@
     font-size: 2.3vw;
   }
   .buttonDescription {
-    width: 20vw;
-    font-size: 3vw;
+    width: 25vw;
+    font-size: 2.7vw;
   }
-  .picGame {
-    width: 40%;
-    height: 65vh;
+
+  .pDescription {
+    font-size: 2.4vw;
   }
 }
-@media (min-width: 769px) and (max-width: 1080px) {
+
+@media (max-width: 550px){
+
+    .articleGames {
+        grid-template-columns: 100%;
+    }
+    .sectionGames h2{
+    font-size: 6vw;
+  }
   .titleDescription {
     font-size: 3vw;
+    text-align: center;
   }
-  .divGame {
-    width: 48vw;
-    height: 80vh;
+
+  .subtitleDescription {
+    font-size: 2.5vw;
   }
-  .title {
-    font-size: 4vw;
-  }
-  .picGame {
-    width: 50%;
+
+  .buttonDescription {
+    min-width: 25vw;
+    font-size: 2.5vw;
+    align-self: center;
   }
   .pDescription {
-    font-size: 1.8vw;
-  }
-  .buttonDescription {
-    height: 9vh;
+    font-size: 2.3vw;
   }
 }
