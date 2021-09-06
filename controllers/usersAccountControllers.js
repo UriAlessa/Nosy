@@ -31,6 +31,7 @@ const usersAccountControllers = {
         token,
       });
     } catch (error) {
+      console.log("hola");
       err.message.includes("Google")
         ? res.json({ error: [{ message: error.message }] })
         : res.json({ success: false, error: error.message });

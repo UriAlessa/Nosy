@@ -1,28 +1,32 @@
 const express = require("express");
 const router = express.Router();
+// const validator = require("../controllers/validator");
 const questionsControllers = require("../controllers/questionsControllers");
-const validator = require("../controllers/validator");
 const usersAccountsControllers = require("../controllers/usersAccountControllers");
-const gameControllers = require("../controllers/gameControllers")
-// const passport = require("passport");
+const gameControllers = require("../controllers/gameControllers");
+const passport = require("passport");
 
-router.route("/user/signup")
-  .post(validator, usersAccountsControllers.signUp);
-router.route("/user/login")
-  .post(usersAccountsControllers.logIn);
+router.route("/user/signup").post(usersAccountsControllers.signUp);
+router.route("/user/login").post(usersAccountsControllers.logIn);
 
 router
   .route("/user/token")
-  .post(validator, usersAccountsControllers.verifyToken);
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    usersAccountsControllers.verifyToken
+  );
 
-router.route("/question")
-  .get(questionsControllers.getQuestion);
+router.route("/question").get(questionsControllers.getQuestion);
 
-router.route("/game/newgame")
-  .post(validator, gameControllers.newGame)
-  .put(validator, gameControllers.acceptGameRequest)
-
-
-
+router
+  .route("/game/newgame")
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    gameControllers.newGame
+  )
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    gameControllers.acceptGameRequest
+  );
 
 module.exports = router;
