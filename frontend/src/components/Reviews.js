@@ -41,7 +41,7 @@ const AllReviews=[
         date:'23/08/2021', /**reservar la fecha en que se hizo la review */
         generalRate:'', /**número que se transformará en estrellas del 1 al 5*/
         funnyRate:'', /**número que se transformará en icono de diversión del 1 al 5*/
-        learningRate:'', /**número que se transformará en icono de aprehendizaje del 1 al 5*/
+        learningRate:'', /*otracosa*número que se transformará en icono de aprehendizaje del 1 al 5*/
         interactiveRate:'',/**estos números deberían ir a parar al ranking general, pero ser tomados desde cada usuario */
         intuitiveRate:'',/**puntaje de cuán intuitivo le pareció al jugar por primera vez */
         title:"Amazing night with friends",
