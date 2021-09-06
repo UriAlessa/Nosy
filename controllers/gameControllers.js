@@ -1,10 +1,10 @@
 const User = require("../models/User");
 
-const usersInGameControllers = {
+const gameControllers = {
   // answerCorrectly:,
   // useRepeatAnswer:,
   // useBomb:,
   // useReRoll:,
 };
 
-module.exports = usersInGameControllers;
+module.exports = gameControllers;
