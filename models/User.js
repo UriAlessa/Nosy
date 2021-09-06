@@ -21,8 +21,7 @@ const userSchema = mongoose.Schema({
     },
   },
   playing_now: {
-    status: Boolean,
-    multiplayer_game: Boolean,
+    status: { type: Boolean, default: false },
     game_id: { type: mongoose.Types.ObjectId },
   },
   friends: [{ type: mongoose.Types.ObjectId, path: "user" }],
@@ -30,7 +29,10 @@ const userSchema = mongoose.Schema({
   admin: { type: Boolean, default: false },
   facebook: { type: Boolean, default: false },
   google: { type: Boolean, default: false },
-  game_request: [{ type: mongoose.Types.ObjectId, path: "multiplayer game" }],
+  game_requests: [
+    { gameId: { type: mongoose.Types.ObjectId, path: "multiplayer game" } },
+    { creator: Boolean }
+  ],
 });
 
 module.exports = mongoose.model("user", userSchema);
