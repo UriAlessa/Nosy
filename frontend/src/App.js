@@ -8,6 +8,7 @@ import Terms from "./pages/Terms"
 import Privacy from "./pages/Privacy"
 import NotFound from './pages/NotFound'
 import AccountSection from './components/AccountSection'
+import GamepadButton from './pages/GameButtons'
 
 const App = (props) => {
 
@@ -25,6 +26,7 @@ const App = (props) => {
         <Route path='/privacy' component={Privacy} />
         <Route path='/notfound' component={NotFound} />
         <Route path='/accounts' component={AccountSection} />
+        <Route path='/selectgame' component={GamepadButton} />
         <Redirect to='/' />
       </Switch>
     </BrowserRouter>
