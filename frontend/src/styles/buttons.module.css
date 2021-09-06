@@ -1,8 +1,8 @@
 .playButton {
-    width: 63vmin;
-    height: 14.3vmin;
+    width: 39.5vmin;
+    height: 8.9vmin;
     color: #261f69;
-    font-size: 4vmin;
+    font-size: 2.5vmin;
     letter-spacing: 0.05em;
     font-family: 'Fredoka One', cursive;
     background: none;
@@ -19,7 +19,7 @@
 }
 
 .playButton strong {
-    width: 80%;
+    /* width: 80%; */
     font-weight: 100;
 }
 
