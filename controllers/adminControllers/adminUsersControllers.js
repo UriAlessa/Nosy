@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const AdminUsersControllers = {
   createAdminUser: async (req, res) => {
     const { username, password, email, avatar } = req.body;
-    console.log(req.body);
     const pw = bcrypt.hashSync(password);
     const { key } = req.headers;
     try {
