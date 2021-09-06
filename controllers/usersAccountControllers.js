@@ -58,14 +58,14 @@ const usersAccountControllers = {
     }
   },
 
-  addFriend: async (req, res) => { },
+  addFriend: async (req, res) => {},
 
   verifyToken: async (req, res) => {
     res.json({
       success: true,
       user: {
         username: req.user.username,
-        img: req.user.avatar,
+        avatar: req.user.avatar,
       },
       token: req.body.token,
     });
