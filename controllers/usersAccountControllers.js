@@ -31,8 +31,7 @@ const usersAccountControllers = {
         token,
       });
     } catch (error) {
-      console.log("hola");
-      err.message.includes("Google")
+      error.message.includes("Google")
         ? res.json({ error: [{ message: error.message }] })
         : res.json({ success: false, error: error.message });
     }
@@ -59,7 +58,7 @@ const usersAccountControllers = {
     }
   },
 
-  addFriend: async (req, res) => {},
+  addFriend: async (req, res) => { },
 
   verifyToken: async (req, res) => {
     res.json({

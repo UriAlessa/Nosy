@@ -16,7 +16,8 @@ router
     usersAccountsControllers.verifyToken
   );
 
-router.route("/question").get(questionsControllers.getQuestion);
+router.route("/question")
+  .get(questionsControllers.getQuestion);
 
 router
   .route("/game/newgame")

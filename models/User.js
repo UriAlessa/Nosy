@@ -30,10 +30,15 @@ const userSchema = mongoose.Schema({
   facebook: { type: Boolean, default: false },
   google: { type: Boolean, default: false },
   game_requests: [
+<<<<<<< HEAD
     {
       gameId: { type: mongoose.Types.ObjectId, path: "multiplayer game" },
       creator: { type: Boolean },
     },
+=======
+    { gameId: { type: mongoose.Types.ObjectId, path: "multiplayer game" } },
+    { creator: { type: Boolean } }
+>>>>>>> origin/daniel
   ],
 });
 

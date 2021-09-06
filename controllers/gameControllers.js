@@ -43,53 +43,26 @@ const gameControllers = {
           { player2: { user: req.user._id }, status: true },
           { new: true }
         );
-        //Verificar si funciona!!!!!!!! Para borrar lo de abajo
-        // await User.updateMany(
-        //   { game_requests: { gameId: req.body.gameId } },
-        //   {
-        //     $pull: { game_requests: { gameId: req.body.gameId } },
-        //     playing_now: { status: true, game_id: game._id }
-        //   }
-        // )
-        await User.findOneAndUpdate(
-          { _id: req.user._id },
+        console.log(await User.find({ "game_requests.gameId": req.body.gameId }))
+        await User.updateMany(
+          { "game_requests.gameId": req.body.gameId },
           {
             $pull: { game_requests: { gameId: req.body.gameId } },
-            playing_now: { status: true, game_id: game._id },
+            playing_now: { status: true, game_id: game._id }
           }
-        );
-        await User.findOneAndUpdate(
-          { _id: game.player1.user },
-          {
-            $pull: { game_requests: { gameId: req.body.gameId } },
-            playing_now: { status: true, game_id: game._id },
-          }
-        );
+        )
         res.json({ success: true, response: game });
       } else {
         await MultiPlayer.findOneAndDelete({ _id: req.body.gameId });
-        //Verificar si funciona!!!!!!!! Para borrar lo de abajo
-        // await User.updateMany(
-        //   { game_requests: { gameId: req.body.gameId } },
-        //   {
-        //     $pull: { game_requests: { gameId: req.body.gameId } },
-        //     playing_now: { status: true, game_id: game._id }
-        //   }
-        // )
-        await User.findOneAndUpdate(
-          { _id: req.user._id },
+        console.log(await User.find({ "game_requests.gameId": req.body.gameId }))
+        await User.updateMany(
+          { "game_requests.gameId": req.body.gameId },
           {
-            $pull: { game_requests: { gameId: req.body.gameId } },
+            $pull: { game_requests: { gameId: req.body.gameId } }
           }
-        );
-        await User.findOneAndUpdate(
-          { _id: game.player1.user },
-          {
-            $pull: { game_requests: { gameId: req.body.gameId } },
-          }
-        );
+        )
+        throw new Error("Declined");
       }
-      throw new Error("Declined");
     } catch (error) {
       res.json({ success: false, error: error.message });
     }
