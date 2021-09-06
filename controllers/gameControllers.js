@@ -4,7 +4,6 @@ const User = require("../models/User");
 
 const gameControllers = {
   newGame: async (req, res) => {
-    console.log(req.user);
     try {
       if (req.body.multiPlayer) {
         let game = new MultiPlayer({
@@ -41,7 +40,7 @@ const gameControllers = {
       if (req.body.accept) {
         let game = await MultiPlayer.findOneAndUpdate(
           { _id: req.body.gameId },
-          { player2: req.user._id, status: true },
+          { player2: { user: req.user._id }, status: true },
           { new: true }
         );
         //Verificar si funciona!!!!!!!! Para borrar lo de abajo
