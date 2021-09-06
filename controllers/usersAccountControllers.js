@@ -65,9 +65,8 @@ const usersAccountControllers = {
       success: true,
       user: {
         username: req.user.username,
-        img: req.user.avatar,
-      },
-      token: req.body.token,
+        avatar: req.user.avatar,
+      }
     });
   },
 };

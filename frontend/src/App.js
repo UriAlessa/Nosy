@@ -9,14 +9,15 @@ import Privacy from "./pages/Privacy"
 import NotFound from './pages/NotFound'
 import AccountSection from './components/AccountSection'
 import GamepadButton from './pages/GameButtons'
+import usersActions from './redux/actions/usersActions'
 
 const App = (props) => {
 
-  // useEffect( () => {
-  //   if(localStorage.getItem('token')) {
-  //     props.(localStorage.getItem('token'))
-  //   }
-  // }, [])
+  useEffect( () => {
+    if(localStorage.getItem('token')) {
+      props.logInLS()
+    }
+  }, [])
 
   return (
     <BrowserRouter>
@@ -33,16 +34,8 @@ const App = (props) => {
   )
 }
 
-// const mapStateToProps = (state) => {
-//   return {
+const mapDispatchToProps = {
+  logInLS: usersActions.logInLS
+}
 
-//   }
-// }
-
-// const mapDispatchToProps = {
-
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App)
-
-export default App
+export default connect(null, mapDispatchToProps)(App)

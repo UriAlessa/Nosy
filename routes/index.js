@@ -11,7 +11,7 @@ router.route("/user/login").post(usersAccountsControllers.logIn);
 
 router
   .route("/user/token")
-  .post(
+  .get(
     passport.authenticate("jwt", { session: false }),
     usersAccountsControllers.verifyToken
   );
