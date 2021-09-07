@@ -23,7 +23,11 @@ const SignUp = (props) => {
             return alert('Empty fields')
         }
         let response = await props.signUpUser(newUser)
-        if (response.data.success) {
+        if (!response.data.success) {
+            response.data.error.map((error) => {
+                console.log(error.message)
+            })
+        } else {
             alert('Welcome!')
         }
     }

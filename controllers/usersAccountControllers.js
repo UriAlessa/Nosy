@@ -39,7 +39,7 @@ const usersAccountControllers = {
   logIn: async (req, res) => {
     const { username, password, facebook, google } = req.body;
     try {
-      let user = await User.findOne({ username });
+      let user = await User.findOne({ username: username });
       if ((user.google && !google) || (user.facebook && !facebook))
         throw new Error("You must log in with Google");
       let match = user && bcrypt.compareSync(password, user.password);

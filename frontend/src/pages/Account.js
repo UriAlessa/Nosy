@@ -1,9 +1,9 @@
 import styles from '../styles/accounts.module.css'
-import Login from './Login'
-import SignUp from './SignUp'
+import Login from '../components/Login'
+import SignUp from '../components/SignUp'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { PlayButton } from './Buttons'
+import { PlayButton } from '../components/Buttons'
 
 const AccountSection = () => {
     const [login, setLogin] = useState(false)

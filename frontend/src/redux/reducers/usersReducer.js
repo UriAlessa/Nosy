@@ -7,7 +7,6 @@ const initialState = {
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOG_IN_USER':
-        console.log(action.payload)
         localStorage.setItem('token', action.payload.token)
         return {
             token: action.payload.token,
@@ -34,4 +33,3 @@ const usersReducer = (state = initialState, action) => {
 }
 
 export default usersReducer
-    
