@@ -39,11 +39,11 @@ const usersAccountControllers = {
   logIn: async (req, res) => {
     const { username, password, facebook, google } = req.body;
     try {
-      let user = await User.findOne({ email: email });
+      let user = await User.findOne({ username: username });
       if ((user.google && !google) || (user.facebook && !facebook))
         throw new Error("You must log in with Google");
       let match = user && bcrypt.compareSync(password, user.password);
-      if (!user || !match) throw new Error();
+      if (!user || !match) throw new Error('Password does not match');
       const token = jwt.sign({ ...user }, process.env.SECRETORKEY);
       res.json({
         success: true,

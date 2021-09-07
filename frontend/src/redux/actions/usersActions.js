@@ -32,7 +32,6 @@ const usersActions = {
                     Authorization: 'Bearer '+ token
                 }
             })
-                console.log(response)
                 dispatch({ type: 'LOG_IN_USER', payload: {...response.data, token}})
             } catch(error) {
                 return dispatch({type: 'LOG_OUT'})
@@ -40,9 +39,7 @@ const usersActions = {
         }
     },
     logOutUser: () => {
-        return (dispatch) => {
-            return (dispatch, getState) => {dispatch({ type: 'LOG_OUT' })}
-        }
+        return (dispatch, getState) => {dispatch({ type: 'LOG_OUT' })}
     },
 }
 

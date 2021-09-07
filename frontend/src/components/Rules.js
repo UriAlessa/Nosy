@@ -23,7 +23,7 @@ const Rules = ()=>{
 
     const render=InfoCards.map(info=>{
         return(
-            <RuleCard infoCard={info}/>
+            <RuleCard key={info.title} infoCard={info}/>
         )
         
     })
