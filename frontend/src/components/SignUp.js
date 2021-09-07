@@ -21,72 +21,71 @@ const SignUp = (props) => {
   };
 
   const submitButton = async () => {
-    const { username, password, email, avatar } = newUser
-    if (username === '' || password === '' || email === '' || avatar === '') {
-      return alert('Empty fields')
+    const { username, password, email, avatar } = newUser;
+    if (username === "" || password === "" || email === "" || avatar === "") {
+      return alert("Empty fields");
     }
-    let response = await props.signUpUser(newUser)
+    let response = await props.signUpUser(newUser);
     if (!response.data.success) {
       response.data.error.map((error) => {
-        console.log(error.message)
-      })
+        console.log(error.message);
+      });
     } else {
-      alert('Welcome!')
+      alert("Welcome!");
     }
-  }
+  };
+
+  return (
+    <div className={styles.signup}>
+      <h1>Create Account</h1>
+      <div className={styles.socialMediaLogin}>
+        <SocialMediaHeroButton icon="facebook" />
+        <SocialMediaHeroButton icon="google" />
+      </div>
+      <p>or use your email for registration</p>
+      <div className={styles.inputContainer}>
+        <input
+          className={styles.inputForm}
+          onChange={inputHandler}
+          name="username"
+          type="text"
+          placeholder="Choose your username"
+        />
+        <input
+          className={styles.inputForm}
+          onChange={inputHandler}
+          name="password"
+          type="password"
+          placeholder="Password"
+        />
+        <input
+          className={styles.inputForm}
+          onChange={inputHandler}
+          name="email"
+          type="email"
+          placeholder="Email"
+        />
+        <input
+          className={styles.inputForm}
+          onChange={inputHandler}
+          name="avatar"
+          type="text"
+          placeholder="URL avatar"
+        />
+      </div>
+      <button onClick={submitButton} className={styles.playButton}>
+        <svg
+          className={styles.buttonPlayButton}
+          xmlns="http://www.w3.org/1999/xlink"
+          viewBox="0 0 163.861 163.861"
+        >
+          <path d="M34.857,3.613C20.084-4.861,8.107,2.081,8.107,19.106v125.637c0,17.042,11.977,23.975,26.75,15.509L144.67,97.275   c14.778-8.477,14.778-22.211,0-30.686L34.857,3.613z" />
+        </svg>
+        <strong>SIGN UP</strong>
+      </button>
+    </div>
+  );
 };
-
-return (
-  <div className={styles.signup}>
-    <h1>Create Account</h1>
-    <div className={styles.socialMediaLogin}>
-      <SocialMediaHeroButton icon="facebook" />
-      <SocialMediaHeroButton icon="google" />
-    </div>
-    <p>or use your email for registration</p>
-    <div className={styles.inputContainer}>
-      <input
-        className={styles.inputForm}
-        onChange={inputHandler}
-        name="username"
-        type="text"
-        placeholder="Choose your username"
-      />
-      <input
-        className={styles.inputForm}
-        onChange={inputHandler}
-        name="password"
-        type="password"
-        placeholder="Password"
-      />
-      <input
-        className={styles.inputForm}
-        onChange={inputHandler}
-        name="email"
-        type="email"
-        placeholder="Email"
-      />
-      <input
-        className={styles.inputForm}
-        onChange={inputHandler}
-        name="avatar"
-        type="text"
-        placeholder="URL avatar"
-      />
-    </div>
-    <button onClick={submitButton} className={styles.playButton}>
-      <svg
-        className={styles.buttonPlayButton}
-        xmlns="http://www.w3.org/1999/xlink"
-        viewBox="0 0 163.861 163.861"
-      >
-        <path d="M34.857,3.613C20.084-4.861,8.107,2.081,8.107,19.106v125.637c0,17.042,11.977,23.975,26.75,15.509L144.67,97.275   c14.778-8.477,14.778-22.211,0-30.686L34.857,3.613z" />
-      </svg>
-      <strong>SIGN UP</strong>
-    </button>
-  </div>
-);
-
 
 const mapDispatchToProps = {
   signUpUser: usersActions.signUpUser,
