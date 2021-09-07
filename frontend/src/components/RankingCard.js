@@ -10,7 +10,7 @@ const RankingCard = (props) => {
                 </svg>
             )
         })
-
+        
     let funny = Array(props.ranking.funnyRate)
         .fill(props.ranking.funnyRate)
         .map((rate, index) => {
@@ -61,7 +61,7 @@ const RankingCard = (props) => {
         <div className={styles.card}>
             <h2>Overall Score</h2>
             <div><p>General</p>{stars}</div>
-            <div><p>Funnier</p>{funny}</div>
+            <div><p>Funny</p>{funny}</div>
             <div><p>Interactive</p>{interaction}</div>
             <div><p>Intuitive</p>{intuitive}</div>
             <div><p>Learning</p>{learning}</div>
