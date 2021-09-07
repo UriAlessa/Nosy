@@ -17,8 +17,8 @@ header {
 
 .logo {
   width: 192px;
-  height: 95px;
-  background-size: cover;
+  height: 110px;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }

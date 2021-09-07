@@ -7,7 +7,7 @@ const Header = (props) => {
     
     return (
         <header>
-            <div className={styles.logo} style={{ backgroundImage: 'url("https://stopots.com/assets/logo1.svg")' }}></div>
+            <div className={styles.logo} style={{ backgroundImage: 'url("https://i.postimg.cc/NGy7Mjt1/nosy-Nosy-Ruleta.png")' }}></div>
             <div className={styles.content}>
                 <nav>
                     <a href="#howToPlay">HOW TO PLAY</a>
