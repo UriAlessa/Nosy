@@ -18,6 +18,7 @@ const QuestionCard = (props) => {
   }, []);
 
   const clickHandler = (e) => {
+    props.category(null);
     setClick(true);
     Array.from(answersContainer.current.children).forEach((answer) =>
       answer.name === correctAnswer
