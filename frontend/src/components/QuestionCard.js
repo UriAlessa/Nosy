@@ -9,11 +9,11 @@ const QuestionCard = (props) => {
   const [answers, setAnswers] = useState([]);
   let answersContainer = useRef();
   let questionAudio = new Audio("/assets/question.wav");
-  questionAudio.play();
   let correctAudio = new Audio("/assets/correct.wav");
   let incorrectAudio = new Audio("/assets/incorrect.wav");
 
   useEffect(() => {
+    questionAudio.play();
     setAnswers(possibleAnswers.sort(() => Math.random() - 0.5));
   }, []);
 
@@ -21,8 +21,10 @@ const QuestionCard = (props) => {
     setClick(true);
     Array.from(answersContainer.current.children).forEach((answer) =>
       answer.name === correctAnswer
-        ? (answer.className = ` ${styles.buttonOption}  ${styles.correct}`)
-        : (answer.className = ` ${styles.buttonOption}  ${styles.incorrect}`)
+        ? (answer.className = ` ${styles.buttonOption}  ${styles.correct}`) &&
+          correctAudio.play()
+        : (answer.className = ` ${styles.buttonOption}  ${styles.incorrect}`) &&
+          incorrectAudio.play()
     );
     setTimeout(() => {
       props.setQuestion(null);
