@@ -1,24 +1,36 @@
 import styles from "../styles/questionCard.module.css";
 import { connect } from "react-redux";
 import questionActions from "../redux/actions/questionsActions";
+import { useState, useEffect, useRef } from "react";
 
 const QuestionCard = (props) => {
   const { question, possibleAnswers, correctAnswer } = props.question;
-
+  const [click, setClick] = useState(false);
+  const [answers, setAnswers] = useState([]);
+  let answersContainer = useRef();
   let questionAudio = new Audio("/assets/question.wav");
-  questionAudio.play();
+  let correctAudio = new Audio("/assets/correct.wav");
+  let incorrectAudio = new Audio("/assets/incorrect.wav");
+
+  useEffect(() => {
+    questionAudio.play();
+    setAnswers(possibleAnswers.sort(() => Math.random() - 0.5));
+  }, []);
 
   const clickHandler = (e) => {
-    if (correctAnswer === e.target.name) {
-      e.target.style.background = "green";
-      // props.renderRoulette()
-      setTimeout(() => {
-        props.setQuestion(null);
-      }, 1500);
-    } else {
-      e.target.style.background = "red";
-      console.log("perdio");
-    }
+    props.category(null);
+    setClick(true);
+    Array.from(answersContainer.current.children).forEach((answer) =>
+      answer.name === correctAnswer
+        ? (answer.className = ` ${styles.buttonOption}  ${styles.correct}`)
+        : (answer.className = ` ${styles.buttonOption}  ${styles.incorrect}`)
+    );
+    e.target.name === correctAnswer
+      ? correctAudio.play()
+      : incorrectAudio.play();
+    setTimeout(() => {
+      props.setQuestion(null);
+    }, 1500);
   };
   /* props.AccionDeQuitarUnaVida */
   /* Se le resta una vida */
@@ -39,21 +51,20 @@ const QuestionCard = (props) => {
           <h3>{question}</h3>
         </div>
 
-        <div className={styles.containerButtons}>
-          {possibleAnswers
-            .sort(() => Math.random() - 0.5)
-            .map((string, index) => {
-              return (
-                <button
-                  key={index}
-                  className={styles.buttonOption}
-                  name={string}
-                  onClick={clickHandler}
-                >
-                  {string}
-                </button>
-              );
-            })}
+        <div ref={answersContainer} className={styles.containerButtons}>
+          {answers.map((string, index) => {
+            return (
+              <button
+                key={index}
+                className={styles.buttonOption}
+                name={string}
+                onClick={clickHandler}
+                disabled={click}
+              >
+                {string}
+              </button>
+            );
+          })}
         </div>
       </article>
     </section>
