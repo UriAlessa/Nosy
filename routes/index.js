@@ -29,4 +29,11 @@ router
     gameControllers.acceptGameRequest
   );
 
+router.route("/game/answer")
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    gameControllers.answer
+  );
+
+
 module.exports = router;

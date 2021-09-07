@@ -11,6 +11,7 @@ const Game = (props) => {
   const [loader, setLoader] = useState(true);
   const [question, setQuestion] = useState(null);
   const [category, setCategory] = useState(null);
+  const [nosy, setNosy] = useState(false)
 
   useEffect(() => {
     if (props.token) {
@@ -32,9 +33,7 @@ const Game = (props) => {
       props
         .getQuestion(category)
         .then((res) => {
-          setTimeout(() => {
-            setQuestion(res);
-          }, 4000);
+          setQuestion(res);
         })
         .catch((e) => console.log(e));
     }
@@ -48,17 +47,32 @@ const Game = (props) => {
     );
   }
 
+  const categoryHandler = (e) => {
+    setCategory(e.target.innerText)
+  }
+
+
   return (
     <main
       className={styles.gameContainer}
       style={{ backgroundImage: "url('/assets/background.png')" }}
     >
       <div className={styles.renderGame}>
-        {!question ? (
-          <Roulette category={setCategory} />
-        ) : (
-          <QuestionCard question={question} setQuestion={setQuestion} />
-        )}
+        {nosy ?
+          <div>
+            <button onClick={categoryHandler}>Music</button>
+            <button onClick={categoryHandler}>Animals</button>
+            <button onClick={categoryHandler}>Movies and series</button>
+            <button onClick={categoryHandler}>Science: Computers</button>
+            <button onClick={categoryHandler}>General Knowledge</button>
+          </div>
+          : !question ? (
+            <Roulette category={setCategory} setNosy={setNosy} />
+          ) : (
+            <QuestionCard question={question} setQuestion={setQuestion} category={setCategory} nosy={nosy} setNosy={setNosy} />
+          )
+        }
+
       </div>
     </main>
   );

@@ -41,6 +41,26 @@
   outline: none;
 }
 
+.socialMediaHeroButton {
+  width: 9.5vmin;
+  height: 9vmin;
+  background: none;
+  border: none;
+  background-size: cover;
+  background-image: url("../assets/buttons/socialMediaHero.svg");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.socialMediaHeroButton:hover {
+  background-image: url("../assets/buttons/socialMediaHero-hover.svg");
+}
+.socialMediaHeroButton svg{
+  width: 3.2vmin;
+  fill: white;
+}
+
 /* Login */
 
 .signup,
@@ -116,6 +136,8 @@
   border: none;
   background-size: cover;
   background-image: url("../assets/buttons/playButton.svg");
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -133,4 +155,55 @@
   width: 20px;
   fill: white;
   margin-left: 25px;
+}
+
+
+@media (max-width: 768px) {
+  .midContainer {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    flex: 1;
+    margin-bottom: 0.5vh;
+  }
+
+  .login, .signup {
+    width: 100%;
+    border-bottom-right-radius: 0%;
+    justify-content: space-around;
+    padding: 0 0;
+    min-height: 50vh;
+  }
+
+  .welcomeLogin, .welcomeSignup {
+    width: 100%;
+    flex: 1;
+  }
+
+.welcomeLogin, .login, .signup, .welcomeSignup {
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+  border-top-left-radius: 0%;
+  border-top-right-radius: 0%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .midContainer{
+    width: 90%;
+  }
+
+  .socialMediaLogin{
+    width: 100%;
+  }
+
+  .welcomeLogin > p {
+    text-align: center;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .midContainer{
+    width: 90%;
+  }
 }

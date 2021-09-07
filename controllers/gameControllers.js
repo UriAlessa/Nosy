@@ -68,17 +68,28 @@ const gameControllers = {
       res.json({ success: false, error: error.message });
     }
   },
-  addAnsweredQuestion: async (req, res) => {
+  answer: async (req, res) => {
+    const { question, answer, nosy, powers_used, coins_spent } = req.body
+    const { _id, playing_now } = req.user
+    const { game_id } = playing_now
     try {
       if (req.body.multiplayer) {
 
       } else {
-        const { id, correct, question } = req.body
-        SinglePlayer.findOneAndUpdate(
-          { _id: req.body.id },
-          { $push: { questions: { correct, question } } }
+        let lifes = answer ? 0 : -1
+        let nosys = nosy ? 1 : 0
+
+        let newGameState = await SinglePlayer.findOneAndUpdate(
+          { _id: game_id },
+          {
+            $push: { questions: { question, answer } },
+            $inc: { lifes, coins_spent, powers_used, nosys },
+          },
+          { new: true }
         )
-        res.json({ success: true })
+        let coins = answer ? 5 : 0
+        let newUserState = await User.findOneAndUpdate({ _id }, { $inc: { coins } })
+        res.json({ success: true, response: { newGameState, newUserState } })
       }
     } catch (error) {
       res.json({ success: false })

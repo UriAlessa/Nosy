@@ -10,8 +10,8 @@ import NotFound from "./pages/NotFound";
 import Account from "./pages/Account";
 import Game from "./pages/Game";
 import usersActions from "./redux/actions/usersActions";
-import FriendCard from "./components/FriendCard";
-import GameButtons from "./pages/GameButtons";
+import FriendCard from './components/FriendCard'
+import GameButtons from './pages/GameButtons'
 
 const App = (props) => {
   useEffect(() => {
