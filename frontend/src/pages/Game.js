@@ -24,6 +24,7 @@ const Game = (props) => {
       }
     };
     createGame();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -35,15 +36,8 @@ const Game = (props) => {
         }, 4000);
       })
       .catch((e) => console.log(e));
+    // eslint-disable-next-line
   }, [category]);
-
-  // if (loader) {
-  //     return (
-  //         <div>
-  //             <h1>Cargando...</h1>
-  //         </div>
-  //     )
-  // }
 
   return (
     <main

@@ -24,17 +24,24 @@ const GameButtons = (props) => {
             <SocialMediaFooterButton icon="youtube" />
             <SocialMediaFooterButton icon="discord" />
           </div>
-          <img className={styles.logo} src="/assets/logoSoloLetras.png" />
+          <img
+            className={styles.logo}
+            src="/assets/logoSoloLetras.png"
+            alt="logo"
+          />
         </div>
         <div className={styles.divContainerCards}>
           <div className={styles.divGameButtons}>
-            <img className={styles.avatars} src="/assets/player.png" />
+            <img
+              className={styles.avatars}
+              src="/assets/player.png"
+              alt="player"
+            />
             <Link to="/game">
               {" "}
               <button className={style.playButton}>
                 <svg
                   className={style.buttonPlayButton}
-                  xmlns="http://www.w3.org/2000/svg"
                   xmlns="http://www.w3.org/1999/xlink"
                   viewBox="0 0 163.861 163.861"
                 >
@@ -45,7 +52,11 @@ const GameButtons = (props) => {
             </Link>
           </div>
           <div className={styles.divGameButtons}>
-            <img className={styles.avatars} src="/assets/debate.png" />
+            <img
+              className={styles.avatars}
+              src="/assets/debate.png"
+              alt="debate"
+            />
             <PlayButton
               text="PLAY W/ FRIEND"
               className={styles.buttonPlay}
@@ -60,11 +71,15 @@ const GameButtons = (props) => {
           </div>
           <div className={styles.divApps}>
             <div className={styles.containerApps}>
-              <img src="/assets/playStore.png" className={styles.picAppPS} />{" "}
+              <img
+                src="/assets/playStore.png"
+                className={styles.picAppPS}
+                alt="playStore"
+              />{" "}
               <p className={styles.apps}>android</p>
             </div>
             <div className={styles.containerApps}>
-              <img className={styles.picApp} src="/assets/ios.png" />{" "}
+              <img className={styles.picApp} src="/assets/ios.png" alt="ios" />{" "}
               <p className={styles.apps}>ios</p>
             </div>
           </div>

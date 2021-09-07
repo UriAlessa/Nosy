@@ -9,6 +9,7 @@ import { useEffect } from "react";
 const Home = (props) => {
   useEffect(() => {
     props.history.push("/");
+    // eslint-disable-next-line
   }, []);
   return (
     <>

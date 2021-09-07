@@ -8,22 +8,22 @@ import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 import AccountSection from "./components/AccountSection";
-import GameButtons from "./pages/GameButtons";
+import Game from "./pages/Game";
 import usersActions from "./redux/actions/usersActions";
 import FriendCard from "./components/FriendCard";
-import Game from "./pages/Game";
+import GameButtons from "./pages/GameButtons";
 
 const App = (props) => {
-  const token = localStorage.getItem("token");
   useEffect(() => {
-    if (token) {
+    if (localStorage.getItem("token")) {
       props.logInLS();
       props.setSocket(
         io("http://localhost:4000/", {
-          query: "token=" + token,
+          query: "token=" + localStorage.getItem("token"),
         })
       );
     }
+    // eslint-disable-next-line
   }, []);
   if (props.socket) {
     props.socket.on("game_request", (username) => {
@@ -36,7 +36,6 @@ const App = (props) => {
       console.log(username);
     });
   }
-  console.log(token);
   return (
     <BrowserRouter>
       <Switch>
@@ -46,7 +45,10 @@ const App = (props) => {
         <Route path="/privacy" component={Privacy} />
         <Route path="/notfound" component={NotFound} />
         <Route path="/game" component={Game} />
-        <Route path="/accounts" component={!token ? AccountSection : Home} />
+        <Route
+          path="/accounts"
+          component={!props.token ? AccountSection : Home}
+        />
         <Route path="/selectgame" component={GameButtons} />
         <Redirect to="/" />
       </Switch>
@@ -54,15 +56,15 @@ const App = (props) => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     token: state.users.token,
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    token: state.users.token,
+  };
+};
 
 const mapDispatchToProps = {
   logInLS: usersActions.logInLS,
   setSocket: usersActions.setSocket,
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

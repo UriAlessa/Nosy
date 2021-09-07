@@ -28,7 +28,6 @@ const AccountSection = () => {
               <button onClick={toSignUp} className={styles.playButton}>
                 <svg
                   className={styles.buttonPlayButton}
-                  xmlns="http://www.w3.org/2000/svg"
                   xmlns="http://www.w3.org/1999/xlink"
                   viewBox="0 0 163.861 163.861"
                 >
@@ -48,7 +47,6 @@ const AccountSection = () => {
               <button onClick={toLogin} className={styles.playButton}>
                 <svg
                   className={styles.buttonPlayButton}
-                  xmlns="http://www.w3.org/2000/svg"
                   xmlns="http://www.w3.org/1999/xlink"
                   viewBox="0 0 163.861 163.861"
                 >

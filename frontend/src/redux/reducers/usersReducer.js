@@ -1,4 +1,5 @@
 const initialState = {
+  token: null,
   username: null,
   avatar: null,
   socket: null,
@@ -9,13 +10,18 @@ const usersReducer = (state = initialState, action) => {
     case "LOG_IN_USER":
       localStorage.setItem("token", action.payload.token);
       return {
-        ...state,
+        token: action.payload.token,
         username: action.payload.user.username,
         avatar: action.payload.user.avatar,
       };
+    default:
+      return state;
     case "LOG_OUT":
       localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      localStorage.removeItem("avatar");
       return {
+        token: null,
         username: null,
         avatar: null,
       };
@@ -24,8 +30,6 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         socket: action.payload,
       };
-    default:
-      return state;
   }
 };
 
