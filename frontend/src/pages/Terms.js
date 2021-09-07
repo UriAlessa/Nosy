@@ -1,7 +1,8 @@
-import {useState} from 'react'
+import {useState, useRef} from 'react'
 import styles from '../styles/terms.module.css'
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import { ButtonT } from '../components/Buttons'
 
 const Terms = () => {
 
@@ -104,8 +105,11 @@ const Terms = () => {
     }
 
     return (
-        <>
-            <Header />
+    <>
+        <div className={styles.container}>
+            <Header className={styles.header} />
+            <h1>Terms of use</h1>
+            <ButtonT />
             <dl>
                 <dd>
                     <div className={styles.title} onClick={showOne}>
@@ -114,7 +118,7 @@ const Terms = () => {
                         </svg>
                         <h5 onClick={showOne}>1. Terms and conditions</h5>
                     </div>
-                    {items.one && <span>
+                    {<span className={items.one ? styles.showSpan : styles.hiddeSpan}>
                         <p>Version September 4 of 2021</p>
                         <p>
                             Welcome to the web site operated by Daniel San Team (the "Company"), accessible at{` `}
@@ -253,8 +257,9 @@ const Terms = () => {
                     </span>}
                 </dd>
             </dl>
-            <Footer />
-        </>
+        </div>
+        <Footer />
+    </>
     )
 }
 
