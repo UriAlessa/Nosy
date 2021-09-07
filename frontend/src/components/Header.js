@@ -1,43 +1,61 @@
-import { NavLink } from 'react-router-dom'
-import { connect } from 'react-redux'
-import styles from '../styles/header.module.css'
-import usersActions from '../redux/actions/usersActions'
+import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import styles from "../styles/header.module.css";
+import usersActions from "../redux/actions/usersActions";
 
 const Header = (props) => {
-    
-    return (
-        <header>
-            <div className={styles.logo} style={{ backgroundImage: 'url("https://i.postimg.cc/NGy7Mjt1/nosy-Nosy-Ruleta.png")' }}></div>
-            <div className={styles.content}>
-                <nav>
-                    <a href="#howToPlay">HOW TO PLAY</a>
-                    <a href="#nextGames">NEXT GAMES</a>
-                    <a href="#reviews">REVIEWS</a>
-                    {props.token && <p style={{cursor: 'pointer'}} onClick={() => props.logOutUser()}>LOGOUT</p>}
-                    {!props.token ? <NavLink to='/accounts'>LOG IN/SIGN UP</NavLink> 
-                    : <> 
-                        <p>HI, {props.username}</p>
-                        <div className='userLogo' style={{backgroundImage: `url('${props.avatar}')`, height: '60px', width: '60px', backgroundPosition: 'center', backgroundSize: 'cover', borderRadius: '50%'}}></div>
-                    </>}
-                </nav>
-            </div>
-            {/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-            </svg> */}
-        </header>
-    )
-}
+  return (
+    <header>
+      <div
+        className={styles.logo}
+        style={{
+          backgroundImage: 'url("https://stopots.com/assets/logo1.svg")',
+        }}
+      ></div>
+      <div className={styles.content}>
+        <nav>
+          <a href="#howToPlay">HOW TO PLAY</a>
+          <a href="#nextGames">NEXT GAMES</a>
+          <a href="#reviews">REVIEWS</a>
+          {props.token && (
+            <p style={{ cursor: "pointer" }} onClick={() => props.logOutUser()}>
+              LOGOUT
+            </p>
+          )}
+          {!props.token ? (
+            <NavLink to="/accounts">LOG IN/SIGN UP</NavLink>
+          ) : (
+            <>
+              <p>HI, {props.username}</p>
+              <div
+                className="userLogo"
+                style={{
+                  backgroundImage: `url('${props.avatar}')`,
+                  height: "60px",
+                  width: "60px",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  borderRadius: "50%",
+                }}
+              ></div>
+            </>
+          )}
+        </nav>
+      </div>
+    </header>
+  );
+};
 
 const mapStateToProps = (state) => {
-    return {
-        token: state.users.token,
-        username: state.users.username,
-        avatar: state.users.avatar
-    }
-}
+  return {
+    token: state.users.token,
+    username: state.users.username,
+    avatar: state.users.avatar,
+  };
+};
 
 const mapDispatchToProps = {
-    logOutUser: usersActions.logOutUser
-}
+  logOutUser: usersActions.logOutUser,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
