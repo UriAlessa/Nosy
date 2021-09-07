@@ -18,7 +18,7 @@ const App = (props) => {
     if (localStorage.getItem("token")) {
       props.logInLS();
       props.setSocket(
-        io("http://localhost:4000/", {
+        io("https://benosy.herokuapp.com/", {
           query: "token=" + localStorage.getItem("token"),
         })
       );
