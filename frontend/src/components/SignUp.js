@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../styles/accounts.module.css'
-import { PlayButton, SocialMediaHeroButton } from '../components/Buttons'
+import { SocialMediaHeroButton } from '../components/Buttons'
 import { useState } from 'react'
 import { connect } from 'react-redux'
 import usersActions from '../redux/actions/usersActions'
@@ -23,9 +23,10 @@ const SignUp = (props) => {
             return alert('Empty fields')
         }
         let response = await props.signUpUser(newUser)
+        if (response.data.success) {
+            alert('Welcome!')
+        }
     }
-
-    console.log(props.username)
 
     return (
         <div className={styles.signup}>
@@ -53,14 +54,8 @@ const SignUp = (props) => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        username: state.users.username
-    }
-}
-
 const mapDispatchToProps = {
     signUpUser: usersActions.signUpUser
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default connect(null, mapDispatchToProps)(SignUp)

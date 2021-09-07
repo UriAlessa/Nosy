@@ -43,7 +43,7 @@ const App = (props) => {
         <Route path='/privacy' component={Privacy} />
         <Route path='/notfound' component={NotFound} />
         <Route path='/game' component={Game} />
-        <Route path='/accounts' component={AccountSection} />
+        {!props.token && <Route path='/accounts' component={AccountSection} />}
         <Route path='/selectgame' component={GamepadButton} />
         <Redirect to='/' />
       </Switch>
@@ -51,9 +51,15 @@ const App = (props) => {
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    token: state.users.token,
+  }
+}
+
 const mapDispatchToProps = {
   logInLS: usersActions.logInLS,
   setSocket: usersActions.setSocket,
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

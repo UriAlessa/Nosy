@@ -4,6 +4,7 @@
 .mainContainer {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-image: url(https://stopots.com/images/background.png);
@@ -12,11 +13,16 @@
   background-repeat: no-repeat;
 }
 
+.mainContainer > a {
+  text-decoration: none;
+}
+
 .midContainer {
   height: 80vh;
   width: 60%;
   display: flex;
   border-radius: 2%;
+  margin-bottom: 2vh;
 }
 
 .inputContainer {

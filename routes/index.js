@@ -5,6 +5,7 @@ const questionsControllers = require("../controllers/questionsControllers");
 const usersAccountsControllers = require("../controllers/usersAccountControllers");
 const gameControllers = require("../controllers/gameControllers");
 const passport = require("passport");
+const validator = require('../controllers/validator')
 
 router.route("/user/signup").post(usersAccountsControllers.signUp);
 router.route("/user/login").post(usersAccountsControllers.logIn);

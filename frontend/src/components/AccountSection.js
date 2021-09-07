@@ -2,6 +2,8 @@ import styles from '../styles/accounts.module.css'
 import Login from './Login'
 import SignUp from './SignUp'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { PlayButton } from './Buttons'
 
 const AccountSection = () => {
     const [login, setLogin] = useState(false)
@@ -51,6 +53,7 @@ const AccountSection = () => {
                     <SignUp />
                 </>}
             </div>
+            <Link to='/'><PlayButton text='BACK TO HOME'/></Link>
         </div>
     )
 }
