@@ -1,11 +1,8 @@
 import styles from '../styles/roulette.module.css'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
-const Roulette = () => {
-
+const Roulette = (props) => {
     const roulette = useRef()
-    const [classRoulette, setClassRoulette] = useState('styles.roulette')
-    const [category, setCategory] = useState(null)
     const [playing, setPlaying] = useState(false)
 
     let audio = new Audio('/assets/roulette.mp3')
@@ -17,25 +14,25 @@ const Roulette = () => {
         let portion = 360 / 7
         switch (true) {
             case degrees > 0 && degrees <= portion:
-                setCategory('animals')
+                props.category('Animals')
                 break;
             case degrees > portion && degrees <= 2 * portion:
-                setCategory('music')
+                props.category('Music')
                 break;
             case degrees > 2 * portion && degrees <= 3 * portion:
-                setCategory('movies')
+                props.category('General Knowledge')
                 break;
             case degrees > 3 * portion && degrees <= 4 * portion:
-                setCategory('computer')
+                props.category('Random')
                 break
             case degrees > 4 * portion && degrees <= 5 * portion:
-                setCategory('general')
+                props.category('Movies and series')
                 break;
             case degrees > 5 * portion && degrees <= 6 * portion:
-                setCategory('random')
+                props.category('Science: Computers')
                 break;
             case degrees > 6 * portion && degrees <= 360:
-                setCategory('nosy')
+                props.category('Animals')
                 break;
         }
     }
@@ -49,9 +46,8 @@ const Roulette = () => {
         } while (randNum <= 0.9 || randNum >= 0.92)
         let rand = Math.random() * 7200;
         selectCategory(rand)
+
     }
-
-
 
     return (
         <div className={styles.rouletteContainer}>
