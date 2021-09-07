@@ -1,5 +1,5 @@
 header {
-  width: 100%; 
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,7 +29,7 @@ nav {
   font-weight: 800;
   font-size: 14px;
   letter-spacing: 1.22px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   /* width: 60%; */
 }
 

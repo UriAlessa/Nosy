@@ -24,10 +24,10 @@ const MultiPlayerGame = mongoose.Schema({
 const SinglePlayerGame = mongoose.Schema({
   status: { type: Boolean, default: true },
   player: playerSchema,
-  lifes: { type: Number, default: 5 }
+  lifes: { type: Number, default: 5 },
 });
 
 module.exports = {
   singlePlayer: mongoose.model("singleplayer game", SinglePlayerGame),
-  multiPlayer: mongoose.model("multiplayer game", MultiPlayerGame)
-}
+  multiPlayer: mongoose.model("multiplayer game", MultiPlayerGame),
+};

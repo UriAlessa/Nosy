@@ -39,7 +39,7 @@ const usersAccountControllers = {
   logIn: async (req, res) => {
     const { username, password, facebook, google } = req.body;
     try {
-      let user = await User.findOne({ email: email });
+      let user = await User.findOne({ username });
       if ((user.google && !google) || (user.facebook && !facebook))
         throw new Error("You must log in with Google");
       let match = user && bcrypt.compareSync(password, user.password);
@@ -58,16 +58,15 @@ const usersAccountControllers = {
     }
   },
 
-  addFriend: async (req, res) => { },
+  addFriend: async (req, res) => {},
 
   verifyToken: async (req, res) => {
     res.json({
       success: true,
       user: {
         username: req.user.username,
-        img: req.user.avatar,
+        avatar: req.user.avatar,
       },
-      token: req.body.token,
     });
   },
 };

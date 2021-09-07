@@ -15,7 +15,7 @@
 }
 
 .playButton:hover {
-    background-image: url('../assets/buttons/playButton-hover.svg');
+  background-image: url("../assets/buttons/playButton-hover.svg");
 }
 
 .playButton strong {
@@ -24,56 +24,55 @@
 }
 
 .buttonPlayButton {
-    width: 4vmin;
-    fill: white;
-    margin-left: 5.4vmin;
-    margin-right: 3px;
+  width: 4vmin;
+  fill: white;
+  margin-left: 5.4vmin;
+  margin-right: 3px;
 }
 
 .socialMediaHeroButton {
-    width: 9.5vmin;
-    height: 9vmin;
-    background: none;
-    border: none;
-    background-size: cover;
-    background-image: url('../assets/buttons/socialMediaHero.svg');
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  width: 9.5vmin;
+  height: 9vmin;
+  background: none;
+  border: none;
+  background-size: cover;
+  background-image: url("../assets/buttons/socialMediaHero.svg");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .socialMediaHeroButton:hover {
-    background-image: url('../assets/buttons/socialMediaHero-hover.svg');
+  background-image: url("../assets/buttons/socialMediaHero-hover.svg");
 }
 
 .socialMediaHeroButton svg {
-    width: 3.2vmin;
-    fill:white
+  width: 3.2vmin;
+  fill: white;
 }
 
 .socialMediaFooterButton {
-    width: 39px;
-    height: 35px;
-    background: none;
-    border: none;
-    background-size: cover;
-    background-image: url('../assets/buttons/socialMediaFooterButton.svg');
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  width: 39px;
+  height: 35px;
+  background: none;
+  border: none;
+  background-size: cover;
+  background-image: url("../assets/buttons/socialMediaFooterButton.svg");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .socialMediaFooterButton svg {
-    width: 20px;
-    fill:white
+  width: 20px;
+  fill: white;
 }
 
 @media (max-width: 500px) {
-
-    .socialMediaHeroButton {
-        width: 11vmin;
-        height: 10.2vmin;
-    }
+  .socialMediaHeroButton {
+    width: 11vmin;
+    height: 10.2vmin;
+  }
 }
