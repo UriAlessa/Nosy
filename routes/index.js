@@ -5,18 +5,19 @@ const questionsControllers = require("../controllers/questionsControllers");
 const usersAccountsControllers = require("../controllers/usersAccountControllers");
 const gameControllers = require("../controllers/gameControllers");
 const passport = require("passport");
+const validator = require('../controllers/validator')
 
 router.route("/user/signup").post(usersAccountsControllers.signUp);
 router.route("/user/login").post(usersAccountsControllers.logIn);
 
 router
   .route("/user/token")
-  .post(
+  .get(
     passport.authenticate("jwt", { session: false }),
     usersAccountsControllers.verifyToken
   );
 
-router.route("/question")
+router.route("/question/:category")
   .get(questionsControllers.getQuestion);
 
 router

@@ -1,0 +1,27 @@
+.rouletteContainer{
+    width: 50%;
+    height: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: blue;
+}
+
+img.roulette{
+    height: 100%;
+    transition: all 4s;
+}
+/* 
+img.roulette{
+    height: 100%;
+    animation: girar 5s ease;
+}
+
+@keyframes girar {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(3000deg)
+    }
+} */

@@ -6,14 +6,15 @@ require("./config/database");
 require("./config/passport");
 const router = require("./routes/index");
 const admin = require("./routes/admin");
+const socket = require("socket.io");
 const path = require("path");
 
 //App
 const app = express();
 
 //Middelwares
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
 //Routers
 app.use("/api", router);
@@ -27,7 +28,55 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+const PORT = process.env.PORT;
+const HOST = process.env.HOST || "0.0.0.0";
+
 //Server listening
-app.listen(process.env.PORT || 4000, process.env.HOST || "0.0.0.0", () =>
-  console.log("Listening on port 4000")
+const server = app.listen(PORT, HOST, () =>
+  console.log(`Server listening on port ${PORT} (${HOST})`)
 );
+
+const io = socket(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    credentials: true,
+  },
+});
+
+const socketioJwt = require("socketio-jwt");
+io.use(
+  socketioJwt.authorize({
+    secret: process.env.SECRETORKEY,
+    handshake: true,
+  })
+);
+
+io.on("connection", (socket) => {
+  const socketUsername = socket.decoded_token._doc.username;
+
+  socket.broadcast.emit("connected", socketUsername);
+
+  socket.join(socketUsername);
+
+  socket.on("game_request", (username) => {
+    io.to(username).emit("game_request", socketUsername);
+  });
+  socket.on("friend_request", (username) => {
+    io.to(username).emit("friend_request", socketUsername);
+  });
+  socket.on("direct_message", (username) => {
+    io.to(username).emit("direct_message", socketUsername);
+  });
+
+  // socket.on("message", (mensaje) => {
+  //   if (mensaje === "Nuevo comentario") {
+  //     io.sockets.emit("message", "Refetch");
+  //   }
+  //   if (mensaje.includes("writing")) {
+  //     socket.broadcast.emit("message", mensaje);
+  //   }
+  // });
+  // io.on("disconnect", () => {
+  //   socket.broadcast.emit("disconnected", socketUsername);
+  // });
+});

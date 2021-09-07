@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const playerSchema = mongoose.Schema({
   user: { type: mongoose.Types.ObjectId, path: "user" },
+  // cambiar por un array de objetos pregunta: id, correct: true/false
   questions: {
     total: [{ type: mongoose.Types.ObjectId, path: "question" }],
     correct: [{ type: mongoose.Types.ObjectId, path: "question" }],
@@ -23,10 +24,10 @@ const MultiPlayerGame = mongoose.Schema({
 const SinglePlayerGame = mongoose.Schema({
   status: { type: Boolean, default: true },
   player: playerSchema,
-  lifes: { type: Number, default: 5 }
+  lifes: { type: Number, default: 5 },
 });
 
 module.exports = {
   singlePlayer: mongoose.model("singleplayer game", SinglePlayerGame),
-  multiPlayer: mongoose.model("multiplayer game", MultiPlayerGame)
-}
+  multiPlayer: mongoose.model("multiplayer game", MultiPlayerGame),
+};

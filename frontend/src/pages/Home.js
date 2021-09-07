@@ -6,7 +6,6 @@ import Footer from "../components/Footer"
 import Reviews from "../components/Reviews"
 
 const Home = () => {
-
   return (
     <>
       <div className="heroHome">
@@ -18,7 +17,7 @@ const Home = () => {
       <GamesCards />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

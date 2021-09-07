@@ -2,10 +2,9 @@ const Question = require("../models/Question");
 
 const questionsControllers = {
   getQuestion: async (req, res) => {
-    const { category } = req.body;
+    const { category } = req.params;
     try {
-      await Question.count().exec(async (err, count) => {
-        //.find({category})
+      await Question.find({ category }).count().exec(async (err, count) => {
         let random = Math.floor(Math.random() * count);
         let question = await Question.findOne({ category }).skip(random);
         if (!question) throw new Error();
