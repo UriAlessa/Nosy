@@ -21,11 +21,12 @@ const QuestionCard = (props) => {
     setClick(true);
     Array.from(answersContainer.current.children).forEach((answer) =>
       answer.name === correctAnswer
-        ? (answer.className = ` ${styles.buttonOption}  ${styles.correct}`) &&
-          correctAudio.play()
-        : (answer.className = ` ${styles.buttonOption}  ${styles.incorrect}`) &&
-          incorrectAudio.play()
+        ? (answer.className = ` ${styles.buttonOption}  ${styles.correct}`)
+        : (answer.className = ` ${styles.buttonOption}  ${styles.incorrect}`)
     );
+    e.target.name === correctAnswer
+      ? correctAudio.play()
+      : incorrectAudio.play();
     setTimeout(() => {
       props.setQuestion(null);
     }, 1500);
