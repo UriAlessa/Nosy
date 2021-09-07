@@ -1,27 +1,32 @@
 const joi = require("joi");
+
 const validator = (req, res, next) => {
   const schema = joi.object({
-    username: joi.string().min(6).required().message({
-      "string.empty": "Password field must be completed",
-      "string.min": "Password must be at least 6 characters long",
+    username: joi.string().trim().min(3).max(15).required().messages({
+      'string.empty': 'Username field cant be empty',
+      'string.min': 'Username must contain at least 3 characters',
+      "string.max": 'Username cannot exceed 15 characters',
     }),
-    password: joi.string().min(8).required().messages({
-      "string.empty": "Password field must be completed",
-      "string.min": "Password must be at least 8 characters long",
+    password: joi.string().trim().min(8).required().messages({
+      'string.empty': 'The field cant be empty',
+      'string.base': 'The password must be of type text',
+      'string.min': 'Password must contain at least 8 characters',
     }),
-    email: joi.string().trim().required().email().messages({
-      "string.empty": "Email field must be completed",
-      "string.email": "Email must be a valid email",
+    email: joi.string().trim().email( {tlds: { allow: false }} ).messages({
+      'string.empty': 'Email cant be empty',
+      'string.base': 'The email must be of type text',
+      'string.email': 'The email is invalid',
     }),
-    avatar: joi.string().required().messages({
-      "string.empty": "Image field must be completed",
+    avatar: joi.string().required().uri().messages({
+      'string.empty': 'The image field cant be empty',
+      'string.base': 'The image must be of type text',
+      'string.uri': 'The image field must contain a valid URL',
     }),
     facebook: joi.boolean().default(false),
     google: joi.boolean().default(false),
   }
   );
   const validation = schema.validate(req.body, { abortEarly: false });
-
   if (!validation.error) {
     next();
   } else {

@@ -8,14 +8,16 @@ const usersActions = {
             response.data.success && dispatch({ type: 'LOG_IN_USER', payload: response.data})
             return response
         } catch (error) {
-            alert('En action signUpUser' + error)
+            console.log(error)
         }
     }
   },
   logInUser: (newUser) => {
       return async (dispatch) => {
+        console.log(newUser)
           try {
               let response = await axios.post('http://localhost:4000/api/user/login', {...newUser })
+              console.log(response)
               response.data.success && dispatch({ type: 'LOG_IN_USER', payload: response.data})
               return response
           } catch (error) {
