@@ -21,6 +21,7 @@ const validator = (req, res, next) => {
   }
   );
   const validation = schema.validate(req.body, { abortEarly: false });
+
   if (!validation.error) {
     next();
   } else {

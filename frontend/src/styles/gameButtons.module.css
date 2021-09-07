@@ -8,7 +8,7 @@
     align-items: center;
 }
 .articleGameButtons{
-    width: 60vw;
+    width: 70vw;
     height: 95vh;
     background-color: rgb(97,89,198);
     border: 2.5px solid rgb(160,153,255);
@@ -16,10 +16,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    gap:3rem;
+    gap:3rem; 
+
 }
 .divGameButtons{
-    width: 45%;
+    width: 60%;
     height: 40vh;
     box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
     border-radius: 15px;
@@ -99,6 +100,10 @@ font-size: 1.7vw;
     align-items: center;
     gap: 0.5rem;
 }
+
+
+
+
 
 
 @media only screen and (max-width: 1024px) {
