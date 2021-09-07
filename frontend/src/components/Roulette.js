@@ -57,7 +57,7 @@ const Roulette = (props) => {
     )
   }
 
-  export default Roulette
+ 
 
 
 
@@ -132,3 +132,4 @@ const Roulette = (props) => {
   //         }, 5000);
 
 }
+export default Roulette

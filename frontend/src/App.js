@@ -10,13 +10,8 @@ import NotFound from "./pages/NotFound";
 import Account from "./pages/Account";
 import Game from "./pages/Game";
 import usersActions from "./redux/actions/usersActions";
-<<<<<<< HEAD
 import FriendCard from './components/FriendCard'
 import GameButtons from './pages/GameButtons'
-=======
-import FriendCard from "./components/FriendCard";
-import GameButtons from "./pages/GameButtons";
->>>>>>> origin/rafa
 
 const App = (props) => {
   useEffect(() => {
@@ -44,17 +39,6 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-<<<<<<< HEAD
-        <Route path='/prueba' component={FriendCard} />
-        <Route exact path='/' component={Home} />
-        <Route path='/terms' component={Terms} />
-        <Route path='/privacy' component={Privacy} />
-        <Route path='/notfound' component={NotFound} />
-        <Route path='/game' component={Game} />
-        {!props.token && <Route path='/accounts' component={Account} />}
-        <Route path='/selectgame' component={GameButtons} />
-        <Redirect to='/' />
-=======
         <Route path="/prueba" component={FriendCard} />
         <Route exact path="/" {...props} component={Home} />
         <Route path="/terms" component={Terms} />
@@ -67,7 +51,6 @@ const App = (props) => {
         />
         <Route path="/selectgame" component={GameButtons} />
         <Redirect to="/" />
->>>>>>> origin/rafa
       </Switch>
     </BrowserRouter>
   );
