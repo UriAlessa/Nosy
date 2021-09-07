@@ -11,13 +11,15 @@ const QuestionCard = (props) => {
 
     const clickHandler = (e) => {
         if (correctAnswer === e.target.name) {
-            e.target.style.background = "green"
+            e.target.style.background = "#43b14b"
+            e.target.style.borderBottom = "5px solid rgb(13, 70, 13)"
             // props.renderRoulette()
             setTimeout(() => {
                 props.setQuestion(null)
             }, 1500)
         } else {
-            e.target.style.background = "red"
+            e.target.style.background = "#cb5b3b"
+            e.target.style.borderBottom = "5px solid rgb(124, 19, 19)"
             console.log("perdio")
         }
     }
@@ -26,7 +28,7 @@ const QuestionCard = (props) => {
     /*  Volver a renderizar la ruleta */
 
     return (
-        <section className={styles.sectionQuestion} style={{ backgroundImage: "url('/assets/background.png')" }}>
+        <section className={styles.sectionQuestion} >
 
             <article className={styles.card}>
                 <div className={styles.containerLogo}>

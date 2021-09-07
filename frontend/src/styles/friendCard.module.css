@@ -7,6 +7,7 @@
     justify-content: space-around;
     border-radius: 10px;
     box-shadow: 0 5px 16px 0 rgb(0 0 0 / 25%);
+    margin: 1vw;
 }
 
 .container{
@@ -42,9 +43,31 @@
     border-radius: 10px;
     color:white;
     box-shadow: 0 5px 16px 0 rgb(0 0 0 / 25%);
-    background-color: rgb(27, 150, 83);
+    background-color: #43b14b;
 }
 
-.buttonRefuse{
-    background-color: rgb(213, 8, 8);
+.container .buttonRefuse{
+    background-color: #cb5b3b;
+}
+
+@media(min-width:400px) and (max-width:800px){
+  .section {
+    width: 80%;
+    height: 25vh;
+    margin: 1vw;
+  }
+  .logo{
+    width: 15vw;
+  }
+.container button {
+    padding: 0.5rem 1.8rem;
+}
+}
+@media(min-width:650px) and (max-width:800px){
+    .logo{
+        width: 10vw;
+      }
+    .section { 
+        width: 50%;
+    }
 }
