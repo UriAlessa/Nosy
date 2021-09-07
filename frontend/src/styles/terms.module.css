@@ -1,11 +1,11 @@
-dl {
+.container dl {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-dd {
+.container dd {
     width: 100%;
     border-bottom: 1px #8e84f6 solid;
     padding: 25px 0;
@@ -15,7 +15,7 @@ dd {
     border-bottom: none;
 }
 
-dd a {
+.container dd a {
     color: white;
 }
 
@@ -44,7 +44,7 @@ dd a {
     transition: 0.5s;
 }
 
-span {
+.container span {
     display: flex;
     flex-direction: column;
     margin-left: 4%;
@@ -52,7 +52,7 @@ span {
     overflow: hidden;
 }
 
-span p {
+.container span p {
     margin: 7px 0;
     line-height: 20px;
     color: white;
@@ -85,7 +85,6 @@ span p {
     animation: agrandar 2s linear;
     display: block;
     height: auto;
-    /* background-color: tomato; */
 }
 
 .hiddeSpan {

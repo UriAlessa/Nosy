@@ -2,7 +2,7 @@
     width: 39.5vmin;
     height: 8.9vmin;
     color: #261f69;
-    font-size: 2.5vmin;
+    font-size: 100%;
     letter-spacing: 0.05em;
     font-family: 'Fredoka One', cursive;
     background: none;
@@ -19,15 +19,15 @@
 }
 
 .playButton strong {
-    /* width: 80%; */
+    text-align: center;
+    width: 85%;
     font-weight: 100;
 }
 
 .buttonPlayButton {
-    width: 2.7vmin;
+    width: 7%;
     fill: white;
-    margin-left: 3.1vmin;
-    margin-right: 3vmin;
+    margin-left: 8%;
 }
 
 .socialMediaHeroButton {

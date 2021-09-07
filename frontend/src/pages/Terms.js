@@ -2,7 +2,6 @@ import {useState, useRef} from 'react'
 import styles from '../styles/terms.module.css'
 import Header from "../components/Header"
 import Footer from "../components/Footer"
-import { ButtonT } from '../components/Buttons'
 
 const Terms = () => {
 
@@ -109,7 +108,6 @@ const Terms = () => {
         <div className={styles.container}>
             <Header className={styles.header} />
             <h1>Terms of use</h1>
-            <ButtonT />
             <dl>
                 <dd>
                     <div className={styles.title} onClick={showOne}>
