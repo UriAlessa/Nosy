@@ -15,10 +15,11 @@ import GameButtons from "./pages/GameButtons";
 
 const App = (props) => {
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    const token = localStorage.getItem("token");
+    if (token) {
       props.logInLS(
         io("https://benosy.herokuapp.com/", {
-          query: "token=" + localStorage.getItem("token"),
+          query: "token=" + token,
         })
       );
     }
@@ -35,6 +36,7 @@ const App = (props) => {
       console.log(username);
     });
   }
+  console.log(props.socket);
   return (
     <BrowserRouter>
       <Switch>
