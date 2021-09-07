@@ -2,10 +2,10 @@ const joi = require("joi");
 
 const validator = (req, res, next) => {
   const schema = joi.object({
-    username: joi.string().trim().min(3).max(15).required().messages({
+    username: joi.string().trim().min(3).max(25).required().messages({
       'string.empty': 'Username field cant be empty',
       'string.min': 'Username must contain at least 3 characters',
-      "string.max": 'Username cannot exceed 15 characters',
+      "string.max": 'Username cannot exceed 25 characters',
     }),
     password: joi.string().trim().min(8).required().messages({
       'string.empty': 'The field cant be empty',

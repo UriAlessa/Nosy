@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "../styles/accounts.module.css";
-import { SocialMediaHeroButton } from "../components/Buttons";
 import { useState } from "react";
 import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
+import GoogleLogin from 'react-google-login';
 
 const SignUp = (props) => {
   const [newUser, setNewUser] = useState({
@@ -35,12 +35,33 @@ const SignUp = (props) => {
     }
   };
 
+  const responseGoogle = async (response) => {
+    let newUser = {
+        username: response.profileObj.givenName +' '+response.profileObj.familyName,
+        password: response.profileObj.googleId,
+        email: response.profileObj.email,
+        avatar: response.profileObj.imageUrl,
+        google: true
+    }
+    let res = await props.signUpUser(newUser)
+    if (res.data.success) {
+        return alert('Account created')
+    } else {
+        console.log(res)
+    }
+  }
+
   return (
     <div className={styles.signup}>
       <h1>Create Account</h1>
       <div className={styles.socialMediaLogin}>
-        <SocialMediaHeroButton icon="facebook" />
-        <SocialMediaHeroButton icon="google" />
+        <GoogleLogin
+            clientId="1051031328805-p3ct45qtnohrsnsq8vu32eu3o648c3j9.apps.googleusercontent.com"
+            buttonText="Sign up"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
+        />
       </div>
       <p>or use your email for registration</p>
       <div className={styles.inputContainer}>

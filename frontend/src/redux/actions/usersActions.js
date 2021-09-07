@@ -14,7 +14,6 @@ const usersActions = {
   },
   logInUser: (newUser) => {
       return async (dispatch) => {
-        console.log(newUser)
           try {
               let response = await axios.post('http://localhost:4000/api/user/login', {...newUser })
               console.log(response)
