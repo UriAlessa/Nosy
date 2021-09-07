@@ -39,15 +39,15 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/prueba' component={FriendCard} />
-        <Route exact path='/' component={Home} />
-        <Route path='/terms' component={Terms} />
-        <Route path='/privacy' component={Privacy} />
-        <Route path='/notfound' component={NotFound} />
-        <Route path='/game' component={Game} />
-        {!props.token && <Route path='/accounts' component={Account} />}
-        <Route path='/selectgame' component={GameButtons} />
-        <Redirect to='/' />
+        <Route path="/prueba" component={FriendCard} />
+        <Route exact path="/" {...props} component={Home} />
+        <Route path="/terms" component={Terms} />
+        <Route path="/privacy" component={Privacy} />
+        <Route path="/notfound" component={NotFound} />
+        <Route path="/game" component={Game} />
+        <Route path="/accounts" component={!props.token ? Account : Home} />
+        <Route path="/selectgame" component={GameButtons} />
+        <Redirect to="/" />
       </Switch>
     </BrowserRouter>
   );

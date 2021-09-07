@@ -7,68 +7,73 @@ import questionActions from "../redux/actions/questionsActions";
 import gamesActions from "../redux/actions/gamesActions";
 
 const Game = (props) => {
-  const [questions, setQuestions] = useState([]);
+  // const [questions, setQuestions] = useState([]);
   const [loader, setLoader] = useState(true);
   const [question, setQuestion] = useState(null);
   const [category, setCategory] = useState(null);
 
   useEffect(() => {
     if (props.token) {
-      createGame()
+      createGame();
     }
-    setLoader(false)
-  }, [])
+    setLoader(false);
+  }, []);
 
   const createGame = async () => {
     try {
-      await props.createGame(props.token)
+      await props.createGame(props.token);
     } catch (error) {
-      console.log('We have problems. Try again later.')
+      console.log("We have problems. Try again later.");
     }
-  }
-
+  };
 
   useEffect(() => {
     if (category) {
-      props.getQuestion(category)
+      props
+        .getQuestion(category)
         .then((res) => {
           setTimeout(() => {
-            setQuestion(res)
-          }, 4000)
+            setQuestion(res);
+          }, 4000);
         })
-        .catch((e) => console.log(e))
+        .catch((e) => console.log(e));
     }
-  }, [category])
+  }, [category]);
 
   if (loader) {
     return (
       <div>
         <h1>Cargando...</h1>
       </div>
-    )
+    );
   }
 
   return (
-    <main className={styles.gameContainer} style={{ backgroundImage: "url('/assets/background.png')" }}>
+    <main
+      className={styles.gameContainer}
+      style={{ backgroundImage: "url('/assets/background.png')" }}
+    >
       <div className={styles.renderGame}>
-        {!question
-          ? <Roulette category={setCategory} />
-          : <QuestionCard question={question} setQuestion={setQuestion} />}
+        {!question ? (
+          <Roulette category={setCategory} />
+        ) : (
+          <QuestionCard question={question} setQuestion={setQuestion} />
+        )}
       </div>
     </main>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
     render: state.questions.render,
-    token: state.users.token
-  }
-}
+    token: state.users.token,
+  };
+};
 
 const mapDispatchToProps = {
   getQuestion: questionActions.getQuestion,
-  createGame: gamesActions.createGame
-}
+  createGame: gamesActions.createGame,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
