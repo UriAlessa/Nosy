@@ -24,7 +24,6 @@ const App = (props) => {
     }
     // eslint-disable-next-line
   }, []);
-  console.log(props.socket);
   if (props.socket) {
     props.socket.on("game_request", (username) => {
       console.log(username);
@@ -56,6 +55,7 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     token: state.users.token,
+    socket: state.users.socket,
   };
 };
 
