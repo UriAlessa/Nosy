@@ -1,14 +1,10 @@
-const questionsReducer = (state, action) => {
+const questionsReducer = (state={render: false}, action) => {
     switch (action.type) {
-        case 'lala':
-
-
-
-        case 'lala':
-
-
-
-        case 'lala':
+        case 'RENDER_ROULETTE':
+            return{
+                ...state,
+                render: !state.render
+            }
 
 
 
