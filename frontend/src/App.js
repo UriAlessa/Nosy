@@ -16,8 +16,7 @@ import GameButtons from "./pages/GameButtons";
 const App = (props) => {
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      props.logInLS();
-      props.setSocket(
+      props.logInLS(
         io("https://benosy.herokuapp.com/", {
           query: "token=" + localStorage.getItem("token"),
         })
@@ -25,7 +24,7 @@ const App = (props) => {
     }
     // eslint-disable-next-line
   }, []);
-  console.log(socket);
+  console.log(props.socket);
   if (props.socket) {
     props.socket.on("game_request", (username) => {
       console.log(username);
@@ -62,7 +61,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   logInLS: usersActions.logInLS,
-  setSocket: usersActions.setSocket,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

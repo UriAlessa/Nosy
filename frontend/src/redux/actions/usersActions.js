@@ -33,7 +33,7 @@ const usersActions = {
       }
     };
   },
-  logInLS: () => {
+  logInLS: (socket) => {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
       try {
@@ -45,7 +45,10 @@ const usersActions = {
             },
           }
         );
-        dispatch({ type: "LOG_IN_USER", payload: { ...response.data, token } });
+        dispatch({
+          type: "LOG_IN_USER",
+          payload: { ...response.data, token, socket },
+        });
       } catch (error) {
         return dispatch({ type: "LOG_OUT" });
       }
@@ -54,11 +57,6 @@ const usersActions = {
   logOutUser: () => {
     return (dispatch, getState) => {
       dispatch({ type: "LOG_OUT" });
-    };
-  },
-  setSocket: (socket) => {
-    return (dispatch) => {
-      dispatch({ type: "SET_SOCKET", payload: socket });
     };
   },
 };
