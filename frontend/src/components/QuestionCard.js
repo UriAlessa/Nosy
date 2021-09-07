@@ -11,18 +11,16 @@ const QuestionCard = (props) => {
   const infoLifes = (<div className={styles.infoLifes}><img className={styles.heart} src="/assets/heart.png" alt="heart" /><h3>You lost a life!</h3></div>)
   const [incorrect, setIncorrect] = useState(false)
   let answersContainer = useRef();
+
   let questionAudio = new Audio("/assets/question.wav");
   let correctAudio = new Audio("/assets/correct.wav");
   let incorrectAudio = new Audio("/assets/incorrect.wav");
 
   useEffect(() => {
-    props.nosy(null)
+    props.setNosy(null)
     questionAudio.play();
     setAnswers(possibleAnswers.sort(() => Math.random() - 0.5));
   }, []);
-
-  let correctAudio = new Audio('/assets/correct.wav')
-  let incorrectAudio = new Audio('/assets/incorrect.wav')
 
   // token, question, answer, nosy, powers_used, coins_spent
   const clickHandler = (e) => {
