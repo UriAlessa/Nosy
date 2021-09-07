@@ -16,7 +16,7 @@ router
     usersAccountsControllers.verifyToken
   );
 
-router.route("/question")
+router.route("/question/:category")
   .get(questionsControllers.getQuestion);
 
 router

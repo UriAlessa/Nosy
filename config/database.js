@@ -1,4 +1,3 @@
-//crear data
 const mongoose = require("mongoose");
 
 mongoose

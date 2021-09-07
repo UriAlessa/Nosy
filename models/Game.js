@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const playerSchema = mongoose.Schema({
   user: { type: mongoose.Types.ObjectId, path: "user" },
+  // cambiar por un array de objetos pregunta: id, correct: true/false
   questions: {
     total: [{ type: mongoose.Types.ObjectId, path: "question" }],
     correct: [{ type: mongoose.Types.ObjectId, path: "question" }],

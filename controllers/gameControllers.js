@@ -67,6 +67,33 @@ const gameControllers = {
       res.json({ success: false, error: error.message });
     }
   },
+  addAnsweredQuestion: async (req, res) => {
+    try {
+      if (req.body.multiplayer) {
+
+      } else {
+        const { id, correct, question } = req.body
+        SinglePlayer.findOneAndUpdate(
+          { _id: req.body.id },
+          { $push: { questions: { correct, question } } }
+        )
+        res.json({ success: true })
+      }
+    } catch (error) {
+      res.json({ success: false })
+    }
+  },
+  updateGame: async (req, res) => {
+    try {
+      SinglePlayer.findOneAndUpdate(
+        { _id: req.body.id },
+        { ...req.body }
+      )
+      res.json({ success: true })
+    } catch (error) {
+      res.json({ success: false })
+    }
+  }
 };
 
 module.exports = gameControllers;
