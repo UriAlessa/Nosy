@@ -25,6 +25,7 @@ const App = (props) => {
     }
     // eslint-disable-next-line
   }, []);
+  console.log(socket);
   if (props.socket) {
     props.socket.on("game_request", (username) => {
       console.log(username);
