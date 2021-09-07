@@ -4,8 +4,9 @@ const User = require("../models/User");
 
 const gameControllers = {
   newGame: async (req, res) => {
+    console.log(req.body)
     try {
-      if (req.body.multiPlayer) {
+      if (req.body.username) {
         let game = new MultiPlayer({
           player1: { user: req.user._id },
           current_player: req.user._id,

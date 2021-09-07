@@ -1,12 +1,15 @@
 import axios from 'axios'
 
 const gamesActions = {
-    createSingleGame: () => {
+    createGame: (token, username = null) => {
         return async (dispatch, getState) => {
-            let response = await axios.post('http://localhost:4000/game/newGame')
+            let response = await axios.post('http://localhost:4000/api/game/newgame', username, {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            })
             if (response.data.success) {
-                // dispatch({ type: "CREATE_GAME", payload: null })
-                return response.data.response
+                return response.data.success
             }
             throw new Error()
         }

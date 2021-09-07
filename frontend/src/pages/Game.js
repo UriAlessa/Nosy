@@ -13,36 +13,40 @@ const Game = (props) => {
     const [category, setCategory] = useState(null)
 
     useEffect(() => {
-        const createGame = async () => {
-            try {
-                let response = await props.createSingleGame()
-                if (response) {
-                    setLoader(false)
-                }
-            } catch (error) {
-                console.log('We have problems. Try again later.')
-            }
+        if (props.token) {
+            createGame()
         }
-        createGame()
+        setLoader(false)
     }, [])
 
+    const createGame = async () => {
+        try {
+            await props.createGame(props.token)
+        } catch (error) {
+            console.log('We have problems. Try again later.')
+        }
+    }
+
+
     useEffect(() => {
-        props.getQuestion(category)
-            .then((res) => {
-                setTimeout(() => {
-                    setQuestion(res)
-                }, 4000)
-            })
-            .catch((e) => console.log(e))
+        if (category) {
+            props.getQuestion(category)
+                .then((res) => {
+                    setTimeout(() => {
+                        setQuestion(res)
+                    }, 4000)
+                })
+                .catch((e) => console.log(e))
+        }
     }, [category])
 
-    // if (loader) {
-    //     return (
-    //         <div>
-    //             <h1>Cargando...</h1>
-    //         </div>
-    //     )
-    // }
+    if (loader) {
+        return (
+            <div>
+                <h1>Cargando...</h1>
+            </div>
+        )
+    }
 
     return (
         <main className={styles.gameContainer} style={{ backgroundImage: "url('/assets/background.png')" }}>
@@ -57,13 +61,14 @@ const Game = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        render: state.questions.render
+        render: state.questions.render,
+        token: state.users.token
     }
 }
 
 const mapDispatchToProps = {
-    createSingleGame: gamesActions.createSingleGame,
-    getQuestion: questionActions.getQuestion
+    getQuestion: questionActions.getQuestion,
+    createGame: gamesActions.createGame
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game)

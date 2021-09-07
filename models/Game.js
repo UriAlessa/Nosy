@@ -3,11 +3,10 @@ const mongoose = require("mongoose");
 const playerSchema = mongoose.Schema({
   user: { type: mongoose.Types.ObjectId, path: "user" },
   // cambiar por un array de objetos pregunta: id, correct: true/false
-  questions: {
-    total: [{ type: mongoose.Types.ObjectId, path: "question" }],
-    correct: [{ type: mongoose.Types.ObjectId, path: "question" }],
-    incorrect: [{ type: mongoose.Types.ObjectId, path: "question" }],
-  },
+  questions: [{
+    question: { type: mongoose.Types.ObjectId, path: "question" },
+    answer: Boolean
+  }],
   medals: [String],
   nosys: { type: Number, default: 0 },
   powers_used: { type: Number, default: 0 },
