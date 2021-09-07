@@ -11,6 +11,7 @@ import AccountSection from "./components/AccountSection";
 import GameButtons from "./pages/GameButtons";
 import usersActions from "./redux/actions/usersActions";
 import FriendCard from './components/FriendCard'
+import Game from "./pages/Game";
 
 const App = (props) => {
   useEffect(() => {
@@ -44,7 +45,7 @@ const App = (props) => {
         <Route path='/notfound' component={NotFound} />
         <Route path='/game' component={Game} />
         {!props.token && <Route path='/accounts' component={AccountSection} />}
-        <Route path='/selectgame' component={GamepadButton} />
+        <Route path='/selectgame' component={GameButtons} />
         <Redirect to='/' />
       </Switch>
     </BrowserRouter>

@@ -53,7 +53,6 @@ const usersActions = {
   },
   setSocket: (socket) => {
     return (dispatch) => {
-      console.log(socket);
       dispatch({ type: "SET_SOCKET", payload: socket });
     };
   },
