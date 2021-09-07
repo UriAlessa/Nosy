@@ -8,14 +8,6 @@ const questionsReducer = (state = { render: false }, action) => {
 
 
 
-        case 'lala':
-
-
-
-        case 'lala':
-
-
-
         default:
             return { ...state }
     }

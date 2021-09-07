@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound'
 import AccountSection from './components/AccountSection'
 import GamepadButton from './pages/GameButtons'
 import Game from './pages/Game'
+import FriendCard from './components/FriendCard';
 
 const App = (props) => {
 
@@ -22,6 +23,7 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path='/prueba' component={FriendCard} />
         <Route exact path='/' component={Home} />
         <Route path='/terms' component={Terms} />
         <Route path='/privacy' component={Privacy} />
