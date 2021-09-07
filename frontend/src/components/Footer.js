@@ -9,7 +9,7 @@ const Footer = () => {
     return (
         <footer>
             <div className={styles.content}>
-                <div className={styles.footerLogo} style={{backgroundImage: `url('https://stopots.com/assets/logo2.svg')`, height: '100px', width: '100px'}}></div>
+                <div className={styles.footerLogo} style={{backgroundImage: `url('https://i.postimg.cc/nLVy6w5c/nosy-White.png')`}}></div>
                 <div className={styles.navContainer}>
                     <nav className={styles.footerNav}>
                         <Link to='/terms'>
