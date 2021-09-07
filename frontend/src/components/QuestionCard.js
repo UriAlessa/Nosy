@@ -7,17 +7,20 @@ const QuestionCard = (props) => {
 
   let questionAudio = new Audio("/assets/question.wav");
   questionAudio.play();
-
+  let correctAudio = new Audio("/assets/correct.wav");
+  let incorrectAudio = new Audio("/assets/incorrect.wav");
   const clickHandler = (e) => {
     if (correctAnswer === e.target.name) {
+      props.category(null);
       e.target.style.background = "green";
+      correctAudio.play();
       // props.renderRoulette()
       setTimeout(() => {
         props.setQuestion(null);
       }, 1500);
     } else {
       e.target.style.background = "red";
-      console.log("perdio");
+      incorrectAudio.play();
     }
   };
   /* props.AccionDeQuitarUnaVida */

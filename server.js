@@ -54,8 +54,8 @@ io.use(
 io.on("connection", (socket) => {
   const socketUsername = socket.decoded_token._doc.username;
 
-  io.sockets.emit("connected", socketUsername);
-  // socket.broadcast.emit("connected", socketUsername);
+  // io.sockets.emit("connected", socketUsername);
+  socket.broadcast.emit("connected", socketUsername);
 
   socket.join(socketUsername);
 

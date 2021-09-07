@@ -57,7 +57,11 @@ const Game = (props) => {
         {!question ? (
           <Roulette category={setCategory} />
         ) : (
-          <QuestionCard question={question} setQuestion={setQuestion} />
+          <QuestionCard
+            question={question}
+            setQuestion={setQuestion}
+            category={setCategory}
+          />
         )}
       </div>
     </main>

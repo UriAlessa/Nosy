@@ -36,7 +36,6 @@ const App = (props) => {
       console.log(username);
     });
   }
-  console.log(props.socket);
   return (
     <BrowserRouter>
       <Switch>
