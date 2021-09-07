@@ -24,10 +24,10 @@
 }
 
 .buttonPlayButton {
-  width: 4vmin;
-  fill: white;
-  margin-left: 5.4vmin;
-  margin-right: 3px;
+    width: 2.7vmin;
+    fill: white;
+    margin-left: 3.1vmin;
+    margin-right: 3vmin;
 }
 
 .socialMediaHeroButton {

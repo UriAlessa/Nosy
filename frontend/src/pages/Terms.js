@@ -118,7 +118,7 @@ const Terms = () => {
                         </svg>
                         <h5 onClick={showOne}>1. Terms and conditions</h5>
                     </div>
-                    {<span className={items.one ? styles.showSpan : styles.hiddeSpan}>
+                    { items.one && <span>
                         <p>Version September 4 of 2021</p>
                         <p>
                             Welcome to the web site operated by Daniel San Team (the "Company"), accessible at{` `}

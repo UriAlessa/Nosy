@@ -42,19 +42,15 @@ const adminQuestionsControllers = {
     const {
       category,
       question,
-      questionImage,
       possibleAnswers,
       correctAnswer,
-      difficulty,
     } = req.body;
     try {
       let newQuestion = new Question({
         category,
         question,
-        questionImage,
         possibleAnswers,
         correctAnswer,
-        difficulty,
         status: true,
         creator: '6134f96c17752d02a5000dc5'
       });
