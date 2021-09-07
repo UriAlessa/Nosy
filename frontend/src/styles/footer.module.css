@@ -1,17 +1,30 @@
 footer {
+  width: 100%;
   background-color: #1c1659;
+  padding: 3% 10%;
 }
 
 .content {
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
-.navContainer {
-  width: 30%;
+.footerLogo {
+  width: 130px;
+  height: 60px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.footerHorizon {
+  width: 163px;
+  height: 48px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .footerLogo {
@@ -24,26 +37,31 @@ footer {
 
 .footerNav {
   display: flex;
-  justify-content: space-between;
   color: white;
-  font-weight: 800;
+  font-weight: bold;
   font-size: 14px;
   letter-spacing: 1.22px;
-  margin: 0 15px;
-  font-family: "ubuntumedium", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
+  margin-bottom: 3vh;
+}
+
+.socialMedia {
+  display: flex;
+  justify-content: space-around;
+  /* margin: 10% 0; */
 }
 
 @media (min-width: 300px) and (max-width: 768px) {
   .content {
-    width: 100%;
+    padding: 5vh 0;
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
-  .navContainer {
-    display: none;
+  .footerNav, .socialMedia {
+    margin: 3vh 0;
   }
-
-  .content > img {
-    display: none;
-  }
+  
 }
