@@ -51,6 +51,15 @@
     height: 10vh;
     cursor:pointer;
     border-bottom: 5px solid #917a20 ;
+    transition: all 0.5s;
+}
+ .correct {
+    background-color: #43b14b;
+    border-bottom: 5px solid #3d8842;
+}
+ .incorrect {
+    background-color: #cb5b3b;
+    border-bottom: 5px solid #943b23;
 }
 .logo{
     width: 13vw;
