@@ -8,7 +8,7 @@ import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 import AccountSection from "./components/AccountSection";
-import GameButtons from "./pages/GameButtons";
+import Game from "./pages/Game";
 import usersActions from "./redux/actions/usersActions";
 import FriendCard from './components/FriendCard'
 import Game from "./pages/Game";
