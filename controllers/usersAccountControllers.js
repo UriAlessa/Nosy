@@ -39,7 +39,7 @@ const usersAccountControllers = {
   logIn: async (req, res) => {
     const { username, password, facebook, google } = req.body;
     try {
-      let user = await User.findOne({ email: email });
+      let user = await User.findOne({ username });
       if ((user.google && !google) || (user.facebook && !facebook))
         throw new Error("You must log in with Google");
       let match = user && bcrypt.compareSync(password, user.password);
@@ -66,12 +66,7 @@ const usersAccountControllers = {
       user: {
         username: req.user.username,
         avatar: req.user.avatar,
-<<<<<<< HEAD
       },
-      token: req.body.token,
-=======
-      }
->>>>>>> origin/uriel
     });
   },
 };

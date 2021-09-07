@@ -1,20 +1,14 @@
 const questionsReducer = (state, action) => {
-    switch (action.type) {
-        case 'lala':
+  switch (action.type) {
+    case "lala":
 
+    case "lala":
 
+    case "lala":
 
-        case 'lala':
+    default:
+      return { ...state };
+  }
+};
 
-
-
-        case 'lala':
-
-
-
-        default:
-            return { ...state }
-    }
-}
-
-export default questionsReducer
+export default questionsReducer;

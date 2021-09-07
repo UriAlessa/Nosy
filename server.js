@@ -52,13 +52,20 @@ io.use(
 );
 
 io.on("connection", (socket) => {
-  const usernameSending = socket.decoded_token._doc.username;
-  console.log(usernameSending);
+  const socketUsername = socket.decoded_token._doc.username;
+
+  socket.broadcast.emit("connected", socketUsername);
+
+  socket.join(socketUsername);
+
   socket.on("game_request", (username) => {
-    io.to(socket.decoded_token._doc.username === username && socket.id).emit(
-      "game_request",
-      usernameSending
-    );
+    io.to(username).emit("game_request", socketUsername);
+  });
+  socket.on("friend_request", (username) => {
+    io.to(username).emit("friend_request", socketUsername);
+  });
+  socket.on("direct_message", (username) => {
+    io.to(username).emit("direct_message", socketUsername);
   });
 
   // socket.on("message", (mensaje) => {
@@ -69,5 +76,7 @@ io.on("connection", (socket) => {
   //     socket.broadcast.emit("message", mensaje);
   //   }
   // });
-  // socket.on("friend_request", (id) => {});
+  // io.on("disconnect", () => {
+  //   socket.broadcast.emit("disconnected", socketUsername);
+  // });
 });
