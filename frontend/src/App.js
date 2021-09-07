@@ -11,6 +11,8 @@ import AccountSection from "./components/AccountSection";
 import GameButtons from "./pages/GameButtons";
 import usersActions from "./redux/actions/usersActions";
 import FriendCard from './components/FriendCard'
+import Game from "./pages/Game";
+
 
 const App = (props) => {
   useEffect(() => {
