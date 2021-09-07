@@ -10,7 +10,8 @@ const QuestionCard = (props) => {
 
   const clickHandler = (e) => {
     if (correctAnswer === e.target.name) {
-      e.target.style.background = "green";
+      e.target.style.background = "#209166";
+      e.target.style.borderBottom="5px solid #29785a "
       // props.renderRoulette()
       setTimeout(() => {
         props.setQuestion(null);
