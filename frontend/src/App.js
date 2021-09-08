@@ -49,7 +49,7 @@ const App = (props) => {
         <Route path="/accounts" component={!props.token ? Account : Home} />
         <Route path="/selectgame" component={GameButtons} />
         <Route path="/loader" component={Loader} />
-        <Redirect to="/" />
+        <Redirect to="/notFound" />
       </Switch>
     </BrowserRouter>
   );
