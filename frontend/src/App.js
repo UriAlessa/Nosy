@@ -14,6 +14,7 @@ import FriendCard from './components/FriendCard'
 import GameButtons from './pages/GameButtons'
 import { Toaster } from 'react-hot-toast';
 import AdminPanel from "./pages/Admin";
+import Loader from "./components/Loader";
 
 const App = (props) => {
   useEffect(() => {
@@ -52,6 +53,8 @@ const App = (props) => {
         <Route path="/selectgame" component={GameButtons} />
         <Route path="/admin" component={AdminPanel} />
         <Redirect to="/" />
+        <Route path="/loader" component={Loader} />
+        <Redirect to="/notFound" />
       </Switch>
     </BrowserRouter>
   );

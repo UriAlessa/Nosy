@@ -19,7 +19,7 @@ const QuestionCard = (props) => {
   let incorrectAudio = new Audio("/assets/incorrect.wav");
 
   useEffect(() => {
-    props.setNosy(null);
+    props.setNosy(null)
     questionAudio.play();
     setAnswers(possibleAnswers.sort(() => Math.random() - 0.5));
     // eslint-disable-next-line
