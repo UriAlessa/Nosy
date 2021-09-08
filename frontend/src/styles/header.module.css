@@ -8,7 +8,6 @@ header {
 .content {
   display: flex;
   justify-content: space-between;
-  width: 50%;
 }
 
 .top > img {
@@ -16,14 +15,16 @@ header {
 }
 
 .logo {
-  width: 192px;
-  height: 110px;
-  background-size: contain;
+  /* width: 200px;
+  height: 75px; */
+  width: 200px;
+  height: 100px;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-nav {
+header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,17 +33,17 @@ nav {
   font-size: 14px;
   letter-spacing: 1.22px;
   font-family: "Ubuntu", sans-serif;
-  width: 100%;
+  /* width: 100%; */
 }
 
-nav a {
+header nav a, footer nav a {
   margin: 0 15px;
   height: 17px;
   text-decoration: none;
   color: white;
 }
 
-nav a:hover {
+header nav a:hover {
   border-bottom: 1px solid white;
 }
 
@@ -65,4 +66,154 @@ nav a:hover {
   letter-spacing: 2px;
   text-align: center;
   line-height: 27px;
+}
+
+
+.hiddenNavIcon {
+  color: white;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  display: none;
+}
+
+.menuResponsive {
+  background-color: #18157C;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40vw;
+  min-height: 100vh;
+  z-index: 100;
+  padding: 10vh 5vw;
+  position: fixed;
+}
+
+.menuResponsive nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuResponsive nav a, .menuResponsive p {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color: white;
+  height: 17px;
+  margin: 2vh 0;
+}
+
+.menuResponsive nav a:hover, .menuResponsive nav p:hover, .logout {
+  color: #fffc3e;
+  cursor: pointer;
+}
+
+.equisResponsive {
+  height: 30px;
+  position: absolute;
+  right: 3vh;
+  top: 3vh;
+  color: white;
+  cursor: pointer;
+}
+
+.equisResponsive:hover {
+  color: #f0f0f0;
+}
+
+.menuResponsive .logo {
+  margin: 5vh 0;
+  padding: 0;
+}
+
+.socialMediaResponsiveHeader {
+  display: flex;
+  position: absolute;
+  bottom: 5vh;
+}
+
+.socialMediaResponsiveHeader button {
+  margin: 1vw 1vw 0 0;
+}
+
+
+.login {
+  display: flex;
+  align-items: center;
+  padding-bottom: 2vh;
+  border-bottom: 2px solid #2924c2;
+}
+
+.userPic {
+  width: 30px;
+  height: 30px;
+  margin-right: 1vw;
+}
+
+.logoUser {
+  margin: 0 1vmin 0 3vmin;
+}
+
+.arrowDown {
+  width: 15px;
+  height: 15px;
+  margin: 0 0.8vw;
+  margin-top: 0.5vw;
+  cursor: pointer;
+}
+
+.logoutContainer:after {
+  bottom: 100%;
+  right: 11px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-bottom-color: #ffffff;
+  border-width: 6.5px;
+  margin-right: 0px;
+  
+}
+
+
+.logoutContainer {
+  background-color: white;
+  cursor: pointer;
+  position: absolute;
+  bottom: -110%;
+  right: 0;
+  width: 100%;
+  height: 5vh;
+  border-radius: 10px;
+  color: #18157C;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1090px) {
+  .hiddenNavIcon {
+    display: block;
+  }
+
+  header nav {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .menuResponsive {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menuResponsive nav {
+    align-items: center;
+  }
 }

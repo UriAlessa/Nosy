@@ -70,6 +70,10 @@
   fill: white;
 }
 
+.socialMediaFooterButton svg:hover{
+  fill: #f0f0f0;
+}
+
 @media (max-width: 500px) {
   .socialMediaHeroButton {
     width: 11vmin;
