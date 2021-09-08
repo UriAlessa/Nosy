@@ -1,7 +1,7 @@
-import { useState, useRef } from 'react'
-import styles from '../styles/terms.module.css'
-import Header from "../components/Header"
-import Footer from "../components/Footer"
+import { useState } from "react";
+import styles from "../styles/terms.module.css";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Terms = () => {
   const [items, setItems] = useState({

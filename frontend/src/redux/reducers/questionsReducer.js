@@ -5,9 +5,6 @@ const questionsReducer = (state = { render: false }, action) => {
                 ...state,
                 render: !state.render
             }
-
-
-
         default:
             return { ...state }
     }

@@ -12,7 +12,9 @@ import Game from "./pages/Game";
 import usersActions from "./redux/actions/usersActions";
 import FriendCard from './components/FriendCard'
 import GameButtons from './pages/GameButtons'
+import { Toaster } from 'react-hot-toast';
 import Loader from "./components/Loader";
+import AdminPanel from "./pages/Admin";
 
 const App = (props) => {
   useEffect(() => {
@@ -39,6 +41,7 @@ const App = (props) => {
   }
   return (
     <BrowserRouter>
+      <Toaster />
       <Switch>
         <Route path="/prueba" component={FriendCard} />
         <Route exact path="/" {...props} component={Home} />
