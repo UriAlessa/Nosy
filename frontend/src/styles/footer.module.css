@@ -31,14 +31,6 @@ footer {
   background-position: center;
 }
 
-.footerLogo {
-  width: 192px;
-  height: 110px;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .footerNav {
   display: flex;
   color: white;
