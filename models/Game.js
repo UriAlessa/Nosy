@@ -6,7 +6,7 @@ const playerSchema = mongoose.Schema({
   questions: [
     {
       question: { type: mongoose.Types.ObjectId, path: "question" },
-      answer: Boolean,
+      answer: { type: Boolean },
     },
   ],
   medals: [String],
