@@ -51,7 +51,7 @@ const Roulette = (props) => {
 
     return (
         <div className={styles.rouletteContainer}>
-            <img ref={roulette} onClick={() => { !playing && rotate() }} className={styles.roulette} src='https://i.postimg.cc/ZKC2w539/ruleta2.png' />
+            <img ref={roulette} onClick={() => { !playing && rotate() }} className={styles.roulette} src='https://i.postimg.cc/Y00Nx98g/ruleta1.png' />
         </div>
     )
 }
