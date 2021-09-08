@@ -11,13 +11,15 @@ const Game = (props) => {
   const [loader, setLoader] = useState(true);
   const [question, setQuestion] = useState(null);
   const [category, setCategory] = useState(null);
-  const [nosy, setNosy] = useState(false)
+  const [nosy, setNosy] = useState(false);
+  const [golden, setGolden] = useState(false);
 
   useEffect(() => {
     if (props.token) {
       createGame();
     }
     setLoader(false);
+    // eslint-disable-next-line
   }, []);
 
   const createGame = async () => {
@@ -37,6 +39,7 @@ const Game = (props) => {
         })
         .catch((e) => console.log(e));
     }
+    // eslint-disable-next-line
   }, [category]);
 
   if (loader) {
@@ -48,9 +51,9 @@ const Game = (props) => {
   }
 
   const categoryHandler = (e) => {
-    setCategory(e.target.innerText)
-  }
-
+    setCategory(e.target.innerText);
+    setNosy(false);
+  };
 
   return (
     <main
@@ -58,7 +61,7 @@ const Game = (props) => {
       style={{ backgroundImage: "url('/assets/background.png')" }}
     >
       <div className={styles.renderGame}>
-        {nosy ?
+        {nosy ? (
           <div>
             <button onClick={categoryHandler}>Music</button>
             <button onClick={categoryHandler}>Animals</button>
@@ -66,13 +69,20 @@ const Game = (props) => {
             <button onClick={categoryHandler}>Science: Computers</button>
             <button onClick={categoryHandler}>General Knowledge</button>
           </div>
-          : !question ? (
-            <Roulette category={setCategory} setNosy={setNosy} />
-          ) : (
-            <QuestionCard question={question} setQuestion={setQuestion} category={setCategory} nosy={nosy} setNosy={setNosy} />
-          )
-        }
-
+        ) : !question ? (
+          <Roulette
+            category={setCategory}
+            setNosy={setNosy}
+            setGolden={setGolden}
+          />
+        ) : (
+          <QuestionCard
+            question={question}
+            setQuestion={setQuestion}
+            category={setCategory}
+            golden={golden}
+          />
+        )}
       </div>
     </main>
   );

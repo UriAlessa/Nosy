@@ -1,21 +1,21 @@
 import { useState } from "react";
 import styles from "../styles/accounts.module.css";
-import { SocialMediaHeroButton } from "../components/Buttons";
 import usersActions from "../redux/actions/usersActions";
 import { connect } from "react-redux";
-import GoogleLogin from 'react-google-login'
+import GoogleLogin from "react-google-login";
 
 const Login = (props) => {
   const [newUser, setNewUser] = useState({
-    username: '', password: '',
-  })
+    username: "",
+    password: "",
+  });
 
   const inputHandler = (e) => {
     setNewUser({
       ...newUser,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   const submitButton = async () => {
     const { username, password } = newUser;
@@ -26,22 +26,23 @@ const Login = (props) => {
     if (response.data.success) {
       alert("Welcome Back!");
     }
-  }
+  };
 
   const responseGoogle = async (response) => {
     let loginUser = {
-        username: response.profileObj.givenName +' '+response.profileObj.familyName,
-        password: response.profileObj.googleId,
-        google: true,
-    }
-    let res = await props.logInUser(loginUser)
+      username:
+        response.profileObj.givenName + " " + response.profileObj.familyName,
+      password: response.profileObj.googleId,
+      google: true,
+    };
+    let res = await props.logInUser(loginUser);
     if (res.data.success) {
-        alert('Welcome!')
+      alert("Welcome!");
     }
     if (!res.data.success) {
-        console.log(res.data.error)
+      console.log(res.data.error);
     }
-}
+  };
 
   return (
     <div className={styles.login}>
@@ -75,19 +76,19 @@ const Login = (props) => {
       <p>Or</p>
       <div className={styles.socialMediaLogin}>
         <GoogleLogin
-        clientId="1051031328805-p3ct45qtnohrsnsq8vu32eu3o648c3j9.apps.googleusercontent.com"
-        buttonText="Log in"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={'single_host_origin'}
-    />
+          clientId="1051031328805-p3ct45qtnohrsnsq8vu32eu3o648c3j9.apps.googleusercontent.com"
+          buttonText="Log in"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
       </div>
     </div>
-  )
-}
+  );
+};
 
 const mapDispatchToProps = {
   logInUser: usersActions.logInUser,
-}
+};
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(Login);
