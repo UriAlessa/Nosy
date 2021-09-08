@@ -44,6 +44,7 @@ const io = socket(server, {
 });
 
 const socketioJwt = require("socketio-jwt");
+
 io.use(
   socketioJwt.authorize({
     secret: process.env.SECRETORKEY,

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const GameButtons = (props) => {
   const sendRequest = () => {
+    console.log(props.socket);
     if (props.socket) {
       props.socket.emit("game_request", "rafaelmian35");
     }
