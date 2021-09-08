@@ -20,27 +20,28 @@ import Loader from "./components/Loader";
 
 const App = (props) => {
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      props.logInLS(
-        io("http://localhost:4000/", {
-          query: "token=" + token,
-        })
-      );
+    if (localStorage.getItem("token")) {
+      props.logInLS();
     }
     // eslint-disable-next-line
   }, []);
-  if (props.socket) {
-    props.socket.on("game_request", (username) => {
-      console.log(username);
-    });
-    props.socket.on("friend_request", (username) => {
-      console.log(username);
-    });
-    props.socket.on("connected", (username) => {
-      console.log(username);
-    });
-  }
+
+  useEffect(() => {
+    if (props.socket) {
+      props.socket.on("game_request", (username) => {
+        console.log(username);
+      });
+      props.socket.on("friend_request", (username) => {
+        console.log(username);
+      });
+      props.socket.on("connected", (username) => {
+        console.log(username);
+      });
+      props.socket.on("disconnected", (username) => {
+        console.log(username);
+      });
+    }
+  }, [props.socket]);
 
   return (
     <BrowserRouter>
@@ -68,12 +69,12 @@ const mapStateToProps = (state) => {
   return {
     token: state.users.token,
     menu: state.other.menu,
+    socket: state.users.socket,
   };
 };
 
 const mapDispatchToProps = {
   logInLS: usersActions.logInLS,
-  setSocket: usersActions.setSocket,
   showMenuResponsive: otherActions.showMenu,
 };
 

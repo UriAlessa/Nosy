@@ -1,3 +1,5 @@
+import io from "socket.io-client";
+
 const initialState = {
   token: null,
   username: null,
@@ -13,10 +15,13 @@ const usersReducer = (state = initialState, action) => {
         token: action.payload.token,
         username: action.payload.user.username,
         avatar: action.payload.user.avatar,
-        socket: action.payload.socket,
+        socket: io("http://localhost:4000/", {
+          query: "token=" + action.payload.token,
+        }),
       };
     case "LOG_OUT":
       localStorage.removeItem("token");
+      state.socket.emit("disconnection");
       return {
         initialState,
       };

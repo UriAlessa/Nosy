@@ -54,9 +54,9 @@ io.use(
 
 io.on("connection", (socket) => {
   const socketUsername = socket.decoded_token._doc.username;
-
-  // io.sockets.emit("connected", socketUsername);
-  socket.broadcast.emit("connected", socketUsername);
+  console.log("Hola");
+  io.sockets.emit("connected", socketUsername);
+  // socket.broadcast.emit("connected", socketUsername);
 
   socket.join(socketUsername);
 
@@ -68,5 +68,9 @@ io.on("connection", (socket) => {
   });
   socket.on("direct_message", (username) => {
     io.to(username).emit("direct_message", socketUsername);
+  });
+  socket.on("disconnection", () => {
+    // io.sockets.broadcast("disconnected", socketUsername);
+    io.sockets.emit("disconnected", socketUsername);
   });
 });
