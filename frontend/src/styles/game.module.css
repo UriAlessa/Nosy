@@ -1,27 +1,50 @@
-.gameContainer{
-    height: 100vh;
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.gameContainer {
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.renderGame{
-    width: 60%;
-    height: 80vh;
-    background-color: #665fdf;
-    border-radius: 30px;
-    box-shadow: 0 5px 16px 0 rgb(0 0 0 / 25%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.renderGame {
+  width: 60%;
+  height: 80vh;
+  background-color: #665fdf;
+  border-radius: 30px;
+  box-shadow: 0 5px 16px 0 rgb(0 0 0 / 25%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.containerButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonOption,
+.buttonOptionBombed {
+  padding: 1rem 2rem;
+  border: none;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 3vmin;
+  background-color: #ceb036;
+  border-radius: 10px;
+  color: white;
+  width: 40%;
+  height: 10vh;
+  cursor: pointer;
+  border-bottom: 5px solid #917a20;
+  transition: all 0.5s;
 }
 
 @media (max-width: 1000px) {
-    .renderGame{
-        width: 80%;
-    }
+  .renderGame {
+    width: 80%;
+  }
 }

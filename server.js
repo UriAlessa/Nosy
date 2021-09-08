@@ -44,6 +44,7 @@ const io = socket(server, {
 });
 
 const socketioJwt = require("socketio-jwt");
+
 io.use(
   socketioJwt.authorize({
     secret: process.env.SECRETORKEY,
@@ -54,6 +55,7 @@ io.use(
 io.on("connection", (socket) => {
   const socketUsername = socket.decoded_token._doc.username;
 
+  // io.sockets.emit("connected", socketUsername);
   socket.broadcast.emit("connected", socketUsername);
 
   socket.join(socketUsername);
@@ -67,16 +69,4 @@ io.on("connection", (socket) => {
   socket.on("direct_message", (username) => {
     io.to(username).emit("direct_message", socketUsername);
   });
-
-  // socket.on("message", (mensaje) => {
-  //   if (mensaje === "Nuevo comentario") {
-  //     io.sockets.emit("message", "Refetch");
-  //   }
-  //   if (mensaje.includes("writing")) {
-  //     socket.broadcast.emit("message", mensaje);
-  //   }
-  // });
-  // io.on("disconnect", () => {
-  //   socket.broadcast.emit("disconnected", socketUsername);
-  // });
 });

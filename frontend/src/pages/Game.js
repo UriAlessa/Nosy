@@ -121,12 +121,22 @@ const Game = (props) => {
     >
       <div className={styles.renderGame}>
         {nosy ? (
-          <div>
-            <button onClick={categoryHandler}>Music</button>
-            <button onClick={categoryHandler}>Animals</button>
-            <button onClick={categoryHandler}>Movies and series</button>
-            <button onClick={categoryHandler}>Science: Computers</button>
-            <button onClick={categoryHandler}>General Knowledge</button>
+          <div className={styles.containerButtons}>
+            <button onClick={categoryHandler} className={styles.buttonOption}>
+              Music
+            </button>
+            <button onClick={categoryHandler} className={styles.buttonOption}>
+              Animals
+            </button>
+            <button onClick={categoryHandler} className={styles.buttonOption}>
+              Movies and series
+            </button>
+            <button onClick={categoryHandler} className={styles.buttonOption}>
+              Science: Computers
+            </button>
+            <button onClick={categoryHandler} className={styles.buttonOption}>
+              General Knowledge
+            </button>
           </div>
         ) : !question ? (
           <Roulette

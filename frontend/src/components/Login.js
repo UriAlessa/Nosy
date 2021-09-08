@@ -2,13 +2,14 @@ import { useState } from "react";
 import styles from "../styles/accounts.module.css";
 import usersActions from "../redux/actions/usersActions";
 import { connect } from "react-redux";
-import GoogleLogin from 'react-google-login'
-import toast from 'react-hot-toast'
+import GoogleLogin from "react-google-login";
+import toast from "react-hot-toast";
 
 const Login = (props) => {
   const [newUser, setNewUser] = useState({
-    username: '', password: ''
-  })
+    username: "",
+    password: "",
+  });
 
   const inputHandler = (e) => {
     setNewUser({
@@ -18,40 +19,38 @@ const Login = (props) => {
   };
 
   const welcomeBack = () => {
-    toast.success('Welcome back!', {
+    toast.success("Welcome back!", {
       style: {
-        borderRadius: '10px',
-        background: '#453ab7',
-        color: '#fff',
-        fontFamily: 'Ubuntu, sans-serif'
-      }
-    })
-  }
+        borderRadius: "10px",
+        background: "#453ab7",
+        color: "#fff",
+        fontFamily: "Ubuntu, sans-serif",
+      },
+    });
+  };
 
   const submitButton = async () => {
     const { username, password } = newUser;
     if (username === "" || password === "") {
-      return toast.error('There can be no empty fields',
-        {
-          position: "top-right",
-          style: {
-            borderRadius: '10px',
-            background: '#453ab7',
-            color: '#fff',
-            fontFamily: 'Ubuntu, sans-serif'
-          }
-        })
+      return toast.error("There can be no empty fields", {
+        position: "top-right",
+        style: {
+          borderRadius: "10px",
+          background: "#453ab7",
+          color: "#fff",
+          fontFamily: "Ubuntu, sans-serif",
+        },
+      });
     }
     let response = await props.logInUser(newUser);
     if (response.data.success) {
-      welcomeBack()
+      welcomeBack();
     }
   };
 
   const responseGoogle = async (response) => {
     let loginUser = {
-      username:
-        response.profileObj.givenName + " " + response.profileObj.familyName,
+      username: response.profileObj.email.split("@")[0],
       password: response.profileObj.googleId,
       google: true,
     };

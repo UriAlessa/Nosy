@@ -1,28 +1,30 @@
-import styles from '../../styles/questions.module.css'
-import { useEffect, useState } from "react"
-import questionActions from '../../redux/actions/questionsActions'
-import { connect } from 'react-redux'
-import TableData from './TableData'
+import styles from "../../styles/questions.module.css";
+import { useEffect, useState } from "react";
+import questionActions from "../../redux/actions/questionsActions";
+import { connect } from "react-redux";
+import TableData from "./TableData";
 
 const Questions = (props) => {
-    const [questions, setQuestions] = useState([])
+  // eslint-disable-next-line
+  const [questions, setQuestions] = useState([]);
 
-    const getQuestions = async () => {
-        try {
-            let response = await props.getQuestions()
-            if (response.data.success) {
-                setQuestions(response.data.response)
-            } else {
-                throw new Error()
-            }
-        } catch (error) {
-            console.log(error)
-        }
+  const getQuestions = async () => {
+    try {
+      let response = await props.getQuestions();
+      if (response.data.success) {
+        setQuestions(response.data.response);
+      } else {
+        throw new Error();
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    useEffect(() => {
-        getQuestions()
-    }, [])
+  useEffect(() => {
+    getQuestions();
+    // eslint-disable-next-line
+  }, []);
 
     return (
         <div className={styles.tableContainer}>
@@ -45,7 +47,7 @@ const Questions = (props) => {
 }
 
 const mapDispatchToProps = {
-    getQuestions: questionActions.getQuestions
-}
+  getQuestions: questionActions.getQuestions,
+};
 
-export default connect(null, mapDispatchToProps)(Questions)
+export default connect(null, mapDispatchToProps)(Questions);

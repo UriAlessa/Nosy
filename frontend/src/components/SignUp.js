@@ -3,9 +3,8 @@ import styles from "../styles/accounts.module.css";
 import { useState } from "react";
 import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
-import GoogleLogin from 'react-google-login';
-import toast from 'react-hot-toast'
-
+import GoogleLogin from "react-google-login";
+import toast from "react-hot-toast";
 
 const SignUp = (props) => {
   const [newUser, setNewUser] = useState({
@@ -23,29 +22,28 @@ const SignUp = (props) => {
   };
 
   const welcomeToast = () => {
-    toast.success('Welcome!', {
+    toast.success("Welcome!", {
       style: {
-        borderRadius: '10px',
-        background: '#453ab7',
-        color: '#fff',
-        fontFamily: 'Ubuntu, sans-serif'
-      }
-    })
-  }
+        borderRadius: "10px",
+        background: "#453ab7",
+        color: "#fff",
+        fontFamily: "Ubuntu, sans-serif",
+      },
+    });
+  };
 
   const submitButton = async () => {
     const { username, password, email, avatar } = newUser;
     if (username === "" || password === "" || email === "" || avatar === "") {
-      return toast.error('There can be no empty fields',
-        {
-          position: "top-right",
-          style: {
-            borderRadius: '10px',
-            background: '#453ab7',
-            color: '#fff',
-            fontFamily: 'Ubuntu, sans-serif'
-          }
-        })
+      return toast.error("There can be no empty fields", {
+        position: "top-right",
+        style: {
+          borderRadius: "10px",
+          background: "#453ab7",
+          color: "#fff",
+          fontFamily: "Ubuntu, sans-serif",
+        },
+      });
     }
     let response = await props.signUpUser(newUser);
     if (!response.data.success) {
@@ -53,22 +51,21 @@ const SignUp = (props) => {
         toast.error(error.message, {
           position: "top-right",
           style: {
-            borderRadius: '10px',
-            background: '#453ab7',
-            color: '#fff',
-            fontFamily: 'Ubuntu, sans-serif'
-          }
-        })
-      })
+            borderRadius: "10px",
+            background: "#453ab7",
+            color: "#fff",
+            fontFamily: "Ubuntu, sans-serif",
+          },
+        });
+      });
     } else {
-      welcomeToast()
+      welcomeToast();
     }
-  }
+  };
 
   const responseGoogle = async (response) => {
     let newUser = {
-      username:
-        response.profileObj.givenName + " " + response.profileObj.familyName,
+      username: response.profileObj.email.split("@")[0],
       password: response.profileObj.googleId,
       email: response.profileObj.email,
       avatar: response.profileObj.imageUrl,
@@ -76,17 +73,17 @@ const SignUp = (props) => {
     };
     let res = await props.signUpUser(newUser);
     if (res.data.success) {
-      welcomeToast()
+      welcomeToast();
     } else {
       toast.error(res.data.error[0].message, {
-        position: 'top-right',
+        position: "top-right",
         style: {
-          borderRadius: '10px',
-          background: '#453ab7',
-          color: '#fff',
-          fontFamily: 'Ubuntu, sans-serif'
-        }
-      })
+          borderRadius: "10px",
+          background: "#453ab7",
+          color: "#fff",
+          fontFamily: "Ubuntu, sans-serif",
+        },
+      });
     }
   };
 
