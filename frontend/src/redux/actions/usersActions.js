@@ -83,6 +83,16 @@ const usersActions = {
             })
             return response
         }
+    },
+    updateUser: () => {
+        return async () => {
+            let response = await axios.put('http://localhost:4000/api/admin/user', {
+                headers: {
+                    key: 'frasesuperhipermegasecreta'
+                }
+            })
+            return response
+        }
     }
 };
 
