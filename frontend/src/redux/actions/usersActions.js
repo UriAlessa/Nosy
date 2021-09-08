@@ -6,7 +6,7 @@ const usersActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/signup",
+          "https://benosy.herokuapp.com/api/user/signup",
           { ...newUser }
         );
         response.data.success &&
@@ -29,7 +29,7 @@ const usersActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/login",
+          "https://benosy.herokuapp.com/api/user/login",
           { ...newUser }
         );
         if (response.data.success === false) {
@@ -59,16 +59,22 @@ const usersActions = {
       }
     };
   },
-  logInLS: () => {
+  logInLS: (socket) => {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
       try {
-        let response = await axios.get("http://localhost:4000/api/user/token", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
+        let response = await axios.get(
+          "https://benosy.herokuapp.com/api/user/token",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        dispatch({
+          type: "LOG_IN_USER",
+          payload: { ...response.data, token, socket },
         });
-        dispatch({ type: "LOG_IN_USER", payload: { ...response.data, token } });
       } catch {
         toast.error("Session expired", {
           position: "top-right",
@@ -105,21 +111,27 @@ const usersActions = {
   },
   getUsers: () => {
     return async () => {
-      let response = await axios.get("http://localhost:4000/api/admin/user", {
-        headers: {
-          key: process.env.SECRETORKEY,
-        },
-      });
+      let response = await axios.get(
+        "https://benosy.herokuapp.com/api/admin/user",
+        {
+          headers: {
+            key: process.env.SECRETORKEY,
+          },
+        }
+      );
       return response;
     };
   },
   updateUser: () => {
     return async () => {
-      let response = await axios.put("http://localhost:4000/api/admin/user", {
-        headers: {
-          key: process.env.SECRETORKEY,
-        },
-      });
+      let response = await axios.put(
+        "https://benosy.herokuapp.com/api/admin/user",
+        {
+          headers: {
+            key: process.env.SECRETORKEY,
+          },
+        }
+      );
       return response;
     };
   },
