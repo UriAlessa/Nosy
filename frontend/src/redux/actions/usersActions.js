@@ -70,7 +70,7 @@ const usersActions = {
         });
         dispatch({ type: "LOG_IN_USER", payload: { ...response.data, token } });
       } catch {
-        toast.error("Something went wrong", {
+        toast.error("Session expired", {
           position: "top-right",
           style: {
             borderRadius: "10px",
@@ -85,6 +85,16 @@ const usersActions = {
   },
   logOutUser: () => {
     return (dispatch, getState) => {
+      toast("Hope to see you soon!", {
+        icon: "👋",
+        position: "top-right",
+        style: {
+          borderRadius: "10px",
+          background: "#453ab7",
+          color: "#fff",
+          fontFamily: "Ubuntu, sans-serif",
+        },
+      });
       dispatch({ type: "LOG_OUT" });
     };
   },
@@ -97,7 +107,17 @@ const usersActions = {
     return async () => {
       let response = await axios.get("http://localhost:4000/api/admin/user", {
         headers: {
-          key: "frasesuperhipermegasecreta",
+          key: process.env.SECRETORKEY,
+        },
+      });
+      return response;
+    };
+  },
+  updateUser: () => {
+    return async () => {
+      let response = await axios.put("http://localhost:4000/api/admin/user", {
+        headers: {
+          key: process.env.SECRETORKEY,
         },
       });
       return response;

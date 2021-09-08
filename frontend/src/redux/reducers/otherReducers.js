@@ -1,14 +1,13 @@
 const otherReducer = (state = { menu: false }, action) => {
-    switch (action.type) {
-        case 'SHOW_MENU':
-            console.log(action.payload)
-            return {
-                ...state,
-                menu: action.payload
-            }
-        default:
-            return { ...state }
-    }
-}
+  switch (action.type) {
+    case "SHOW_MENU":
+      return {
+        ...state,
+        menu: action.payload,
+      };
+    default:
+      return { ...state };
+  }
+};
 
-export default otherReducer
+export default otherReducer;

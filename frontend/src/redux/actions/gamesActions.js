@@ -2,7 +2,7 @@ import axios from "axios";
 
 const gamesActions = {
   createGame: (token, username = null) => {
-    return async () => {
+    return async (dispatch, getState) => {
       let response = await axios.post(
         "http://localhost:4000/api/game/newgame",
         username,

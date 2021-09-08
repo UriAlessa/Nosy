@@ -2,8 +2,15 @@ import styles from "../../styles/questions.module.css";
 import { useEffect, useState } from "react";
 import questionActions from "../../redux/actions/questionsActions";
 import { connect } from "react-redux";
+<<<<<<< HEAD
 
 const Questions = (props) => {
+=======
+import TableData from "./TableData";
+
+const Questions = (props) => {
+  // eslint-disable-next-line
+>>>>>>> eeaf6aab8a03b1dea51d3bc6980ee7defb6d8713
   const [questions, setQuestions] = useState([]);
 
   const getQuestions = async () => {
@@ -21,6 +28,10 @@ const Questions = (props) => {
 
   useEffect(() => {
     getQuestions();
+<<<<<<< HEAD
+=======
+    // eslint-disable-next-line
+>>>>>>> eeaf6aab8a03b1dea51d3bc6980ee7defb6d8713
   }, []);
 
   return (

@@ -66,8 +66,7 @@ const SignUp = (props) => {
   const responseGoogle = async (response) => {
     console.log(response.profileObj.email.split("@")[0]);
     let newUser = {
-      username:
-        response.profileObj.givenName + " " + response.profileObj.familyName,
+      username: response.profileObj.email.split("@")[0],
       password: response.profileObj.googleId,
       email: response.profileObj.email,
       avatar: response.profileObj.imageUrl,
