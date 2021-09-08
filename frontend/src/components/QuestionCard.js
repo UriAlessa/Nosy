@@ -82,6 +82,8 @@ const QuestionCard = (props) => {
   };
 
   return (
+
+
     <section
       className={styles.sectionQuestion}
       style={{ backgroundImage: "url('/assets/background.png')" }}
