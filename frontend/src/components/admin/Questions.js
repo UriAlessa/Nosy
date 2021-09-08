@@ -2,6 +2,7 @@ import styles from '../../styles/questions.module.css'
 import { useEffect, useState } from "react"
 import questionActions from '../../redux/actions/questionsActions'
 import { connect } from 'react-redux'
+import TableData from './TableData'
 
 const Questions = (props) => {
     const [questions, setQuestions] = useState([])
