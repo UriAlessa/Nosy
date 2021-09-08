@@ -67,21 +67,14 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     token: state.users.token,
-<<<<<<< HEAD
-    socket: state.users.socket,
-=======
     menu: state.other.menu,
->>>>>>> origin/dev
   };
 };
 
 const mapDispatchToProps = {
   logInLS: usersActions.logInLS,
-<<<<<<< HEAD
-=======
   setSocket: usersActions.setSocket,
   showMenuResponsive: otherActions.showMenu,
->>>>>>> origin/dev
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

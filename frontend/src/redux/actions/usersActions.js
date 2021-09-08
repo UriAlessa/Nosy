@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const usersActions = {
   signUpUser: (newUser) => {
@@ -11,29 +12,54 @@ const usersActions = {
         response.data.success &&
           dispatch({ type: "LOG_IN_USER", payload: response.data });
         return response;
-      } catch (error) {
-        console.log(error);
+      } catch {
+        toast.error("Something went wrong", {
+          position: "top-right",
+          style: {
+            borderRadius: "10px",
+            background: "#453ab7",
+            color: "#fff",
+            fontFamily: "Ubuntu, sans-serif",
+          },
+        });
       }
     };
   },
   logInUser: (newUser) => {
     return async (dispatch) => {
-      console.log(newUser);
       try {
         let response = await axios.post(
           "https://benosy.herokuapp.com/api/user/login",
           { ...newUser }
         );
-        console.log(response);
+        if (response.data.success === false) {
+          toast.error(response.data.error, {
+            position: "top-right",
+            style: {
+              borderRadius: "10px",
+              background: "#453ab7",
+              color: "#fff",
+              fontFamily: "Ubuntu, sans-serif",
+            },
+          });
+        }
         response.data.success &&
           dispatch({ type: "LOG_IN_USER", payload: response.data });
         return response;
-      } catch (error) {
-        alert("En action signUpUser" + error);
+      } catch {
+        toast.error("Something went wrong", {
+          position: "top-right",
+          style: {
+            borderRadius: "10px",
+            background: "#453ab7",
+            color: "#fff",
+            fontFamily: "Ubuntu, sans-serif",
+          },
+        });
       }
     };
   },
-  logInLS: (socket) => {
+  logInLS: () => {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
       try {
@@ -45,17 +71,32 @@ const usersActions = {
             },
           }
         );
-        dispatch({
-          type: "LOG_IN_USER",
-          payload: { ...response.data, token, socket },
+        dispatch({ type: "LOG_IN_USER", payload: { ...response.data, token } });
+      } catch {
+        toast.error("Session expired", {
+          position: "top-right",
+          style: {
+            borderRadius: "10px",
+            background: "#453ab7",
+            color: "#fff",
+            fontFamily: "Ubuntu, sans-serif",
+          },
         });
-      } catch (error) {
         return dispatch({ type: "LOG_OUT" });
       }
     };
   },
   logOutUser: () => {
     return (dispatch, getState) => {
+      toast.error("Hope to see you soon", {
+        position: "top-right",
+        style: {
+          borderRadius: "10px",
+          background: "#453ab7",
+          color: "#fff",
+          fontFamily: "Ubuntu, sans-serif",
+        },
+      });
       dispatch({ type: "LOG_OUT" });
     };
   },
