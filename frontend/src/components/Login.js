@@ -59,9 +59,7 @@ const Login = (props) => {
     if (res.data.success) {
       welcomeBack()
     }
-    if (!res.data.success) {
-      toast.error(res.data.error[0].message)
-    }
+
   };
 
   return (
