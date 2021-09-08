@@ -31,6 +31,7 @@ const AdminUsersControllers = {
       let users = await User.find();
       res.json({ success: true, response: users });
     } catch (error) {
+      console.log(error)
       res.json({ success: false, error: error.message });
     }
   },
