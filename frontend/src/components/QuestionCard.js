@@ -13,6 +13,7 @@ const QuestionCard = (props) => {
   const [incorrect, setIncorrect] = useState(false);
   const [bombclicked, setBombclicked] = useState(false);
   let answersContainer = useRef();
+
   let questionAudio = new Audio("/assets/question.wav");
   let correctAudio = new Audio("/assets/correct.wav");
   let incorrectAudio = new Audio("/assets/incorrect.wav");
@@ -166,6 +167,9 @@ const QuestionCard = (props) => {
           </div>
           <div>
             hola
+          </div>
+          <div>
+            <button>hola</button>
           </div>
         </article>
       )}
