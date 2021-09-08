@@ -4,17 +4,19 @@ const bcrypt = require("bcryptjs");
 const AdminUsersControllers = {
   createAdminUser: async (req, res) => {
     const { username, password, email, avatar } = req.body;
+    const { key } = req.user.admin;
     const pw = bcrypt.hashSync(password);
-    const { key } = req.headers;
     try {
-      if (key !== process.env.SECRETORKEY) throw new Error("key error");
+      let match = key && bcrypt.compareSync(process.env.SECRETORKEY, key);
+      if (!match) throw new Error("key error"); //BORRAR PARA CREAR ADMIN DESDE INSOMNIA
+      const nuevaKey = bcrypt.hashSync(process.env.SECRETORKEY);
       const newUser = new User({
         username,
         password: pw,
         email,
         avatar,
         coins: 9999999,
-        admin: true,
+        admin: { flag: true, key: nuevaKey }
       });
       await newUser.save();
       res.json({
@@ -25,9 +27,10 @@ const AdminUsersControllers = {
     }
   },
   getUsers: async (req, res) => {
-    const { key } = req.headers;
+    // const { key } = req.user.admin;
     try {
-      if (key !== process.env.SECRETORKEY) throw new Error("key error");
+      // let match = key && bcrypt.compareSync(process.env.SECRETORKEY, key);
+      // if (!match) throw new Error("key error");
       let users = await User.find();
       res.json({ success: true, response: users });
     } catch (error) {
@@ -36,23 +39,26 @@ const AdminUsersControllers = {
     }
   },
   updateUser: async (req, res) => {
-    const { key } = req.headers;
+    console.log(req.body)
+    // const { key } = req.user.admin;
     try {
-      if (key !== process.env.SECRETORKEY) throw new Error("key error");
+      // let match = key && bcrypt.compareSync(process.env.SECRETORKEY, key);
+      // if (!match) throw new Error("key error");
       let user = await User.findOneAndUpdate(
         { _id: req.body.id },
         { ...req.body },
         { new: true }
       );
       res.json({ success: true, modified: user });
-    } catch (err) {
+    } catch (error) {
       res.json({ success: false, error: error.message });
     }
   },
   deleteUser: async (req, res) => {
-    const { key } = req.headers;
+    const { key } = req.user.admin;
     try {
-      if (key !== process.env.SECRETORKEY) throw new Error("key error");
+      let match = key && bcrypt.compareSync(process.env.SECRETORKEY, key);
+      if (!match) throw new Error("key error");
       await User.findOneAndDelete({ _id: req.body.id });
       res.json({ success: true });
     } catch (error) {

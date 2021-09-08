@@ -6,7 +6,7 @@ import otherReducer from "./otherReducers";
 const rootReducer = combineReducers({
   users: usersReducer,
   questions: questionsReducer,
-  other: otherReducer
+  other: otherReducer,
 });
 
 export default rootReducer;

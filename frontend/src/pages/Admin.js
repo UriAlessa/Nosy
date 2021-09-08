@@ -11,16 +11,19 @@ const AdminPanel = () => {
     return (
         <section className={styles.adminContainer}>
             <h1>Admin Panel</h1>
-            <div className={styles.buttonsContainer}>
-                <button className={styles.button} onClick={() => setView('users')}>Users</button>
-                <button className={styles.button} onClick={() => setView('questions')}>Questions</button>
-                <button className={styles.button} onClick={() => setView('games')}>Games</button>
+            <div className={styles.dataContainer}>
+                <div className={styles.buttonsContainer}>
+                    <button className={styles.button} onClick={() => setView('users')}>Users</button>
+                    <button className={styles.button} onClick={() => setView('questions')}>Questions</button>
+                    <button className={styles.button} onClick={() => setView('games')}>Games</button>
+                </div>
+                <div className={styles.infoSection}>
+                    {view === 'users' && <Users />}
+                    {view === 'questions' && <Questions />}
+                    {view === 'games' && <Games />}
+                </div>
             </div>
-            <div className={styles.infoSection}>
-                {view === 'users' && <Users />}
-                {view === 'questions' && <Questions />}
-                {view === 'games' && <Games />}
-            </div>
+
         </section>
     )
 }

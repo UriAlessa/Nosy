@@ -12,8 +12,23 @@
     margin: 3vh 0;
 }
 
+.dataContainer{
+    width: 80%;
+    background-color: #1c1659bd;
+    border-radius: 50px;
+    padding: 5vh 4vw;
+    display: flex;
+}
+
+.buttonsContainer{
+    display: flex;
+    flex-direction: column;
+    padding-top: 12vh;
+}
+
 .buttonsContainer>button {
-    margin: 0 2vw
+    margin: 1vh 0;
+    margin-right: 3vw;
 }
 
 .buttonsContainer .button{

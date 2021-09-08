@@ -68,7 +68,10 @@ const usersActions = {
                         Authorization: "Bearer " + token,
                     },
                 });
-                dispatch({ type: "LOG_IN_USER", payload: { ...response.data, token } });
+                dispatch({
+                    type: "LOG_IN_USER",
+                    payload: { ...response.data, token },
+                });
             } catch {
                 toast.error("Session expired", {
                     position: "top-right",
@@ -96,31 +99,6 @@ const usersActions = {
                 },
             });
             dispatch({ type: "LOG_OUT" });
-        };
-    },
-    setSocket: (socket) => {
-        return (dispatch) => {
-            dispatch({ type: "SET_SOCKET", payload: socket });
-        };
-    },
-    getUsers: () => {
-        return async () => {
-            let response = await axios.get("http://localhost:4000/api/admin/user", {
-                headers: {
-                    key: "frasesuperhipermegasecreta",
-                },
-            });
-            return response;
-        };
-    },
-    updateUser: () => {
-        return async () => {
-            let response = await axios.put("http://localhost:4000/api/admin/user", {
-                headers: {
-                    key: "frasesuperhipermegasecreta",
-                },
-            });
-            return response;
         };
     },
 };

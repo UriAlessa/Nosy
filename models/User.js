@@ -31,7 +31,10 @@ const userSchema = mongoose.Schema({
     disconnected: [{ type: mongoose.Types.ObjectId, path: "user" }],
   },
   friend_requests: [{ type: mongoose.Types.ObjectId, path: "user" }],
-  admin: { type: Boolean, default: false },
+  admin: {
+    flag: { type: Boolean, default: false },
+    key: { type: String, required: true },
+  },
   facebook: { type: Boolean, default: false },
   google: { type: Boolean, default: false },
   game_requests: [

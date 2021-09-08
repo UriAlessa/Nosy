@@ -38,13 +38,12 @@ const usersAccountControllers = {
     const { username, password, facebook, google } = req.body;
     try {
       let user = await User.findOne({ username: username });
-      console.log(user)
-      if (!user) throw new Error("Username doesn't exists")
+      if (!user) throw new Error("Username doesn't exists");
       if ((user.google && !google) || (user.facebook && !facebook)) {
         throw new Error("You must log in with Google");
       }
       let match = user && bcrypt.compareSync(password, user.password);
-      if (!user || !match) throw new Error('Password does not match');
+      if (!user || !match) throw new Error("Password does not match");
       const token = jwt.sign({ ...user }, process.env.SECRETORKEY);
       res.json({
         success: true,
@@ -59,7 +58,7 @@ const usersAccountControllers = {
     }
   },
 
-  addFriend: async (req, res) => { },
+  addFriend: async (req, res) => {},
 
   verifyToken: async (req, res) => {
     res.json({
