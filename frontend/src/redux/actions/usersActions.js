@@ -81,6 +81,7 @@ const usersActions = {
                     key: 'frasesuperhipermegasecreta'
                 }
             })
+            return response
         }
     }
 };
