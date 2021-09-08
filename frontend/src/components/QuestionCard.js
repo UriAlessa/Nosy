@@ -21,9 +21,6 @@ const QuestionCard = (props) => {
     setAnswers(possibleAnswers.sort(() => Math.random() - 0.5));
   }, []);
 
-  let correctAudio = new Audio('/assets/correct.wav')
-  let incorrectAudio = new Audio('/assets/incorrect.wav')
-
   // token, question, answer, nosy, powers_used, coins_spent
   const clickHandler = (e) => {
     props.category(null);

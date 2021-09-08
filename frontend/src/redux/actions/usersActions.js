@@ -1,4 +1,5 @@
 import axios from "axios";
+import {toast} from 'react-hot-toast'
 
 const usersActions = {
   signUpUser: (newUser) => {
@@ -7,8 +8,16 @@ const usersActions = {
             let response = await axios.post('http://localhost:4000/api/user/signup', {...newUser })
             response.data.success && dispatch({ type: 'LOG_IN_USER', payload: response.data})
             return response
-        } catch (error) {
-            console.log(error)
+        } catch {
+            toast.error('Something went wrong',{
+                position: "top-right", 
+                style: { 
+                    borderRadius: '10px', 
+                    background: '#453ab7', 
+                    color: '#fff', 
+                    fontFamily: 'Ubuntu, sans-serif'
+                }
+            })
         }
     }
   },
@@ -16,11 +25,29 @@ const usersActions = {
       return async (dispatch) => {
           try {
               let response = await axios.post('http://localhost:4000/api/user/login', {...newUser })
-              console.log(response)
+              if (response.data.success === false) {
+                toast.error(response.data.error, {
+                    position: 'top-right', 
+                    style: {
+                        borderRadius: '10px', 
+                        background: '#453ab7', 
+                        color: '#fff', 
+                        fontFamily: 'Ubuntu, sans-serif',
+                    }
+                })
+              }
               response.data.success && dispatch({ type: 'LOG_IN_USER', payload: response.data})
               return response
-          } catch (error) {
-              alert('En action signUpUser' + error)
+          } catch {
+            toast.error('Something went wrong', {
+                position: "top-right", 
+                style: { 
+                    borderRadius: '10px', 
+                    background: '#453ab7', 
+                    color: '#fff', 
+                    fontFamily: 'Ubuntu, sans-serif'
+                }
+            })
           }
       }
   },
@@ -34,7 +61,7 @@ const usersActions = {
               }
           })
               dispatch({ type: 'LOG_IN_USER', payload: {...response.data, token}})
-          } catch(error) {
+          } catch {
               return dispatch({type: 'LOG_OUT'})
           }
       }
