@@ -88,7 +88,8 @@ const usersActions = {
   },
   logOutUser: () => {
     return (dispatch, getState) => {
-      toast.error("Hope to see you soon", {
+      toast("Good Job!", {
+        icon: "👏",
         position: "top-right",
         style: {
           borderRadius: "10px",
