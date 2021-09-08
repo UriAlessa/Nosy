@@ -5,24 +5,26 @@
   align-items: center;
   justify-content: center;
 }
-.card , .infoLifes{
-    width: 100%;
-    height: 80vh;
-    background-color: rgb(97,89,198);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding:0 1.5rem;
-    justify-content: space-around;
-    box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);   
+.card,
+.infoLifes {
+  width: 100%;
+  height: 80vh;
+  background-color: rgb(97, 89, 198);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.5rem;
+  justify-content: space-around;
+  box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
 }
 
-.card h3 , .infoLifes h3 {
-    font-family: "Ubuntu", sans-serif;
-    font-size: 5vmin;
-    color: white;
-    text-align: center;
+.card h3,
+.infoLifes h3 {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 5vmin;
+  color: white;
+  text-align: center;
 }
 .containerLogo {
   display: flex;
@@ -39,7 +41,8 @@
   justify-content: center;
 }
 
-.buttonOption {
+.buttonOption,
+.buttonOptionBombed {
   padding: 1rem 2rem;
   border: none;
   font-family: "Ubuntu", sans-serif;
@@ -61,18 +64,22 @@
   background-color: #cb5b3b;
   border-bottom: 5px solid #943b23;
 }
+.buttonOptionBombed {
+  background-color: #444;
+  border-bottom: 5px solid rgb(51, 51, 51);
+}
 .logo {
   width: 13vw;
 }
 .buttonOption:hover {
   box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
 }
-.infoLifes{
-    align-items: center;
-    justify-content: center;
+.infoLifes {
+  align-items: center;
+  justify-content: center;
 }
-.heart{
-    width: 10vw;
+.heart {
+  width: 10vw;
 }
 
 
