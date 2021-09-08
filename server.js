@@ -63,8 +63,14 @@ io.on("connection", (socket) => {
   socket.on("game_request", (username) => {
     io.to(username).emit("game_request", socketUsername);
   });
+  socket.on("answer_game_request", (username) => {
+    io.to(username).emit("game_request", socketUsername);
+  });
   socket.on("friend_request", (username) => {
     io.to(username).emit("friend_request", socketUsername);
+  });
+  socket.on("accepted_friend_request", (username) => {
+    io.to(username).emit("accepted_friend_request", socketUsername);
   });
   socket.on("direct_message", (username) => {
     io.to(username).emit("direct_message", socketUsername);

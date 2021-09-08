@@ -8,6 +8,10 @@ const validator = require("../controllers/validator");
 
 router.route("/user/signup").post(validator, usersAccountsControllers.signUp);
 router.route("/user/login").post(usersAccountsControllers.logIn);
+router
+  .route("/user/friend_request")
+  .post(usersAccountsControllers.addFriend)
+  .put(usersAccountsControllers.acceptFriendRequest);
 
 router
   .route("/user/token")
@@ -29,11 +33,11 @@ router
     gameControllers.acceptGameRequest
   );
 
-router.route("/game/answer")
+router
+  .route("/game/answer")
   .put(
     passport.authenticate("jwt", { session: false }),
     gameControllers.answer
   );
-
 
 module.exports = router;
