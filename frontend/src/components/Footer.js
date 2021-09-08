@@ -10,6 +10,10 @@ const Footer = () => {
                     className={styles.footerLogo} 
                     style={{backgroundImage: `url('https://stopots.com/assets/logo2.svg')`}}>
                 </div>
+                {/* <div 
+                    className={styles.footerLogo} 
+                    style={{backgroundImage: `url('../assets/nosyfooter.png')`}}>
+                </div> */}
                 <div className={styles.navContainer}>
                     <nav className={styles.footerNav}>
                         <Link to='/terms'>
