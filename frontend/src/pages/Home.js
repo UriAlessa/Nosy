@@ -12,7 +12,7 @@ const Home = (props) => {
     // eslint-disable-next-line
   }, []);
   return (
-    <>
+    <div className="body" style={{backgroundImage: 'url("/assets/transparentSmall.png")'}}>
       <div className="heroHome">
         <Header />
         <HeroHome />
@@ -21,7 +21,7 @@ const Home = (props) => {
       <Reviews />
       <GamesCards />
       <Footer />
-    </>
+    </div>
   );
 };
 
