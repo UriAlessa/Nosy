@@ -12,7 +12,7 @@ const validator = (req, res, next) => {
       'string.base': 'The password must be of type text',
       'string.min': 'Password must contain at least 8 characters',
     }),
-    email: joi.string().trim().email( {tlds: { allow: false }} ).messages({
+    email: joi.string().trim().email({ tlds: { allow: false } }).messages({
       'string.empty': 'Email cant be empty',
       'string.base': 'The email must be of type text',
       'string.email': 'The email is invalid',

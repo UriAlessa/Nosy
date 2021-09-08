@@ -16,7 +16,7 @@ const QuestionCard = (props) => {
   let incorrectAudio = new Audio("/assets/incorrect.wav");
 
   useEffect(() => {
-    props.nosy(null)
+    props.setNosy(null)
     questionAudio.play();
     setAnswers(possibleAnswers.sort(() => Math.random() - 0.5));
   }, []);
@@ -43,7 +43,7 @@ const QuestionCard = (props) => {
     setTimeout(() => {
       props.setQuestion(null);
     }, 1500);
-    props.sendAnswer(props.token, props.question, answer, props.nosy,)
+    props.sendAnswer(props.token, props.question, answer, props.nosy)
   };
 
   return (
@@ -62,7 +62,6 @@ const QuestionCard = (props) => {
             />
             <h3>{question}</h3>
           </div>
-
           <div ref={answersContainer} className={styles.containerButtons}>
             {answers.map((string, index) => {
               return (
@@ -77,6 +76,9 @@ const QuestionCard = (props) => {
                 </button>
               );
             })}
+          </div>
+          <div>
+            hola
           </div>
         </article>
       }
