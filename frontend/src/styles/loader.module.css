@@ -1,24 +1,24 @@
-.loader{
-        min-height: 100vh;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+.loader {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .loader h1 {
-        margin: 0;
-        padding: 0;
-        font-family: 'Fredoka One', cursive;
-        font-weight: 100;
-        font-size: 3rem;
-        color: #a3e1f0;
+  margin: 0;
+  padding: 0;
+  font-family: "Fredoka One", cursive;
+  font-weight: 100;
+  font-size: 3rem;
+  color: #a3e1f0;
 }
-span {
-        display: inline-block;
-        text-transform: uppercase;  
-        opacity: 0;
-        transform: rotateX(-90deg);
+.loader h1 span {
+  display: inline-block;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: rotateX(-90deg);
 }
 .let1, .let2, .let3, .let4, .let5, .let6, .let7, .let8, .let9,.let10 {
         animation: drop 0.5s ease-in-out infinite;
@@ -29,25 +29,24 @@ span {
     width: 10vw;
 }
 @keyframes drop {
-    10% {
-        opacity: 0.5;
-    }
-    20% {
-        opacity: 1;
-        top: 3.78em;
-        transform: rotateX(-360deg);
-    }
-    80% {
-        opacity: 1;
-        top: 3.78em;
-        transform: rotateX(-360deg);
-    }
-    90% {
-        opacity: 0.5;
-    }
-    100% {
-        opacity: 0;
-        top: 6.94em
-    }
+  10% {
+    opacity: 0.5;
+  }
+  20% {
+    opacity: 1;
+    top: 3.78em;
+    transform: rotateX(-360deg);
+  }
+  80% {
+    opacity: 1;
+    top: 3.78em;
+    transform: rotateX(-360deg);
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    top: 6.94em;
+  }
 }
-

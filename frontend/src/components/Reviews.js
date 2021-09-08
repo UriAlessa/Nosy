@@ -3,8 +3,8 @@ import ReviewSlide from "../components/ReviewSlide";
 import RankingCard from "../components/RankingCard";
 
 const Reviews = () => {
-  const render = AllReviews.map((info) => {
-    return <ReviewSlide oneReview={info} />;
+  const render = AllReviews.map((info, index) => {
+    return <ReviewSlide oneReview={info} key={"Review" + index} />;
   });
 
   // const renderRate = '' /**prop del ranking general que se vaya alimentando constantemente */

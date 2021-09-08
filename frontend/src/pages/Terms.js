@@ -132,10 +132,10 @@ const Terms = () => {
                 <p>
                   Welcome to the web site operated by Daniel San Team (the
                   "Company"), accessible at{` `}
-                  <a href="https://nosy.com/">https://nosy.com/</a>. "Site"
-                  means web sites of the Company and its affiliates, including
-                  any web sites on which these terms and conditions of use are
-                  posted.
+                  <a href="https://benosy.herokuapp.com/">https://nosy.com/</a>.
+                  "Site" means web sites of the Company and its affiliates,
+                  including any web sites on which these terms and conditions of
+                  use are posted.
                 </p>
                 <p>
                   If you do not agree, you are forbid to play and/or access Nosy

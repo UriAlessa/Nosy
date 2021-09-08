@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import gamesActions from "../redux/actions/gamesActions";
 
 const QuestionCard = (props) => {
-  const { question, possibleAnswers, correctAnswer } = props.question;
+  const { question, possibleAnswers, correctAnswer, category } = props.question;
   const [click, setClick] = useState(false);
   const [answers, setAnswers] = useState([]);
   const [bomb, setBomb] = useState([]);
@@ -18,7 +18,7 @@ const QuestionCard = (props) => {
   let incorrectAudio = new Audio("/assets/incorrect.wav");
 
   useEffect(() => {
-    props.setNosy(null)
+    props.setNosy(null);
     questionAudio.play();
     setAnswers(possibleAnswers.sort(() => Math.random() - 0.5));
     // eslint-disable-next-line
@@ -82,6 +82,8 @@ const QuestionCard = (props) => {
   };
 
   return (
+
+
     <section
       className={styles.sectionQuestion}
       style={{ backgroundImage: "url('/assets/background.png')" }}
@@ -132,7 +134,7 @@ const QuestionCard = (props) => {
                 })}
           </div>
 
-          <div className={styles.containerButtons}>
+          <div className={styles.powersButtons}>
             {answers.length > 2 && (
               <>
                 <button
@@ -140,14 +142,22 @@ const QuestionCard = (props) => {
                   className={styles.buttonOption}
                   onClick={Bomb}
                 >
-                  Bomb
+                    <img  className={styles.imgPowers} src="/assets/bomb.png"/> 
+                    <div className={styles.containerIconsPowers}>
+                        <h5>Bomb!</h5>
+                      <div className={styles.containerCoins}> <h6> 30 </h6><img className={styles.imgPowersCoin}src="/assets/coin.png"/></div>
+                    </div>
                 </button>
                 <button
                   disabled={repeatAnswer || bomb.length !== 0}
                   className={styles.buttonOption}
                   onClick={() => setRepeatAnswer(true)}
                 >
-                  Repeat
+                  <img  className={styles.imgPowers} src="/assets/repeat.png"/> 
+                    <div className={styles.containerIconsPowers}>
+                        <h5>Repeat</h5>
+                      <div className={styles.containerCoins}> <h6> 25 </h6><img className={styles.imgPowersCoin}src="/assets/coin.png"/></div>
+                    </div>
                 </button>
               </>
             )}
@@ -159,7 +169,11 @@ const QuestionCard = (props) => {
                 props.setQuestion(null);
               }}
             >
-              Re Roll
+              <img  className={styles.imgPowers} src="/assets/lottery.png"/> 
+                    <div className={styles.containerIconsPowers}>
+                        <h5>Roll</h5>
+                      <div className={styles.containerCoins}> <h6> 20 </h6><img className={styles.imgPowersCoin}src="/assets/coin.png"/></div>
+                    </div>
             </button>
           </div>
         </article>

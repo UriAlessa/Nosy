@@ -1,19 +1,18 @@
 import styles from "../styles/roulette.module.css";
 
 const Roulette = (props) => {
-    return (
-        <div className={styles.rouletteContainer}>
-            <img
-                ref={props.roulette}
-                onClick={() => {
-                    !props.playing && props.rotate();
-                }}
-                alt="roulette"
-                className={styles.roulette}
-                src="https://i.postimg.cc/wBrKKHKq/ruleta-Prueba1.png"
-            />
-        </div>
-    );
+  const shadows =["shadow1.png","shadow2.png","shadow3.png","shadow4.png","shadow5.png"]
+  return (
+    <div className={styles.rouletteContainer}>
+      <div className={styles.shadows}>
+        {shadows.map((shadow,index)=> <img key={index} className={styles.picShadow} src={`assets/${shadow}`} alt={shadow}/>)}
+      </div>
+      <div className={styles.containerRoulette}>
+        <div style={{backgroundImage: "url('/assets/ruleta2.png')"}} ref={props.roulette}  className={styles.roulette}>
+      </div>
+        <img src="/assets/spin.png"alt="spin" className={styles.buttonRoulette} onClick={() => {!props.playing && props.rotate()}}/>
+      </div>
+    </div>
+  );
 };
-
 export default Roulette;
