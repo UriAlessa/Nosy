@@ -76,6 +76,9 @@ const QuestionCard = (props) => {
               );
             })}
           </div>
+          <div>
+            <button>hola</button>
+          </div>
         </article>
       }
     </section>

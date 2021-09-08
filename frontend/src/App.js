@@ -12,6 +12,7 @@ import Game from "./pages/Game";
 import usersActions from "./redux/actions/usersActions";
 import FriendCard from './components/FriendCard'
 import GameButtons from './pages/GameButtons'
+import AdminPanel from "./pages/Admin";
 
 const App = (props) => {
   useEffect(() => {
@@ -47,6 +48,7 @@ const App = (props) => {
         <Route path="/game" component={Game} />
         <Route path="/accounts" component={!props.token ? Account : Home} />
         <Route path="/selectgame" component={GameButtons} />
+        <Route path="/admin" component={AdminPanel} />
         <Redirect to="/" />
       </Switch>
     </BrowserRouter>
