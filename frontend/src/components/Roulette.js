@@ -10,7 +10,7 @@ const Roulette = (props) => {
         }}
         alt="roulette"
         className={styles.roulette}
-        src="https://i.postimg.cc/wBrKKHKq/ruleta-Prueba1.png"
+        src="/assets/ruleta1.png"
       />
     </div>
   );
