@@ -8,10 +8,15 @@ import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 import Account from "./pages/Account";
+import MenuResponsive from "./components/MenuResponsive";
 import Game from "./pages/Game";
 import usersActions from "./redux/actions/usersActions";
+import otherActions from "./redux/actions/otherActions";
 import FriendCard from "./components/FriendCard";
 import GameButtons from "./pages/GameButtons";
+import { Toaster } from "react-hot-toast";
+import AdminPanel from "./pages/Admin";
+import Loader from "./components/Loader";
 
 const App = (props) => {
   useEffect(() => {
@@ -36,8 +41,11 @@ const App = (props) => {
       console.log(username);
     });
   }
+
   return (
     <BrowserRouter>
+      <Toaster />
+      {props.menu && <MenuResponsive />}
       <Switch>
         <Route path="/prueba" component={FriendCard} />
         <Route exact path="/" {...props} component={Home} />
@@ -47,7 +55,10 @@ const App = (props) => {
         <Route path="/game" component={Game} />
         <Route path="/accounts" component={!props.token ? Account : Home} />
         <Route path="/selectgame" component={GameButtons} />
+        <Route path="/admin" component={AdminPanel} />
         <Redirect to="/" />
+        <Route path="/loader" component={Loader} />
+        <Redirect to="/notFound" />
       </Switch>
     </BrowserRouter>
   );
@@ -56,12 +67,21 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     token: state.users.token,
+<<<<<<< HEAD
     socket: state.users.socket,
+=======
+    menu: state.other.menu,
+>>>>>>> origin/dev
   };
 };
 
 const mapDispatchToProps = {
   logInLS: usersActions.logInLS,
+<<<<<<< HEAD
+=======
+  setSocket: usersActions.setSocket,
+  showMenuResponsive: otherActions.showMenu,
+>>>>>>> origin/dev
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

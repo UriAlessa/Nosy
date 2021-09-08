@@ -1,12 +1,13 @@
 import { useState } from "react";
 import styles from "../styles/accounts.module.css";
-import { SocialMediaHeroButton } from "../components/Buttons";
 import usersActions from "../redux/actions/usersActions";
 import { connect } from "react-redux";
+import GoogleLogin from 'react-google-login'
+import toast from 'react-hot-toast'
 
 const Login = (props) => {
   const [newUser, setNewUser] = useState({
-    username: '', password: '',
+    username: '', password: ''
   })
 
   const inputHandler = (e) => {
@@ -16,14 +17,50 @@ const Login = (props) => {
     });
   };
 
+  const welcomeBack = () => {
+    toast.success('Welcome back!', {
+      style: {
+        borderRadius: '10px',
+        background: '#453ab7',
+        color: '#fff',
+        fontFamily: 'Ubuntu, sans-serif'
+      }
+    })
+  }
+
   const submitButton = async () => {
     const { username, password } = newUser;
     if (username === "" || password === "") {
-      return alert("Empty fields");
+      return toast.error('There can be no empty fields',
+        {
+          position: "top-right",
+          style: {
+            borderRadius: '10px',
+            background: '#453ab7',
+            color: '#fff',
+            fontFamily: 'Ubuntu, sans-serif'
+          }
+        })
     }
     let response = await props.logInUser(newUser);
     if (response.data.success) {
-      alert("Welcome Back!");
+      welcomeBack()
+    }
+  };
+
+  const responseGoogle = async (response) => {
+    let loginUser = {
+      username:
+        response.profileObj.givenName + " " + response.profileObj.familyName,
+      password: response.profileObj.googleId,
+      google: true,
+    };
+    let res = await props.logInUser(loginUser);
+    if (res.data.success) {
+      welcomeBack()
+    }
+    if (!res.data.success) {
+      toast.error(res.data.error[0].message)
     }
   };
 
@@ -58,8 +95,13 @@ const Login = (props) => {
       </button>
       <p>Or</p>
       <div className={styles.socialMediaLogin}>
-        <SocialMediaHeroButton icon="facebook" />
-        <SocialMediaHeroButton icon="google" />
+        <GoogleLogin
+          clientId="1051031328805-p3ct45qtnohrsnsq8vu32eu3o648c3j9.apps.googleusercontent.com"
+          buttonText="Log in"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
       </div>
     </div>
   );

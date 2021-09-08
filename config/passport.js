@@ -15,9 +15,9 @@ module.exports = passport.use(
           if (!response) {
             return done(null, false);
           }
-          return done(null, payload._doc);
+          return done(null, response);
         })
         .catch((err) => done(err, false));
     }
   )
-)
+);

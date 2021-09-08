@@ -24,6 +24,7 @@ const userSchema = mongoose.Schema({
   playing_now: {
     status: { type: Boolean, default: false },
     game_id: { type: mongoose.Types.ObjectId },
+    multi_player: { type: Boolean, default: true },
   },
   friends: {
     connected: [{ type: mongoose.Types.ObjectId, path: "user" }],

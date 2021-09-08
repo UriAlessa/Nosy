@@ -59,6 +59,24 @@ const usersActions = {
       dispatch({ type: "LOG_OUT" });
     };
   },
+  setSocket: (socket) => {
+    return (dispatch) => {
+      dispatch({ type: "SET_SOCKET", payload: socket });
+    };
+  },
+  getUsers: () => {
+    return async () => {
+      let response = await axios.get(
+        "https://benosy.herokuapp.com/api/admin/user",
+        {
+          headers: {
+            key: "frasesuperhipermegasecreta",
+          },
+        }
+      );
+      return response;
+    };
+  },
 };
 
 export default usersActions;

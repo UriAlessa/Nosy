@@ -1,15 +1,16 @@
-.rouletteContainer{
-    width: 50%;
-    height: 80%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.rouletteContainer {
+  width: 55%;
+  height: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-img.roulette{
-    height: 100%;
-    transition: all 4s;
+img.roulette {
+  width: 100%;
+  transition: all 4s;
 }
+
 /* 
 img.roulette{
     height: 100%;

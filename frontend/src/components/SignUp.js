@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "../styles/accounts.module.css";
-import { SocialMediaHeroButton } from "../components/Buttons";
 import { useState } from "react";
 import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
+import GoogleLogin from 'react-google-login';
+import toast from 'react-hot-toast'
+
 
 const SignUp = (props) => {
   const [newUser, setNewUser] = useState({
@@ -20,18 +22,71 @@ const SignUp = (props) => {
     });
   };
 
+  const welcomeToast = () => {
+    toast.success('Welcome!', {
+      style: {
+        borderRadius: '10px',
+        background: '#453ab7',
+        color: '#fff',
+        fontFamily: 'Ubuntu, sans-serif'
+      }
+    })
+  }
+
   const submitButton = async () => {
     const { username, password, email, avatar } = newUser;
     if (username === "" || password === "" || email === "" || avatar === "") {
-      return alert("Empty fields");
+      return toast.error('There can be no empty fields',
+        {
+          position: "top-right",
+          style: {
+            borderRadius: '10px',
+            background: '#453ab7',
+            color: '#fff',
+            fontFamily: 'Ubuntu, sans-serif'
+          }
+        })
     }
     let response = await props.signUpUser(newUser);
     if (!response.data.success) {
-      response.data.error.map((error) => {
-        console.log(error.message);
-      });
+      response.data.error.forEach((error) => {
+        toast.error(error.message, {
+          position: "top-right",
+          style: {
+            borderRadius: '10px',
+            background: '#453ab7',
+            color: '#fff',
+            fontFamily: 'Ubuntu, sans-serif'
+          }
+        })
+      })
     } else {
-      alert("Welcome!");
+      welcomeToast()
+    }
+  }
+
+  const responseGoogle = async (response) => {
+    let newUser = {
+      username:
+        response.profileObj.givenName + " " + response.profileObj.familyName,
+      password: response.profileObj.googleId,
+      email: response.profileObj.email,
+      avatar: response.profileObj.imageUrl,
+      google: true,
+    };
+    let res = await props.signUpUser(newUser);
+    if (res.data.success) {
+      welcomeToast()
+    } else {
+      toast.error(res.data.error[0].message, {
+        position: 'top-right',
+        style: {
+          borderRadius: '10px',
+          background: '#453ab7',
+          color: '#fff',
+          fontFamily: 'Ubuntu, sans-serif'
+        }
+      })
     }
   };
 
@@ -39,8 +94,13 @@ const SignUp = (props) => {
     <div className={styles.signup}>
       <h1>Create Account</h1>
       <div className={styles.socialMediaLogin}>
-        <SocialMediaHeroButton icon="facebook" />
-        <SocialMediaHeroButton icon="google" />
+        <GoogleLogin
+          clientId="1051031328805-p3ct45qtnohrsnsq8vu32eu3o648c3j9.apps.googleusercontent.com"
+          buttonText="Sign up"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
       </div>
       <p>or use your email for registration</p>
       <div className={styles.inputContainer}>

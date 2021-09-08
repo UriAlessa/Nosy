@@ -68,16 +68,4 @@ io.on("connection", (socket) => {
   socket.on("direct_message", (username) => {
     io.to(username).emit("direct_message", socketUsername);
   });
-
-  // socket.on("message", (mensaje) => {
-  //   if (mensaje === "Nuevo comentario") {
-  //     io.sockets.emit("message", "Refetch");
-  //   }
-  //   if (mensaje.includes("writing")) {
-  //     socket.broadcast.emit("message", mensaje);
-  //   }
-  // });
-  // io.on("disconnect", () => {
-  //   socket.broadcast.emit("disconnected", socketUsername);
-  // });
 });
