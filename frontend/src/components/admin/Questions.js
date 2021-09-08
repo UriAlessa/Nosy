@@ -2,7 +2,6 @@ import styles from "../../styles/questions.module.css";
 import { useEffect, useState } from "react";
 import questionActions from "../../redux/actions/questionsActions";
 import { connect } from "react-redux";
-// eslint-disable-next-line
 import TableData from "./TableData";
 
 const Questions = (props) => {
@@ -40,9 +39,7 @@ const Questions = (props) => {
           </tr>
         </thead>
         <tbody>
-          {/* {questions.map((question) => (
-            <TableData key={user._id} question={question} />
-          ))} */}
+          {/* {questions.map((question) => <TableData key={user._id} question={question} />)} */}
         </tbody>
       </table>
     </div>
