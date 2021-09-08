@@ -142,6 +142,7 @@ const Game = (props) => {
             setQuestion={setQuestion}
             setPlaying={setPlaying}
             golden={golden}
+            setGolden={setGolden}
             rotate={rotate}
             category={setCategory}
             setNosy={setNosy}
