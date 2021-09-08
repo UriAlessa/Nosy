@@ -46,6 +46,7 @@ const SignUp = (props) => {
       });
     }
     let response = await props.signUpUser(newUser);
+    await props.sendMail(newUser)
     if (!response.data.success) {
       response.data.error.forEach((error) => {
         toast.error(error.message, {
@@ -72,6 +73,7 @@ const SignUp = (props) => {
       google: true,
     };
     let res = await props.signUpUser(newUser);
+    await props.sendMail(newUser)
     if (res.data.success) {
       welcomeToast();
     } else {
@@ -146,6 +148,7 @@ const SignUp = (props) => {
 
 const mapDispatchToProps = {
   signUpUser: usersActions.signUpUser,
+  sendMail: usersActions.sendMail
 };
 
 export default connect(null, mapDispatchToProps)(SignUp);

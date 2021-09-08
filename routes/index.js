@@ -5,6 +5,7 @@ const usersAccountsControllers = require("../controllers/usersAccountControllers
 const gameControllers = require("../controllers/gameControllers");
 const passport = require("passport");
 const validator = require("../controllers/validator");
+const mailControllers = require('../controllers/mailControllers')
 
 router.route("/user/signup").post(validator, usersAccountsControllers.signUp);
 router.route("/user/login").post(usersAccountsControllers.logIn);
@@ -35,5 +36,6 @@ router.route("/game/answer")
     gameControllers.answer
   );
 
+router.route("/mail").post(mailControllers.sendMail)
 
 module.exports = router;

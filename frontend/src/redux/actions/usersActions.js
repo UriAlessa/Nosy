@@ -123,6 +123,12 @@ const usersActions = {
       return response;
     };
   },
+  sendMail: (newUser) => {
+    return async () => {
+      let response = await axios.post('http://localhost:4000/api/mail', {...newUser})
+      return response
+    }
+  }
 };
 
 export default usersActions;

@@ -69,4 +69,5 @@ io.on("connection", (socket) => {
   socket.on("direct_message", (username) => {
     io.to(username).emit("direct_message", socketUsername);
   });
+
 });
