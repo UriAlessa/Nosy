@@ -44,7 +44,10 @@ const MenuResponsive = (props) => {
                 <a onClick={showMenu} href="#nextGames">NEXT GAMES</a>
                 <a onClick={showMenu} href="#reviews">REVIEWS</a>
                 {props.token && 
-                    <p className={styles.logout} onClick={() => props.logOutUser()} onClick={showMenu}>LOG OUT</p>
+                    <p className={styles.logout} onClick={() => {
+                        props.logOutUser()
+                        showMenu()
+                    }}>LOG OUT</p>
                 }
                 {!props.token && 
                     <NavLink to='/accounts' onClick={showMenu}>
