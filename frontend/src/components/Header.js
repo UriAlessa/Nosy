@@ -26,8 +26,8 @@ const Header = (props) => {
 
   return (
     <header>
-      <div className={styles.logo} style={{ backgroundImage: 'url("https://stopots.com/assets/logo1.svg")' }}></div>
-      {/* <div className={styles.logo} style={{ backgroundImage: 'url("../assets/bb.png")' }}></div> */}
+      {/* <div className={styles.logo} style={{ backgroundImage: 'url("https://stopots.com/assets/logo1.svg")' }}></div> */}
+      <div className={styles.logo} style={{ backgroundImage: 'url("../assets/bb.png")' }}></div>
       <div className={styles.content}>
         <nav>
           <NavLink to='/'>
