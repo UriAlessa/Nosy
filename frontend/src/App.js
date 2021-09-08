@@ -23,7 +23,7 @@ const App = (props) => {
     const token = localStorage.getItem("token");
     if (token) {
       props.logInLS(
-        io("https://benosy.herokuapp.com/", {
+        io("http://localhost:4000", {
           query: "token=" + token,
         })
       );

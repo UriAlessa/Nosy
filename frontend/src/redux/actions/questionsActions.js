@@ -11,7 +11,7 @@ const questionActions = {
     return async (dispatch) => {
       try {
         let response = await axios.get(
-          "https://benosy.herokuapp.com/api/question/" + category
+          "http://localhost:4000/api/question/" + category
         );
         return response.data.response;
       } catch (error) {
@@ -22,7 +22,7 @@ const questionActions = {
   getQuestions: () => {
     return async () => {
       let response = await axios.get(
-        "https://benosy.herokuapp.com/api/admin/questions"
+        "http://localhost:4000/api/admin/questions"
       );
       return response;
     };

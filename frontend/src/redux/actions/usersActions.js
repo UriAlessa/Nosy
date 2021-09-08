@@ -6,7 +6,7 @@ const usersActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "https://benosy.herokuapp.com/api/user/signup",
+          "http://localhost:4000/api/user/signup",
           { ...newUser }
         );
         response.data.success &&
@@ -29,7 +29,7 @@ const usersActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "https://benosy.herokuapp.com/api/user/login",
+          "http://localhost:4000/api/user/login",
           { ...newUser }
         );
         if (response.data.success === false) {
@@ -63,14 +63,11 @@ const usersActions = {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
       try {
-        let response = await axios.get(
-          "https://benosy.herokuapp.com/api/user/token",
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
+        let response = await axios.get("http://localhost:4000/api/user/token", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
         dispatch({ type: "LOG_IN_USER", payload: { ...response.data, token } });
       } catch {
         toast.error("Session expired", {
@@ -108,14 +105,11 @@ const usersActions = {
   },
   getUsers: () => {
     return async () => {
-      let response = await axios.get(
-        "https://benosy.herokuapp.com/api/admin/user",
-        {
-          headers: {
-            key: "frasesuperhipermegasecreta",
-          },
-        }
-      );
+      let response = await axios.get("http://localhost:4000/api/admin/user", {
+        headers: {
+          key: "frasesuperhipermegasecreta",
+        },
+      });
       return response;
     };
   },

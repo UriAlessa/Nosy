@@ -4,7 +4,7 @@ const gamesActions = {
   createGame: (token, username = null) => {
     return async (dispatch, getState) => {
       let response = await axios.post(
-        "https://benosy.herokuapp.com/api/game/newgame",
+        "http://localhost:4000/api/game/newgame",
         username,
         {
           headers: {
@@ -22,7 +22,7 @@ const gamesActions = {
   sendAnswer: (token, question, answer, nosy, powers_used, coins_spent) => {
     return async () => {
       let response = await axios.put(
-        "https://benosy.herokuapp.com/api/game/answer",
+        "http://localhost:4000/api/game/answer",
         { question, answer, nosy, powers_used, coins_spent },
         {
           headers: {
