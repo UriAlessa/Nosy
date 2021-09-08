@@ -28,7 +28,7 @@ const MenuResponsive = (props) => {
       <div
         className={styles.logo}
         style={{
-          backgroundImage: 'url("https://stopots.com/assets/logo1.svg")',
+          backgroundImage: 'url("/assets/logoSoloLetras.png")',
         }}
       ></div>
       {props.token && (
