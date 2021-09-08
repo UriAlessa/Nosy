@@ -9,10 +9,13 @@ html * {
 }
 
 body {
-  background-color: #453ab7;
+  /* background-color: rgb(69, 58, 183) 58, 183); */
+  background-image: url(./assets/transparentSmall.png);
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: rgb(41, 38, 87);
 }
+
 
 /* body{
   background-repeat: no-repeat;

@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import io from "socket.io-client";
@@ -8,10 +8,15 @@ import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 import Account from "./pages/Account";
+import MenuResponsive from "./components/MenuResponsive";
 import Game from "./pages/Game";
 import usersActions from "./redux/actions/usersActions";
+import otherActions from "./redux/actions/otherActions";
 import FriendCard from './components/FriendCard'
 import GameButtons from './pages/GameButtons'
+import { Toaster } from 'react-hot-toast';
+import AdminPanel from "./pages/Admin";
+import Loader from "./components/Loader";
 
 const App = (props) => {
   useEffect(() => {
@@ -36,8 +41,11 @@ const App = (props) => {
       console.log(username);
     });
   }
+
   return (
     <BrowserRouter>
+      <Toaster />
+      {props.menu && <MenuResponsive />}
       <Switch>
         <Route path="/prueba" component={FriendCard} />
         <Route exact path="/" {...props} component={Home} />
@@ -47,21 +55,26 @@ const App = (props) => {
         <Route path="/game" component={Game} />
         <Route path="/accounts" component={!props.token ? Account : Home} />
         <Route path="/selectgame" component={GameButtons} />
+        <Route path="/admin" component={AdminPanel} />
         <Redirect to="/" />
+        <Route path="/loader" component={Loader} />
+        <Redirect to="/notFound" />
       </Switch>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 };
 
 const mapStateToProps = (state) => {
   return {
     token: state.users.token,
-  };
-};
+    menu: state.other.menu
+  }
+}
 
 const mapDispatchToProps = {
   logInLS: usersActions.logInLS,
   setSocket: usersActions.setSocket,
+  showMenuResponsive: otherActions.showMenu
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
