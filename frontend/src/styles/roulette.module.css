@@ -1,6 +1,6 @@
 .rouletteContainer{
     width: 50%;
-    height: 80%;
+    height: 70%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -9,6 +9,13 @@
 img.roulette{
     height: 100%;
     transition: all 4s;
+    border-radius: 100%;
+    box-shadow: 0px 0px 21px 1px #242462;
+}
+
+.indicator{
+    position:absolute;
+    transform: rotate(90deg);
 }
 /* 
 img.roulette{
