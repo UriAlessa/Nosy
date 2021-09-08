@@ -36,7 +36,6 @@ const Questions = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {questions.map((question) => <TableData key={user._id} question={question} />)}
                 </tbody>
 
             </table>
