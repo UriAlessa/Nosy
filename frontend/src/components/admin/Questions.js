@@ -26,7 +26,6 @@ const Questions = (props) => {
     // eslint-disable-next-line
   }, []);
 
-<<<<<<< HEAD
   return (
     <div className={styles.tableContainer}>
       <table>
@@ -46,27 +45,6 @@ const Questions = (props) => {
     </div>
   );
 };
-=======
-    return (
-        <div className={styles.tableContainer}>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Coins</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-
-            </table>
-        </div>
-    )
-}
->>>>>>> origin/gabriela
 
 const mapDispatchToProps = {
   getQuestions: questionActions.getQuestions,
