@@ -11,7 +11,6 @@ const QuestionCard = (props) => {
   const [bomb, setBomb] = useState([]);
   const [repeatAnswer, setRepeatAnswer] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
-  const [bombclicked, setBombclicked] = useState(false);
   let answersContainer = useRef();
 
   let questionAudio = new Audio("/assets/question.wav");
@@ -32,13 +31,21 @@ const QuestionCard = (props) => {
     </div>
   );
   // token, question, answer, nosy, powers_used, coins_spent
+  const sendAnswer = async (answer, powers_used, coins_spent) => {
+    await props.sendAnswer(
+      props.token,
+      props.question,
+      answer,
+      props.golden,
+      powers_used,
+      coins_spent
+    );
+  };
   const clickHandler = (e) => {
-    setBombclicked(true);
     let answer = correctAnswer === e.target.name;
     answer ? correctAudio.play() : incorrectAudio.play();
     if (!repeatAnswer) {
       props.category(null);
-      setClick(true);
       Array.from(answersContainer.current.children).forEach((answer) =>
         answer.name === correctAnswer
           ? (answer.className = ` ${styles.buttonOption}  ${styles.correct}`)
@@ -53,26 +60,16 @@ const QuestionCard = (props) => {
           props.setQuestion(null);
           props.setPlaying(false);
         },
-        answer ? 1000 : 2500
+        answer ? 1500 : 2500
       );
-      setBomb(false);
-    } else {
-      correctAnswer === e.target.name
-        ? (e.target.className = ` ${styles.buttonOption}  ${styles.correct}`)
-        : (e.target.className = ` ${styles.buttonOption}  ${styles.incorrect}`);
-      if (correctAnswer === e.target.name) {
-        !answer &&
-          setTimeout(() => {
-            setIncorrect(true);
-          }, 1500);
-        setTimeout(() => {
-          props.setQuestion(null);
-          props.setPlaying(false);
-        }, 1500);
-      }
+      setClick(true);
+      let coins_spent = bomb.length !== 0 ? 10 : 0;
+      coins_spent += repeatAnswer ? 8 : 0;
+      let powers_used = repeatAnswer || bomb.length !== 0 ? 1 : 0;
+      sendAnswer(answer, powers_used, coins_spent);
     }
     setRepeatAnswer(false);
-    // props.sendAnswer(props.token, props.question, answer, props.golden);
+    props.setGolden(false);
   };
 
   const Bomb = () => {
@@ -102,74 +99,68 @@ const QuestionCard = (props) => {
             <h3>{question}</h3>
           </div>
           <div ref={answersContainer} className={styles.containerButtons}>
-            {bomb.length === 0 || bombclicked
+            {bomb.length === 0
               ? answers.map((string, index) => {
-                return (
-                  <button
-                    key={index}
-                    className={styles.buttonOption}
-                    name={string}
-                    onClick={clickHandler}
-                    disabled={click}
-                  >
-                    {string}
-                  </button>
-                );
-              })
+                  return (
+                    <button
+                      key={index}
+                      className={styles.buttonOption}
+                      name={string}
+                      onClick={clickHandler}
+                      disabled={click}
+                    >
+                      {string}
+                    </button>
+                  );
+                })
               : answers.map((string, index) => {
-                return (
-                  <button
-                    key={index}
-                    className={
-                      bomb.includes(string)
-                        ? styles.buttonOptionBombed
-                        : styles.buttonOption
-                    }
-                    name={string}
-                    onClick={clickHandler}
-                    disabled={bomb.includes(string)}
-                  >
-                    {string}
-                  </button>
-                );
-              })}
+                  return (
+                    <button
+                      key={index}
+                      className={
+                        bomb.includes(string)
+                          ? styles.buttonOptionBombed
+                          : styles.buttonOption
+                      }
+                      name={string}
+                      onClick={clickHandler}
+                      disabled={bomb.includes(string)}
+                    >
+                      {string}
+                    </button>
+                  );
+                })}
           </div>
 
           <div className={styles.containerButtons}>
             {answers.length > 2 && (
               <>
                 <button
+                  disabled={repeatAnswer || bomb.length !== 0}
                   className={styles.buttonOption}
                   onClick={Bomb}
-                  disabled={click}
                 >
                   Bomb
                 </button>
                 <button
+                  disabled={repeatAnswer || bomb.length !== 0}
                   className={styles.buttonOption}
                   onClick={() => setRepeatAnswer(true)}
-                  disabled={click}
                 >
                   Repeat
                 </button>
               </>
             )}
             <button
+              disabled={repeatAnswer || bomb.length !== 0}
               className={styles.buttonOption}
               onClick={() => {
-                props.setQuestion(null);
                 props.setPlaying(false);
+                props.setQuestion(null);
               }}
-              disabled={click}
             >
               Re Roll
             </button>
-          </div>
-          <div>
-            hola
-          </div>
-          <div>
-            <button>hola</button>
           </div>
         </article>
       )}

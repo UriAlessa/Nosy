@@ -14,8 +14,14 @@ const questionActions = {
                 return response.data.response
             } catch (error) {
                 console.log()
-
             }
+        }
+    },
+    getQuestions: () => {
+        return async () => {
+            let response = await axios.get('http://localhost:4000/api/admin/questions')
+            return response
+
         }
     }
 }
