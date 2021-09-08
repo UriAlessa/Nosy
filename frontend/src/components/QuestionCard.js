@@ -134,7 +134,7 @@ const QuestionCard = (props) => {
                 })}
           </div>
 
-          <div className={styles.containerButtons}>
+          <div className={styles.powersButtons}>
             {answers.length > 2 && (
               <>
                 <button
@@ -142,14 +142,22 @@ const QuestionCard = (props) => {
                   className={styles.buttonOption}
                   onClick={Bomb}
                 >
-                  Bomb
+                    <img  className={styles.imgPowers} src="/assets/bomb.png"/> 
+                    <div className={styles.containerIconsPowers}>
+                        <h5>Bomb!</h5>
+                      <div className={styles.containerCoins}> <h6> 30 </h6><img className={styles.imgPowersCoin}src="/assets/coin.png"/></div>
+                    </div>
                 </button>
                 <button
                   disabled={repeatAnswer || bomb.length !== 0}
                   className={styles.buttonOption}
                   onClick={() => setRepeatAnswer(true)}
                 >
-                  Repeat
+                  <img  className={styles.imgPowers} src="/assets/repeat.png"/> 
+                    <div className={styles.containerIconsPowers}>
+                        <h5>Repeat</h5>
+                      <div className={styles.containerCoins}> <h6> 25 </h6><img className={styles.imgPowersCoin}src="/assets/coin.png"/></div>
+                    </div>
                 </button>
               </>
             )}
@@ -161,7 +169,11 @@ const QuestionCard = (props) => {
                 props.setQuestion(null);
               }}
             >
-              Re Roll
+              <img  className={styles.imgPowers} src="/assets/lottery.png"/> 
+                    <div className={styles.containerIconsPowers}>
+                        <h5>Roll</h5>
+                      <div className={styles.containerCoins}> <h6> 20 </h6><img className={styles.imgPowersCoin}src="/assets/coin.png"/></div>
+                    </div>
             </button>
           </div>
         </article>
