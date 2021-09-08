@@ -85,8 +85,8 @@ const usersActions = {
   },
   logOutUser: () => {
     return (dispatch, getState) => {
-      toast("Good Job!", {
-        icon: "👏",
+      toast("Hope to see you soon!", {
+        icon: "👋",
         position: "top-right",
         style: {
           borderRadius: "10px",
@@ -107,7 +107,17 @@ const usersActions = {
     return async () => {
       let response = await axios.get("http://localhost:4000/api/admin/user", {
         headers: {
-          key: "frasesuperhipermegasecreta",
+          key: process.env.SECRETORKEY,
+        },
+      });
+      return response;
+    };
+  },
+  updateUser: () => {
+    return async () => {
+      let response = await axios.put("http://localhost:4000/api/admin/user", {
+        headers: {
+          key: process.env.SECRETORKEY,
         },
       });
       return response;
