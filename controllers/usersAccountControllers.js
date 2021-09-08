@@ -1,5 +1,3 @@
-//crear data
-
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -41,7 +39,7 @@ const usersAccountControllers = {
     try {
       let user = await User.findOne({ username: username });
       if ((user.google && !google) || (user.facebook && !facebook))
-        throw new Error("You must log in with Google");
+      throw new Error("You must log in with Google");
       let match = user && bcrypt.compareSync(password, user.password);
       if (!user || !match) throw new Error('Password does not match');
       const token = jwt.sign({ ...user }, process.env.SECRETORKEY);

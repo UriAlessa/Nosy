@@ -2,13 +2,13 @@ import { useState } from "react";
 import styles from "../styles/accounts.module.css";
 import usersActions from "../redux/actions/usersActions";
 import { connect } from "react-redux";
-import GoogleLogin from "react-google-login";
+import GoogleLogin from 'react-google-login'
+import toast from 'react-hot-toast'
 
 const Login = (props) => {
   const [newUser, setNewUser] = useState({
-    username: "",
-    password: "",
-  });
+    username: '', password: ''
+  })
 
   const inputHandler = (e) => {
     setNewUser({
@@ -17,14 +17,34 @@ const Login = (props) => {
     });
   };
 
+  const welcomeBack = () => {
+    toast.success('Welcome back!', {
+      style: {
+        borderRadius: '10px',
+        background: '#453ab7',
+        color: '#fff',
+        fontFamily: 'Ubuntu, sans-serif'
+      }
+    })
+  }
+
   const submitButton = async () => {
     const { username, password } = newUser;
     if (username === "" || password === "") {
-      return alert("Empty fields");
+      return toast.error('There can be no empty fields',
+        {
+          position: "top-right",
+          style: {
+            borderRadius: '10px',
+            background: '#453ab7',
+            color: '#fff',
+            fontFamily: 'Ubuntu, sans-serif'
+          }
+        })
     }
     let response = await props.logInUser(newUser);
     if (response.data.success) {
-      alert("Welcome Back!");
+      welcomeBack()
     }
   };
 
@@ -37,10 +57,10 @@ const Login = (props) => {
     };
     let res = await props.logInUser(loginUser);
     if (res.data.success) {
-      alert("Welcome!");
+      welcomeBack()
     }
     if (!res.data.success) {
-      console.log(res.data.error);
+      toast.error(res.data.error[0].message)
     }
   };
 
