@@ -41,7 +41,7 @@
 }
 .containerLogo h2 {
   font-family: "Ubuntu", sans-serif;
-  font-size: 6.5vmin;
+  font-size: 6vmin;
   color: white;
   text-align: center;
   margin: 1rem 0;
@@ -81,7 +81,7 @@
   background-color: #444;
   border-bottom: 5px solid rgb(51, 51, 51);
 }
-.logo {
+.logo{
   width: 10vw;
 }
 .buttonOption:hover {
@@ -167,7 +167,28 @@
   font-weight: bold;
   color: white;
 }
-
+.category {
+  position: absolute;
+  width: 18%;
+  bottom: 0%;
+  left:0%;
+  padding-top: 3vw;
+  padding-right: 5vw;
+  background-color: rgba(255, 255, 255, 0.205);
+  box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
+  border-top-right-radius: 90%;
+  border-bottom-left-radius: 10px;;
+}
+.category h2{
+  font-size:1.3vw ;
+  margin-top: -0.5vw;
+  color:  rgb(0 0 0 / 58%);
+  margin-left: .5vw;
+}
+.imgCategory {
+  width: 7vw;
+  margin-left: .5vw;
+}
 @media screen and (max-width: 600px) {
   .logo {
     width: 25vw;
@@ -180,7 +201,6 @@
   .powersButtons {
     gap: 0.9rem;
   }
-  /*   hola */
 }
 @media screen and (max-width: 400px) {
   .powersButtons {
