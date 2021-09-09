@@ -124,8 +124,12 @@ const Game = (props) => {
             alt="goback"
           />
         </Link>
-        {props.game && props.game.status === false ? (
-          <h1>GANASTER PAPURRI</h1>
+        {props.game && props.game.status === false && props.game.lifes > 0 ? (
+          <h1>GANASTE PAPURRI</h1>
+        ) : props.game &&
+          props.game.status === false &&
+          props.game.lifes === 0 ? (
+          <h1>PERDISTE PAPURRI</h1>
         ) : nosy ? (
           <div className={styles.containerButtons}>
             <h1>Choose a category and get the Character</h1>
