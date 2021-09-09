@@ -5,23 +5,30 @@ const adminUsersActions = {
     let token = localStorage.getItem("token");
     return async () => {
       console.log(process.env.SECRETORKEY);
-      let response = await axios.get("http://localhost:4000/api/admin/user", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+      let response = await axios.get(
+        "https://benosy.herokuapp.com/admin/user",
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
       return response;
     };
   },
   updateUser: (newUser) => {
-    console.log('llego')
+    console.log("llego");
     let token = localStorage.getItem("token");
     return async () => {
-      let response = await axios.put("http://localhost:4000/api/admin/user", newUser, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+      let response = await axios.put(
+        "https://benosy.herokuapp.com/admin/user",
+        newUser,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
       return response.data;
     };
   },
