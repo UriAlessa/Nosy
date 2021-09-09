@@ -1,5 +1,6 @@
 import styles from "../styles/notFound.module.css";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+
 const NotFound = () => {
   return (
     <div className={styles.notFound}>
@@ -11,7 +12,7 @@ const NotFound = () => {
           <h2 className={styles.subtitle}>ups! page not found</h2>
         </div>
       </div>
-      <Link to= "/" ><button className={styles.button}>Go Home!</button></Link>
+      <Link to="/" ><button className={styles.button}>Go Home!</button></Link>
     </div>
   );
 };

@@ -43,10 +43,11 @@ article.userCard{
 
 .userDetails{
     /* height: 80vh; */
-    padding-bottom: 10vh;
+    padding-bottom: 3vh;
     width: 100%;
     background-color: white;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .userDetails>div{
@@ -63,5 +64,17 @@ article.userCard{
     flex-direction: column;
     padding: 0 3vw;
     background-color: green;
+}
+
+.buttonsContainer{
+    margin-top: .5em;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+}
+
+.buttonsContainer img{
+    width: 50px;
+    margin: 0 1vw;
 }
 

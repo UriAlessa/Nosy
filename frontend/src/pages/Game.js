@@ -62,41 +62,41 @@ const Game = (props) => {
     roulette.current.style.transform = "rotate(+" + rand + "deg)";
     console.log(degrees);
     switch (true) {
-      case degrees > 30 && degrees <= 90:
-        setTimeout(() => {
-          setPlaying(!playing);
-          setCategory("Movies and series");
-        }, 5000);
+      // case degrees > 30 && degrees <= 90:
+      //   setTimeout(() => {
+      //     setPlaying(!playing);
+      //     setCategory("Movies and series");
+      //   }, 5000);
 
-        break;
-      case degrees > 90 && degrees <= 150:
-        setTimeout(() => {
-          setPlaying(!playing);
-          setCategory("Science: Computers");
-        }, 5000);
+      //   break;
+      // case degrees > 90 && degrees <= 150:
+      //   setTimeout(() => {
+      //     setPlaying(!playing);
+      //     setCategory("Science: Computers");
+      //   }, 5000);
 
-        break;
-      case degrees > 150 && degrees <= 210:
-        setTimeout(() => {
-          setPlaying(!playing);
-          setCategory("General Knowledge");
-        }, 5000);
+      //   break;
+      // case degrees > 150 && degrees <= 210:
+      //   setTimeout(() => {
+      //     setPlaying(!playing);
+      //     setCategory("General Knowledge");
+      //   }, 5000);
 
-        break;
-      case degrees > 210 && degrees <= 270:
-        setTimeout(() => {
-          setPlaying(!playing);
-          setCategory("Animals");
-        }, 5000);
+      //   break;
+      // case degrees > 210 && degrees <= 270:
+      //   setTimeout(() => {
+      //     setPlaying(!playing);
+      //     setCategory("Animals");
+      //   }, 5000);
 
-        break;
-      case degrees > 270 && degrees <= 330:
-        setTimeout(() => {
-          setPlaying(!playing);
-          setCategory("Music");
-        }, 5000);
+      //   break;
+      // case degrees > 270 && degrees <= 330:
+      //   setTimeout(() => {
+      //     setPlaying(!playing);
+      //     setCategory("Music");
+      //   }, 5000);
 
-        break;
+      //   break;
       default:
         setTimeout(() => {
           setPlaying(!playing);
@@ -121,21 +121,37 @@ const Game = (props) => {
       <div className={styles.renderGame}>
         {nosy ? (
           <div className={styles.containerButtons}>
-            <button onClick={categoryHandler} className={styles.buttonOption}>
-              Music
-            </button>
-            <button onClick={categoryHandler} className={styles.buttonOption}>
-              Animals
-            </button>
-            <button onClick={categoryHandler} className={styles.buttonOption}>
-              Movies and series
-            </button>
-            <button onClick={categoryHandler} className={styles.buttonOption}>
-              Science: Computers
-            </button>
-            <button onClick={categoryHandler} className={styles.buttonOption}>
-              General Knowledge
-            </button>
+            <h1>Choose a category and get the Character</h1>
+            <div>
+              <img src='/assets/music.png' alt="" />
+              <button onClick={categoryHandler} className={`${styles.buttonOption} ${styles.music}`}>
+                Music
+              </button>
+            </div>
+            <div>
+              <img src='/assets/animals.png' alt="" />
+              <button onClick={categoryHandler} className={`${styles.buttonOption} ${styles.animals}`}>
+                Animals
+              </button>
+            </div>
+            <div>
+              <img src='/assets/movies.png' alt="" />
+              <button onClick={categoryHandler} className={`${styles.buttonOption} ${styles.movies}`}>
+                Movies and series
+              </button>
+            </div>
+            <div>
+              <img src='/assets/computer.png' alt="" />
+              <button onClick={categoryHandler} className={`${styles.buttonOption} ${styles.computers}`}>
+                Science: Computers
+              </button>
+            </div>
+            <div>
+              <img src='/assets/cultura.png' alt="" />
+              <button onClick={categoryHandler} className={`${styles.buttonOption} ${styles.knowledge}`}>
+                General Knowledge
+              </button>
+            </div>
           </div>
         ) : !question ? (
           <Roulette
