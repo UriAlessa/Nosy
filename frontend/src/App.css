@@ -9,11 +9,14 @@ html * {
 }
 
 body {
+    background-color: rgb(41, 38, 87);
+}
+
+.body {
   /* background-color: rgb(69, 58, 183) 58, 183); */
-  background-image: url(./assets/transparentSmall.png);
+  /* background-image: url(./assets/transparentSmall.png); */
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: rgb(41, 38, 87);
 }
 
 
@@ -27,8 +30,8 @@ body {
 } */
 
 .heroHome {
-  width: 82%;
-  margin: 45px 9%;
+  width: 100%;
+  padding: 45px 9%;
   display: flex;
   flex-direction: column;
   min-height: 100vh;

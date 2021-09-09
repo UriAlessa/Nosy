@@ -73,10 +73,11 @@ const Header = (props) => {
               </div>
               {props.token && login && (
                 <div
+                  onClick={() => props.logOutUser()}
                   className={styles.logoutContainer}
                   onMouseLeave={showLogin}
                 >
-                  <p onClick={() => props.logOutUser()}>LOG OUT</p>
+                  <p>LOG OUT</p>
                 </div>
               )}
             </div>

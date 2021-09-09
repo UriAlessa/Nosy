@@ -5,7 +5,7 @@ import QuestionCard from "../components/QuestionCard";
 import { connect } from "react-redux";
 import questionActions from "../redux/actions/questionsActions";
 import gamesActions from "../redux/actions/gamesActions";
-import Loader from "../components/Loader"
+import Loader from "../components/Loader";
 
 const Game = (props) => {
   // const [questions, setQuestions] = useState([]);
@@ -46,8 +46,7 @@ const Game = (props) => {
   }, [category]);
 
   if (loader) {
-    return (<Loader/>)
-    
+    return <Loader />;
   }
 
   const categoryHandler = (e) => {
@@ -61,51 +60,50 @@ const Game = (props) => {
     let degrees = rand / 360;
     degrees = (degrees - parseInt(degrees.toString().split(".")[0])) * 360;
     roulette.current.style.transform = "rotate(+" + rand + "deg)";
-    console.log(degrees)
+    console.log(degrees);
     switch (true) {
       case degrees > 30 && degrees <= 90:
         setTimeout(() => {
           setPlaying(!playing);
           setCategory("Movies and series");
         }, 5000);
-        
+
         break;
       case degrees > 90 && degrees <= 150:
         setTimeout(() => {
           setPlaying(!playing);
           setCategory("Science: Computers");
         }, 5000);
-      
+
         break;
       case degrees > 150 && degrees <= 210:
         setTimeout(() => {
           setPlaying(!playing);
           setCategory("General Knowledge");
         }, 5000);
-    
+
         break;
       case degrees > 210 && degrees <= 270:
         setTimeout(() => {
           setPlaying(!playing);
           setCategory("Animals");
         }, 5000);
-        
+
         break;
       case degrees > 270 && degrees <= 330:
         setTimeout(() => {
           setPlaying(!playing);
           setCategory("Music");
         }, 5000);
-        
+
         break;
-      default: 
+      default:
         setTimeout(() => {
           setPlaying(!playing);
           setNosy(true);
           setGolden(true);
         }, 5000);
-        // props.setNosy(true)
-  
+      // props.setNosy(true)
     }
   };
   const rotate = () => {
@@ -157,6 +155,7 @@ const Game = (props) => {
             rotate={rotate}
             category={setCategory}
             setNosy={setNosy}
+            qs_category={category}
           />
         )}
       </div>

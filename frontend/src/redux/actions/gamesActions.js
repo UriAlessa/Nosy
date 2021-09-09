@@ -14,7 +14,7 @@ const gamesActions = {
       );
       if (response.data.success) {
         console.log(response.data.response);
-        return response.data.success;
+        return response.data;
       }
       throw new Error();
     };

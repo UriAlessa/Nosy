@@ -1,6 +1,11 @@
-const Question = require("../../models/Question")
+const Question = require("../../models/Question");
 
 const adminQuestionsControllers = {
+  micaController: async (req, res) => {
+    const { category, img } = req.body;
+    await Question.deleteMany({ category }, { img }, { new: true });
+    res.json({ success: true });
+  },
   restoreAllQuestions: async (req, res) => {
     try {
       await Question.insertMany(req.body.questions, { ordered: true });
@@ -39,12 +44,7 @@ const adminQuestionsControllers = {
     }
   },
   createQuestion: async (req, res) => {
-    const {
-      category,
-      question,
-      possibleAnswers,
-      correctAnswer,
-    } = req.body;
+    const { category, question, possibleAnswers, correctAnswer } = req.body;
     try {
       let newQuestion = new Question({
         category,
@@ -52,7 +52,7 @@ const adminQuestionsControllers = {
         possibleAnswers,
         correctAnswer,
         status: true,
-        creator: '6134f96c17752d02a5000dc5'
+        creator: "6134f96c17752d02a5000dc5",
       });
       await newQuestion.save();
       res.json({ success: true });
