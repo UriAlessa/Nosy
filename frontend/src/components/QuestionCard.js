@@ -154,7 +154,7 @@ const QuestionCard = (props) => {
                   src="/assets/coin.png"
                   alt="coin"
                 />
-                <span>20</span>
+                <span>{props.coins && props.coins}</span>
               </div>
               <div className={styles.containerInfoGame}>
                 <img
@@ -162,7 +162,7 @@ const QuestionCard = (props) => {
                   src="/assets/heart_2.png"
                   alt="heart"
                 />
-                <span>{props.game ? props.game.lifes : 5}</span>
+                <span>{props.game && props.game.lifes}</span>
                 <div className={styles.containerSeconds}>
                   <p className={styles.seconds}>{("0" + seconds).slice(-2)}</p>
                 </div>
@@ -210,8 +210,14 @@ const QuestionCard = (props) => {
             {answers.length > 2 && (
               <>
                 <button
-                  disabled={repeatAnswer || bomb.length !== 0}
-                  className={styles.buttonOption}
+                  disabled={
+                    repeatAnswer || bomb.length !== 0 || props.coins < 30
+                  }
+                  className={
+                    props.coins < 30
+                      ? styles.buttonOptionBombed
+                      : styles.buttonOption
+                  }
                   onClick={Bomb}
                 >
                   <img
@@ -231,8 +237,14 @@ const QuestionCard = (props) => {
                   </div>
                 </button>
                 <button
-                  disabled={repeatAnswer || bomb.length !== 0}
-                  className={styles.buttonOption}
+                  disabled={
+                    repeatAnswer || bomb.length !== 0 || props.coins < 25
+                  }
+                  className={
+                    props.coins < 25
+                      ? styles.buttonOptionBombed
+                      : styles.buttonOption
+                  }
                   onClick={() => {
                     repeatAnswerRef.current = true;
                     setRepeatAnswer(true);
@@ -257,8 +269,12 @@ const QuestionCard = (props) => {
               </>
             )}
             <button
-              disabled={repeatAnswer || bomb.length !== 0}
-              className={styles.buttonOption}
+              disabled={repeatAnswer || bomb.length !== 0 || props.coins < 20}
+              className={
+                props.coins < 20
+                  ? styles.buttonOptionBombed
+                  : styles.buttonOption
+              }
               onClick={() => {
                 props.reRoll.current = true;
                 props.setPlaying(false);
@@ -292,6 +308,7 @@ const mapStateToProps = (state) => {
   return {
     token: state.users.token,
     game: state.game.game,
+    coins: state.game.coins,
   };
 };
 
