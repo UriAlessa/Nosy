@@ -1,7 +1,32 @@
-section.tableContainer{
-    /* padding-top: 8vh; */
+div.tableContainer{
     background-color: #110e30bd;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonSection{
+    display: flex;
+    justify-content: center;
+}
+.button{
+    margin: 1vh 0;
+    font-family: "Fredoka One", cursive;
+    text-transform: uppercase;
+    color: rgb(109, 98, 231);
+    background-color: rgb(225, 223, 255);
+    border: none;
+    width: 15vw;
+    border-radius: 8px;
+    font-size: 2.8vmin;
+    padding: 2vmin 0;
+    transition: all 300ms;
+}
+
+.button:hover{
+    background-color: rgb(109, 98, 231);
+    color: rgb(225, 223, 255);
+    cursor: pointer;
 }
 
 .filterContainer{

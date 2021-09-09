@@ -40,14 +40,18 @@ const Users = (props) => {
     }
 
     return (
-        <section className={styles.tableContainer}>
+        <div className={styles.tableContainer}>
+            <div className={styles.buttonSection}>
+                <button className={styles.button}>See Users</button>
+                <button className={styles.button}>Add Users</button>
+            </div>
             <div className={styles.filterContainer}>
                 <input type="text" onChange={filter} placeholder="Filter by username" />
             </div>
             <div className={styles.cardsContainer}>
                 {filtered.map((user) => <UserCard user={user} key={user._id} setReload={setReload} reload={reload} />)}
             </div>
-        </section>
+        </div>
     );
 };
 
