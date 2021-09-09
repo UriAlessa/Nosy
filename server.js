@@ -54,7 +54,7 @@ io.use(
 
 io.on("connection", (socket) => {
   const socketUsername = socket.decoded_token._doc.username;
-  console.log("Hola");
+
   io.sockets.emit("connected", socketUsername);
   // socket.broadcast.emit("connected", socketUsername);
 
@@ -64,13 +64,16 @@ io.on("connection", (socket) => {
     io.to(username).emit("game_request", socketUsername);
   });
   socket.on("answer_game_request", (username) => {
-    io.to(username).emit("game_request", socketUsername);
+    io.to(username).emit("answer_game_request", socketUsername);
   });
   socket.on("friend_request", (username) => {
     io.to(username).emit("friend_request", socketUsername);
   });
   socket.on("accepted_friend_request", (username) => {
     io.to(username).emit("accepted_friend_request", socketUsername);
+  });
+  socket.on("change_current_player", (username) => {
+    io.to(username).emit("change_current_player", socketUsername);
   });
   socket.on("direct_message", (username) => {
     io.to(username).emit("direct_message", socketUsername);

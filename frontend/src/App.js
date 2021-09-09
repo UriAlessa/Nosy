@@ -30,12 +30,22 @@ const App = (props) => {
       props.socket.on("game_request", (username) => {
         console.log(username);
       });
+      props.socket.on("answer_game_request", (username) => {
+        console.log(username);
+      });
+      props.socket.on("change_current_player", (username) => {
+        console.log(username);
+      });
       props.socket.on("friend_request", (username) => {
+        console.log(username);
+      });
+      props.socket.on("accepted_friend_request", (username) => {
         console.log(username);
       });
       props.socket.on("connected", (username) => {
         console.log(username);
       });
+
       props.socket.on("disconnected", (username) => {
         console.log(username);
       });
