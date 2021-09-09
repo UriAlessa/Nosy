@@ -18,12 +18,10 @@ const Reviews = (props) => {
   },[])
 
   const getReviews = async()=>{
-    setAllReviews(await props.getReviews)
-    console.log(await props.getReviews)
-
+    setAllReviews(await props.getReviews())
   }
   
-  const render = allReviews.length !== 0 && allReviews.map((info, index) => {
+  const render = llReviews.length !== 0 && allReviews.map((info, index) => {
     return <ReviewSlide oneReview={info} key={"Review" + index} />;
   });
 
