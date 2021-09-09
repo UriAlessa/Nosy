@@ -38,7 +38,7 @@ const server = app.listen(PORT, HOST, () =>
 
 const io = socket(server, {
   cors: {
-    origin: "https://benosy.herokuapp.com/",
+    origin: "http://localhost:3000",
     credentials: true,
   },
 });

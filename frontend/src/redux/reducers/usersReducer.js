@@ -15,7 +15,7 @@ const usersReducer = (state = initialState, action) => {
         token: action.payload.token,
         username: action.payload.user.username,
         avatar: action.payload.user.avatar,
-        socket: io("https://benosy.herokuapp.com/", {
+        socket: io("http://localhost:4000", {
           query: "token=" + action.payload.token,
         }),
       };
