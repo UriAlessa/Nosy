@@ -56,7 +56,7 @@ const Login = (props) => {
     };
     let res = await props.logInUser(loginUser);
     if (res.data.success) {
-      welcomeBack();
+      welcomeBack()
     }
   };
 
