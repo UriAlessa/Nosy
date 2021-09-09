@@ -11,39 +11,39 @@ const QuestionCard = (props) => {
   const [bomb, setBomb] = useState([]);
   const [repeatAnswer, setRepeatAnswer] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
-  const [audio,setAudio] = useState({})
+  const [audio, setAudio] = useState({});
   let answersContainer = useRef();
-  const [seconds,setSeconds]=useState(15)
-/*   let questionAudio = new Audio("/assets/question.wav");
+  const [seconds, setSeconds] = useState(15);
+  /*   let questionAudio = new Audio("/assets/question.wav");
   let correctAudio = new Audio("/assets/correct.wav");
   let incorrectAudio = new Audio("/assets/incorrect.wav"); */
 
- let timeOut= useRef()
- 
-  const timer =()=>{
-    if(seconds>0){
-      timeOut = setTimeout(() => {
-        setSeconds(()=>seconds-1)
-      }, 1000);      
-    }else{
-      clearTimeout(timeOut.current)
-      setSeconds(0)    
-    }
-  }
-  seconds===0 && setTimeout(()=>{
-    props.setQuestion(null)
-    props.setPlaying(false);
-  },1500)
- seconds!==0&&timer() 
+  let timeOut = useRef();
 
+  const timer = () => {
+    if (seconds > 0) {
+      timeOut = setTimeout(() => {
+        setSeconds(() => seconds - 1);
+      }, 1000);
+    } else {
+      clearTimeout(timeOut.current);
+      setSeconds(0);
+    }
+  };
+  seconds === 0 &&
+    setTimeout(() => {
+      props.setQuestion(null);
+      props.setPlaying(false);
+    }, 1500);
+  seconds !== 0 && timer();
 
   useEffect(() => {
     let questionAudio = new Audio("/assets/question.wav");
     let correctAudio = new Audio("/assets/correct.wav");
     let incorrectAudio = new Audio("/assets/incorrect.wav");
     props.setNosy(null);
-    questionAudio.play(); 
-    setAudio({correctAudio,incorrectAudio})
+    questionAudio.play();
+    setAudio({ correctAudio, incorrectAudio });
     setAnswers(possibleAnswers.sort(() => Math.random() - 0.5));
     // eslint-disable-next-line
   }, []);
@@ -67,7 +67,7 @@ const QuestionCard = (props) => {
   };
   const clickHandler = (e) => {
     let answer = correctAnswer === e.target.name;
-    answer ? audio.correctAudio.play() : audio.incorrectAudio.play(); 
+    answer ? audio.correctAudio.play() : audio.incorrectAudio.play();
     if (!repeatAnswer || answer) {
       props.category(null);
       Array.from(answersContainer.current.children).forEach((answer) =>
@@ -79,21 +79,21 @@ const QuestionCard = (props) => {
         setTimeout(() => {
           setIncorrect(true);
         }, 1500);
-        setTimeout(
-          () => {
-            props.setQuestion(null);
-            props.setPlaying(false);
-          },
-          answer ? 1500 : 2500
-        );     
+      setTimeout(
+        () => {
+          props.setQuestion(null);
+          props.setPlaying(false);
+        },
+        answer ? 1500 : 2500
+      );
       setClick(true);
       let coins_spent = bomb.length !== 0 ? 10 : 0;
       coins_spent += repeatAnswer ? 8 : 0;
       let powers_used = repeatAnswer || bomb.length !== 0 ? 1 : 0;
-      sendAnswer(answer, powers_used, coins_spent);
+      props.token && sendAnswer(answer, powers_used, coins_spent);
     }
-    if(repeatAnswer && !answer){
-      e.target.className = ` ${styles.buttonOption}  ${styles.incorrect}`
+    if (repeatAnswer && !answer) {
+      e.target.className = ` ${styles.buttonOption}  ${styles.incorrect}`;
     }
     setRepeatAnswer(false);
     props.setGolden(false);
@@ -109,36 +109,32 @@ const QuestionCard = (props) => {
   };
 
   return (
-
-
     <section
       className={styles.sectionQuestion}
       style={{ backgroundImage: "url('/assets/background.png')" }}
     >
-     
-      {(incorrect || seconds===0) ? (
+      {incorrect || seconds === 0 ? (
         infoLifes
       ) : (
         <article className={styles.card}>
           <div className={styles.containerLogo}>
-            <div className={styles.containerHeaderCard} >
+            <div className={styles.containerHeaderCard}>
               <img
-                  className={styles.logo}
-                  src="/assets/logoSoloLetras.png"
-                  alt="logo"
-                />
-                
+                className={styles.logo}
+                src="/assets/logoSoloLetras.png"
+                alt="logo"
+              />
+
               <div className={styles.containerInfoGame}>
-                <img className={styles.imgInfoGame} src="/assets/heart_2.png"/>
+                <img className={styles.imgInfoGame} src="/assets/heart_2.png" />
                 <span>5</span>
                 <div className={styles.containerSeconds}>
-                  <p className={styles.seconds} >{("0" + seconds).slice(-2)}</p>
+                  <p className={styles.seconds}>{("0" + seconds).slice(-2)}</p>
                 </div>
               </div>
-                
             </div>
             <h2>{props.qs_category}</h2>
-            
+
             <h3>{question}</h3>
           </div>
           <div ref={answersContainer} className={styles.containerButtons}>
@@ -183,22 +179,34 @@ const QuestionCard = (props) => {
                   className={styles.buttonOption}
                   onClick={Bomb}
                 >
-                    <img  className={styles.imgPowers} src="/assets/bomb.png"/> 
-                    <div className={styles.containerIconsPowers}>
-                        <h5>Bomb!</h5>
-                      <div className={styles.containerCoins}> <img className={styles.imgPowersCoin}src="/assets/coin.png"/><h5> 30 </h5></div>
+                  <img className={styles.imgPowers} src="/assets/bomb.png" />
+                  <div className={styles.containerIconsPowers}>
+                    <h5>Bomb!</h5>
+                    <div className={styles.containerCoins}>
+                      <h6> 30 </h6>
+                      <img
+                        className={styles.imgPowersCoin}
+                        src="/assets/coin.png"
+                      />
                     </div>
+                  </div>
                 </button>
                 <button
                   disabled={repeatAnswer || bomb.length !== 0}
                   className={styles.buttonOption}
                   onClick={() => setRepeatAnswer(true)}
                 >
-                  <img  className={styles.imgPowers} src="/assets/repeat.png"/> 
-                    <div className={styles.containerIconsPowers}>
-                        <h5>Repeat</h5>
-                      <div className={styles.containerCoins}> <img className={styles.imgPowersCoin}src="/assets/coin.png"/><h5> 25 </h5></div>
+                  <img className={styles.imgPowers} src="/assets/repeat.png" />
+                  <div className={styles.containerIconsPowers}>
+                    <h5>Repeat</h5>
+                    <div className={styles.containerCoins}>
+                      <h6> 25 </h6>
+                      <img
+                        className={styles.imgPowersCoin}
+                        src="/assets/coin.png"
+                      />
                     </div>
+                  </div>
                 </button>
               </>
             )}
@@ -210,11 +218,17 @@ const QuestionCard = (props) => {
                 props.setQuestion(null);
               }}
             >
-              <img  className={styles.imgPowers} src="/assets/lottery.png"/> 
-                    <div className={styles.containerIconsPowers}>
-                        <h5>Roll</h5>
-                      <div className={styles.containerCoins}> <img className={styles.imgPowersCoin}src="/assets/coin.png"/><h5> 20 </h5></div>
-                    </div>
+              <img className={styles.imgPowers} src="/assets/lottery.png" />
+              <div className={styles.containerIconsPowers}>
+                <h5>Roll</h5>
+                <div className={styles.containerCoins}>
+                  <h6> 20 </h6>
+                  <img
+                    className={styles.imgPowersCoin}
+                    src="/assets/coin.png"
+                  />
+                </div>
+              </div>
             </button>
           </div>
         </article>
