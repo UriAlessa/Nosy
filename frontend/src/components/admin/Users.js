@@ -9,7 +9,6 @@ const Users = (props) => {
     const [filtered, setFiltered] = useState([])
     const [search, setSearch] = useState("")
     const [reload, setReload] = useState(false)
-    // const [edit, setEdit] = useState(false)
 
     useEffect(() => {
 
@@ -29,11 +28,6 @@ const Users = (props) => {
         }
     };
 
-    useEffect(() => {
-        getUsers();
-        // eslint-disable-next-line
-    }, []);
-
     const filter = (e) => {
         setSearch(e.target.value)
         setFiltered(users.filter((user) => user.username.startsWith(e.target.value)))
@@ -42,8 +36,8 @@ const Users = (props) => {
     return (
         <div className={styles.tableContainer}>
             <div className={styles.buttonSection}>
-                <button className={styles.button}>See Users</button>
-                <button className={styles.button}>Add Users</button>
+                <button className={styles.button}>Add User</button>
+                <button className={styles.button} onClick={getUsers}>View Users</button>
             </div>
             <div className={styles.filterContainer}>
                 <input type="text" onChange={filter} placeholder="Filter by username" />

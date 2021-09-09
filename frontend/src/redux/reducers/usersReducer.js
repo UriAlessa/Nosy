@@ -15,10 +15,12 @@ const usersReducer = (state = initialState, action) => {
         token: action.payload.token,
         username: action.payload.user.username,
         avatar: action.payload.user.avatar,
-        socket: io("http://localhost:4000/", {
+        socket: io("http://localhost:4000", {
           query: "token=" + action.payload.token,
         }),
       };
+    case "UPDATE_USER":
+      break;
     case "LOG_OUT":
       localStorage.removeItem("token");
       state.socket.emit("disconnection");

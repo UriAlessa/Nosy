@@ -1,6 +1,5 @@
 import styles from '../styles/admin.module.css'
 import { useState } from "react"
-import { connect } from "react-redux"
 import Users from "../components/admin/Users"
 import Questions from "../components/admin/Questions"
 import Games from "../components/admin/Games"
@@ -28,14 +27,4 @@ const AdminPanel = () => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        token: state.users.token
-    }
-}
-
-const mapDispatchToProps = {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AdminPanel)
+export default AdminPanel
