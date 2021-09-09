@@ -1,9 +1,15 @@
-import {useState} from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../styles/terms.module.css'
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 
 const Privacy = () => {
+
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
+
+    document.title = 'Privacy | Nosy'
 
     const [items, setItems] = useState({
         one: false, two: false, three: false, four: false, five: false, six: false, seven: false
@@ -25,7 +31,7 @@ const Privacy = () => {
     }
 
     const showTwo = () => {
-        if(!items.two) {
+        if (!items.two) {
             setItems({
                 ...items,
                 two: true
@@ -38,7 +44,7 @@ const Privacy = () => {
         }
     }
     const showThree = () => {
-        if(!items.three) {
+        if (!items.three) {
             setItems({
                 ...items,
                 three: true
@@ -51,7 +57,7 @@ const Privacy = () => {
         }
     }
     const showFour = () => {
-        if(!items.four) {
+        if (!items.four) {
             setItems({
                 ...items,
                 four: true
@@ -64,7 +70,7 @@ const Privacy = () => {
         }
     }
     const showFive = () => {
-        if(!items.five) {
+        if (!items.five) {
             setItems({
                 ...items,
                 five: true
@@ -112,7 +118,7 @@ const Privacy = () => {
                     <dd>
                         <div className={styles.title} onClick={showOne}>
                             <svg className={items.one ? styles.roteDown : styles.roteUp} xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 16 16">
-                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                             </svg>
                             <h5 onClick={showOne}>1. Privacy Policy</h5>
                         </div>
@@ -134,7 +140,7 @@ const Privacy = () => {
                     <dd>
                         <div className={styles.title} onClick={showTwo}>
                             <svg className={items.two ? styles.roteDown : styles.roteUp} xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 16 16">
-                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                             </svg>
                             <h5>2. About data processing</h5>
                         </div>
@@ -150,7 +156,7 @@ const Privacy = () => {
                     <dd>
                         <div className={styles.title} onClick={showThree}>
                             <svg className={items.three ? styles.roteDown : styles.roteUp} xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 16 16">
-                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                             </svg>
                             <h5>3. Data for advertising</h5>
                         </div>
@@ -161,7 +167,7 @@ const Privacy = () => {
                     <dd>
                         <div className={styles.title} onClick={showFour}>
                             <svg className={items.four ? styles.roteDown : styles.roteUp} xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 16 16">
-                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                             </svg>
                             <h5>4. Uso of cookies</h5>
                         </div>
@@ -177,7 +183,7 @@ const Privacy = () => {
                     <dd>
                         <div className={styles.title} onClick={showFive}>
                             <svg className={items.five ? styles.roteDown : styles.roteUp} xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 16 16">
-                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                             </svg>
                             <h5>5. Storage</h5>
                         </div>
@@ -189,7 +195,7 @@ const Privacy = () => {
                     <dd>
                         <div className={styles.title} onClick={showSix}>
                             <svg className={items.six ? styles.roteDown : styles.roteUp} xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 16 16">
-                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                             </svg>
                             <h5>6. Data protection</h5>
                         </div>
@@ -208,7 +214,7 @@ const Privacy = () => {
                     <dd className={styles.seven}>
                         <div className={styles.title} onClick={showSeven}>
                             <svg className={items.seven ? styles.roteDown : styles.roteUp} xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 16 16">
-                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                             </svg>
                             <h5>7. Other Provisions</h5>
                         </div>

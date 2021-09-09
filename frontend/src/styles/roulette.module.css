@@ -1,34 +1,68 @@
 .rouletteContainer {
-  width: 50%;
-  height: 70%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-img.roulette {
+.containerRoulette {
   width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.roulette {
+  width: 50vmin;
+  height: 50vmin;
   transition: all 4s;
   border-radius: 100%;
-  box-shadow: 0px 0px 21px 1px #242462;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
 }
-
-.indicator {
+.buttonRoulette {
+  width: 7vmin;
   position: absolute;
-  transform: rotate(90deg);
+  top: 46%;
+}
+.shadows {
+  width: 60%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  /* background-color: red; */
+}
+.picShadow {
+  width: 5vw;
+}
+.topInfo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 4vw;
+  padding: 2vh 3vw;
 }
 
-/* 
-img.roulette{
-    height: 100%;
-    animation: girar 5s ease;
+.avatar {
+  width: 5vw;
 }
 
-@keyframes girar {
-    0%{
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(3000deg)
-    }
-} */
+@media (min-width: 400px) and (max-width: 700px) {
+  div.roulette {
+    height: 15rem;
+    width: 15rem;
+  }
+  .rouletteContainer {
+    gap: 1.5rem;
+  }
+  .picShadow {
+    width: 12vw;
+  }
+}
+@media (min-width: 800px) and (max-width: 1100px) {
+  .picShadow {
+    width: 7vw;
+  }
+}

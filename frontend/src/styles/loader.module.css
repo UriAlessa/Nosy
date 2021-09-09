@@ -20,50 +20,13 @@
   opacity: 0;
   transform: rotateX(-90deg);
 }
-.let1 {
-  animation: drop 1.3s ease-in-out infinite;
-  animation-delay: 1.2s;
-}
-.let2 {
-  animation: drop 1.3s ease-in-out infinite;
-  animation-delay: 1.3s;
-}
-.let3 {
-  animation: drop 1.3s ease-in-out infinite;
-  animation-delay: 1.4s;
-}
-.let4 {
-  animation: drop 1.3s ease-in-out infinite;
-  animation-delay: 1.5s;
+.let1, .let2, .let3, .let4, .let5, .let6, .let7, .let8, .let9,.let10 {
+        animation: drop 0.5s ease-in-out infinite;
+        animation-delay: 0.3s
 }
 
-.let5 {
-  animation: drop 1.3s ease-in-out infinite;
-  animation-delay: 1.6s;
-}
-.let6 {
-  animation: drop 1.3s ease-in-out infinite;
-  animation-delay: 1.7s;
-}
-
-.let7 {
-  animation: drop 1.3s ease-in-out infinite;
-  animation-delay: 1.8s;
-}
-.let8 {
-  animation: drop 1.3s ease-in-out infinite;
-  animation-delay: 1.9s;
-}
-.let9 {
-  animation: drop 1.3s ease-in-out infinite;
-  animation-delay: 2s;
-}
-.let10 {
-  animation: drop 1.3s ease-in-out infinite;
-  animation-delay: 2.1s;
-}
-.picNosy {
-  width: 10vw;
+.picNosy{
+    width: 10vw;
 }
 @keyframes drop {
   10% {

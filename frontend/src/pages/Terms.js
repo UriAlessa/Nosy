@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../styles/terms.module.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const Terms = () => {
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
+
+  document.title = 'Terms | Nosy'
   const [items, setItems] = useState({
     one: false,
     two: false,

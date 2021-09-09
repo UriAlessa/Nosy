@@ -9,16 +9,16 @@ const userSchema = mongoose.Schema({
   coins: { type: Number, default: 0 },
   statistics: {
     multi_player: {
-      total: Number,
-      wins: Number,
-      losses: Number,
-      win_pct: Number,
+      total: { type: Number, default: 0 },
+      wins: { type: Number, default: 0 },
+      losses: { type: Number, default: 0 },
+      win_pct: { type: Number, default: 0 },
     },
     single_player: {
-      total: Number,
-      wins: Number,
-      losses: Number,
-      win_pct: Number,
+      total: { type: Number, default: 0 },
+      wins: { type: Number, default: 0 },
+      losses: { type: Number, default: 0 },
+      win_pct: { type: Number, default: 0 },
     },
   },
   playing_now: {
@@ -30,14 +30,20 @@ const userSchema = mongoose.Schema({
     connected: [{ type: mongoose.Types.ObjectId, path: "user" }],
     disconnected: [{ type: mongoose.Types.ObjectId, path: "user" }],
   },
-  friend_requests: [{ type: mongoose.Types.ObjectId, path: "user" }],
-  admin: { type: Boolean, default: false },
+  friend_requests: {
+    users: [{ type: mongoose.Types.ObjectId, path: "user" }],
+    creator: { type: Boolean, default: false },
+  },
+  admin: {
+    flag: { type: Boolean, default: false },
+    key: { type: String },
+  },
   facebook: { type: Boolean, default: false },
   google: { type: Boolean, default: false },
   game_requests: [
     {
       gameId: { type: mongoose.Types.ObjectId, path: "multiplayer game" },
-      creator: { type: Boolean },
+      creator: { type: Boolean, default: false },
     },
   ],
 });

@@ -1,6 +1,6 @@
 import styles from "../../styles/questions.module.css";
 import { useEffect, useState } from "react";
-import questionActions from "../../redux/actions/questionsActions";
+import questionActions from "../../redux/actions/admin/questionsActions";
 import { connect } from "react-redux";
 import TableData from "./TableData";
 
@@ -26,25 +26,26 @@ const Questions = (props) => {
     // eslint-disable-next-line
   }, []);
 
-    return (
-        <div className={styles.tableContainer}>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Coins</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* {questions.map((question) => <TableData key={user._id} question={question} />)} */}
-                </tbody>
-            </table>
-        </div>
-    )
-}
+  return (
+    <div className={styles.tableContainer}>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Question</th>
+            <th>Possible Answer</th>
+            <th>Correct Answer</th>
+            <th>Creator</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/* {questions.map((question) => <TableData key={user._id} question={question} />)} */}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 const mapDispatchToProps = {
   getQuestions: questionActions.getQuestions,

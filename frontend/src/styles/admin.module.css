@@ -1,0 +1,52 @@
+.adminContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.adminContainer h1{
+    color:#84eeb7;
+    padding-top: 2rem;
+    font-size: 34px;
+    text-shadow: -1px 2px 0 #389067;
+    margin: 3vh 0;
+}
+
+.dataContainer{
+    width: 90%;
+    border-radius: 50px;
+    padding: 5vh 4vw;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.buttonsContainer{
+    padding: 0 2vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonsContainer .button{
+    margin: 1vh 0;
+    font-family: "Fredoka One", cursive;
+    text-transform: uppercase;
+    color: rgb(109, 98, 231);
+    background-color: rgb(225, 223, 255);
+    border: none;
+    width: 15vw;
+    border-radius: 8px;
+    font-size: 2.8vmin;
+    padding: 2vmin 0;
+    transition: all 300ms;
+}
+
+.buttonsContainer .button:hover{
+    background-color: rgb(109, 98, 231);
+    color: rgb(225, 223, 255);
+    cursor: pointer;
+}
+
+.infoSection{
+    padding: 0 2vw;
+    width: 100%;
+}

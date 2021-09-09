@@ -6,6 +6,9 @@ const adminUsersControllers = require("../controllers/adminControllers/adminUser
 
 //ADMIN QUESTION ROUTES
 router
+  .route("/questions/micaupdate")
+  .put(adminQuestionsControllers.micaController);
+router
   .route("/questions")
   .post(adminQuestionsControllers.restoreAllQuestions)
   .get(adminQuestionsControllers.readAllQuestions)

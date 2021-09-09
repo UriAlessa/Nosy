@@ -1,0 +1,80 @@
+article.userCard{
+    color: white;
+    border-radius: 0 0 15px 0;
+    border-bottom: 2px solid white;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .3em 0;
+}
+
+.userInfo{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.userAvatar{
+    margin: 0 1vw;
+    width: 60px;
+    height: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 100%;
+}
+
+.buttonSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonSection img{
+    width: 40px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.connected{
+    width: 20px;
+}
+
+.userDetails{
+    /* height: 80vh; */
+    padding-bottom: 3vh;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.userDetails>div{
+    width: 50%;
+}
+
+.userDetails label{
+    color: black;
+    margin-top: 2vh;
+}
+
+.userData{
+    display: flex;
+    flex-direction: column;
+    padding: 0 3vw;
+    background-color: green;
+}
+
+.buttonsContainer{
+    margin-top: .5em;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+}
+
+.buttonsContainer img{
+    width: 50px;
+    margin: 0 1vw;
+}
+
