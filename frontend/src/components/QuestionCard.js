@@ -18,7 +18,6 @@ const QuestionCard = (props) => {
 
   let timeOut = useRef();
   const sendAnswer = async (answer, powers_used, coins_spent) => {
-    console.log(props.golden);
     let res = await props.sendAnswer(
       props.token,
       props.question,
@@ -30,8 +29,12 @@ const QuestionCard = (props) => {
     let flag = res.newGameState.player.questions.filter(
       (qs) => qs.answer
     ).length;
-    props.setGolden(flag !== 0 && flag % 3 === 0);
-    await props.setNosy(flag !== 0 && flag % 3 === 0);
+    let flag2 =
+      res.newGameState.player.questions[
+        res.newGameState.player.questions.length - 1
+      ].answer;
+    props.setGolden(flag !== 0 && flag % 3 === 0 && flag2); //
+    await props.setNosy(flag !== 0 && flag % 3 === 0 && flag2); //
   };
   useEffect(() => {
     if (seconds > 0) {
@@ -164,35 +167,35 @@ const QuestionCard = (props) => {
           <div ref={answersContainer} className={styles.containerButtons}>
             {bomb.length === 0
               ? answers.map((string, index) => {
-                return (
-                  <button
-                    key={index}
-                    className={styles.buttonOption}
-                    name={string}
-                    onClick={clickHandler}
-                    disabled={click}
-                  >
-                    {string}
-                  </button>
-                );
-              })
+                  return (
+                    <button
+                      key={index}
+                      className={styles.buttonOption}
+                      name={string}
+                      onClick={clickHandler}
+                      disabled={click}
+                    >
+                      {string}
+                    </button>
+                  );
+                })
               : answers.map((string, index) => {
-                return (
-                  <button
-                    key={index}
-                    className={
-                      bomb.includes(string)
-                        ? styles.buttonOptionBombed
-                        : styles.buttonOption
-                    }
-                    name={string}
-                    onClick={clickHandler}
-                    disabled={bomb.includes(string)}
-                  >
-                    {string}
-                  </button>
-                );
-              })}
+                  return (
+                    <button
+                      key={index}
+                      className={
+                        bomb.includes(string)
+                          ? styles.buttonOptionBombed
+                          : styles.buttonOption
+                      }
+                      name={string}
+                      onClick={clickHandler}
+                      disabled={bomb.includes(string)}
+                    >
+                      {string}
+                    </button>
+                  );
+                })}
           </div>
 
           <div className={styles.powersButtons}>

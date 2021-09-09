@@ -40,8 +40,9 @@
 .topInfo {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
-  padding: 1vh 3vw;
+  justify-content: center;
+  gap: 4vw;
+  padding: 2vh 3vw;
 }
 
 .avatar {

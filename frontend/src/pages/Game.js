@@ -17,7 +17,6 @@ const Game = (props) => {
   const [nosy, setNosy] = useState(false);
   const [golden, setGolden] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const categories = [];
 
   useEffect(() => {
     if (props.token) {
@@ -68,35 +67,30 @@ const Game = (props) => {
       //     setPlaying(!playing);
       //     setCategory("Movies and series");
       //   }, 5000);
-
       //   break;
       // case degrees > 90 && degrees <= 150:
       //   setTimeout(() => {
       //     setPlaying(!playing);
       //     setCategory("Science: Computers");
       //   }, 5000);
-
       //   break;
       // case degrees > 150 && degrees <= 210:
       //   setTimeout(() => {
       //     setPlaying(!playing);
       //     setCategory("General Knowledge");
       //   }, 5000);
-
       //   break;
       // case degrees > 210 && degrees <= 270:
       //   setTimeout(() => {
       //     setPlaying(!playing);
       //     setCategory("Animals");
       //   }, 5000);
-
       //   break;
       // case degrees > 270 && degrees <= 330:
       //   setTimeout(() => {
       //     setPlaying(!playing);
       //     setCategory("Music");
       //   }, 5000);
-
       //   break;
       default:
         setTimeout(() => {
@@ -119,39 +113,69 @@ const Game = (props) => {
       style={{ backgroundImage: "url('/assets/background.png')" }}
     >
       <div className={styles.renderGame}>
-        {nosy ? (
+        {props.game && props.game.status === false ? (
+          <h1>GANASTER PAPURRI</h1>
+        ) : nosy ? (
           <div className={styles.containerButtons}>
             <h1>Choose a category and get the Character</h1>
-            <div>
-              <img src='/assets/music.png' alt="" />
-              <button onClick={categoryHandler} className={`${styles.buttonOption} ${styles.music}`}>
-                Music
-              </button>
-            </div>
-            <div>
-              <img src='/assets/animals.png' alt="" />
-              <button onClick={categoryHandler} className={`${styles.buttonOption} ${styles.animals}`}>
-                Animals
-              </button>
-            </div>
-            <div>
-              <img src='/assets/movies.png' alt="" />
-              <button onClick={categoryHandler} className={`${styles.buttonOption} ${styles.movies}`}>
-                Movies and series
-              </button>
-            </div>
-            <div>
-              <img src='/assets/computer.png' alt="" />
-              <button onClick={categoryHandler} className={`${styles.buttonOption} ${styles.computers}`}>
-                Science: Computers
-              </button>
-            </div>
-            <div>
-              <img src='/assets/cultura.png' alt="" />
-              <button onClick={categoryHandler} className={`${styles.buttonOption} ${styles.knowledge}`}>
-                General Knowledge
-              </button>
-            </div>
+            {props.game && !props.game.player.medals.includes("Music") && (
+              <div>
+                <img src="/assets/music.png" alt="" />
+                <button
+                  onClick={categoryHandler}
+                  className={`${styles.buttonOption} ${styles.music}`}
+                >
+                  Music
+                </button>
+              </div>
+            )}
+            {props.game && !props.game.player.medals.includes("Animals") && (
+              <div>
+                <img src="/assets/animals.png" alt="" />
+                <button
+                  onClick={categoryHandler}
+                  className={`${styles.buttonOption} ${styles.animals}`}
+                >
+                  Animals
+                </button>
+              </div>
+            )}
+            {props.game &&
+              !props.game.player.medals.includes("Movies and series") && (
+                <div>
+                  <img src="/assets/movies.png" alt="" />
+                  <button
+                    onClick={categoryHandler}
+                    className={`${styles.buttonOption} ${styles.movies}`}
+                  >
+                    Movies and series
+                  </button>
+                </div>
+              )}
+            {props.game &&
+              !props.game.player.medals.includes("Science: Computers") && (
+                <div>
+                  <img src="/assets/computer.png" alt="" />
+                  <button
+                    onClick={categoryHandler}
+                    className={`${styles.buttonOption} ${styles.computers}`}
+                  >
+                    Science: Computers
+                  </button>
+                </div>
+              )}
+            {props.game &&
+              !props.game.player.medals.includes("General Knowledge") && (
+                <div>
+                  <img src="/assets/cultura.png" alt="" />
+                  <button
+                    onClick={categoryHandler}
+                    className={`${styles.buttonOption} ${styles.knowledge}`}
+                  >
+                    General Knowledge
+                  </button>
+                </div>
+              )}
           </div>
         ) : !question ? (
           <Roulette

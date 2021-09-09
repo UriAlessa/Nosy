@@ -59,7 +59,6 @@ const gamesActions = {
       if (!response.data.success) {
         throw new Error();
       }
-      console.log(response.data.response.game);
       dispatch({
         type: "SET_GAME",
         payload: {
