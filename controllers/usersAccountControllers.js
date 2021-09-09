@@ -57,7 +57,6 @@ const usersAccountControllers = {
       res.json({ success: false, error: error.message });
     }
   },
-
   addFriend: async (req, res) => {
     try {
       let user = await User.findOne({ username: req.body.username });

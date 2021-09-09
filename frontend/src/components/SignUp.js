@@ -46,11 +46,8 @@ const SignUp = (props) => {
       });
     }
     let response = await props.signUpUser(newUser);
-<<<<<<< HEAD
-=======
-    await props.sendMail(newUser);
->>>>>>> a5b43ecec87b2de04d1a768cbe4018d228e4e518
     if (!response.data.success) {
+      console.log(response)
       response.data.error.forEach((error) => {
         toast.error(error.message, {
           position: "top-right",
@@ -77,10 +74,6 @@ const SignUp = (props) => {
       google: true,
     };
     let res = await props.signUpUser(newUser);
-<<<<<<< HEAD
-=======
-    await props.sendMail(newUser);
->>>>>>> a5b43ecec87b2de04d1a768cbe4018d228e4e518
     if (res.data.success) {
       await props.sendMail(newUser)
       welcomeToast();
