@@ -18,6 +18,10 @@
   justify-content: space-around;
   box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
 }
+.card {
+  transition: all .8s ease;
+  position: relative;
+}
 
 .card h3,
 .infoLifes h3 {
@@ -107,6 +111,16 @@ gap:0.5rem;
 }
 .containerCoins{
   display: flex;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: -10;
+  background-color: black;
 }
 
 @media screen and (max-width: 600px) {

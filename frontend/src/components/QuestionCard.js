@@ -4,6 +4,7 @@ import questionActions from "../redux/actions/questionsActions";
 import { useState, useEffect, useRef } from "react";
 import gamesActions from "../redux/actions/gamesActions";
 
+
 const QuestionCard = (props) => {
   const { question, possibleAnswers, correctAnswer, category } = props.question;
   const [click, setClick] = useState(false);
@@ -12,7 +13,6 @@ const QuestionCard = (props) => {
   const [repeatAnswer, setRepeatAnswer] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
   let answersContainer = useRef();
-
   let questionAudio = new Audio("/assets/question.wav");
   let correctAudio = new Audio("/assets/correct.wav");
   let incorrectAudio = new Audio("/assets/incorrect.wav");
@@ -82,8 +82,6 @@ const QuestionCard = (props) => {
   };
 
   return (
-
-
     <section
       className={styles.sectionQuestion}
       style={{ backgroundImage: "url('/assets/background.png')" }}
@@ -91,6 +89,7 @@ const QuestionCard = (props) => {
       {incorrect ? (
         infoLifes
       ) : (
+    
         <article className={styles.card}>
           <div className={styles.containerLogo}>
             <img
@@ -178,6 +177,7 @@ const QuestionCard = (props) => {
           </div>
         </article>
       )}
+      <div class="overlay"></div>
     </section>
   );
 };
