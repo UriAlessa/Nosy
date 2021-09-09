@@ -4,10 +4,15 @@ const questionActions = {
   getQuestions: () => {
     return async () => {
       let response = await axios.get(
-        "https://benosy.herokuapp.com/api/admin/questions"
+        "http://localhost:4000/api/admin/questions"
       );
       return response;
     };
   },
+  // updateQuestion: () =>{
+  //     return async () => {
+  //         let response = await axios.put()
+  //     }
+  // }
 };
 export default questionActions;

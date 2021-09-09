@@ -23,7 +23,7 @@
   position: relative;
 }
 .buttonRoulette {
-  width: 7vmin;
+  width: 8vmin;
   position: absolute;
   top: 46%;
 }
@@ -35,7 +35,8 @@
   /* background-color: red; */
 }
 .picShadow {
-  width: 5vw;
+  width: 4vw;
+  margin-bottom: 5px;
 }
 .topInfo {
   width: 100%;
@@ -49,20 +50,36 @@
   width: 5vw;
 }
 
-@media (min-width: 400px) and (max-width: 700px) {
-  div.roulette {
-    height: 15rem;
-    width: 15rem;
-  }
-  .rouletteContainer {
-    gap: 1.5rem;
-  }
+@media (max-width: 700px) {
   .picShadow {
     width: 12vw;
   }
+
 }
 @media (min-width: 800px) and (max-width: 1100px) {
   .picShadow {
     width: 7vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .roulette {
+    height: 60vw;
+    width: 60vw;
+  }
+
+  .buttonRoulette {
+    width: 8vmin;
+  }
+}
+
+@media (max-width: 500px) {
+  .roulette {
+    height: 70vw;
+    width: 70vw;
+  }
+
+  .buttonRoulette {
+    width: 10vmin;
   }
 }

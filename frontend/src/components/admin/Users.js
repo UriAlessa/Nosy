@@ -10,9 +10,9 @@ const Users = (props) => {
     const [search, setSearch] = useState("")
     const [reload, setReload] = useState(false)
 
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [reload])
+    // }, [reload])
 
     const getUsers = async () => {
         try {

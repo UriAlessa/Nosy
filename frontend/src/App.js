@@ -17,6 +17,7 @@ import { Toaster } from "react-hot-toast";
 import AdminPanel from "./pages/Admin";
 import Loader from "./components/Loader";
 import gamesActions from "./redux/actions/gamesActions";
+import Friends from "./pages/Friends";
 
 const App = (props) => {
   useEffect(() => {
@@ -65,6 +66,7 @@ const App = (props) => {
         <Route path="/notfound" component={NotFound} />
         <Route path="/game" component={Game} />
         <Route path="/accounts" component={!props.token ? Account : Home} />
+        <Route path="/friends" component={Friends} />
         <Route path="/selectgame" component={GameButtons} />
         <Route path="/admin" component={AdminPanel} />
         <Route path="/loader" component={Loader} />
