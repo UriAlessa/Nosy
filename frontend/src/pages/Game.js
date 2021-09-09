@@ -20,8 +20,11 @@ const Game = (props) => {
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
-    if (props.token) {
+    if (props.token && !props.game) {
       createGame();
+    }
+    if (props.game) {
+      props.setGame(localStorage.getItem("token"));
     }
     setLoader(false);
     // eslint-disable-next-line
@@ -223,6 +226,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   getQuestion: questionActions.getQuestion,
   createGame: gamesActions.createGame,
+  setGame: gamesActions.setGame,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

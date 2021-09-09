@@ -41,7 +41,7 @@ const QuestionCard = (props) => {
       timeOut.current = setTimeout(() => {
         setSeconds(seconds - 1);
       }, 1000);
-    } else if (seconds === 0) {
+    } else if (seconds === 0 && !click) {
       let coins_spent = bomb.length !== 0 ? 30 : 0;
       coins_spent += repeatAnswerRef.current ? 25 : 0;
       coins_spent += props.reRoll.current ? 20 : 0;

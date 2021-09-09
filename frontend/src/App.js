@@ -28,7 +28,7 @@ const App = (props) => {
   }, []);
 
   useEffect(() => {
-    if (props.socket) {
+    if (props.socket && props.token) {
       props.socket.on("game_request", (username) => {
         console.log(username);
       });
