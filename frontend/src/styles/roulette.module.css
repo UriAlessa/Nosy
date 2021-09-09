@@ -28,7 +28,7 @@
   top: 46%;
 }
 .shadows {
-  width: 100%;
+  width: 60%;
   height: 10vh;
   display: flex;
   justify-content: center;
@@ -36,6 +36,13 @@
 }
 .picShadow {
   width: 5vw;
+}
+.topInfo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 4vw;
+  padding: 2vh 3vw;
 }
 
 .avatar {

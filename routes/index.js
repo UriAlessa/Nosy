@@ -40,6 +40,12 @@ router
     passport.authenticate("jwt", { session: false }),
     gameControllers.answer
   );
+router
+  .route("/game/current_game")
+  .get(
+    passport.authenticate("jwt", { session: false }),
+    gameControllers.getCurrentGame
+  );
 
 router.route("/mail").post(mailControllers.sendMail);
 

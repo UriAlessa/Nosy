@@ -167,6 +167,12 @@
   font-weight: bold;
   color: white;
 }
+.noMoney{
+  background-color: rgba(68, 68, 68, 0.283);
+  border-radius: 10px;
+  padding: 0.5rem;
+  border-bottom: rgba(68, 68, 68, 0.824)
+}
 
 @media screen and (max-width: 600px) {
   .logo {

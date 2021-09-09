@@ -10,7 +10,14 @@ module.exports = passport.use(
       secretOrKey: process.env.SECRETORKEY,
     },
     (payload, done) => {
+      const model = payload._doc.playing_now.multiplayer
+        ? "multiplayer game"
+        : "singleplayer game";
       User.findOne({ _id: payload._doc._id })
+        .populate({
+          path: "playing_now",
+          populate: { path: "game_id", model: model },
+        })
         .then((response) => {
           if (!response) {
             return done(null, false);

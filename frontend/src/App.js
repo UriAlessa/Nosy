@@ -16,11 +16,13 @@ import GameButtons from "./pages/GameButtons";
 import { Toaster } from "react-hot-toast";
 import AdminPanel from "./pages/Admin";
 import Loader from "./components/Loader";
+import gamesActions from "./redux/actions/gamesActions";
 
 const App = (props) => {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       props.logInLS();
+      props.setGame(localStorage.getItem("token"));
     }
     // eslint-disable-next-line
   }, []);
@@ -45,7 +47,6 @@ const App = (props) => {
       props.socket.on("connected", (username) => {
         console.log(username);
       });
-
       props.socket.on("disconnected", (username) => {
         console.log(username);
       });
@@ -84,6 +85,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   logInLS: usersActions.logInLS,
   showMenuResponsive: otherActions.showMenu,
+  setGame: gamesActions.setGame,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

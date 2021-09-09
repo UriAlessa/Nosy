@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import style from "../styles/reviews.module.css";
-import { connect } from "react-redux";
 
 const RankingCard = (props) => {
-  const { emojiFace, setEmojiFace } = useState("");
+  const [emojiFace, setEmojiFace] = useState("");
 
   const inputHandler = (e) => {
     console.log("imputHandler activado");
