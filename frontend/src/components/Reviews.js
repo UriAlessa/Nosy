@@ -15,16 +15,8 @@ const Reviews = (props) => {
   }, []);
 
   const getReviews = async () => {
-    setAllReviews(await props.getReviews);
-    console.log(await props.getReviews);
+    setAllReviews(await props.getReviews());
   };
-
-  const render =
-    allReviews.length !== 0 &&
-    allReviews.map((info, index) => {
-      return <ReviewSlide oneReview={info} key={"Review" + index} />;
-    });
-
   const inputHandler = (e) => {
     if (!props.token) {
       return toast.error("You most to be login for this", {
@@ -58,7 +50,10 @@ const Reviews = (props) => {
           <button className={styles.buttonAddComment} onClick={inputHandler}>
             +
           </button>
-          {render}
+          {allReviews.length !== 0 &&
+            allReviews.map((info, index) => {
+              return <ReviewSlide oneReview={info} key={"Review" + index} />;
+            })}
         </div>
         <div>
           <RankingCard />
