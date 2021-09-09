@@ -1,0 +1,23 @@
+.questionsContainer{
+    background-color: red;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.questionContainer{
+    margin: 2vh 1vw;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2vh 1vw;
+}
+
+.buttonsContainer{
+    display: flex;
+}
+
+.buttonsContainer img{
+    width: 30px;
+}
