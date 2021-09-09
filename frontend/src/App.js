@@ -45,7 +45,6 @@ const App = (props) => {
       props.socket.on("connected", (username) => {
         console.log(username);
       });
-
       props.socket.on("disconnected", (username) => {
         console.log(username);
       });
