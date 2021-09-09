@@ -35,8 +35,8 @@
 }
 
 .gameover {
-  width: 20vw;
-  height: 10vw;
+  width: 35vw;
+  height: 20vw;
   background-size: cover;
   background-position: center;
   cursor: pointer;
