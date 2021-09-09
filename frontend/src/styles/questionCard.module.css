@@ -169,6 +169,7 @@
 }
 .noMoney{
   background-color: rgba(68, 68, 68, 0.283);
+  /* color: white; */
   border-radius: 10px;
   padding: 0.5rem;
   border-bottom: rgba(68, 68, 68, 0.824)
