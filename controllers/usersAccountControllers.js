@@ -57,7 +57,24 @@ const usersAccountControllers = {
       res.json({ success: false, error: error.message });
     }
   },
-
+  logOut: async (req, res) => {
+    const { _id } = req.user;
+    try {
+      await User.findOneAndUpdate(
+        { _id },
+        {
+          $set: {
+            "playing_now.status": false,
+            "playing_now.game_id": null,
+            "playing_now.multi_player": true,
+          },
+        }
+      );
+      res.json({ success: true });
+    } catch (error) {
+      res.json({ success: false });
+    }
+  },
   addFriend: async (req, res) => {
     try {
       let user = await User.findOne({ username: req.body.username });
