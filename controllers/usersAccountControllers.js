@@ -58,7 +58,45 @@ const usersAccountControllers = {
     }
   },
 
-  addFriend: async (req, res) => {},
+  addFriend: async (req, res) => {
+    try {
+      let user = await User.findOne({ username: req.body.username });
+      if (user) {
+        await User.findOneAndUpdate(
+          { username: req.body.username },
+          { $push: { friend_requests: { user: req.user._id, creator: false } } }
+        );
+        await User.findOneAndUpdate(
+          { username: req.user.username },
+          { $push: { friend_requests: { user: user._id, creator: true } } }
+        );
+      } else {
+        throw new Error("User not found");
+      }
+      res.json({ success: true });
+    } catch (error) {
+      res.json({ success: false, error: error.message });
+    }
+  },
+  acceptFriendRequest: async (req, res) => {
+    const { username, accept } = req.body;
+    try {
+      let user = await User.findOne({ username });
+      if (accept) {
+        await User.findOneAndUpdate(
+          { username: req.body.username },
+          { $pull: { friend_requests: { user: req.user._id } } }
+        );
+      }
+      await User.findOneAndUpdate(
+        { username: req.user.username },
+        { $pull: { friend_requests: { user: user._id } } }
+      );
+      res.json({ success: accept });
+    } catch (error) {
+      res.json({ success: false, error: error.message });
+    }
+  },
 
   verifyToken: async (req, res) => {
     res.json({

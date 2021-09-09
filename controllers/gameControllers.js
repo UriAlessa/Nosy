@@ -25,7 +25,6 @@ const gameControllers = {
           player: { user: req.user._id },
         });
         await game.save();
-        console.log("1");
         await User.findOneAndUpdate(
           { _id: req.user._id },
           {
@@ -37,7 +36,6 @@ const gameControllers = {
           },
           { new: true }
         );
-        console.log("2");
       }
       res.json({ success: true, response: game });
     } catch (error) {
@@ -46,14 +44,17 @@ const gameControllers = {
   },
   acceptGameRequest: async (req, res) => {
     try {
+      await User.updateMany(
+        { "game_requests.gameId": req.body.gameId },
+        {
+          $pull: { game_requests: { gameId: req.body.gameId } },
+        }
+      );
       if (req.body.accept) {
         let game = await MultiPlayer.findOneAndUpdate(
           { _id: req.body.gameId },
           { player2: { user: req.user._id }, status: true },
           { new: true }
-        );
-        console.log(
-          await User.find({ "game_requests.gameId": req.body.gameId })
         );
         await User.updateMany(
           { "game_requests.gameId": req.body.gameId },
@@ -65,15 +66,6 @@ const gameControllers = {
         res.json({ success: true, response: game });
       } else {
         await MultiPlayer.findOneAndDelete({ _id: req.body.gameId });
-        console.log(
-          await User.find({ "game_requests.gameId": req.body.gameId })
-        );
-        await User.updateMany(
-          { "game_requests.gameId": req.body.gameId },
-          {
-            $pull: { game_requests: { gameId: req.body.gameId } },
-          }
-        );
         throw new Error("Declined");
       }
     } catch (error) {

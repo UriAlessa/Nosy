@@ -59,6 +59,95 @@ const usersActions = {
       }
     };
   },
+  addFriend: (username) => {
+    return async (dispatch) => {
+      let token = localStorage.getItem("token");
+      try {
+        let response = await axios.post(
+          "http://localhost:4000/api/user/friend_request",
+          { username },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (response.data.success) {
+          dispatch({
+            type: "SEND_FRIEND_REQUEST",
+            payload: { username },
+          });
+        } else {
+          throw new Error(response.data.error);
+        }
+      } catch (error) {
+        toast.error(
+          error.message.includes("User") ? error.message : "Session expired",
+          {
+            position: "top-right",
+            style: {
+              borderRadius: "10px",
+              background: "#453ab7",
+              color: "#fff",
+              fontFamily: "Ubuntu, sans-serif",
+            },
+          }
+        );
+        return dispatch({ type: "LOG_OUT" });
+      }
+    };
+  },
+  answerFriendRequest: (accept, username) => {
+    return async (dispatch) => {
+      let token = localStorage.getItem("token");
+      try {
+        let response = await axios.put(
+          "http://localhost:4000/api/user/friend_request",
+          { accept, username },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (response.data.success) {
+          dispatch({
+            type: "ANSWER_FRIEND_REQUEST",
+            payload: { username },
+          });
+        }
+        return false;
+      } catch (error) {
+        toast.error("Session expired", {
+          position: "top-right",
+          style: {
+            borderRadius: "10px",
+            background: "#453ab7",
+            color: "#fff",
+            fontFamily: "Ubuntu, sans-serif",
+          },
+        });
+        return dispatch({ type: "LOG_OUT" });
+      }
+    };
+  },
+  sendGameRequest: (username) => {
+    return (dispatch) => {
+      dispatch({
+        type: "SEND_GAME_REQUEST",
+        payload: { username },
+      });
+    };
+  },
+  answerGameRequest: (username) => {
+    return async (dispatch) => {
+      dispatch({
+        type: "ANSWER_GAME_REQUEST",
+        payload: { username },
+      });
+    };
+  },
+
   logInLS: () => {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
@@ -68,7 +157,10 @@ const usersActions = {
             Authorization: "Bearer " + token,
           },
         });
-        dispatch({ type: "LOG_IN_USER", payload: { ...response.data, token } });
+        dispatch({
+          type: "LOG_IN_USER",
+          payload: { ...response.data, token },
+        });
       } catch {
         toast.error("Session expired", {
           position: "top-right",
@@ -96,31 +188,6 @@ const usersActions = {
         },
       });
       dispatch({ type: "LOG_OUT" });
-    };
-  },
-  setSocket: (socket) => {
-    return (dispatch) => {
-      dispatch({ type: "SET_SOCKET", payload: socket });
-    };
-  },
-  getUsers: () => {
-    return async () => {
-      let response = await axios.get("http://localhost:4000/api/admin/user", {
-        headers: {
-          key: process.env.SECRETORKEY,
-        },
-      });
-      return response;
-    };
-  },
-  updateUser: () => {
-    return async () => {
-      let response = await axios.put("http://localhost:4000/api/admin/user", {
-        headers: {
-          key: process.env.SECRETORKEY,
-        },
-      });
-      return response;
     };
   },
   sendMail: (newUser) => {

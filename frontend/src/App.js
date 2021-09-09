@@ -2,7 +2,6 @@ import "./App.css";
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import io from "socket.io-client";
 import Home from "./pages/Home";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
@@ -31,12 +30,22 @@ const App = (props) => {
       props.socket.on("game_request", (username) => {
         console.log(username);
       });
+      props.socket.on("answer_game_request", (username) => {
+        console.log(username);
+      });
+      props.socket.on("change_current_player", (username) => {
+        console.log(username);
+      });
       props.socket.on("friend_request", (username) => {
+        console.log(username);
+      });
+      props.socket.on("accepted_friend_request", (username) => {
         console.log(username);
       });
       props.socket.on("connected", (username) => {
         console.log(username);
       });
+
       props.socket.on("disconnected", (username) => {
         console.log(username);
       });

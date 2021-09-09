@@ -30,7 +30,10 @@ const userSchema = mongoose.Schema({
     connected: [{ type: mongoose.Types.ObjectId, path: "user" }],
     disconnected: [{ type: mongoose.Types.ObjectId, path: "user" }],
   },
-  friend_requests: [{ type: mongoose.Types.ObjectId, path: "user" }],
+  friend_requests: {
+    users: [{ type: mongoose.Types.ObjectId, path: "user" }],
+    creator: { type: Boolean, default: false },
+  },
   admin: {
     flag: { type: Boolean, default: false },
     key: { type: String, required: true },
@@ -40,7 +43,7 @@ const userSchema = mongoose.Schema({
   game_requests: [
     {
       gameId: { type: mongoose.Types.ObjectId, path: "multiplayer game" },
-      creator: { type: Boolean },
+      creator: { type: Boolean, default: false },
     },
   ],
 });

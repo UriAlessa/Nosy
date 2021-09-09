@@ -25,6 +25,18 @@ const usersReducer = (state = initialState, action) => {
       return {
         initialState,
       };
+    case "SEND_FRIEND_REQUEST":
+      state.socket.emit("friend_request", action.payload.username);
+      break;
+    case "ACCEPT_FRIEND_REQUEST":
+      state.socket.emit("accepted_friend_request", action.payload.username);
+      break;
+    case "SEND_GAME_REQUEST":
+      state.socket.emit("game_request", action.payload.username);
+      break;
+    case "ACCEPT_GAME_REQUEST":
+      state.socket.emit("answer_game_request", action.payload.username);
+      break;
     default:
       return state;
   }
