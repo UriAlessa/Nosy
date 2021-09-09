@@ -38,7 +38,7 @@ const server = app.listen(PORT, HOST, () =>
 
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://benosy.herokuapp.com/",
     credentials: true,
   },
 });
@@ -55,8 +55,8 @@ io.use(
 io.on("connection", (socket) => {
   const socketUsername = socket.decoded_token._doc.username;
 
-  io.sockets.emit("connected", socketUsername);
-  // socket.broadcast.emit("connected", socketUsername);
+  // io.sockets.emit("connected", socketUsername);
+  socket.broadcast.emit("connected", socketUsername);
 
   socket.join(socketUsername);
 
@@ -79,7 +79,7 @@ io.on("connection", (socket) => {
     io.to(username).emit("direct_message", socketUsername);
   });
   socket.on("disconnection", () => {
-    // io.sockets.broadcast("disconnected", socketUsername);
-    io.sockets.emit("disconnected", socketUsername);
+    io.sockets.broadcast("disconnected", socketUsername);
+    // io.sockets.emit("disconnected", socketUsername);
   });
 });

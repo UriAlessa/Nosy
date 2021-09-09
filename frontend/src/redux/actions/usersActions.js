@@ -6,7 +6,7 @@ const usersActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/signup",
+          "https://benosy.herokuapp.com/api/user/signup",
           { ...newUser }
         );
         response.data.success &&
@@ -29,7 +29,7 @@ const usersActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/login",
+          "https://benosy.herokuapp.com/api/user/login",
           { ...newUser }
         );
         if (response.data.success === false) {
@@ -64,7 +64,7 @@ const usersActions = {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/friend_request",
+          "https://benosy.herokuapp.com/api/user/friend_request",
           { username },
           {
             headers: {
@@ -102,7 +102,7 @@ const usersActions = {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.put(
-          "http://localhost:4000/api/user/friend_request",
+          "https://benosy.herokuapp.com/api/user/friend_request",
           { accept, username },
           {
             headers: {
@@ -152,11 +152,14 @@ const usersActions = {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
       try {
-        let response = await axios.get("http://localhost:4000/api/user/token", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
+        let response = await axios.get(
+          "https://benosy.herokuapp.com/api/user/token",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
         dispatch({
           type: "LOG_IN_USER",
           payload: { ...response.data, token },
@@ -192,7 +195,7 @@ const usersActions = {
   },
   sendMail: (newUser) => {
     return async () => {
-      let response = await axios.post("http://localhost:4000/api/mail", {
+      let response = await axios.post("https://benosy.herokuapp.com/api/mail", {
         ...newUser,
       });
       return response;

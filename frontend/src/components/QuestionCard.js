@@ -38,7 +38,7 @@ const QuestionCard = (props) => {
   };
   useEffect(() => {
     if (seconds > 0) {
-      timeOut = setTimeout(() => {
+      timeOut.current = setTimeout(() => {
         setSeconds(seconds - 1);
       }, 1000);
     } else if (seconds === 0) {
@@ -149,11 +149,19 @@ const QuestionCard = (props) => {
                 alt="logo"
               />
               <div className={styles.coinInfo}>
-                <img className={styles.imgInfoGame} src="/assets/coin.png" />
+                <img
+                  className={styles.imgInfoGame}
+                  src="/assets/coin.png"
+                  alt="coin"
+                />
                 <span>20</span>
               </div>
               <div className={styles.containerInfoGame}>
-                <img className={styles.imgInfoGame} src="/assets/heart_2.png" />
+                <img
+                  className={styles.imgInfoGame}
+                  src="/assets/heart_2.png"
+                  alt="heart"
+                />
                 <span>{props.game ? props.game.lifes : 5}</span>
                 <div className={styles.containerSeconds}>
                   <p className={styles.seconds}>{("0" + seconds).slice(-2)}</p>
@@ -206,7 +214,11 @@ const QuestionCard = (props) => {
                   className={styles.buttonOption}
                   onClick={Bomb}
                 >
-                  <img className={styles.imgPowers} src="/assets/bomb.png" />
+                  <img
+                    className={styles.imgPowers}
+                    src="/assets/bomb.png"
+                    alt="bomb"
+                  />
                   <div className={styles.containerIconsPowers}>
                     <h5>Bomb!</h5>
                     <div className={styles.containerCoins}>
@@ -226,7 +238,11 @@ const QuestionCard = (props) => {
                     setRepeatAnswer(true);
                   }}
                 >
-                  <img className={styles.imgPowers} src="/assets/repeat.png" />
+                  <img
+                    className={styles.imgPowers}
+                    src="/assets/repeat.png"
+                    alt="repeat"
+                  />
                   <div className={styles.containerIconsPowers}>
                     <h5>Repeat</h5>
                     <div className={styles.containerCoins}>
@@ -249,7 +265,11 @@ const QuestionCard = (props) => {
                 props.setQuestion(null);
               }}
             >
-              <img className={styles.imgPowers} src="/assets/lottery.png" />
+              <img
+                className={styles.imgPowers}
+                src="/assets/lottery.png"
+                alt="Roll"
+              />
               <div className={styles.containerIconsPowers}>
                 <h5>Roll</h5>
                 <div className={styles.containerCoins}>

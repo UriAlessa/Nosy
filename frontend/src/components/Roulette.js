@@ -14,11 +14,15 @@ const Roulette = (props) => {
     <div className={styles.rouletteContainer}>
       <div className={styles.topInfo}>
         <div className={culo.containerInfoGame}>
-          <img className={culo.imgInfoGame} src="/assets/coin.png" />
+          <img className={culo.imgInfoGame} src="/assets/coin.png" alt="coin" />
           <span>{props.coins ? props.coins : 5}</span>
         </div>
         <div className={culo.containerInfoGame}>
-          <img className={culo.imgInfoGame} src="/assets/heart_2.png" />
+          <img
+            className={culo.imgInfoGame}
+            src="/assets/heart_2.png"
+            alt="heart"
+          />
           <span>{props.game ? props.game.lifes : 5}</span>
         </div>
       </div>{" "}
@@ -27,6 +31,7 @@ const Roulette = (props) => {
           src="/assets/ruleta2.png"
           ref={props.roulette}
           className={styles.roulette}
+          alt="roulette"
         />
         {/* <div style={{ backgroundImage: "url('/assets/ruleta2.png')" }} ref={props.roulette} className={styles.roulette}>
         </div> */}
