@@ -38,7 +38,7 @@ const usersAccountControllers = {
     const { username, password, facebook, google } = req.body;
     try {
       let user = await User.findOne({ username: username });
-      if (!user) throw new Error("Username doesn't exists");
+      if (!user) throw new Error("Username doesn't exists")
       if ((user.google && !google) || (user.facebook && !facebook)) {
         throw new Error("You must log in with Google");
       }
@@ -57,7 +57,6 @@ const usersAccountControllers = {
       res.json({ success: false, error: error.message });
     }
   },
-
   addFriend: async (req, res) => {
     try {
       let user = await User.findOne({ username: req.body.username });
