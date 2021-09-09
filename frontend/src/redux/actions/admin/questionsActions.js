@@ -10,5 +10,10 @@ const questionActions = {
             return response;
         };
     },
+    // updateQuestion: () =>{
+    //     return async () => {
+    //         let response = await axios.put()
+    //     }
+    // }
 };
 export default questionActions;
