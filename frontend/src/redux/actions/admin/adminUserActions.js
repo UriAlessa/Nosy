@@ -1,12 +1,12 @@
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const adminUsersActions = {
   getUsers: () => {
     let token = localStorage.getItem("token");
     return async () => {
-      console.log(process.env.SECRETORKEY);
       let response = await axios.get(
-        "https://benosy.herokuapp.com/admin/user",
+        "http://localhost:4000/admin/user",
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -17,12 +17,26 @@ const adminUsersActions = {
     };
   },
   updateUser: (newUser) => {
-    console.log("llego");
     let token = localStorage.getItem("token");
     return async () => {
       let response = await axios.put(
-        "https://benosy.herokuapp.com/admin/user",
+        "http://localhost:4000/admin/user",
         newUser,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      return response.data;
+    };
+  },
+  createUser: (user) => {
+    let token = localStorage.getItem("token");
+    return async () => {
+      let response = await axios.put(
+        "http://localhost:4000/admin/user",
+        user,
         {
           headers: {
             Authorization: "Bearer " + token,

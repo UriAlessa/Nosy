@@ -1,33 +1,57 @@
 .adminContainer{
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.adminContainer h1{
-    color:#84eeb7;
-    padding-top: 2rem;
-    font-size: 34px;
-    text-shadow: -1px 2px 0 #389067;
-    margin: 3vh 0;
-}
-
 .dataContainer{
-    width: 90%;
+    flex-grow: 1;
+    width: 100%;
     border-radius: 50px;
-    padding: 5vh 4vw;
     display: flex;
     flex-wrap: nowrap;
 }
 
 .buttonsContainer{
+    width: 20%;
     padding: 0 2vw;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    background-color: #110e30bd;
+}
+
+.buttonsContainer img{
+    width: 60%;
+}
+
+.buttonsContainer .icon{
+    width: 30px;
+    margin-right: .5em;
+}
+
+div.dashboardLink{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1vh;
+    cursor: pointer;
+    transition: all 300ms;
+}
+
+div.dashboardLink:hover{
+    border-right: 5px solid white;
+}
+
+div.dashboardLink p{
+    color: white;
+    text-transform: uppercase;
 }
 
 .buttonsContainer .button{
-    margin: 1vh 0;
+    /* margin: 1vh 0;
     font-family: "Fredoka One", cursive;
     text-transform: uppercase;
     color: rgb(109, 98, 231);
@@ -37,7 +61,7 @@
     border-radius: 8px;
     font-size: 2.8vmin;
     padding: 2vmin 0;
-    transition: all 300ms;
+    transition: all 300ms; */
 }
 
 .buttonsContainer .button:hover{
@@ -47,6 +71,18 @@
 }
 
 .infoSection{
-    padding: 0 2vw;
+    background-color: white;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    width: 100%;
+    min-height: 15vh;
+    background-color: darkblue;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
