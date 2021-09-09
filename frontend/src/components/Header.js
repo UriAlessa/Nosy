@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { useState } from "react";
-import styles from "../styles/header.module.css";
+import styles from "../styles/other/header.module.css";
 import usersActions from "../redux/actions/usersActions";
 import otherActions from "../redux/actions/otherActions";
 

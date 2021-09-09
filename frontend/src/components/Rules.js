@@ -1,4 +1,4 @@
-import styles from "../styles/rules.module.css";
+import styles from "../styles/home/rules.module.css";
 import RuleCard from "./RuleCard";
 
 const Rules = () => {

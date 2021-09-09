@@ -1,4 +1,4 @@
-import style from "../styles/buttons.module.css";
+import style from "../styles/other/buttons.module.css";
 
 const PlayButton = ({ text, onClick }) => {
   return (

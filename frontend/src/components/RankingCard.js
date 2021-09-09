@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../styles/reviews.module.css'
+import styles from '../styles/home/reviews.module.css'
 import { connect } from 'react-redux';
 import usersActions from "../redux/actions/usersActions";
 import toast from "react-hot-toast";

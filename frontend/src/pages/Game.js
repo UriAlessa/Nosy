@@ -1,4 +1,4 @@
-import styles from "../styles/game.module.css";
+import styles from "../styles/game/game.module.css";
 import Roulette from "../components/Roulette";
 import { useEffect, useRef, useState } from "react";
 import QuestionCard from "../components/QuestionCard";
@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import questionActions from "../redux/actions/questionsActions";
 import gamesActions from "../redux/actions/gamesActions";
 import Loader from "../components/Loader";
+import Nosy from "../components/Nosy";
 import { Link } from "react-router-dom";
 
 const Game = (props) => {
@@ -124,83 +125,21 @@ const Game = (props) => {
             alt="goback"
           />
         </Link>
-        {props.game && props.game.status === false && props.game.lifes > 0 ? (
-          <h1>GANASTE PAPURRI</h1>
-        ) : props.game &&
-          props.game.status === false &&
-          props.game.lifes === 0 ? (
-          <h1>PERDISTE PAPURRI</h1>
-        ) : nosy ? (
-          <div className={styles.containerButtons}>
-            <h1>Choose a category and get the Character</h1>
-            {props.game && !props.game.player.medals.includes("Music") && (
-              <div>
-                <img src="/assets/music.png" alt="" />
-                <button
-                  onClick={categoryHandler}
-                  className={`${styles.buttonOption} ${styles.music}`}
-                >
-                  Music
-                </button>
-              </div>
-            )}
-            {props.game && !props.game.player.medals.includes("Animals") && (
-              <div>
-                <img src="/assets/animals.png" alt="" />
-                <button
-                  onClick={categoryHandler}
-                  className={`${styles.buttonOption} ${styles.animals}`}
-                >
-                  Animals
-                </button>
-              </div>
-            )}
-            {props.game &&
-              !props.game.player.medals.includes("Movies and series") && (
-                <div>
-                  <img src="/assets/movies.png" alt="" />
-                  <button
-                    onClick={categoryHandler}
-                    className={`${styles.buttonOption} ${styles.movies}`}
-                  >
-                    Movies and series
-                  </button>
-                </div>
-              )}
-            {props.game &&
-              !props.game.player.medals.includes("Science: Computers") && (
-                <div>
-                  <img src="/assets/computer.png" alt="" />
-                  <button
-                    onClick={categoryHandler}
-                    className={`${styles.buttonOption} ${styles.computers}`}
-                  >
-                    Science: Computers
-                  </button>
-                </div>
-              )}
-            {props.game &&
-              !props.game.player.medals.includes("General Knowledge") && (
-                <div>
-                  <img src="/assets/cultura.png" alt="" />
-                  <button
-                    onClick={categoryHandler}
-                    className={`${styles.buttonOption} ${styles.knowledge}`}
-                  >
-                    General Knowledge
-                  </button>
-                </div>
-              )}
-          </div>
-        ) : !question ? (
-          <Roulette
-            setNosy={setNosy}
-            setGolden={setGolden}
-            rotate={rotate}
-            playing={playing}
-            roulette={roulette}
-          />
-        ) : (
+        {props.game && props.game.status === false && props.game.lifes > 0 
+          ? <div className={styles.winner} style={{backgroundImage: 'url("/assets/winner.png")'}}></div>
+          : props.game && props.game.status === false && props.game.lifes <= 0 
+          ? <div className={styles.gameover} style={{backgroundImage: 'url("/assets/game1.png")'}}></div>
+          : nosy ? <Nosy categoryHandler={categoryHandler} game={props.game}/>
+          : !question 
+          ? (
+            <Roulette
+              setNosy={setNosy}
+              setGolden={setGolden}
+              rotate={rotate}
+              playing={playing}
+              roulette={roulette}
+            />
+          ) : (
           <QuestionCard
             reRoll={reRoll}
             question={question}

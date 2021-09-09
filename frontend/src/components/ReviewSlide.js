@@ -1,4 +1,4 @@
-import styles from "../styles/reviews.module.css";
+import styles from "../styles/home/reviews.module.css";
 const ReviewSlide = (props) => {
   return (
     <div className={styles.divGame}>

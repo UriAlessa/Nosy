@@ -1,4 +1,4 @@
-import styles from "../styles/questionCard.module.css";
+import styles from "../styles/game/questionCard.module.css";
 import { connect } from "react-redux";
 import questionActions from "../redux/actions/questionsActions";
 import { useState, useEffect, useRef } from "react";

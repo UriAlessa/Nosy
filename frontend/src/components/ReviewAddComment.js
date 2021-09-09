@@ -1,4 +1,4 @@
-import styles from "../styles/reviews.module.css";
+import styles from "../styles/home/reviews.module.css";
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { connect } from "react-redux";
