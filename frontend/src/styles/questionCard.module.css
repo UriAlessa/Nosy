@@ -159,8 +159,9 @@
 }
  @media screen and (max-width: 540px) {
   .powersButtons{
-    gap: 1rem;
+    gap: 0.9rem;
   }
+/*   hola */
   
 }
 @media screen and (max-width: 400px) {
