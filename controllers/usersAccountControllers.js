@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const Review = require("../models/Review");
 
 const usersAccountControllers = {
   signUp: async (req, res) => {
@@ -124,6 +125,50 @@ const usersAccountControllers = {
       },
     });
   },
+
+  newReview: async (req, res)=>{
+    console.log(req.user)
+    console.log(req.body)
+    let date= Date.now()
+    console.log(date)
+    try{
+      const reviewToPost = await new Review({
+        img: req.body.img,
+        userId: req.user._id,
+        date,
+        title: req.body.title,
+        description: req.body.description
+      })
+      console.log(reviewToPost)
+      await reviewToPost.save()
+      res.json({success:true, response: reviewToPost})
+    }catch(err){
+      res.json({success:false, response:"DB trouble"})
+    }
+  },
+
+
+  getReviews: async (req, res)=>{
+    let expired = 2592000000;
+    let dateNow= Date.now()
+    try{
+      let reviews = await Review.find().populate({
+        path: "userId", model:"user", select:"username avatar"
+      })
+      res.json({success: true, response: reviews.filter(review =>  dateNow - review.date < expired)
+      })
+
+    }catch(error){
+      res.json({succes:false, response: error.message})
+    }
+  }
+
+
 };
+
+
+
+
+
 
 module.exports = usersAccountControllers;
