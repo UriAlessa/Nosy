@@ -5,9 +5,14 @@ const usersAccountsControllers = require("../controllers/usersAccountControllers
 const gameControllers = require("../controllers/gameControllers");
 const passport = require("passport");
 const validator = require("../controllers/validator");
+const mailControllers = require("../controllers/mailControllers");
 
 router.route("/user/signup").post(validator, usersAccountsControllers.signUp);
 router.route("/user/login").post(usersAccountsControllers.logIn);
+router
+  .route("/user/friend_request")
+  .post(usersAccountsControllers.addFriend)
+  .put(usersAccountsControllers.acceptFriendRequest);
 
 router
   .route("/user/token")
@@ -29,11 +34,13 @@ router
     gameControllers.acceptGameRequest
   );
 
-router.route("/game/answer")
+router
+  .route("/game/answer")
   .put(
     passport.authenticate("jwt", { session: false }),
     gameControllers.answer
   );
 
+router.route("/mail").post(mailControllers.sendMail);
 
 module.exports = router;

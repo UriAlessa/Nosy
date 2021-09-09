@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const Terms = () => {
+
+  document.title = 'Terms | Nosy'
   const [items, setItems] = useState({
     one: false,
     two: false,

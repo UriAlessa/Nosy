@@ -2,7 +2,7 @@ import axios from "axios";
 
 const gamesActions = {
   createGame: (token, username = null) => {
-    return async (dispatch, getState) => {
+    return async () => {
       let response = await axios.post(
         "https://benosy.herokuapp.com/api/game/newgame",
         username,
@@ -14,7 +14,7 @@ const gamesActions = {
       );
       if (response.data.success) {
         console.log(response.data.response);
-        return response.data.success;
+        return response.data;
       }
       throw new Error();
     };

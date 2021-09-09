@@ -59,7 +59,96 @@ const usersActions = {
       }
     };
   },
-  logInLS: (socket) => {
+  addFriend: (username) => {
+    return async (dispatch) => {
+      let token = localStorage.getItem("token");
+      try {
+        let response = await axios.post(
+          "https://benosy.herokuapp.com/api/user/friend_request",
+          { username },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (response.data.success) {
+          dispatch({
+            type: "SEND_FRIEND_REQUEST",
+            payload: { username },
+          });
+        } else {
+          throw new Error(response.data.error);
+        }
+      } catch (error) {
+        toast.error(
+          error.message.includes("User") ? error.message : "Session expired",
+          {
+            position: "top-right",
+            style: {
+              borderRadius: "10px",
+              background: "#453ab7",
+              color: "#fff",
+              fontFamily: "Ubuntu, sans-serif",
+            },
+          }
+        );
+        return dispatch({ type: "LOG_OUT" });
+      }
+    };
+  },
+  answerFriendRequest: (accept, username) => {
+    return async (dispatch) => {
+      let token = localStorage.getItem("token");
+      try {
+        let response = await axios.put(
+          "https://benosy.herokuapp.com/api/user/friend_request",
+          { accept, username },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (response.data.success) {
+          dispatch({
+            type: "ANSWER_FRIEND_REQUEST",
+            payload: { username },
+          });
+        }
+        return false;
+      } catch (error) {
+        toast.error("Session expired", {
+          position: "top-right",
+          style: {
+            borderRadius: "10px",
+            background: "#453ab7",
+            color: "#fff",
+            fontFamily: "Ubuntu, sans-serif",
+          },
+        });
+        return dispatch({ type: "LOG_OUT" });
+      }
+    };
+  },
+  sendGameRequest: (username) => {
+    return (dispatch) => {
+      dispatch({
+        type: "SEND_GAME_REQUEST",
+        payload: { username },
+      });
+    };
+  },
+  answerGameRequest: (username) => {
+    return async (dispatch) => {
+      dispatch({
+        type: "ANSWER_GAME_REQUEST",
+        payload: { username },
+      });
+    };
+  },
+
+  logInLS: () => {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
       try {
@@ -73,7 +162,7 @@ const usersActions = {
         );
         dispatch({
           type: "LOG_IN_USER",
-          payload: { ...response.data, token, socket },
+          payload: { ...response.data, token },
         });
       } catch {
         toast.error("Session expired", {
@@ -104,34 +193,11 @@ const usersActions = {
       dispatch({ type: "LOG_OUT" });
     };
   },
-  setSocket: (socket) => {
-    return (dispatch) => {
-      dispatch({ type: "SET_SOCKET", payload: socket });
-    };
-  },
-  getUsers: () => {
+  sendMail: (newUser) => {
     return async () => {
-      let response = await axios.get(
-        "https://benosy.herokuapp.com/api/admin/user",
-        {
-          headers: {
-            key: process.env.SECRETORKEY,
-          },
-        }
-      );
-      return response;
-    };
-  },
-  updateUser: () => {
-    return async () => {
-      let response = await axios.put(
-        "https://benosy.herokuapp.com/api/admin/user",
-        {
-          headers: {
-            key: process.env.SECRETORKEY,
-          },
-        }
-      );
+      let response = await axios.post("https://benosy.herokuapp.com/api/mail", {
+        ...newUser,
+      });
       return response;
     };
   },

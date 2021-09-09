@@ -2,7 +2,6 @@ import "./App.css";
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import io from "socket.io-client";
 import Home from "./pages/Home";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
@@ -20,27 +19,38 @@ import Loader from "./components/Loader";
 
 const App = (props) => {
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      props.logInLS(
-        io("https://benosy.herokuapp.com/", {
-          query: "token=" + token,
-        })
-      );
+    if (localStorage.getItem("token")) {
+      props.logInLS();
     }
     // eslint-disable-next-line
   }, []);
-  if (props.socket) {
-    props.socket.on("game_request", (username) => {
-      console.log(username);
-    });
-    props.socket.on("friend_request", (username) => {
-      console.log(username);
-    });
-    props.socket.on("connected", (username) => {
-      console.log(username);
-    });
-  }
+
+  useEffect(() => {
+    if (props.socket) {
+      props.socket.on("game_request", (username) => {
+        console.log(username);
+      });
+      props.socket.on("answer_game_request", (username) => {
+        console.log(username);
+      });
+      props.socket.on("change_current_player", (username) => {
+        console.log(username);
+      });
+      props.socket.on("friend_request", (username) => {
+        console.log(username);
+      });
+      props.socket.on("accepted_friend_request", (username) => {
+        console.log(username);
+      });
+      props.socket.on("connected", (username) => {
+        console.log(username);
+      });
+
+      props.socket.on("disconnected", (username) => {
+        console.log(username);
+      });
+    }
+  }, [props.socket]);
 
   return (
     <BrowserRouter>
@@ -56,7 +66,6 @@ const App = (props) => {
         <Route path="/accounts" component={!props.token ? Account : Home} />
         <Route path="/selectgame" component={GameButtons} />
         <Route path="/admin" component={AdminPanel} />
-        <Redirect to="/" />
         <Route path="/loader" component={Loader} />
         <Redirect to="/notFound" />
       </Switch>
@@ -74,7 +83,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   logInLS: usersActions.logInLS,
-  setSocket: usersActions.setSocket,
   showMenuResponsive: otherActions.showMenu,
 };
 

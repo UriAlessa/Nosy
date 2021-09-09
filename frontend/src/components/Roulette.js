@@ -1,28 +1,17 @@
 import styles from "../styles/roulette.module.css";
 
 const Roulette = (props) => {
+  const shadows =["shadow1.png","shadow2.png","shadow3.png","shadow4.png","shadow5.png"]
   return (
     <div className={styles.rouletteContainer}>
-      <svg
-        className={styles.indicator}
-        xmlns="http://www.w3.org/2000/svg"
-        width="50"
-        height="50"
-        fill="currentColor"
-        className="bi bi-play-fill"
-        viewBox="0 0 16 16"
-      >
-        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
-      </svg>
-      <img
-        ref={props.roulette}
-        onClick={() => {
-          !props.playing && props.rotate();
-        }}
-        alt="roulette"
-        className={styles.roulette}
-        src="/assets/ruleta1.png"
-      />
+      <div className={styles.shadows}>
+        {shadows.map((shadow,index)=> <img key={index} className={styles.picShadow} src={`assets/${shadow}`} alt={shadow}/>)}
+      </div>
+      <div className={styles.containerRoulette}>
+        <div style={{backgroundImage: "url('/assets/ruleta2.png')"}} ref={props.roulette}  className={styles.roulette}>
+      </div>
+        <img src="/assets/spin.png"alt="spin" className={styles.buttonRoulette} onClick={() => {!props.playing && props.rotate()}}/>
+      </div>
     </div>
   );
 };

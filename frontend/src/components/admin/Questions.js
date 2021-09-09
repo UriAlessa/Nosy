@@ -31,11 +31,12 @@ const Questions = (props) => {
       <table>
         <thead>
           <tr>
-            <th>Image</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Coins</th>
-            <th>Actions</th>
+            <th>Category</th>
+            <th>Question</th>
+            <th>Possible Answer</th>
+            <th>Correct Answer</th>
+            <th>Creator</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>

@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const playerSchema = mongoose.Schema({
   user: { type: mongoose.Types.ObjectId, path: "user" },
-  // cambiar por un array de objetos pregunta: id, correct: true/false
   questions: [
     {
       question: { type: mongoose.Types.ObjectId, path: "question" },
@@ -19,6 +18,12 @@ const MultiPlayerGame = mongoose.Schema({
   status: { type: Boolean, default: false },
   player1: playerSchema,
   player2: playerSchema,
+  chat: [
+    {
+      autor: { type: String, required: true },
+      comentario: { type: String, required: true },
+    },
+  ],
   current_player: { type: mongoose.Types.ObjectId, path: "user" },
 });
 

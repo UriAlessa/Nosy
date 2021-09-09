@@ -5,6 +5,8 @@ import Footer from "../components/Footer"
 
 const Privacy = () => {
 
+    document.title = 'Privacy | Nosy'
+
     const [items, setItems] = useState({
         one: false, two: false, three: false, four: false, five: false, six: false, seven: false
     })
