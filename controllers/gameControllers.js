@@ -73,7 +73,6 @@ const gameControllers = {
     }
   },
   getCurrentGame: async (req, res) => {
-    console.log(req.user);
     try {
       res.json({
         success: true,
@@ -90,9 +89,6 @@ const gameControllers = {
     try {
       if (multi_player) {
       } else {
-        console.log(nosy);
-        console.log(answer);
-        console.log(question.category);
         if (nosy && answer) {
           await SinglePlayer.findOneAndUpdate(
             { _id: game_id._id },
@@ -125,6 +121,28 @@ const gameControllers = {
           { $inc: { coins: coins } },
           { new: true }
         );
+        console.log(newUserState.statistics.single_player);
+        if (newGameState.player.medals.length === 5) {
+          newGameState = await SinglePlayer.findOneAndUpdate(
+            { _id: game_id._id },
+            { $set: { status: false } },
+            { new: true }
+          );
+          const { total, wins } = newUserState.statistics.single_player;
+          const win_pct = ((wins + 1) / (total + 1)) * 100;
+          newUserState = await User.findOneAndUpdate(
+            { _id: req.user._id },
+            {
+              $inc: { "statistics.single_player.total": 1 },
+              $inc: { "statistics.single_player.wins": 1 },
+              $inc: { "statistics.single_player.win_pct": win_pct },
+              $set: { "playing_now.status": false },
+              $set: { "playing_now.game_id": "" },
+              $set: { "playing_now.multi_player": true },
+            },
+            { new: true }
+          );
+        }
         res.json({ success: true, response: { newGameState, newUserState } });
       }
     } catch (error) {
