@@ -152,6 +152,22 @@
   color: white;
 }
 
+.coinInfo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.coinInfo img{
+  margin-right: 5px;
+}
+
+.coinInfo span{
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+}
+
 @media screen and (max-width: 600px) {
   .logo {
     width: 25vw;

@@ -10,6 +10,7 @@ import Loader from "../components/Loader";
 const Game = (props) => {
   // const [questions, setQuestions] = useState([]);
   const roulette = useRef();
+  let reRoll = useRef();
   const [loader, setLoader] = useState(true);
   const [question, setQuestion] = useState(null);
   const [category, setCategory] = useState(null);
@@ -60,50 +61,43 @@ const Game = (props) => {
     let degrees = rand / 360;
     degrees = (degrees - parseInt(degrees.toString().split(".")[0])) * 360;
     roulette.current.style.transform = "rotate(+" + rand + "deg)";
-    console.log(degrees);
     switch (true) {
-      case degrees > 30 && degrees <= 90:
-        setTimeout(() => {
-          setPlaying(!playing);
-          setCategory("Movies and series");
-        }, 5000);
-
-        break;
-      case degrees > 90 && degrees <= 150:
-        setTimeout(() => {
-          setPlaying(!playing);
-          setCategory("Science: Computers");
-        }, 5000);
-
-        break;
-      case degrees > 150 && degrees <= 210:
-        setTimeout(() => {
-          setPlaying(!playing);
-          setCategory("General Knowledge");
-        }, 5000);
-
-        break;
-      case degrees > 210 && degrees <= 270:
-        setTimeout(() => {
-          setPlaying(!playing);
-          setCategory("Animals");
-        }, 5000);
-
-        break;
-      case degrees > 270 && degrees <= 330:
-        setTimeout(() => {
-          setPlaying(!playing);
-          setCategory("Music");
-        }, 5000);
-
-        break;
+      // case degrees > 30 && degrees <= 90:
+      //   setTimeout(() => {
+      //     setPlaying(!playing);
+      //     setCategory("Movies and series");
+      //   }, 5000);
+      //   break;
+      // case degrees > 90 && degrees <= 150:
+      //   setTimeout(() => {
+      //     setPlaying(!playing);
+      //     setCategory("Science: Computers");
+      //   }, 5000);
+      //   break;
+      // case degrees > 150 && degrees <= 210:
+      //   setTimeout(() => {
+      //     setPlaying(!playing);
+      //     setCategory("General Knowledge");
+      //   }, 5000);
+      //   break;
+      // case degrees > 210 && degrees <= 270:
+      //   setTimeout(() => {
+      //     setPlaying(!playing);
+      //     setCategory("Animals");
+      //   }, 5000);
+      //   break;
+      // case degrees > 270 && degrees <= 330:
+      //   setTimeout(() => {
+      //     setPlaying(!playing);
+      //     setCategory("Music");
+      //   }, 5000);
+      //   break;
       default:
         setTimeout(() => {
           setPlaying(!playing);
           setNosy(true);
           setGolden(true);
         }, 5000);
-      // props.setNosy(true)
     }
   };
   const rotate = () => {
@@ -119,23 +113,69 @@ const Game = (props) => {
       style={{ backgroundImage: "url('/assets/background.png')" }}
     >
       <div className={styles.renderGame}>
-        {nosy ? (
+        {props.game && props.game.status === false ? (
+          <h1>GANASTER PAPURRI</h1>
+        ) : nosy ? (
           <div className={styles.containerButtons}>
-            <button onClick={categoryHandler} className={styles.buttonOption}>
-              Music
-            </button>
-            <button onClick={categoryHandler} className={styles.buttonOption}>
-              Animals
-            </button>
-            <button onClick={categoryHandler} className={styles.buttonOption}>
-              Movies and series
-            </button>
-            <button onClick={categoryHandler} className={styles.buttonOption}>
-              Science: Computers
-            </button>
-            <button onClick={categoryHandler} className={styles.buttonOption}>
-              General Knowledge
-            </button>
+            <h1>Choose a category and get the Character</h1>
+            {props.game && !props.game.player.medals.includes("Music") && (
+              <div>
+                <img src="/assets/music.png" alt="" />
+                <button
+                  onClick={categoryHandler}
+                  className={`${styles.buttonOption} ${styles.music}`}
+                >
+                  Music
+                </button>
+              </div>
+            )}
+            {props.game && !props.game.player.medals.includes("Animals") && (
+              <div>
+                <img src="/assets/animals.png" alt="" />
+                <button
+                  onClick={categoryHandler}
+                  className={`${styles.buttonOption} ${styles.animals}`}
+                >
+                  Animals
+                </button>
+              </div>
+            )}
+            {props.game &&
+              !props.game.player.medals.includes("Movies and series") && (
+                <div>
+                  <img src="/assets/movies.png" alt="" />
+                  <button
+                    onClick={categoryHandler}
+                    className={`${styles.buttonOption} ${styles.movies}`}
+                  >
+                    Movies and series
+                  </button>
+                </div>
+              )}
+            {props.game &&
+              !props.game.player.medals.includes("Science: Computers") && (
+                <div>
+                  <img src="/assets/computer.png" alt="" />
+                  <button
+                    onClick={categoryHandler}
+                    className={`${styles.buttonOption} ${styles.computers}`}
+                  >
+                    Science: Computers
+                  </button>
+                </div>
+              )}
+            {props.game &&
+              !props.game.player.medals.includes("General Knowledge") && (
+                <div>
+                  <img src="/assets/cultura.png" alt="" />
+                  <button
+                    onClick={categoryHandler}
+                    className={`${styles.buttonOption} ${styles.knowledge}`}
+                  >
+                    General Knowledge
+                  </button>
+                </div>
+              )}
           </div>
         ) : !question ? (
           <Roulette
@@ -147,6 +187,7 @@ const Game = (props) => {
           />
         ) : (
           <QuestionCard
+            reRoll={reRoll}
             question={question}
             setQuestion={setQuestion}
             setPlaying={setPlaying}
@@ -167,6 +208,7 @@ const mapStateToProps = (state) => {
   return {
     render: state.questions.render,
     token: state.users.token,
+    game: state.game.game,
   };
 };
 

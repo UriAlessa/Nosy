@@ -23,15 +23,29 @@
   position: relative;
 }
 .buttonRoulette {
-  width: 3rem;
+  width: 7vmin;
   position: absolute;
-  top: 52%;
+  top: 46%;
 }
 .shadows {
-  width: 100%;
+  width: 60%;
   height: 10vh;
+  display: flex;
+  justify-content: center;
+  /* background-color: red; */
 }
 .picShadow {
+  width: 5vw;
+}
+.topInfo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 4vw;
+  padding: 2vh 3vw;
+}
+
+.avatar {
   width: 5vw;
 }
 

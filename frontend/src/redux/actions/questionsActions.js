@@ -7,7 +7,6 @@ const questionActions = {
     };
   },
   getQuestion: (category) => {
-    console.log(category);
     return async (dispatch) => {
       try {
         let response = await axios.get(
@@ -15,16 +14,8 @@ const questionActions = {
         );
         return response.data.response;
       } catch (error) {
-        console.log();
+        alert("network error");
       }
-    };
-  },
-  getQuestions: () => {
-    return async () => {
-      let response = await axios.get(
-        "http://localhost:4000/api/admin/questions"
-      );
-      return response;
     };
   },
 };

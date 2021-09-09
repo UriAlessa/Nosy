@@ -19,6 +19,8 @@ const usersReducer = (state = initialState, action) => {
           query: "token=" + action.payload.token,
         }),
       };
+    case "UPDATE_USER":
+      break;
     case "LOG_OUT":
       localStorage.removeItem("token");
       state.socket.emit("disconnection");
