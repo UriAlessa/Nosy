@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import questionActions from "../redux/actions/questionsActions";
 import { useState, useEffect, useRef } from "react";
 import gamesActions from "../redux/actions/gamesActions";
+import toast from "react-hot-toast";
 
 const QuestionCard = (props) => {
   const { question, possibleAnswers, correctAnswer, category } = props.question;
@@ -15,6 +16,7 @@ const QuestionCard = (props) => {
   const [audio, setAudio] = useState({});
   let answersContainer = useRef();
   const [seconds, setSeconds] = useState(15);
+
 
   let timeOut = useRef();
   const sendAnswer = async (answer, powers_used, coins_spent) => {
@@ -193,7 +195,7 @@ const QuestionCard = (props) => {
                       key={index}
                       className={
                         bomb.includes(string)
-                          ? styles.buttonOptionBombed
+                          ? styles.buttonOptionBombed 
                           : styles.buttonOption
                       }
                       name={string}
@@ -211,14 +213,16 @@ const QuestionCard = (props) => {
               <>
                 <button
                   disabled={
-                    repeatAnswer || bomb.length !== 0 || props.coins < 30
-                  }
+                    repeatAnswer || bomb.length !== 0 }
                   className={
                     props.coins < 30
-                      ? styles.buttonOptionBombed
+                      ? styles.noMoney 
                       : styles.buttonOption
                   }
-                  onClick={Bomb}
+                  onClick={()=>{
+                    props.coins>29&&Bomb()
+                    props.coins<30 && toast.error("You can't buy this.")
+                  }}
                 >
                   <img
                     className={styles.imgPowers}
@@ -238,16 +242,15 @@ const QuestionCard = (props) => {
                 </button>
                 <button
                   disabled={
-                    repeatAnswer || bomb.length !== 0 || props.coins < 25
-                  }
+                    repeatAnswer || bomb.length !== 0 }
                   className={
                     props.coins < 25
-                      ? styles.buttonOptionBombed
+                      ? styles.noMoney 
                       : styles.buttonOption
                   }
                   onClick={() => {
-                    repeatAnswerRef.current = true;
-                    setRepeatAnswer(true);
+                    props.coins>24 && (repeatAnswerRef.current = true && setRepeatAnswer(true))
+                    props.coins<25 && toast.error("You can't buy this.")
                   }}
                 >
                   <img
@@ -269,16 +272,19 @@ const QuestionCard = (props) => {
               </>
             )}
             <button
-              disabled={repeatAnswer || bomb.length !== 0 || props.coins < 20}
+             disabled={repeatAnswer || bomb.length !== 0 } 
               className={
                 props.coins < 20
-                  ? styles.buttonOptionBombed
+                  ? styles.noMoney 
                   : styles.buttonOption
               }
               onClick={() => {
-                props.reRoll.current = true;
-                props.setPlaying(false);
-                props.setQuestion(null);
+                if(props.coins>19){
+                  props.reRoll.current = true;
+                  props.setPlaying(false);
+                  props.setQuestion(null);
+                }
+               props.coins<20 && toast.error("You can't buy this.")
               }}
             >
               <img
