@@ -1,52 +1,32 @@
 .adminContainer{
+    width: 100%;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-}
-
-.adminContainer h1{
-    color:#84eeb7;
-    padding-top: 2rem;
-    font-size: 34px;
-    text-shadow: -1px 2px 0 #389067;
-    margin: 3vh 0;
 }
 
 .dataContainer{
     width: 90%;
-    border-radius: 50px;
-    padding: 5vh 4vw;
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-.buttonsContainer{
-    padding: 0 2vw;
+    height: 90vh;
+    border: 5px solid white;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
 }
 
-.buttonsContainer .button{
-    margin: 1vh 0;
-    font-family: "Fredoka One", cursive;
-    text-transform: uppercase;
-    color: rgb(109, 98, 231);
-    background-color: rgb(225, 223, 255);
-    border: none;
-    width: 15vw;
-    border-radius: 8px;
-    font-size: 2.8vmin;
-    padding: 2vmin 0;
-    transition: all 300ms;
+.navContainer{
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-.buttonsContainer .button:hover{
-    background-color: rgb(109, 98, 231);
-    color: rgb(225, 223, 255);
-    cursor: pointer;
+.spanPanel{
+    color: rgb(240, 240, 240);
+    width: 10%;
+    font-family:"Ubuntu", "sans-serif" ;
 }
-
-.infoSection{
-    padding: 0 2vw;
-    width: 100%;
+.infoSection {
+    flex: 1;
+    /* background-color: red; */
 }

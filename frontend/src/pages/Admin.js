@@ -3,24 +3,27 @@ import { useState } from "react"
 import Users from "../components/admin/Users"
 import Questions from "../components/admin/Questions"
 import Games from "../components/admin/Games"
+import Dashboard from "../components/admin/Dashboard"
 
 const AdminPanel = () => {
-    const [view, setView] = useState(null)
+    const [view, setView] = useState("dashboard")
 
     return (
         <section className={styles.adminContainer}>
-            <h1>Admin Panel</h1>
             <div className={styles.dataContainer}>
-                <div className={styles.buttonsContainer}>
-                    <button className={styles.button} onClick={() => setView('users')}>Users</button>
-                    <button className={styles.button} onClick={() => setView('questions')}>Questions</button>
-                    <button className={styles.button} onClick={() => setView('games')}>Games</button>
-                </div>
+                <nav className={styles.navContainer}>
+                    <span className={styles.spanPanel} onClick={() => setView('users')}>Users</span>
+                    <span className={styles.spanPanel} onClick={() => setView('questions')}>Questions</span>
+                    <span className={styles.spanPanel} onClick={() => setView('games')}>Games</span>
+                    <span className={styles.spanPanel} onClick={() => setView('dashboard')}>Dashboard</span>
+                </nav>
                 <div className={styles.infoSection}>
                     {view === 'users' && <Users />}
                     {view === 'questions' && <Questions />}
                     {view === 'games' && <Games />}
+                    {view === 'dashboard' && <Dashboard />}
                 </div>
+                
             </div>
 
         </section>

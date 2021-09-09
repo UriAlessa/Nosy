@@ -6,7 +6,7 @@ const adminUsersActions = {
     return async () => {
       console.log(process.env.SECRETORKEY);
       let response = await axios.get(
-        "https://benosy.herokuapp.com/admin/user",
+        "http://localhost:4000/api/admin/user",
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -21,7 +21,7 @@ const adminUsersActions = {
     let token = localStorage.getItem("token");
     return async () => {
       let response = await axios.put(
-        "https://benosy.herokuapp.com/admin/user",
+        "http://localhost:4000/api/admin/user",
         newUser,
         {
           headers: {

@@ -1,7 +1,7 @@
 article.userCard{
     color: white;
     border-radius: 0 0 15px 0;
-    border-bottom: 2px solid white;
+    border-bottom: 1px solid white;
     margin-bottom: 1em;
     display: flex;
     justify-content: space-between;
@@ -13,6 +13,8 @@ article.userCard{
     width: 100%;
     display: flex;
     align-items: center;
+    font-family:"Ubuntu", "sans-serif";
+    font-size: 1vw;
 }
 
 .userAvatar{
@@ -32,17 +34,20 @@ article.userCard{
 }
 
 .buttonSection img{
-    width: 40px;
-    margin: 0 5px;
+    width: 25px;
+    margin: 0 1vw;
     cursor: pointer;
 }
-
+.divConnect{
+    display: flex;
+    align-items: center;
+}
 .connected{
-    width: 20px;
+    width: 16px;
+    height: 16px;
 }
 
 .userDetails{
-    /* height: 80vh; */
     padding-bottom: 3vh;
     width: 100%;
     background-color: white;

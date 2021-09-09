@@ -42,14 +42,14 @@ const UserCard = (props) => {
                     <div className={styles.userAvatar} style={{ backgroundImage: `url('${avatar}')` }}></div>
                     <div style={{ width: '25%' }}>
                         <h4>Username</h4>
-                        <h3>{username}</h3>
+                        <p>{username}</p>
                     </div>
                     <div style={{ flex: '1' }}>
                         <h4>Email</h4>
-                        <h3>{email}</h3>
+                        <p>{email}</p>
                     </div>
-                    <div style={{ width: '20%' }}>
-                        <h4>Connected</h4>
+                    <div className={styles.divConnect} style={{ width: '20%' }}>
+                        <p>Connected</p>
                         <img className={styles.connected} src={connected ? '/assets/online.png' : '/assets/offline.png'} />
                     </div>
                 </div>
