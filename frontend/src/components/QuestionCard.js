@@ -14,9 +14,6 @@ const QuestionCard = (props) => {
   const [audio, setAudio] = useState({});
   let answersContainer = useRef();
   const [seconds, setSeconds] = useState(15);
-  /*   let questionAudio = new Audio("/assets/question.wav");
-  let correctAudio = new Audio("/assets/correct.wav");
-  let incorrectAudio = new Audio("/assets/incorrect.wav"); */
 
   let timeOut = useRef();
 
@@ -233,6 +230,7 @@ const QuestionCard = (props) => {
           </div>
         </article>
       )}
+      {/* <div class="overlay"></div> */}
     </section>
   );
 };
