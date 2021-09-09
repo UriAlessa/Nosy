@@ -1,183 +1,217 @@
-html * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  .section {
-      font-family: 'Fredoka One', cursive;
-      width: 100%;
-      min-height: 80vh;
-  }
-  .section h2{
-      color:#84eeb7;
-      margin-top: 1rem;
-      font-size: 34px;
-      text-shadow: -1px 2px 0 #389067;
-  }
-  
-  .section h2, .section p{
-      text-align: center;
-  }
-  
-  .section p{
-      color: white;
-      margin-bottom: 50px;
-      font-size: 19px; 
-      font-family: 'Ubuntu', sans-serif;
-  }
-  
-  .containerSection{
-      margin: 0 9%;
-      display: flex;
-      justify-content: center;
-      display: grid;
-      grid-template-columns: repeat(2, 42%);
-      gap: 6vmin;
-  }
-  .card{
-      background-color: #655fdf41;
-      font-family: 'Ubuntu', sans-serif;
-      height: 480px;
-      display:flex;
-      flex-direction: column;
-      align-items: center;
-      border-radius: 3%;
-      box-shadow: 0 7px 5px 0 rgb(0 0 0 / 15%);
-      padding: 0.5rem;
-      
-  }
-  .card h3{
-      background-color: transparent;
-      color: #e3be31;
-      text-align: center;
-      font-size: 19px;
-      font-weight: bold;
-  }
-  
-  .card h4{
-    background-color: transparent;
-    color: #dabd4a;
-    text-align: center;
-    font-size: 19px;
-    font-weight: bold;
-}
-  .card img{
-      height: 55%;
-      margin: 25px 0;
-  }
-  .card img,
-  .card p {
-    background-color: transparent;
-    font-family: "Ubuntu", sans-serif;
-  }
-  
-  .card p{
-      font-size: 17px;
-      margin: 10px 20px;
-      font-weight: 401;
-  }
-  .imgCard {
-    width: 500px;
-    height: 300px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .card p {
-    font-size: 2vmin;
-  }
-
-  .card div p{
-    background-color: transparent;
-    color: #e3be31;
-    text-align: center;
-    font-size: 19px;
-    font-weight: bold;
+.sectionGames {
+  margin: 5% 9%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-  @media only screen and (max-width: 1335px) {
-    .card {
-      height: 90%;
-    }
-  }
+.sectionGames h2 {
+  text-align: center;
+  font-size: 5vmin;
+  font-family: "Fredoka One", cursive;
+  color: rgb(136, 240, 192);
+  text-shadow: -1px 2px 0 #389067;
+  letter-spacing: 4px;
+  margin: 50px 0;
+}
+
+.articleGames {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5vmin;
   
-  @media only screen and (max-width: 1024px) {
-    .containerCards {
-      width: 90%;
-      height: 80%;
-    }
+}
+
+.divGame {
+  flex: 1;
+  background: rgb(27,33,85);
+  background: radial-gradient(circle, rgba(27,33,85,0.5718662464985995) 0%, rgba(25,22,61,1) 100%);  border-radius: 10px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
+  padding: 2vmin;
+}
+
+.picGame {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  width: 100%;
+  height: 20rem;
+}
+
+.descriptionGame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3vmin;
+}
+
+.titleDescription {
+  text-transform: uppercase;
+  font-family: "Fredoka One", cursive;
+  color: rgb(245, 209, 35);
+  letter-spacing: 2px;
+}
+
+.subtitleDescription {
+  text-transform: uppercase;
+  font-family: "Fredoka One", cursive;
+  color: rgb(225, 223, 255);
+  letter-spacing: 1.5px;
+  font-weight: 200;
+  font-size: 1.3vw;
+}
+.pDescription {
+  font-family: "Ubuntu", sans-serif;
+  color: rgb(225, 223, 255);
+}
+.inputs {
+  font-family: "Fredoka One", cursive;
+  color: rgb(159, 158, 167);
+  background-color: transparent;
+  box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
+  margin:.5rem;
+  border: none;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 2.8vmin;
+  padding: 1.5vmin;
+}
+
+.buttonAddComment{
+  position:relative;
+  top: 45px;
+  left: 90%;
+  font-family: "Fredoka One", cursive;
+  color: rgb(0, 0, 0);
+  background-color: rgb(245, 209, 35);
+  box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
+  border: none;
+  width: 7%;
+  border-radius: 100%;
+  font-size: 3.8vmin;
+  padding: .5vmin;
+}
+
+.submitButton{
+  font-family: "Fredoka One", cursive;
+  color: rgb(245, 209, 35);
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  border-radius: 2%;
+  font-size: 3.8vmin;
+  padding: 1.5vmin;
+  margin:1vmin;
+  text-align: center;
+}
+
+@media (min-width: 916px) and (max-width: 1100px) {
+  .articleGames {
+    grid-template-columns: 70%;
   }
-  
-  @media only screen and (max-width: 768px) {
-    .card {
-      width: 70%;
-      height: 60%;
-    }
-    .section {
-      height: 200vh;
-    }
-    .containerCards {
-      flex-direction: column;
-      gap: 2rem;
-    }
-    .card img {
-      width: 30%;
-    }
-    .card p {
-      font-size: 1.5rem;
-    }
-    .card h3 {
-      font-size: 2rem;
-    }
+
+  .sectionGames h2 {
+    font-size: 4vw;
   }
-  
-  @media only screen and (max-width: 600px) {
-    .card {
-      width: 80%;
-      height: 60%;
-    }
-    .card img {
-      width: 30%;
-    }
-    .card p {
-      font-size: 1rem;
-    }
-    .card h3 {
-      font-size: 1.5rem;
-    }
-    .card img {
-      width: 40%;
-    }
-    .section p {
-      font-size: 1.5rem;
-    }
+  .titleDescription {
+    font-size: 3vw;
   }
-  @media only screen and (max-width: 500px) {
-    .section h2 {
-      font-size: 2rem;
-    }
-    .card {
-      width: 100%;
-      height: 60%;
-    }
-    .card p {
-      font-size: 4vmin;
-    }
+  .subtitleDescription {
+    font-size: 2vw;
   }
+  .buttonDescription {
+    width: 25vw;
+    font-size: 2vw;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 916px) {
+  .articleGames {
+    grid-template-columns: 90%;
+  }
+
+  .sectionGames h2 {
+    font-size: 4.5vw;
+  }
+  .titleDescription {
+    font-size: 3.5vw;
+  }
+  .subtitleDescription {
+    font-size: 2.5vw;
+  }
+  .buttonDescription {
+    width: 25vw;
+    font-size: 2.5vw;
+  }
+}
+
+@media (min-width: 550px) and (max-width: 768px) {
+  .articleGames {
+    grid-template-columns: 100%;
+  }
+
+  .sectionGames h2 {
+    font-size: 4.5vw;
+  }
+  .titleDescription {
+    font-size: 4vw;
+  }
+  .subtitleDescription {
+    font-size: 2.3vw;
+  }
+  .buttonDescription {
+    width: 25vw;
+    font-size: 2.7vw;
+  }
+
+  .pDescription {
+    font-size: 2.4vw;
+  }
+}
+
+@media (max-width: 550px) {
+  .articleGames {
+    grid-template-columns: 100%;
+  }
+  .sectionGames h2 {
+    font-size: 6vw;
+  }
+  .titleDescription {
+    font-size: 3vw;
+    text-align: center;
+  }
+
+  .subtitleDescription {
+    font-size: 2.5vw;
+  }
+
+  .buttonDescription {
+    min-width: 25vw;
+    font-size: 2.5vw;
+    align-self: center;
+  }
+  .pDescription {
+    font-size: 2.3vw;
+  }
+}
   
 
   /**Ranking********************/
-  /* .container {
-    background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/concrete-texture.png");
+  .container {
     display: flex;
     flex-wrap: wrap;
     height: 100vh;
     align-items: center;
     justify-content: center;
     padding: 0 20px;
-  } */
+  }
   
   .rating {
     display: flex;
@@ -242,12 +276,10 @@ html * {
   
   .emojiWrapper:before {
     top: 0;
-    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 35%,rgba(255,255,255,0) 100%);
   }
   
   .emojiWrapper:after{
     bottom: 0;
-    background: linear-gradient(to top, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 35%,rgba(255,255,255,0) 100%);
   }
   
   .emoji {
