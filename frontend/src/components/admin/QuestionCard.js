@@ -15,8 +15,7 @@ const QuestionCard = (props) => {
 
     return (
         <div className={styles.questionContainer}>
-            <p><span>Creator: </span>{creator}</p>
-            <p><span>Creator: </span>{creator}</p>
+            <p><span>Creator</span>{creator}</p>
             <h4>{category}</h4>
             {edit ? <textarea rows='3' defaultValue={question}></textarea> : <h4>{question}</h4>}
             {possibleAnswers.map((answer) => {
