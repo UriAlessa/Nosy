@@ -109,7 +109,7 @@ const Game = (props) => {
   const rotate = () => {
     setPlaying(!playing);
     audio.play();
-    let rand = Math.random() * 360 + 360;
+    let rand = Math.random() * 360 + 3600;
     selectCategory(rand);
   };
 

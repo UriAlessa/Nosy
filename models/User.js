@@ -36,7 +36,7 @@ const userSchema = mongoose.Schema({
   },
   admin: {
     flag: { type: Boolean, default: false },
-    key: { type: String, required: true },
+    key: { type: String },
   },
   facebook: { type: Boolean, default: false },
   google: { type: Boolean, default: false },
