@@ -9,16 +9,16 @@ const userSchema = mongoose.Schema({
   coins: { type: Number, default: 0 },
   statistics: {
     multi_player: {
-      total: Number,
-      wins: Number,
-      losses: Number,
-      win_pct: Number,
+      total: { type: Number, default: 0 },
+      wins: { type: Number, default: 0 },
+      losses: { type: Number, default: 0 },
+      win_pct: { type: Number, default: 0 },
     },
     single_player: {
-      total: Number,
-      wins: Number,
-      losses: Number,
-      win_pct: Number,
+      total: { type: Number, default: 0 },
+      wins: { type: Number, default: 0 },
+      losses: { type: Number, default: 0 },
+      win_pct: { type: Number, default: 0 },
     },
   },
   playing_now: {

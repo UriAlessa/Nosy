@@ -4,12 +4,13 @@ import { connect } from 'react-redux'
 import adminUsersActions from '../../redux/actions/admin/adminUserActions'
 
 const UserCard = (props) => {
-    const { username, email, avatar, coins, _id } = props.user
-    const [edit, setEdit] = useState(false)
-    const [updated, setUpdated] = useState({})
+    const { username, email, avatar, coins, _id, connected, statistics, admin } = props.user
     const [viewMore, setViewMore] = useState(false)
 
-    console.log('me renderizo')
+
+    const [edit, setEdit] = useState(false)
+    const [updated, setUpdated] = useState({})
+
     const updateUser = async () => {
         try {
             let response = await props.updateUser(updated)
@@ -33,28 +34,70 @@ const UserCard = (props) => {
             [e.target.name]: e.target.value
         })
     }
-    console.log(updated)
+
     return (
         <>
             <article className={styles.userCard}>
                 <div className={styles.userInfo}>
                     <div className={styles.userAvatar} style={{ backgroundImage: `url('${avatar}')` }}></div>
-                    {!edit ? <h2>{username}</h2> : <input name="username" onChange={inputHandler} defaultValue={username} />}
-                    {/* {!edit ? <h3>{email}</h3> : <input defaultValue={email} />}*/}
-                    {!edit ? <h4>{coins}</h4> : <input name="coins" onChange={inputHandler} defaultValue={coins} />}
+                    <div style={{ width: '25%' }}>
+                        <h4>Username</h4>
+                        <h3>{username}</h3>
+                    </div>
+                    <div style={{ flex: '1' }}>
+                        <h4>Email</h4>
+                        <h3>{email}</h3>
+                    </div>
+                    <div style={{ width: '20%' }}>
+                        <h4>Connected</h4>
+                        <img className={styles.connected} src={connected ? '/assets/online.png' : '/assets/offline.png'} />
+                    </div>
                 </div>
                 <div className={styles.buttonSection}>
-                    <img src='/assets/options.png' alt='' />
+                    <img src='/assets/options.png' alt='' onClick={() => setViewMore(!viewMore)} />
                     {/* <button onClick={() => setViewMore(!viewMore)}>{viewMore ? 'View Less' : 'View More'}</button>
-                    {edit && (<img className={styles.icon} onClick={updateUser} src="/assets/check.png" alt="" />)}
-                    {edit && (<img className={styles.icon} onClick={() => setEdit(!edit)} src="/assets/cancel.png" alt="" />)}
-                    {!edit && (<img className={styles.icon} onClick={() => setEdit(!edit)} src="/assets/edit.png" alt="" />)}
-                    {!edit && (<img className={styles.icon} onClick={deleteUser} src="/assets/delete.png" alt="" />)} */}
+                    
+                     */}
                 </div>
             </article>
-            <div>
-                {viewMore && <h1>Hola</h1>}
-            </div>
+            {viewMore &&
+                <div className={styles.userDetails}>
+                    <div className={styles.userData}>
+                        <label htmlFor='admin'>User Rol</label>
+                        <input name='admin' defaultValue={admin.flag ? 'Admin' : 'Registered'} disabled />
+                        <label htmlFor='avatar'>Image Url</label>
+                        <input name='avatar' defaultValue={avatar} onChange={inputHandler} disabled={edit ? false : true} />
+                        <label htmlFor='username'>Username</label>
+                        <input name='username' defaultValue={username} onChange={inputHandler} disabled={edit ? false : true} />
+                        <label htmlFor='email'>Email</label>
+                        <input name='email' defaultValue={email} onChange={inputHandler} disabled={edit ? false : true} />
+                        <label htmlFor='coins'>Coins</label>
+                        <input name='coins' defaultValue={coins} onChange={inputHandler} disabled={edit ? false : true} />
+                    </div>
+                    <div className={styles.statistics}>
+                        {statistics ? <><div className={styles.singleplayer}>
+                            <p>Total Games: {statistics.single_player.total || null}</p>
+                            <p>Won Games: {statistics.single_player.wins || null}</p>
+                            <p>Lost Games: {statistics.single_player.losses || null}</p>
+                            <p>Win Percentage: {statistics.single_player.win_pct || null}</p>
+                        </div>
+                            <div className={styles.multiplayer}>
+                                <p>Total Games: {statistics.multi_player.total || null}</p>
+                                <p>Won Games: {statistics.multi_player.wins || null}</p>
+                                <p>Lost Games: {statistics.multi_player.losses || null}</p>
+                                <p>Win Percentage: {statistics.multi_player.win_pct || null}</p>
+                            </div>
+                        </>
+                            : <p style={{ color: 'black' }}>No hay estadísticas</p>}
+                    </div>
+                    <div className={styles.buttonsContainer}>
+                        {edit && (<img className={styles.icon} onClick={() => setEdit(!edit)} src="/assets/cancel.png" alt="" />)}
+                        {edit && (<img className={styles.icon} onClick={updateUser} src="/assets/check.png" alt="" />)}
+                        {!edit && (<img className={styles.icon} onClick={() => setEdit(!edit)} src="/assets/edit.png" alt="" />)}
+                        {!edit && (<img className={styles.icon} onClick={deleteUser} src="/assets/delete.png" alt="" />)}
+                    </div>
+                </div>
+            }
         </>
     )
 }

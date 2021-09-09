@@ -8,11 +8,12 @@ import { useEffect } from "react";
 
 const Home = (props) => {
   useEffect(() => {
+    window.scroll(0, 0)
     props.history.push("/");
     // eslint-disable-next-line
   }, []);
   return (
-    <div className="body" style={{backgroundImage: 'url("/assets/transparentSmall.png")'}}>
+    <div className="body" style={{ backgroundImage: 'url("/assets/transparentSmall.png")' }}>
       <div className="heroHome">
         <Header />
         <HeroHome />

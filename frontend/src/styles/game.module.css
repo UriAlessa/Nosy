@@ -13,6 +13,8 @@
   width: 60%;
   height: 80vh;
   background-color: #665fdf;
+  /* background: rgb(102,95,223);
+  background: linear-gradient(150deg, rgba(102,95,223,1) 0%, rgb(42, 39, 94) 50%, rgba(102,95,223,1) 100%); */
   border-radius: 30px;
   box-shadow: 0 5px 16px 0 rgb(0 0 0 / 25%);
   display: flex;
@@ -27,6 +29,28 @@
   justify-content: center;
 }
 
+.containerButtons h1{
+  text-align: center;
+  width: 80%;
+  font-family: 'Fredoka One', cursive;
+  font-size: 6vmin;
+  color: #88f0c0;
+  letter-spacing: 1.4px;
+  font-weight: 100;
+  margin-bottom: 2rem;
+}
+
+.containerButtons img{
+  width: 90px
+}
+
+.containerButtons>div{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width:35%;
+}
+
 .buttonOption,
 .buttonOptionBombed {
   padding: 1rem 2rem;
@@ -36,15 +60,81 @@
   background-color: #ceb036;
   border-radius: 10px;
   color: white;
-  width: 40%;
+  width: 100%;
   height: 10vh;
   cursor: pointer;
   border-bottom: 5px solid #917a20;
-  transition: all 0.5s;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.movies{
+  background-color: #fedf0a;
+  border-bottom: 5px solid #917e06;
+
+}
+
+.animals{
+  background-color: #76b02f;
+  border-bottom: 5px solid #3b5818;
+}
+
+.music{
+  background-color: #d9370c;
+  border-bottom: 5px solid #741d06;
+}
+
+.computers{
+  background-color: #8366be;
+  border-bottom: 5px solid #493969;
+
+}
+
+.knowledge{
+  background-color: #2191fd;
+  border-bottom: 5px solid #135492;
+
+}
+
+.buttonOption:hover{
+  box-shadow: 2px 2px 5px black;
+}
+
+@media (max-width: 1200px){
+  .containerButtons h1{
+    margin-bottom: 1vh;
+  }
+}
+
 
 @media (max-width: 1000px) {
   .renderGame {
     width: 80%;
+  }
+  .containerButtons h1{
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .renderGame {
+    width: 90%;
+  }
+}
+
+@media (max-width: 590px) {
+  .containerButtons{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* background-color: blue; */
+  }
+  .containerButtons img{
+    width: 50px
+  }
+  .buttonOption{
+    padding: 1rem;
   }
 }

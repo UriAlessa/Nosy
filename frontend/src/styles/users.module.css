@@ -10,7 +10,7 @@ div.tableContainer{
     justify-content: center;
 }
 .button{
-    margin: 1vh 0;
+    margin: 1vh 3vw;
     font-family: "Fredoka One", cursive;
     text-transform: uppercase;
     color: rgb(109, 98, 231);
@@ -30,8 +30,10 @@ div.tableContainer{
 }
 
 .filterContainer{
-    justify-content: center;
+    margin-top: 2vh;
+    margin-bottom: 4vh;
     display: flex;
+    justify-content: center;
 }
 
 .filterContainer input{
@@ -46,11 +48,5 @@ div.tableContainer{
 .cardsContainer{
     width: 100%;
     color: white;
-    /* padding: 3vh 5vw; */
-    border-radius: 30px;
-    /* display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto; */
-    
 }
 
