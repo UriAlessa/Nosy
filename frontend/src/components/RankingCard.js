@@ -1,121 +1,50 @@
-import styles from "../styles/reviews.module.css";
+import React, { useState, useEffect } from 'react';
+import style from '../styles/reviews.module.css'
+import { connect } from 'react-redux';
+
+
+
 const RankingCard = (props) => {
-  let stars = Array(props.ranking.generalRate)
-    .fill(props.ranking.generalRate)
-    .map((rate, index) => {
-      return (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          fill="currentColor"
-          viewBox="0 0 16 16"
-          key={"generalRate" + index}
-        >
-          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-        </svg>
-      );
-    });
+  const { emojiFace, setEmojiFace } = useState("");
 
-  let funny = Array(props.ranking.funnyRate)
-    .fill(props.ranking.funnyRate)
-    .map((rate, index) => {
-      return (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          fill="currentColor"
-          viewBox="0 0 16 16"
-          key={"funnyRate" + index}
-        >
-          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM7 6.5c0 .501-.164.396-.415.235C6.42 6.629 6.218 6.5 6 6.5c-.218 0-.42.13-.585.235C5.164 6.896 5 7 5 6.5 5 5.672 5.448 5 6 5s1 .672 1 1.5zm5.331 3a1 1 0 0 1 0 1A4.998 4.998 0 0 1 8 13a4.998 4.998 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5zm-1.746-2.765C10.42 6.629 10.218 6.5 10 6.5c-.218 0-.42.13-.585.235C9.164 6.896 9 7 9 6.5c0-.828.448-1.5 1-1.5s1 .672 1 1.5c0 .501-.164.396-.415.235z" />
-        </svg>
-      );
-    });
+  const inputHandler = (e) => {
+    console.log('imputHandler activado')
+    setEmojiFace(
+      emojiFace = e.target.value
+    )
+  }
 
-  let interaction = Array(props.ranking.interactiveRate)
-    .fill(props.ranking.interactiveRate)
-    .map((rate, index) => {
-      return (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          fill="currentColor"
-          viewBox="0 0 16 16"
-          key={"interactiveRate" + index}
-        >
-          <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />
-          <path d="M7.066 6.76A1.665 1.665 0 0 0 4 7.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 0 0 .6.58c1.486-1.54 1.293-3.214.682-4.112zm4 0A1.665 1.665 0 0 0 8 7.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 0 0 .6.58c1.486-1.54 1.293-3.214.682-4.112z" />
-        </svg>
-      );
-    });
 
-  let intuitive = Array(props.ranking.intuitiveRate)
-    .fill(props.ranking.intuitiveRate)
-    .map((rate, index) => {
-      return (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          fill="currentColor"
-          viewBox="0 0 16 16"
-          key={"intuitiveRate" + index}
-        >
-          <path d="M11.5 6.027a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm2.5-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm-6.5-3h1v1h1v1h-1v1h-1v-1h-1v-1h1v-1z" />
-          <path d="M3.051 3.26a.5.5 0 0 1 .354-.613l1.932-.518a.5.5 0 0 1 .62.39c.655-.079 1.35-.117 2.043-.117.72 0 1.443.041 2.12.126a.5.5 0 0 1 .622-.399l1.932.518a.5.5 0 0 1 .306.729c.14.09.266.19.373.297.408.408.78 1.05 1.095 1.772.32.733.599 1.591.805 2.466.206.875.34 1.78.364 2.606.024.816-.059 1.602-.328 2.21a1.42 1.42 0 0 1-1.445.83c-.636-.067-1.115-.394-1.513-.773-.245-.232-.496-.526-.739-.808-.126-.148-.25-.292-.368-.423-.728-.804-1.597-1.527-3.224-1.527-1.627 0-2.496.723-3.224 1.527-.119.131-.242.275-.368.423-.243.282-.494.575-.739.808-.398.38-.877.706-1.513.773a1.42 1.42 0 0 1-1.445-.83c-.27-.608-.352-1.395-.329-2.21.024-.826.16-1.73.365-2.606.206-.875.486-1.733.805-2.466.315-.722.687-1.364 1.094-1.772a2.34 2.34 0 0 1 .433-.335.504.504 0 0 1-.028-.079zm2.036.412c-.877.185-1.469.443-1.733.708-.276.276-.587.783-.885 1.465a13.748 13.748 0 0 0-.748 2.295 12.351 12.351 0 0 0-.339 2.406c-.022.755.062 1.368.243 1.776a.42.42 0 0 0 .426.24c.327-.034.61-.199.929-.502.212-.202.4-.423.615-.674.133-.156.276-.323.44-.504C4.861 9.969 5.978 9.027 8 9.027s3.139.942 3.965 1.855c.164.181.307.348.44.504.214.251.403.472.615.674.318.303.601.468.929.503a.42.42 0 0 0 .426-.241c.18-.408.265-1.02.243-1.776a12.354 12.354 0 0 0-.339-2.406 13.753 13.753 0 0 0-.748-2.295c-.298-.682-.61-1.19-.885-1.465-.264-.265-.856-.523-1.733-.708-.85-.179-1.877-.27-2.913-.27-1.036 0-2.063.091-2.913.27z" />
-        </svg>
-      );
-    });
-
-  let learning = Array(props.ranking.learningRate)
-    .fill(props.ranking.learningRate)
-    .map((rate, index) => {
-      return (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          fill="currentColor"
-          viewBox="0 0 16 16"
-          key={"learningRate" + index}
-        >
-          <path
-            fillRule="evenodd"
-            d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z"
-          />
-          <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-          <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
-        </svg>
-      );
-    });
 
   return (
-    <div className={styles.card}>
-      <h2>Overall Score</h2>
-      <div>
-        <p>General</p>
-        {stars}
-      </div>
-      <div>
-        <p>Funny</p>
-        {funny}
-      </div>
-      <div>
-        <p>Interactive</p>
-        {interaction}
-      </div>
-      <div>
-        <p>Intuitive</p>
-        {intuitive}
-      </div>
-      <div>
-        <p>Learning</p>
-        {learning}
+    <div className={style.container}>
+      <div className="feedback">
+        <div className={style.rating}>
+          <input type="radio" name="5" className={style.rating5} value={emojiFace} onChange={inputHandler}/>
+          <label for="rating-5"></label>
+          <input type="radio" name="4" className={style.rating4} value={emojiFace} onChange={inputHandler} />
+          <label for="rating-4"></label>
+          <input type="radio" name="3" className={style.rating3} value={emojiFace} onChange={inputHandler} />
+          <label for="rating-3"></label>
+          <input type="radio" name="2" className={style.rating2} value={emojiFace} onChange={inputHandler} />
+          <label for="rating-2"></label>
+          <input type="radio" name="1" className={style.rating1} value={emojiFace} onChange={inputHandler} />
+          <label for="rating-1"></label>
+          <div className={style.emojiWrapper}>
+            <div className={style.emoji}>
+              <img className={style.rating1} src="https://i.postimg.cc/1RVCXqrD/painfull.gif" alt="painful face" />
+              <img className={style.rating2} src="https://i.postimg.cc/c4qDnLF2/boring.gif" alt="painful face" />
+              <img className={style.rating3} src="https://i.postimg.cc/SR9DvBxg/enjoit.gif" alt="painful face" />
+              <img className={style.rating4} src="https://i.postimg.cc/tTYrhZQQ/lovit.gif" alt="painful face" />
+              <img className={style.rating5} src="https://i.postimg.cc/1RVCXqrD/painfull.gif" alt="painful face" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  );
+  )
 };
+
+
+
 export default RankingCard;
