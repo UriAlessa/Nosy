@@ -6,7 +6,7 @@ import gamesActions from "../redux/actions/gamesActions";
 import toast from "react-hot-toast";
 
 const QuestionCard = (props) => {
-  const { question, possibleAnswers, correctAnswer, category } = props.question;
+  const { question, possibleAnswers, correctAnswer, category,img } = props.question;
   const [click, setClick] = useState(false);
   let repeatAnswerRef = useRef();
   const [answers, setAnswers] = useState([]);
@@ -170,7 +170,10 @@ const QuestionCard = (props) => {
                 </div>
               </div>
             </div>
-            <h2>{props.qs_category}</h2>
+            <div className={styles.category}>
+              <img className={styles.imgCategory} src={img} alt="img category"/>
+            <h2>{category}</h2>
+            </div>
 
             <h3>{question}</h3>
           </div>
