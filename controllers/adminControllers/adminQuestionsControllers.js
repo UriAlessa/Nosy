@@ -44,7 +44,7 @@ const adminQuestionsControllers = {
     }
   },
   createQuestion: async (req, res) => {
-    const { category, question, possibleAnswers, correctAnswer } = req.body;
+    const { category, question, possibleAnswers, correctAnswer, id } = req.body;
     try {
       let newQuestion = new Question({
         category,
@@ -52,7 +52,7 @@ const adminQuestionsControllers = {
         possibleAnswers,
         correctAnswer,
         status: true,
-        creator: "6134f96c17752d02a5000dc5",
+        creator: id,
       });
       await newQuestion.save();
       res.json({ success: true });

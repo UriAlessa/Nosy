@@ -145,7 +145,10 @@ const QuestionCard = (props) => {
                 src="/assets/logoSoloLetras.png"
                 alt="logo"
               />
-
+              <div className={styles.coinInfo}>
+                <img className={styles.imgInfoGame} src="/assets/coin.png" />
+                <span>20</span>
+              </div>
               <div className={styles.containerInfoGame}>
                 <img className={styles.imgInfoGame} src="/assets/heart_2.png" />
                 <span>{props.game ? props.game.lifes : 5}</span>
@@ -161,35 +164,35 @@ const QuestionCard = (props) => {
           <div ref={answersContainer} className={styles.containerButtons}>
             {bomb.length === 0
               ? answers.map((string, index) => {
-                  return (
-                    <button
-                      key={index}
-                      className={styles.buttonOption}
-                      name={string}
-                      onClick={clickHandler}
-                      disabled={click}
-                    >
-                      {string}
-                    </button>
-                  );
-                })
+                return (
+                  <button
+                    key={index}
+                    className={styles.buttonOption}
+                    name={string}
+                    onClick={clickHandler}
+                    disabled={click}
+                  >
+                    {string}
+                  </button>
+                );
+              })
               : answers.map((string, index) => {
-                  return (
-                    <button
-                      key={index}
-                      className={
-                        bomb.includes(string)
-                          ? styles.buttonOptionBombed
-                          : styles.buttonOption
-                      }
-                      name={string}
-                      onClick={clickHandler}
-                      disabled={bomb.includes(string)}
-                    >
-                      {string}
-                    </button>
-                  );
-                })}
+                return (
+                  <button
+                    key={index}
+                    className={
+                      bomb.includes(string)
+                        ? styles.buttonOptionBombed
+                        : styles.buttonOption
+                    }
+                    name={string}
+                    onClick={clickHandler}
+                    disabled={bomb.includes(string)}
+                  >
+                    {string}
+                  </button>
+                );
+              })}
           </div>
 
           <div className={styles.powersButtons}>

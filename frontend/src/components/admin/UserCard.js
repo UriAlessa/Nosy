@@ -56,10 +56,8 @@ const UserCard = (props) => {
                 <div className={styles.buttonSection}>
                     <img src='/assets/options.png' alt='' onClick={() => setViewMore(!viewMore)} />
                     {/* <button onClick={() => setViewMore(!viewMore)}>{viewMore ? 'View Less' : 'View More'}</button>
-                    {edit && (<img className={styles.icon} onClick={updateUser} src="/assets/check.png" alt="" />)}
-                    {edit && (<img className={styles.icon} onClick={() => setEdit(!edit)} src="/assets/cancel.png" alt="" />)}
-                    {!edit && (<img className={styles.icon} onClick={() => setEdit(!edit)} src="/assets/edit.png" alt="" />)}
-                    {!edit && (<img className={styles.icon} onClick={deleteUser} src="/assets/delete.png" alt="" />)} */}
+                    
+                     */}
                 </div>
             </article>
             {viewMore &&
@@ -67,12 +65,14 @@ const UserCard = (props) => {
                     <div className={styles.userData}>
                         <label htmlFor='admin'>User Rol</label>
                         <input name='admin' defaultValue={admin.flag ? 'Admin' : 'Registered'} disabled />
+                        <label htmlFor='avatar'>Image Url</label>
+                        <input name='avatar' defaultValue={avatar} onChange={inputHandler} disabled={edit ? false : true} />
                         <label htmlFor='username'>Username</label>
-                        <input name='username' defaultValue={username} />
+                        <input name='username' defaultValue={username} onChange={inputHandler} disabled={edit ? false : true} />
                         <label htmlFor='email'>Email</label>
-                        <input name='email' defaultValue={email} />
+                        <input name='email' defaultValue={email} onChange={inputHandler} disabled={edit ? false : true} />
                         <label htmlFor='coins'>Coins</label>
-                        <input name='coins' defaultValue={coins} />
+                        <input name='coins' defaultValue={coins} onChange={inputHandler} disabled={edit ? false : true} />
                     </div>
                     <div className={styles.statistics}>
                         {statistics ? <><div className={styles.singleplayer}>
@@ -89,6 +89,12 @@ const UserCard = (props) => {
                             </div>
                         </>
                             : <p style={{ color: 'black' }}>No hay estadísticas</p>}
+                    </div>
+                    <div className={styles.buttonsContainer}>
+                        {edit && (<img className={styles.icon} onClick={() => setEdit(!edit)} src="/assets/cancel.png" alt="" />)}
+                        {edit && (<img className={styles.icon} onClick={updateUser} src="/assets/check.png" alt="" />)}
+                        {!edit && (<img className={styles.icon} onClick={() => setEdit(!edit)} src="/assets/edit.png" alt="" />)}
+                        {!edit && (<img className={styles.icon} onClick={deleteUser} src="/assets/delete.png" alt="" />)}
                     </div>
                 </div>
             }
