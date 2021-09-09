@@ -13,15 +13,16 @@ const adminUsersActions = {
       return response;
     };
   },
-  updateUser: () => {
+  updateUser: (newUser) => {
+    console.log('llego')
     let token = localStorage.getItem("token");
     return async () => {
-      let response = await axios.put("http://localhost:4000/api/admin/user", {
+      let response = await axios.put("http://localhost:4000/api/admin/user", newUser, {
         headers: {
           Authorization: "Bearer " + token,
         },
       });
-      return response;
+      return response.data;
     };
   },
 };

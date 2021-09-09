@@ -65,7 +65,7 @@ const Game = (props) => {
     roulette.current.style.transform = "rotate(" + rand + "deg)";
     let portion = 360 / 6;
     switch (true) {
-      case degrees > 0 && degrees <= portion:
+      case degrees > 0 && degrees <= 30:
         setTimeout(() => {
           setPlaying(!playing);
           setCategory("Animals");
@@ -110,7 +110,7 @@ const Game = (props) => {
   const rotate = () => {
     setPlaying(!playing);
     audio.play();
-    let rand = Math.random() * 360 + 3600;
+    let rand = Math.random() * 360 + 360;
     selectCategory(rand);
   };
 
