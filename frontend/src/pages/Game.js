@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import questionActions from "../redux/actions/questionsActions";
 import gamesActions from "../redux/actions/gamesActions";
 import Loader from "../components/Loader";
+import { Link } from "react-router-dom";
 
 const Game = (props) => {
   // const [questions, setQuestions] = useState([]);
@@ -19,8 +20,11 @@ const Game = (props) => {
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
-    if (props.token) {
+    if (props.token && !props.game) {
       createGame();
+    }
+    if (props.game) {
+      props.setGame(localStorage.getItem("token"));
     }
     setLoader(false);
     // eslint-disable-next-line
@@ -113,8 +117,19 @@ const Game = (props) => {
       style={{ backgroundImage: "url('/assets/background.png')" }}
     >
       <div className={styles.renderGame}>
-        {props.game && props.game.status === false ? (
-          <h1>GANASTER PAPURRI</h1>
+        <Link to="/">
+          <img
+            src="/assets/goback.png"
+            className={styles.goBack}
+            alt="goback"
+          />
+        </Link>
+        {props.game && props.game.status === false && props.game.lifes > 0 ? (
+          <h1>GANASTE PAPURRI</h1>
+        ) : props.game &&
+          props.game.status === false &&
+          props.game.lifes === 0 ? (
+          <h1>PERDISTE PAPURRI</h1>
         ) : nosy ? (
           <div className={styles.containerButtons}>
             <h1>Choose a category and get the Character</h1>
@@ -215,6 +230,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   getQuestion: questionActions.getQuestion,
   createGame: gamesActions.createGame,
+  setGame: gamesActions.setGame,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

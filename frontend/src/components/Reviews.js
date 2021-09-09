@@ -1,31 +1,22 @@
 import styles from "../styles/reviews.module.css";
 import ReviewSlide from "../components/ReviewSlide";
 import RankingCard from "../components/RankingCard";
-import ReviewAddComment from './ReviewAddNewOne'
+import ReviewAddComment from "./ReviewAddNewOne";
 import toast from "react-hot-toast";
 import { connect } from "react-redux";
 import { useState, useEffect } from "react";
 import usersActions from "../redux/actions/usersActions";
 
-
 const Reviews = (props) => {
-
   const [allReviews, setAllReviews] = useState([]);
 
-  useEffect(()=>{
-      getReviews()
-    
-  },[])
+  useEffect(() => {
+    getReviews();
+  }, []);
 
-  const getReviews = async()=>{
-    setAllReviews(await props.getReviews())
-  }
-  
-  const render = llReviews.length !== 0 && allReviews.map((info, index) => {
-    return <ReviewSlide oneReview={info} key={"Review" + index} />;
-  });
-
-  
+  const getReviews = async () => {
+    setAllReviews(await props.getReviews());
+  };
   const inputHandler = (e) => {
     if (!props.token) {
       return toast.error("You most to be login for this", {
@@ -38,27 +29,36 @@ const Reviews = (props) => {
         },
       });
     } else {
-      return (<div>
-        <ReviewAddComment />
-      </div>
-      )
+      return (
+        <div>
+          <ReviewAddComment />
+        </div>
+      );
     }
-  }
+  };
 
   // const renderRate = '' /**prop del ranking general que se vaya alimentando constantemente */
 
   return (
     <section id="whatTheySaying" className={styles.sectionGames}>
       <h2> WHAT ARE THEY SAYING?</h2>
-      <h4 className={styles.subtitleDescription}>Memorable moments from other players</h4>
+      <h4 className={styles.subtitleDescription}>
+        Memorable moments from other players
+      </h4>
       <article className={styles.articleGames}>
         <div>
-        <button className={styles.buttonAddComment} onClick={inputHandler}>+</button>
-        {render}
+          <button className={styles.buttonAddComment} onClick={inputHandler}>
+            +
+          </button>
+          {allReviews.length !== 0 &&
+            allReviews.map((info, index) => {
+              return <ReviewSlide oneReview={info} key={"Review" + index} />;
+            })}
         </div>
         <div>
-        <RankingCard />
-        {props.token && <ReviewAddComment />}</div>
+          <RankingCard />
+          {props.token && <ReviewAddComment />}
+        </div>
       </article>
     </section>
   );
@@ -70,10 +70,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps={
+const mapDispatchToProps = {
   getReviews: usersActions.getReviews,
-
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Reviews);
 
@@ -104,4 +103,3 @@ const AllReviews = [
   //     description:"I had been told about this website but I did not know how interactive, intuitive and fun it was! It's been a month since I joined and I have a good place in the ranking, I think that says it all!"
   // }
 ];
-
