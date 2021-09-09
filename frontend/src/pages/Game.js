@@ -156,6 +156,7 @@ const Game = (props) => {
             rotate={rotate}
             category={setCategory}
             setNosy={setNosy}
+            qs_category={category}
           />
         )}
       </div>
