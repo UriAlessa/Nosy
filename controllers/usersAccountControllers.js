@@ -38,7 +38,6 @@ const usersAccountControllers = {
     const { username, password, facebook, google } = req.body;
     try {
       let user = await User.findOne({ username: username });
-      console.log(user)
       if (!user) throw new Error("Username doesn't exists")
       if ((user.google && !google) || (user.facebook && !facebook)) {
         throw new Error("You must log in with Google");
