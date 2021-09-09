@@ -7,6 +7,7 @@ import gamesActions from "../redux/actions/gamesActions";
 const QuestionCard = (props) => {
   const { question, possibleAnswers, correctAnswer, category } = props.question;
   const [click, setClick] = useState(false);
+  let repeatAnswerRef = useRef();
   const [answers, setAnswers] = useState([]);
   const [bomb, setBomb] = useState([]);
   const [repeatAnswer, setRepeatAnswer] = useState(false);
@@ -16,23 +17,50 @@ const QuestionCard = (props) => {
   const [seconds, setSeconds] = useState(15);
 
   let timeOut = useRef();
-
-  const timer = () => {
+  const sendAnswer = async (answer, powers_used, coins_spent) => {
+    console.log(props.golden);
+    let res = await props.sendAnswer(
+      props.token,
+      props.question,
+      answer,
+      props.golden,
+      powers_used,
+      coins_spent
+    );
+    let flag = res.newGameState.player.questions.filter(
+      (qs) => qs.answer
+    ).length;
+    props.setGolden(flag !== 0 && flag % 3 === 0);
+    await props.setNosy(flag !== 0 && flag % 3 === 0);
+  };
+  useEffect(() => {
     if (seconds > 0) {
       timeOut = setTimeout(() => {
-        setSeconds(() => seconds - 1);
+        setSeconds(seconds - 1);
       }, 1000);
-    } else {
-      clearTimeout(timeOut.current);
-      setSeconds(0);
+    } else if (seconds === 0) {
+      let coins_spent = bomb.length !== 0 ? 30 : 0;
+      coins_spent += repeatAnswerRef.current ? 25 : 0;
+      coins_spent += props.reRoll.current ? 20 : 0;
+      let powers_used =
+        repeatAnswerRef.current || bomb.length || props.reRoll.current !== 0
+          ? 1
+          : 0;
+      props.reRoll.current = false;
+      repeatAnswerRef.current = false;
+      if (props.token && seconds === 0) {
+        sendAnswer(false, powers_used, coins_spent);
+      }
+      setTimeout(() => {
+        setIncorrect(true);
+      }, 1500);
+      setTimeout(() => {
+        props.setQuestion(null);
+        props.setPlaying(false);
+      }, 2500);
     }
-  };
-  seconds === 0 &&
-    setTimeout(() => {
-      props.setQuestion(null);
-      props.setPlaying(false);
-    }, 1500);
-  seconds !== 0 && timer();
+    return () => clearTimeout(timeOut.current);
+  }, [seconds]);
 
   useEffect(() => {
     let questionAudio = new Audio("/assets/question.wav");
@@ -44,7 +72,6 @@ const QuestionCard = (props) => {
     setAnswers(possibleAnswers.sort(() => Math.random() - 0.5));
     // eslint-disable-next-line
   }, []);
-
   const infoLifes = (
     <div className={styles.infoLifes}>
       <img className={styles.heart} src="/assets/heart.png" alt="heart" />
@@ -52,16 +79,7 @@ const QuestionCard = (props) => {
     </div>
   );
   // token, question, answer, nosy, powers_used, coins_spent
-  const sendAnswer = async (answer, powers_used, coins_spent) => {
-    await props.sendAnswer(
-      props.token,
-      props.question,
-      answer,
-      props.golden,
-      powers_used,
-      coins_spent
-    );
-  };
+
   const clickHandler = (e) => {
     let answer = correctAnswer === e.target.name;
     answer ? audio.correctAudio.play() : audio.incorrectAudio.play();
@@ -72,6 +90,19 @@ const QuestionCard = (props) => {
           ? (answer.className = ` ${styles.buttonOption}  ${styles.correct}`)
           : (answer.className = ` ${styles.buttonOption}  ${styles.incorrect}`)
       );
+      setClick(true);
+      let coins_spent = bomb.length !== 0 ? 30 : 0;
+      coins_spent += repeatAnswerRef.current ? 25 : 0;
+      coins_spent += props.reRoll.current ? 20 : 0;
+      let powers_used =
+        repeatAnswerRef.current || bomb.length || props.reRoll.current !== 0
+          ? 1
+          : 0;
+      props.reRoll.current = false;
+      repeatAnswerRef.current = false;
+      if (props.token) {
+        sendAnswer(answer, powers_used, coins_spent);
+      }
       !answer &&
         setTimeout(() => {
           setIncorrect(true);
@@ -83,17 +114,11 @@ const QuestionCard = (props) => {
         },
         answer ? 1500 : 2500
       );
-      setClick(true);
-      let coins_spent = bomb.length !== 0 ? 10 : 0;
-      coins_spent += repeatAnswer ? 8 : 0;
-      let powers_used = repeatAnswer || bomb.length !== 0 ? 1 : 0;
-      props.token && sendAnswer(answer, powers_used, coins_spent);
     }
     if (repeatAnswer && !answer) {
       e.target.className = ` ${styles.buttonOption}  ${styles.incorrect}`;
     }
-    setRepeatAnswer(false);
-    props.setGolden(false);
+    repeatAnswer && setRepeatAnswer(false);
   };
 
   const Bomb = () => {
@@ -104,13 +129,12 @@ const QuestionCard = (props) => {
         .filter((ans, index) => index !== cualquiera)
     );
   };
-
   return (
     <section
       className={styles.sectionQuestion}
       style={{ backgroundImage: "url('/assets/background.png')" }}
     >
-      {incorrect || seconds === 0 ? (
+      {incorrect ? (
         infoLifes
       ) : (
         <article className={styles.card}>
@@ -124,7 +148,7 @@ const QuestionCard = (props) => {
 
               <div className={styles.containerInfoGame}>
                 <img className={styles.imgInfoGame} src="/assets/heart_2.png" />
-                <span>5</span>
+                <span>{props.game ? props.game.lifes : 5}</span>
                 <div className={styles.containerSeconds}>
                   <p className={styles.seconds}>{("0" + seconds).slice(-2)}</p>
                 </div>
@@ -191,7 +215,10 @@ const QuestionCard = (props) => {
                 <button
                   disabled={repeatAnswer || bomb.length !== 0}
                   className={styles.buttonOption}
-                  onClick={() => setRepeatAnswer(true)}
+                  onClick={() => {
+                    repeatAnswerRef.current = true;
+                    setRepeatAnswer(true);
+                  }}
                 >
                   <img className={styles.imgPowers} src="/assets/repeat.png" />
                   <div className={styles.containerIconsPowers}>
@@ -211,6 +238,7 @@ const QuestionCard = (props) => {
               disabled={repeatAnswer || bomb.length !== 0}
               className={styles.buttonOption}
               onClick={() => {
+                props.reRoll.current = true;
                 props.setPlaying(false);
                 props.setQuestion(null);
               }}
@@ -230,7 +258,6 @@ const QuestionCard = (props) => {
           </div>
         </article>
       )}
-      {/* <div class="overlay"></div> */}
     </section>
   );
 };
@@ -238,6 +265,7 @@ const QuestionCard = (props) => {
 const mapStateToProps = (state) => {
   return {
     token: state.users.token,
+    game: state.game.game,
   };
 };
 

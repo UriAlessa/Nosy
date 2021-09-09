@@ -28,11 +28,17 @@
   top: 52%;
 }
 .shadows {
-  width: 100%;
+  width: 60%;
   height: 10vh;
 }
 .picShadow {
   width: 5vw;
+}
+.topInfo {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1vh 3vw;
 }
 
 @media (min-width: 400px) and (max-width: 700px) {

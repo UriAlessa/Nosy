@@ -37,7 +37,7 @@ const gameControllers = {
           { new: true }
         );
       }
-      res.json({ success: true, response: game });
+      res.json({ success: true, response: { game, coins: req.user.coins } });
     } catch (error) {
       res.json({ success: false, error: error.message });
     }
@@ -72,25 +72,30 @@ const gameControllers = {
       res.json({ success: false, error: error.message });
     }
   },
+  getCurrentGame: async (req, res) => {
+    console.log(req.user);
+    try {
+      res.json({
+        success: true,
+        response: { game: req.user.playing_now.game_id, coins: req.user.coins },
+      });
+    } catch (error) {
+      res.json({ success: false, error: error.message });
+    }
+  },
   answer: async (req, res) => {
-    let newGameState;
-    console.log(req.body);
     const { question, answer, nosy, powers_used, coins_spent } = req.body;
     const { _id, playing_now } = req.user;
     const { game_id, multi_player } = playing_now;
     try {
       if (multi_player) {
       } else {
-        let nosys = nosy ? 1 : 0;
-        const thisgame = await SinglePlayer.findOne({
-          _id: game_id,
-        });
-        const medal =
-          thisgame.player.questions.filter((qs) => qs.answer).length % 3 === 0;
-        console.log((medal || nosy) && answer);
-        if ((medal || nosy) && answer) {
-          newGameState = await SinglePlayer.findOneAndUpdate(
-            { _id: game_id },
+        console.log(nosy);
+        console.log(answer);
+        console.log(question.category);
+        if (nosy && answer) {
+          await SinglePlayer.findOneAndUpdate(
+            { _id: game_id._id },
             {
               $push: { "player.medals": question.category },
             },
@@ -98,13 +103,14 @@ const gameControllers = {
           );
         }
         const thisquestion = { question: question._id, answer: answer };
+        let nosys = nosy ? 1 : 0;
         let lifes = answer ? 0 : -1;
-        newGameState = await SinglePlayer.findOneAndUpdate(
+        let newGameState = await SinglePlayer.findOneAndUpdate(
           { _id: game_id },
           {
             $push: { "player.questions": thisquestion },
-            $inc: { lifes: lifes }, //LAS LIFES NO ANDAN
             $inc: {
+              lifes: lifes,
               "player.coins_spent": coins_spent,
               "player.powers_used": powers_used,
               "player.nosys": nosys,
@@ -116,7 +122,8 @@ const gameControllers = {
         coins -= coins_spent;
         let newUserState = await User.findOneAndUpdate(
           { _id },
-          { $inc: { coins } }
+          { $inc: { coins: coins } },
+          { new: true }
         );
         res.json({ success: true, response: { newGameState, newUserState } });
       }

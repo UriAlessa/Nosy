@@ -10,12 +10,14 @@ import Loader from "../components/Loader";
 const Game = (props) => {
   // const [questions, setQuestions] = useState([]);
   const roulette = useRef();
+  let reRoll = useRef();
   const [loader, setLoader] = useState(true);
   const [question, setQuestion] = useState(null);
   const [category, setCategory] = useState(null);
   const [nosy, setNosy] = useState(false);
   const [golden, setGolden] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const categories = [];
 
   useEffect(() => {
     if (props.token) {
@@ -60,7 +62,6 @@ const Game = (props) => {
     let degrees = rand / 360;
     degrees = (degrees - parseInt(degrees.toString().split(".")[0])) * 360;
     roulette.current.style.transform = "rotate(+" + rand + "deg)";
-    console.log(degrees);
     switch (true) {
       case degrees > 30 && degrees <= 90:
         setTimeout(() => {
@@ -103,7 +104,6 @@ const Game = (props) => {
           setNosy(true);
           setGolden(true);
         }, 5000);
-      // props.setNosy(true)
     }
   };
   const rotate = () => {
@@ -147,6 +147,7 @@ const Game = (props) => {
           />
         ) : (
           <QuestionCard
+            reRoll={reRoll}
             question={question}
             setQuestion={setQuestion}
             setPlaying={setPlaying}
@@ -167,6 +168,7 @@ const mapStateToProps = (state) => {
   return {
     render: state.questions.render,
     token: state.users.token,
+    game: state.game.game,
   };
 };
 

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const gamesActions = {
   createGame: (token, username = null) => {
-    return async (dispatch, getState) => {
+    return async (dispatch) => {
       let response = await axios.post(
         "http://localhost:4000/api/game/newgame",
         username,
@@ -12,15 +12,18 @@ const gamesActions = {
           },
         }
       );
-      if (response.data.success) {
-        console.log(response.data.response);
-        return response.data;
+      if (!response.data.success) {
+        throw new Error();
       }
-      throw new Error();
+      const { game, coins } = response.data.response;
+      dispatch({
+        type: "SET_GAME",
+        payload: { game, coins },
+      });
     };
   },
   sendAnswer: (token, question, answer, nosy, powers_used, coins_spent) => {
-    return async () => {
+    return async (dispatch) => {
       let response = await axios.put(
         "http://localhost:4000/api/game/answer",
         { question, answer, nosy, powers_used, coins_spent },
@@ -30,11 +33,40 @@ const gamesActions = {
           },
         }
       );
-      if (response.data.success) {
-        console.log(response.data.response);
-        return response.data.response;
+      if (!response.data.success) {
+        throw new Error();
       }
-      throw new Error();
+      dispatch({
+        type: "SET_GAME",
+        payload: {
+          game: response.data.response.newGameState,
+          coins: response.data.response.newUserState.coins,
+        },
+      });
+      return response.data.response;
+    };
+  },
+  setGame: (token) => {
+    return async (dispatch) => {
+      let response = await axios.get(
+        "http://localhost:4000/api/game/current_game",
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      if (!response.data.success) {
+        throw new Error();
+      }
+      console.log(response.data.response.game);
+      dispatch({
+        type: "SET_GAME",
+        payload: {
+          game: response.data.response.game,
+          coins: response.data.response.coins,
+        },
+      });
     };
   },
 };
