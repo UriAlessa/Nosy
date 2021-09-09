@@ -6,7 +6,7 @@ const adminUsersActions = {
     let token = localStorage.getItem("token");
     return async () => {
       let response = await axios.get(
-        "http://localhost:4000/admin/user",
+        "http://localhost:4000/api/admin/user",
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -20,7 +20,7 @@ const adminUsersActions = {
     let token = localStorage.getItem("token");
     return async () => {
       let response = await axios.put(
-        "http://localhost:4000/admin/user",
+        "http://localhost:4000/api/admin/user",
         newUser,
         {
           headers: {

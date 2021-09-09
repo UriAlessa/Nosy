@@ -4,43 +4,27 @@ import Users from "../components/admin/Users"
 import Dashboard from '../components/admin/Dashboard'
 import Questions from "../components/admin/Questions"
 import Games from "../components/admin/Games"
+import Dashboard from "../components/admin/Dashboard"
 
 const AdminPanel = () => {
-    const [view, setView] = useState('dashboard')
+    const [view, setView] = useState("dashboard")
 
     return (
         <section className={styles.adminContainer}>
             <div className={styles.dataContainer}>
-                <div className={styles.buttonsContainer}>
-                    <img src="/assets/logoSoloLetras.png" alt="Nosy Logo" />
-                    <div onClick={() => setView('dashboard')} className={styles.dashboardLink}>
-                        <img className={styles.icon} src="/assets/dashboard.png" />
-                        <p>Dashboard</p>
-                    </div>
-                    <div onClick={() => setView('users')} className={styles.dashboardLink}>
-                        <img className={styles.icon} src="/assets/user.png" />
-                        <p>Users</p>
-                    </div>
-                    <div onClick={() => setView('questions')} className={styles.dashboardLink}>
-                        <img className={styles.icon} src="/assets/question.png" />
-                        <p>Questions</p>
-                    </div>
-                    <div onClick={() => setView('games')} className={styles.dashboardLink}>
-                        <img className={styles.icon} src="/assets/games.png" />
-                        <p>Games</p>
-                    </div>
-                </div>
+                <nav className={styles.navContainer}>
+                    <span className={styles.spanPanel} onClick={() => setView('users')}>Users</span>
+                    <span className={styles.spanPanel} onClick={() => setView('questions')}>Questions</span>
+                    <span className={styles.spanPanel} onClick={() => setView('games')}>Games</span>
+                    <span className={styles.spanPanel} onClick={() => setView('dashboard')}>Dashboard</span>
+                </nav>
                 <div className={styles.infoSection}>
-                    <div className={styles.header}>
-                        <h1>Acá debería ir una cabecera</h1>
-                    </div>
-                    <div>
-                        {view === 'dashboard' && <Dashboard />}
-                        {view === 'users' && <Users />}
-                        {view === 'questions' && <Questions />}
-                        {view === 'games' && <Games />}
-                    </div>
+                    {view === 'users' && <Users />}
+                    {view === 'questions' && <Questions />}
+                    {view === 'games' && <Games />}
+                    {view === 'dashboard' && <Dashboard />}
                 </div>
+
             </div>
         </section>
     )
