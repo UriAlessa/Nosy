@@ -8,3 +8,7 @@
 /_npx
 /_update-notifier-last-checked
 /frontend/_update-notifier-last-checked
+.DS_Store                                   
+/frontend/.DS_Store                         
+/frontend/public/.DS_Store                 
+/frontend/public/assets/.DS_Store
