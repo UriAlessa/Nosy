@@ -49,7 +49,7 @@ const gamesActions = {
   setGame: (token) => {
     return async (dispatch) => {
       let response = await axios.get(
-        "https://benosy.herokuapp.com/game/current_game",
+        "https://benosy.herokuapp.com/api/game/current_game",
         {
           headers: {
             Authorization: "Bearer " + token,
