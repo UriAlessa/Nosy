@@ -1,18 +1,33 @@
 import styles from "../styles/reviews.module.css";
 import ReviewSlide from "../components/ReviewSlide";
 import RankingCard from "../components/RankingCard";
-import ReviewAddComment from '../components/ReviewAddComment'
+import ReviewAddComment from './ReviewAddNewOne'
 import toast from "react-hot-toast";
 import { connect } from "react-redux";
+import { useState, useEffect } from "react";
+import usersActions from "../redux/actions/usersActions";
 
 
 const Reviews = (props) => {
 
-  const render = AllReviews.map((info, index) => {
+  const [allReviews, setAllReviews] = useState([]);
+
+  useEffect(()=>{
+      getReviews()
+    
+  },[])
+
+  const getReviews = async()=>{
+    setAllReviews(await props.getReviews)
+    console.log(await props.getReviews)
+
+  }
+  
+  const render = allReviews.length !== 0 && allReviews.map((info, index) => {
     return <ReviewSlide oneReview={info} key={"Review" + index} />;
   });
 
-  console.log(props)
+  
   const inputHandler = (e) => {
     if (!props.token) {
       return toast.error("You most to be login for this", {
@@ -57,7 +72,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Reviews);
+const mapDispatchToProps={
+  getReviews: usersActions.getReviews,
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Reviews);
 
 /**para Mongo*/
 const AllReviews = [

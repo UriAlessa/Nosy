@@ -198,6 +198,47 @@ const usersActions = {
       return response;
     };
   },
+
+  postNewReview: (newReview, token) => {
+    return async () => {
+      try {
+        let response = await axios.post(
+          `http://localhost:4000/api/review`, {
+          ...newReview
+        }, {
+          headers: {
+            Authorization: 'Bearer ' + token
+          }
+        });
+        if (response.data.success) {
+          return ({ success: true, response: response.data.response })
+        } else {
+          return ({ success: false, response: response.data.response })
+        }
+      } catch (err) {
+        return { success: false, response: err.message }
+      }
+    }
+  },
+
+  getReviews: ()=>{
+    return async() =>{
+      try{
+        let response = await axios.get(
+          'http://localhost:4000/api/review'
+        )
+        if (!response.data.success)throw new Error()
+        console.log(response.data.response)
+        return response.data.response 
+      }catch(error){
+        return { success: false, response: error.message }
+      }
+    }
+  }
+
+
 };
+
+
 
 export default usersActions;

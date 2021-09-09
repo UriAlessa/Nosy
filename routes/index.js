@@ -49,4 +49,14 @@ router
 
 router.route("/mail").post(mailControllers.sendMail);
 
+router
+  .route("/review")
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    usersAccountsControllers.newReview
+  )
+  .get(
+    usersAccountsControllers.getReviews
+  )
+
 module.exports = router;
