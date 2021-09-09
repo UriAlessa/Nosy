@@ -37,8 +37,6 @@ const Reviews = (props) => {
     }
   };
 
-  // const renderRate = '' /**prop del ranking general que se vaya alimentando constantemente */
-
   return (
     <section id="whatTheySaying" className={styles.sectionGames}>
       <h2> WHAT ARE THEY SAYING?</h2>
@@ -47,9 +45,7 @@ const Reviews = (props) => {
       </h4>
       <article className={styles.articleGames}>
         <div>
-          <button className={styles.buttonAddComment} onClick={inputHandler}>
-            +
-          </button>
+          <button className={styles.buttonAddComment} onClick={inputHandler}>+</button>
           {allReviews.length !== 0 &&
             allReviews.map((info, index) => {
               return <ReviewSlide oneReview={info} key={"Review" + index} />;
