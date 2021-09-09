@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import questionActions from "../redux/actions/questionsActions";
 import gamesActions from "../redux/actions/gamesActions";
 import Loader from "../components/Loader";
+import { Link } from "react-router-dom";
 
 const Game = (props) => {
   // const [questions, setQuestions] = useState([]);
@@ -62,36 +63,36 @@ const Game = (props) => {
     degrees = (degrees - parseInt(degrees.toString().split(".")[0])) * 360;
     roulette.current.style.transform = "rotate(+" + rand + "deg)";
     switch (true) {
-      // case degrees > 30 && degrees <= 90:
-      //   setTimeout(() => {
-      //     setPlaying(!playing);
-      //     setCategory("Movies and series");
-      //   }, 5000);
-      //   break;
-      // case degrees > 90 && degrees <= 150:
-      //   setTimeout(() => {
-      //     setPlaying(!playing);
-      //     setCategory("Science: Computers");
-      //   }, 5000);
-      //   break;
-      // case degrees > 150 && degrees <= 210:
-      //   setTimeout(() => {
-      //     setPlaying(!playing);
-      //     setCategory("General Knowledge");
-      //   }, 5000);
-      //   break;
-      // case degrees > 210 && degrees <= 270:
-      //   setTimeout(() => {
-      //     setPlaying(!playing);
-      //     setCategory("Animals");
-      //   }, 5000);
-      //   break;
-      // case degrees > 270 && degrees <= 330:
-      //   setTimeout(() => {
-      //     setPlaying(!playing);
-      //     setCategory("Music");
-      //   }, 5000);
-      //   break;
+      case degrees > 30 && degrees <= 90:
+        setTimeout(() => {
+          setPlaying(!playing);
+          setCategory("Movies and series");
+        }, 5000);
+        break;
+      case degrees > 90 && degrees <= 150:
+        setTimeout(() => {
+          setPlaying(!playing);
+          setCategory("Science: Computers");
+        }, 5000);
+        break;
+      case degrees > 150 && degrees <= 210:
+        setTimeout(() => {
+          setPlaying(!playing);
+          setCategory("General Knowledge");
+        }, 5000);
+        break;
+      case degrees > 210 && degrees <= 270:
+        setTimeout(() => {
+          setPlaying(!playing);
+          setCategory("Animals");
+        }, 5000);
+        break;
+      case degrees > 270 && degrees <= 330:
+        setTimeout(() => {
+          setPlaying(!playing);
+          setCategory("Music");
+        }, 5000);
+        break;
       default:
         setTimeout(() => {
           setPlaying(!playing);
@@ -113,6 +114,13 @@ const Game = (props) => {
       style={{ backgroundImage: "url('/assets/background.png')" }}
     >
       <div className={styles.renderGame}>
+        <Link to="/">
+          <img
+            src="/assets/goback.png"
+            className={styles.goBack}
+            alt="goback"
+          />
+        </Link>
         {props.game && props.game.status === false ? (
           <h1>GANASTER PAPURRI</h1>
         ) : nosy ? (
