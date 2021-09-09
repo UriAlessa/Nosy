@@ -5,6 +5,7 @@ import QuestionCard from "../components/QuestionCard";
 import { connect } from "react-redux";
 import questionActions from "../redux/actions/questionsActions";
 import gamesActions from "../redux/actions/gamesActions";
+import Loader from "../components/Loader";
 
 const Game = (props) => {
   // const [questions, setQuestions] = useState([]);
@@ -45,11 +46,7 @@ const Game = (props) => {
   }, [category]);
 
   if (loader) {
-    return (
-      <div>
-        <h1>Cargando...</h1>
-      </div>
-    );
+    return <Loader />;
   }
 
   const categoryHandler = (e) => {
@@ -62,49 +59,51 @@ const Game = (props) => {
   const selectCategory = (rand) => {
     let degrees = rand / 360;
     degrees = (degrees - parseInt(degrees.toString().split(".")[0])) * 360;
-    roulette.current.style.transform = "rotate(" + rand + "deg)";
-    let portion = 360 / 6;
+    roulette.current.style.transform = "rotate(+" + rand + "deg)";
+    console.log(degrees);
     switch (true) {
-      case degrees > 0 && degrees <= 30:
-        setTimeout(() => {
-          setPlaying(!playing);
-          setCategory("Animals");
-        }, 5000);
-        break;
-      case degrees > portion && degrees <= 2 * portion:
-        setTimeout(() => {
-          setPlaying(!playing);
-          setCategory("Music");
-        }, 5000);
-        break;
-      case degrees > 2 * portion && degrees <= 3 * portion:
-        setTimeout(() => {
-          setPlaying(!playing);
-          setCategory("General Knowledge");
-        }, 5000);
-        break;
-      case degrees > 3 * portion && degrees <= 4 * portion:
-        setTimeout(() => {
-          setPlaying(!playing);
-          setCategory("Science: Computers");
-        }, 5000);
-        break;
-      case degrees > 4 * portion && degrees <= 5 * portion:
+      case degrees > 30 && degrees <= 90:
         setTimeout(() => {
           setPlaying(!playing);
           setCategory("Movies and series");
         }, 5000);
+
         break;
-      case degrees > 5 * portion && degrees <= 6 * portion:
+      case degrees > 90 && degrees <= 150:
+        setTimeout(() => {
+          setPlaying(!playing);
+          setCategory("Science: Computers");
+        }, 5000);
+
+        break;
+      case degrees > 150 && degrees <= 210:
+        setTimeout(() => {
+          setPlaying(!playing);
+          setCategory("General Knowledge");
+        }, 5000);
+
+        break;
+      case degrees > 210 && degrees <= 270:
+        setTimeout(() => {
+          setPlaying(!playing);
+          setCategory("Animals");
+        }, 5000);
+
+        break;
+      case degrees > 270 && degrees <= 330:
+        setTimeout(() => {
+          setPlaying(!playing);
+          setCategory("Music");
+        }, 5000);
+
+        break;
+      default:
         setTimeout(() => {
           setPlaying(!playing);
           setNosy(true);
           setGolden(true);
         }, 5000);
-        // props.setNosy(true)
-        break;
-      default:
-        return false;
+      // props.setNosy(true)
     }
   };
   const rotate = () => {

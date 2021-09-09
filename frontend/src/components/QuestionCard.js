@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import gamesActions from "../redux/actions/gamesActions";
 
 const QuestionCard = (props) => {
-  const { question, possibleAnswers, correctAnswer } = props.question;
+  const { question, possibleAnswers, correctAnswer, category } = props.question;
   const [click, setClick] = useState(false);
   const [answers, setAnswers] = useState([]);
   const [bomb, setBomb] = useState([]);
