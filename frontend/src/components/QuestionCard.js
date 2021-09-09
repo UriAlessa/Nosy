@@ -79,6 +79,7 @@ const QuestionCard = (props) => {
     <div className={styles.infoLifes}>
       <img className={styles.heart} src="/assets/heart.png" alt="heart" />
       <h3>You lost a life!</h3>
+      <h3>You lost a life!</h3>
     </div>
   );
   // token, question, answer, nosy, powers_used, coins_spent
