@@ -28,15 +28,16 @@ const QuestionCard = (props) => {
                 {/* <p>Creator<br />{creator}</p> */}
                 <p className={`${categoryColor[category]} ${styles.category}`}>{category}</p>
             </div>
-            {edit ? <textarea rows='3' defaultValue={question}></textarea> : <h4>{question}</h4>}
-            {
-                possibleAnswers.map((answer, index) => {
-                    return (
-                        edit ? <input defaultValue={answer} key={index} /> : <p key={index}>{answer}</p>
-                    )
-                })
-            }
-
+            <div>
+                {edit ? <textarea rows='3' defaultValue={question}></textarea> : <h4>{question}</h4>}
+                {
+                    possibleAnswers.map((answer, index) => {
+                        return (
+                            edit ? <input defaultValue={answer} key={index} /> : <p key={index}>{answer}</p>
+                        )
+                    })
+                }
+            </div>
             <div className={styles.buttonsContainer}>
                 {edit && (<img className={styles.icon} onClick={() => setEdit(!edit)} src="/assets/cancel.png" alt="" />)}
                 {edit && (<img className={styles.icon} src="/assets/check.png" alt="" />)}

@@ -44,22 +44,27 @@
 
 .categoryPurple{
     background-color: #8366be;
+    background-color: #8E45B7;
 }
 
 .categoryBlue{
     background-color: #2191fd;
+    background-color: #2879C9;
 }
 
 .categoryRed{
     background-color: #d9370c;
+    background-color: #E0390D;
 }
 
 .categoryYellow{
     background-color: #fedf0a;
+    background-color: #E7C30A;
 }
 
 .categoryGreen{
     background-color: #76b02f;
+    background-color: #8DCC29;
 }
 
 .buttonsContainer{

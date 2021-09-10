@@ -1,35 +1,18 @@
 import styles from "../../styles/users.module.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { connect } from "react-redux";
 import usersActions from "../../redux/actions/admin/adminUserActions";
 import UserCard from "./UserCard";
 import { toast } from "react-hot-toast";
 
-
 const Users = (props) => {
-    const [users, setUsers] = useState([]);
-    const [filtered, setFiltered] = useState([])
+    const [filtered, setFiltered] = useState(props.users)
     const [reload, setReload] = useState(false)
     const [newUser, setNewUser] = useState({})
     const usernameInput = useRef()
     const passwordInput = useRef()
     const emailInput = useRef()
     const avatarInput = useRef()
-
-
-    const getUsers = async () => {
-        try {
-            let response = await props.getUsers();
-            if (response.data.success) {
-                setUsers(response.data.response);
-                setFiltered(response.data.response)
-            } else {
-                throw new Error();
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
     const inputHandler = (e) => {
         setNewUser({
@@ -73,15 +56,8 @@ const Users = (props) => {
         }
     }
 
-    useEffect(() => {
-        if (!users.length) {
-            getUsers()
-        }
-        // eslint-disable-next-line
-    }, [])
-
     const filter = (e) => {
-        setFiltered(users.filter((user) => user.username.startsWith(e.target.value)))
+        setFiltered(props.users.filter((user) => user.username.startsWith(e.target.value)))
     }
 
     return (
@@ -114,13 +90,11 @@ const Users = (props) => {
                     </span>
                 </form>
             </div>
-
         </div>
     );
 };
 
 const mapDispatchToProps = {
-    getUsers: usersActions.getUsers,
     createUser: usersActions.createUser,
 };
 
