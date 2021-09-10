@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 
 const AdminPanel = (props) => {
     const [view, setView] = useState("dashboard")
-
+    //borrar
     return (
         <section className={styles.adminContainer}>
             <div className={styles.dataContainer}>
