@@ -243,9 +243,9 @@ const usersActions = {
       try {
         let response = await axios.get("http://localhost:4000/api/review");
         if (response.data.success) {
-          return { success: true, response: response.data.response};
-        }else{
-          return { success: false, response: response.data.response};
+          return { success: true, response: response.data.response };
+        } else {
+          return { success: false, response: response.data.response };
         }
       } catch (error) {
         return { success: false, response: error.message };
@@ -253,48 +253,27 @@ const usersActions = {
     };
   },
 
-  setEmoji:(ranking, token)=>{
-    return async ()=>{
-      try{
-        let response = await axios.put(`http://localhost:4000/api/emoji`, { ranking },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },  
-        });
-        console.log(response)
-        if (response.data.success) {
-          return { response: response.data.response};
-        } else {
-          return { success: false};
-        }
-      } catch (err) {
-        return { success: false, response: err.message };
-      }
-    };
-  },
-
-  getEmoji:(token)=>{
-    return async ()=>{
-      try{
-        let response = await axios.put(`http://localhost:4000/api/emoji`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
-        console.log(response)
-        if (response.data.success) {
-          return { response: response.data.response};
-        } else {
-          return { success: response.data.response};
-        }
+  setEmoji: (emoji) => {
+    return async (dispatch) => {
+      const token = localStorage.getItem("token");
+      try {
+        let response = await axios.put(
+          `http://localhost:4000/api/user/emoji`,
+          { emoji },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (!response.data.success) throw new Error();
+        dispatch({ type: "LOG_IN_USER", payload: { ...response.data, token } });
+        return response.data;
       } catch (err) {
         return { success: false, response: err.message };
       }
     };
   },
 };
-
 
 export default usersActions;

@@ -17,6 +17,7 @@ body {
   /* background-image: url(./assets/transparentSmall.png); */
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: bottom;
 }
 
 
@@ -41,4 +42,10 @@ body {
   .heroHome {
     align-items: center;
   }
+}
+@media (max-width: 1100px){
+  .body{
+    background-position: inherit;
+  }
+ 
 }

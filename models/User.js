@@ -46,6 +46,7 @@ const userSchema = mongoose.Schema({
       creator: { type: Boolean, default: false },
     },
   ],
+  emoji: { type: String, default: "first" },
 });
 
 module.exports = mongoose.model("user", userSchema);

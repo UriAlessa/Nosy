@@ -14,8 +14,12 @@ const Roulette = (props) => {
     <div className={styles.rouletteContainer}>
       <div className={styles.topInfo}>
         <div className={style.containerInfoGame}>
-          <img className={style.imgInfoGame} src="/assets/coin.png" alt="coin" />
-          <span>{props.coins && props.coins}</span>
+          <img
+            className={style.imgInfoGame}
+            src="/assets/coin.png"
+            alt="coin"
+          />
+          <span>{props.coins && props.coinsFront}</span>
         </div>
         <div className={style.containerInfoGame}>
           <img
@@ -50,10 +54,11 @@ const Roulette = (props) => {
             <img
               key={shadow.key}
               className={styles.picShadow}
-              src={`assets/${props.game.player.medals.includes(shadow.key)
-                ? shadow.yes
-                : shadow.no
-                }`}
+              src={`assets/${
+                props.game.player.medals.includes(shadow.key)
+                  ? shadow.yes
+                  : shadow.no
+              }`}
               alt={shadow.key}
             />
           ))}
