@@ -43,6 +43,14 @@
     justify-content: space-between;
 }
 
+@media (min-width: 1700px) {
+
+   .container .description {
+        letter-spacing: 0.2rem;
+       line-height: inherit;
+    }
+}
+
 @media (max-width: 768px) {
     .container {
         width: 90%;
@@ -72,3 +80,4 @@
         font-size: 4vmin;
     }
 }
+

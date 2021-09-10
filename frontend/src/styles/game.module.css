@@ -12,7 +12,7 @@
 .renderGame {
   width: 60%;
   height: 80vh;
-  background-color: #665fdf;
+  background-color: rgba(47, 41, 106, 0.912);
   /* background: rgb(102,95,223);
   background: linear-gradient(150deg, rgba(102,95,223,1) 0%, rgb(42, 39, 94) 50%, rgba(102,95,223,1) 100%); */
   border-radius: 30px;
