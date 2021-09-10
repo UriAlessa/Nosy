@@ -17,8 +17,14 @@ router
   );
 router
   .route("/user/friend_request")
-  .post(usersAccountsControllers.addFriend)
-  .put(usersAccountsControllers.acceptFriendRequest);
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    usersAccountsControllers.addFriend
+  )
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    usersAccountsControllers.acceptFriendRequest
+  );
 
 router
   .route("/user/token")

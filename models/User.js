@@ -27,10 +27,12 @@ const userSchema = mongoose.Schema({
     multi_player: { type: Boolean, default: true },
   },
   friends: [{ type: mongoose.Types.ObjectId, path: "user" }],
-  friend_requests: {
-    users: [{ type: mongoose.Types.ObjectId, path: "user" }],
-    creator: { type: Boolean, default: false },
-  },
+  friend_requests: [
+    {
+      user: { type: mongoose.Types.ObjectId, path: "user" },
+      creator: { type: Boolean, default: false },
+    },
+  ],
   admin: {
     flag: { type: Boolean, default: false },
     key: { type: String },
