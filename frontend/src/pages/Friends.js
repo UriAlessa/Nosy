@@ -27,7 +27,7 @@ const Friends = (props) => {
   const clickHandler = async () => {
     setUserSearched(await props.searchUser(user, props.token));
   };
-
+  console.log(props.userData && props.userData);
   return (
     <>
       <div className={styles.mainContainer}>
@@ -65,8 +65,8 @@ const Friends = (props) => {
           )}
           <div className={styles.friendsList}>
             <h2 className={styles.title}>Friend List</h2>
-            {filtered.map((user) => (
-              <FriendCard user={user} key={user._id} />
+            {filtered.map((friend) => (
+              <FriendCard friend={friend} key={friend.username} />
             ))}
             <input
               className={styles.searchFriend}

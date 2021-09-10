@@ -14,16 +14,12 @@ module.exports = passport.use(
         ? "multiplayer game"
         : "singleplayer game";
       User.findOne({ _id: payload._doc._id })
+        .populate({ path: "friends", model: "user", select: "username avatar" })
         .populate({
-          path: "playing_now",
-          populate: { path: "game_id", model: model },
           path: "friend_requests",
-          populate: {
-            path: "user",
-            model: "user",
-            select: "username avatar",
-          },
+          populate: { path: "user", model: "user", select: "username avatar" },
         })
+        .populate({ path: "playing_now", populate: { path: "game_id", model } })
         .then((response) => {
           if (!response) {
             return done(null, false);
