@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import gamesActions from "../redux/actions/gamesActions";
 import toast from "react-hot-toast";
 
+
 const QuestionCard = (props) => {
   const { question, possibleAnswers, correctAnswer, category,img } = props.question;
   const [click, setClick] = useState(false);
@@ -15,7 +16,7 @@ const QuestionCard = (props) => {
   const [incorrect, setIncorrect] = useState(false);
   const [audio, setAudio] = useState({});
   let answersContainer = useRef();
-  const [seconds, setSeconds] = useState(15);
+  const [seconds, setSeconds] = useState(1500000);
 
 
   let timeOut = useRef();
@@ -46,7 +47,7 @@ const QuestionCard = (props) => {
     } else if (seconds === 0) {
       let coins_spent = bomb.length !== 0 ? 30 : 0;
       coins_spent += repeatAnswerRef.current ? 25 : 0;
-      coins_spent += props.reRoll.current ? 20 : 0;
+      /* coins_spent += props.reRoll.current ? 20 : 0; */
       let powers_used =
         repeatAnswerRef.current || bomb.length || props.reRoll.current !== 0
           ? 1
@@ -54,7 +55,9 @@ const QuestionCard = (props) => {
       props.reRoll.current = false;
       repeatAnswerRef.current = false;
       if (props.token && seconds === 0) {
+        /* sendAnswer(false, powers_used, coins_spent); */
         sendAnswer(false, powers_used, coins_spent);
+
       }
       setTimeout(() => {
         setIncorrect(true);
@@ -84,21 +87,29 @@ const QuestionCard = (props) => {
     </div>
   );
   // token, question, answer, nosy, powers_used, coins_spent
-
   const clickHandler = (e) => {
     let answer = correctAnswer === e.target.name;
     answer ? audio.correctAudio.play() : audio.incorrectAudio.play();
     if (!repeatAnswer || answer) {
       props.category(null);
-      Array.from(answersContainer.current.children).forEach((answer) =>
-        answer.name === correctAnswer
+      Array.from(answersContainer.current.children).forEach((answer) =>{
+        if((answer.name === correctAnswer) && answers.length>2){
+          (answer.className = ` ${styles.buttonOption}  ${styles.correct}`)
+        }else if((answer.name !== correctAnswer) && answers.length>2){
+          (answer.className = ` ${styles.buttonOption}  ${styles.incorrect}`)
+        }else if((answer.name === correctAnswer) && answers.length===2){
+          answer.className = ` ${styles.buttonOption}  ${styles.correct2}`
+        }else if((answer.name !== correctAnswer) && answers.length===2){
+          answer.className = ` ${styles.buttonOption}  ${styles.incorrect2}`
+        }     
+       /*  answer.name === correctAnswer
           ? (answer.className = ` ${styles.buttonOption}  ${styles.correct}`)
-          : (answer.className = ` ${styles.buttonOption}  ${styles.incorrect}`)
-      );
+          : (answer.className = ` ${styles.buttonOption}  ${styles.incorrect}`) */
+      });
       setClick(true);
       let coins_spent = bomb.length !== 0 ? 30 : 0;
       coins_spent += repeatAnswerRef.current ? 25 : 0;
-      coins_spent += props.reRoll.current ? 20 : 0;
+      /* coins_spent += props.reRoll.current ? 20 : 0; */
       let powers_used =
         repeatAnswerRef.current || bomb.length || props.reRoll.current !== 0
           ? 1
@@ -143,38 +154,38 @@ const QuestionCard = (props) => {
         infoLifes
       ) : (
         <article className={styles.card}>
-          <div className={styles.containerLogo}>
-            <div className={styles.containerHeaderCard}>
-              <img
+          <div className={styles.containerSeconds2}>
+            <img
                 className={styles.logo}
                 src="/assets/logoSoloLetras.png"
                 alt="logo"
               />
+              <div className={styles.ContainerCoinsTimeLife}>
               <div className={styles.coinInfo}>
-                <img
-                  className={styles.imgInfoGame}
-                  src="/assets/coin.png"
-                  alt="coin"
-                />
-                <span>{props.coins && props.coins}</span>
-              </div>
-              <div className={styles.containerInfoGame}>
-                <img
-                  className={styles.imgInfoGame}
-                  src="/assets/heart_2.png"
-                  alt="heart"
-                />
-                <span>{props.game && props.game.lifes}</span>
-                <div className={styles.containerSeconds}>
-                  <p className={styles.seconds}>{("0" + seconds).slice(-2)}</p>
+                  <img
+                    className={styles.imgInfoGame}
+                    src="/assets/coin.png"
+                    alt="coin"
+                  />
+                  <span>{props.coins && props.coins}</span>
                 </div>
-              </div>
-            </div>
+                <div className={styles.containerInfoGame}>
+                  <img
+                    className={styles.imgInfoGame}
+                    src="/assets/heart_2.png"
+                    alt="heart"
+                  />
+                  <span>{props.game && props.game.lifes}</span>
+                </div>
+                <badge className={styles.seconds}>{(("0" + seconds).slice(-2)+'"')}</badge>
+              </div>            
+          </div> 
+          <div className={styles.containerGlobal}>
+          <div className={styles.containerLogo}>
             <div className={styles.category}>
               <img className={styles.imgCategory} src={img} alt="img category"/>
             <h2>{category}</h2>
             </div>
-
             <h3>{question}</h3>
           </div>
           <div ref={answersContainer} className={styles.containerButtons}>
@@ -183,7 +194,10 @@ const QuestionCard = (props) => {
                   return (
                     <button
                       key={index}
-                      className={styles.buttonOption}
+                      className={
+                        answers.length===2
+                        ? styles.button2option
+                        :styles.buttonOption}
                       name={string}
                       onClick={clickHandler}
                       disabled={click}
@@ -252,7 +266,11 @@ const QuestionCard = (props) => {
                       : styles.buttonOption
                   }
                   onClick={() => {
-                    props.coins>24 && (repeatAnswerRef.current = true && setRepeatAnswer(true))
+                    if(props.coins>24){
+                      repeatAnswerRef.current = true 
+                      setRepeatAnswer(true)
+                    }
+                   /*  props.coins>24 && (repeatAnswerRef.current = true && setRepeatAnswer(true)) */
                     props.coins<25 && toast.error("You can't buy this.")
                   }}
                 >
@@ -284,8 +302,10 @@ const QuestionCard = (props) => {
               onClick={() => {
                 if(props.coins>19){
                   props.reRoll.current = true;
+                  let coins_spent=20
+                  sendAnswer(false, false, coins_spent)
                   props.setPlaying(false);
-                  props.setQuestion(null);
+                  props.setQuestion(null); 
                 }
                props.coins<20 && toast.error("You can't buy this.")
               }}
@@ -307,6 +327,8 @@ const QuestionCard = (props) => {
               </div>
             </button>
           </div>
+          </div>
+          
         </article>
       )}
     </section>
@@ -327,3 +349,185 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionCard);
+
+
+/* return (
+  <section
+    className={styles.sectionQuestion}
+    style={{ backgroundImage: "url('/assets/background.png')" }}
+  >
+    {incorrect ? (
+      infoLifes
+    ) : (
+      <article className={styles.card}>
+      <div className={styles.containerSeconds2}>
+                <p className={styles.seconds}>{("0" + seconds).slice(-2)}</p>
+      </div> 
+        <div className={styles.containerLogo}>
+          <div className={styles.containerHeaderCard}>
+            <img
+              className={styles.logo}
+              src="/assets/logoSoloLetras.png"
+              alt="logo"
+            />
+            <div className={styles.coinInfo}>
+              <img
+                className={styles.imgInfoGame}
+                src="/assets/coin.png"
+                alt="coin"
+              />
+              <span>{props.coins && props.coins}</span>
+            </div>
+            <div className={styles.containerInfoGame}>
+              <img
+                className={styles.imgInfoGame}
+                src="/assets/heart_2.png"
+                alt="heart"
+              />
+              <span>{props.game && props.game.lifes}</span>
+               <div className={styles.containerSeconds}>
+                <p className={styles.seconds}>{("0" + seconds).slice(-2)}</p>
+              </div> 
+            </div>
+          </div>
+          <div className={styles.category}>
+            <img className={styles.imgCategory} src={img} alt="img category"/>
+          <h2>{category}</h2>
+          </div>
+          <h3>{question}</h3>
+        </div>
+        <div ref={answersContainer} className={styles.containerButtons}>
+          {bomb.length === 0
+            ? answers.map((string, index) => {
+                return (
+                  <button
+                    key={index}
+                    className={styles.buttonOption}
+                    name={string}
+                    onClick={clickHandler}
+                    disabled={click}
+                  >
+                    {string}
+                  </button>
+                );
+              })
+            : answers.map((string, index) => {
+                return (
+                  <button
+                    key={index}
+                    className={
+                      bomb.includes(string)
+                        ? styles.buttonOptionBombed 
+                        : styles.buttonOption
+                    }
+                    name={string}
+                    onClick={clickHandler}
+                    disabled={bomb.includes(string)}
+                  >
+                    {string}
+                  </button>
+                );
+              })}
+        </div>
+
+        <div className={styles.powersButtons}>
+          {answers.length > 2 && (
+            <>
+              <button
+                disabled={
+                  repeatAnswer || bomb.length !== 0 }
+                className={
+                  props.coins < 30
+                    ? styles.noMoney 
+                    : styles.buttonOption
+                }
+                onClick={()=>{
+                  props.coins>29&&Bomb()
+                  props.coins<30 && toast.error("You can't buy this.")
+                }}
+              >
+                <img
+                  className={styles.imgPowers}
+                  src="/assets/bomb.png"
+                  alt="bomb"
+                />
+                <div className={styles.containerIconsPowers}>
+                  <h5>Bomb!</h5>
+                  <div className={styles.containerCoins}>
+                    <h6> 30 </h6>
+                    <img
+                      className={styles.imgPowersCoin}
+                      src="/assets/coin.png"
+                    />
+                  </div>
+                </div>
+              </button>
+              <button
+                disabled={
+                  repeatAnswer || bomb.length !== 0 }
+                className={
+                  props.coins < 25
+                    ? styles.noMoney 
+                    : styles.buttonOption
+                }
+                onClick={() => {
+                  props.coins>24 && (repeatAnswerRef.current = true && setRepeatAnswer(true))
+                  props.coins<25 && toast.error("You can't buy this.")
+                }}
+              >
+                <img
+                  className={styles.imgPowers}
+                  src="/assets/repeat.png"
+                  alt="repeat"
+                />
+                <div className={styles.containerIconsPowers}>
+                  <h5>Repeat</h5>
+                  <div className={styles.containerCoins}>
+                    <h6> 25 </h6>
+                    <img
+                      className={styles.imgPowersCoin}
+                      src="/assets/coin.png"
+                    />
+                  </div>
+                </div>
+              </button>
+            </>
+          )}
+          <button
+           disabled={repeatAnswer || bomb.length !== 0 } 
+            className={
+              props.coins < 20
+                ? styles.noMoney 
+                : styles.buttonOption
+            }
+            onClick={() => {
+              if(props.coins>19){
+                props.reRoll.current = true;
+                props.setPlaying(false);
+                props.setQuestion(null);
+              }
+             props.coins<20 && toast.error("You can't buy this.")
+            }}
+          >
+            <img
+              className={styles.imgPowers}
+              src="/assets/lottery.png"
+              alt="Roll"
+            />
+            <div className={styles.containerIconsPowers}>
+              <h5>Roll</h5>
+              <div className={styles.containerCoins}>
+                <h6> 20 </h6>
+                <img
+                  className={styles.imgPowersCoin}
+                  src="/assets/coin.png"
+                />
+              </div>
+            </div>
+          </button>
+        </div>
+      </article>
+    )}
+  </section>
+);
+ */
