@@ -1,42 +1,19 @@
 import style from '../../styles/users.module.css'
 import styles from '../../styles/questions.module.css'
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import questionActions from "../../redux/actions/admin/questionsActions";
 import { connect } from "react-redux";
 import QuestionCard from "./QuestionCard";
 import { toast } from "react-hot-toast";
 
-
 const Questions = (props) => {
-  const [questions, setQuestions] = useState([]);
-  const [filtered, setFiltered] = useState([])
+  const [filtered, setFiltered] = useState(props.questions)
   const [newQuestion, setNewQuestion] = useState([])
   const correctInput = useRef()
   const questionInput = useRef()
   const incorrectInputOne = useRef()
   const incorrectInputTwo = useRef()
   const incorrectInputThree = useRef()
-
-  const getQuestions = async () => {
-    try {
-      let response = await props.getQuestions();
-      if (response.data.success) {
-        setQuestions(response.data.response);
-        setFiltered(response.data.response)
-      } else {
-        throw new Error();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (!questions.length) {
-      getQuestions()
-    }
-    // eslint-disable-next-line
-  }, [])
 
   const inputHandler = (e) => {
     setNewQuestion({
@@ -129,9 +106,7 @@ const Questions = (props) => {
             Create Question
           </span>
         </form>
-
       </div>
-
     </div>
   );
 };
