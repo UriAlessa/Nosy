@@ -41,46 +41,49 @@ const Header = (props) => {
           {!props.token ? (
             <NavLink to="/accounts">LOG IN/SIGN UP</NavLink>
           ) : (
-            <div
-              onClick={showLogin}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                position: "relative",
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <div
-                  className={styles.logoUser}
-                  style={{
-                    backgroundImage: `url('${props.avatar}')`,
-                    height: "35px",
-                    width: "35px",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    borderRadius: "50%",
-                  }}
-                ></div>
-                <p>Hello, {props.username}</p>
-                <svg
-                  className={styles.arrowDown}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="white"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                </svg>
-              </div>
-              {props.token && login && (
-                <div
-                  onClick={() => props.logOutUser()}
-                  className={styles.logoutContainer}
-                  onMouseLeave={showLogin}
-                >
-                  <p>LOG OUT</p>
+            <>
+            <NavLink to='/friends'>FRIENDS</NavLink>
+              <div
+                onClick={showLogin}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  position: "relative",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <div
+                    className={styles.logoUser}
+                    style={{
+                      backgroundImage: `url('${props.avatar}')`,
+                      height: "35px",
+                      width: "35px",
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
+                      borderRadius: "50%",
+                    }}
+                  ></div>
+                  <p>Hello, {props.username}</p>
+                  <svg
+                    className={styles.arrowDown}
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="white"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                  </svg>
                 </div>
-              )}
-            </div>
+                {props.token && login && (
+                  <div
+                    onClick={() => props.logOutUser()}
+                    className={styles.logoutContainer}
+                    onMouseLeave={showLogin}
+                  >
+                    <p>LOG OUT</p>
+                  </div>
+                )}
+              </div>
+            </>
           )}
         </nav>
       </div>
