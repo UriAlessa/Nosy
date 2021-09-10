@@ -1,14 +1,17 @@
 import styles from "../styles/home/reviews.module.css";
+let moment = require('moment')
+
 const ReviewSlide = (props) => {
 
   // let expired = 2592000000;//**hace unos segundos */
   // let dateNow= Date.now()
 
   const today = props.oneReview.date / 360
+
   return (
     <div >
       <h4 className={styles.titleDescription}>"{props.oneReview.title}"</h4>
-      <p className={styles.subtitleDescription}>{today}</p>
+      <p className={styles.subtitleDescription}>{moment(props.oneReview.date).fromNow()}</p>
 
       <div
         className={styles.picGame}
