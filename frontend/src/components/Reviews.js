@@ -11,12 +11,21 @@ const Reviews = (props) => {
   const [allReviews, setAllReviews] = useState([]);
 
   useEffect(() => {
-    getReviews();
+    getReviewsFunction();
+     // eslint-disable-next-line
   }, []);
 
-  const getReviews = async () => {
-    setAllReviews(await props.getReviews());
+  const getReviewsFunction = async () => {
+    let reviews= await props.getReviews()
+    setAllReviews(reviews.response);
   };
+
+  let render= allReviews.length !== 0 &&
+    allReviews.map((info, index) => {
+      return <ReviewSlide oneReview={info} key={"Review" + index} />
+    })
+    
+
   const inputHandler = (e) => {
     if (!props.token) {
       return toast.error("You most to be login for this", {
@@ -44,12 +53,9 @@ const Reviews = (props) => {
         Memorable moments from other players
       </h4>
       <article className={styles.articleGames}>
-        <div>
+        <div className={styles.divGame}>
           <button className={styles.buttonAddComment} onClick={inputHandler}>+</button>
-          {allReviews.length !== 0 &&
-            allReviews.map((info, index) => {
-              return <ReviewSlide oneReview={info} key={"Review" + index} />;
-            })}
+          {render}
         </div>
         <div>
           <RankingCard />

@@ -127,10 +127,7 @@ const usersAccountControllers = {
   },
 
   newReview: async (req, res)=>{
-    console.log(req.user)
-    console.log(req.body)
     let date= Date.now()
-    console.log(date)
     try{
       const reviewToPost = await new Review({
         img: req.body.img,
@@ -139,7 +136,6 @@ const usersAccountControllers = {
         title: req.body.title,
         description: req.body.description
       })
-      console.log(reviewToPost)
       await reviewToPost.save()
       res.json({success:true, response: reviewToPost})
     }catch(err){
@@ -161,8 +157,42 @@ const usersAccountControllers = {
     }catch(error){
       res.json({succes:false, response: error.message})
     }
-  }
+  },
 
+  setEmoji: async (req, res)=>{
+    try {
+      let ranking = await Ranking.findOne({ userId: req.user._id })
+      console.log(ranking)
+        if(ranking){
+          let setEmoji = await Ranking.findOneAndUpdate({ userId: req.user._id }, { $set: { emoji: req.body.ranking } }, { new: true })
+          res.json({ success: true, response: setEmoji.emoji })
+        }else {
+          const starToPost = await new Ranking({
+            emoji:req.body.ranking,
+            userId:req.user._id,
+          })
+          console.log(starToPost)
+          await starToPost.save()
+          res.json({success:true, response: starToPost.emoji})
+      }
+  } catch (error) {
+      console.log(error.message)
+  }
+  },
+
+  getEmoji: async (req, res)=>{
+    try {
+      let emoji = await Ranking.findOne({ userId: req.user._id })
+      console.log(emoji)
+      if(emoji){
+        res.json({success:true, response: emoji.emoji})
+      }else{
+        res.json({success:false, response: "The user has not voted yet"})
+      }
+  } catch (error) {
+      console.log(error.message)
+  }
+  },
 
 };
 

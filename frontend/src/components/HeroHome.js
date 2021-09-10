@@ -6,7 +6,7 @@ const HeroHome = () => {
   return (
     <div className={style.container}>
       <h1 className={style.title}>PLAYING IS MORE FUN IF YOU AREN'T ALONE!</h1>
-      <p>
+      <p className={style.pDescription}>
         The well-known wonder game comes to your hands! so that you entertain
         moments, awaken your mind and learn by playing.
       </p>

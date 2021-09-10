@@ -64,5 +64,18 @@ router
   .get(
     usersAccountsControllers.getReviews
   )
+  
+
+router
+  .route("/emoji")
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    usersAccountsControllers.setEmoji
+  )
+  .get(
+    passport.authenticate("jwt", { session: false }),
+    usersAccountsControllers.getEmoji
+  )
+
 
 module.exports = router;

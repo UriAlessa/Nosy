@@ -20,8 +20,17 @@
   font-size: 3vmin;
   color: #fff;
   letter-spacing: 0;
-  line-height: 24px;
+ 
+}
+
+.pDescription {
+  font-family: "Ubuntu", sans-serif;
+  font-weight:normal;
+  letter-spacing: .3px;
+  color: rgb(225, 223, 255);
+  line-height: 28px;
   margin: 20px 20px 20px 0;
+
 }
 
 .buttons {
@@ -72,10 +81,34 @@
   .container p {
     font-size: 3.5vmin;
   }
+  .pDescription {
+    font-size: 3.5vmin;
+    letter-spacing: .1px;
+    line-height: 20px;  
+  }
 }
 
 @media (max-width: 500px) {
   .container p {
     font-size: 4vmin;
   }
+
+  .pDescription {
+    font-size: 4vmin;
+    letter-spacing: .1px;
+    line-height: 15px;  
+  }
 }
+
+@media (max-width: 300px) {
+  .container p {
+    font-size: 4vmin;
+  }
+
+  .pDescription {
+    font-size: 4vmin;
+    letter-spacing: .1px;
+    line-height: 15px;  
+  }
+}
+
