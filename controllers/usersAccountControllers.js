@@ -193,6 +193,19 @@ const usersAccountControllers = {
       res.json({ success: false });
     }
   },
+  searchUsers: async (req, res) => {
+    console.log(req.body)
+    const {username} = req.body
+    try {
+      let user = await User.findOne({ username })
+      if (!user) {
+        throw new Error('That username does not exist')
+      } 
+      res.json({ success: true, response: user})
+    } catch (error) {
+      res.json({success: false, response: error.message})
+    }
+  }
 };
 
 module.exports = usersAccountControllers;

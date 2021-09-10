@@ -274,6 +274,24 @@ const usersActions = {
       }
     };
   },
+  searchUser: (username, token) => {
+    return async () => {
+      try {
+        let response = await axios.post('http://localhost:4000/api/user/add_friend',
+        {username}, 
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        if (!response.data.success) throw new Error(response.data.response)
+        let user = {username: response.data.response.username, avatar: response.data.response.avatar}
+        return user
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
 };
 
 export default usersActions;
