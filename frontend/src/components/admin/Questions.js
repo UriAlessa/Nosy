@@ -4,17 +4,18 @@ import { useEffect, useState, useRef } from "react";
 import questionActions from "../../redux/actions/admin/questionsActions";
 import { connect } from "react-redux";
 import QuestionCard from "./QuestionCard";
+import { toast } from "react-hot-toast";
+
 
 const Questions = (props) => {
   const [questions, setQuestions] = useState([]);
   const [filtered, setFiltered] = useState([])
-  const usernameInput = useRef()
-  const passwordInput = useRef()
-  const emailInput = useRef()
-  const avatarInput = useRef()
-
-  document.title = 'Nosy | Questions - Admin Dashboard'
-
+  const [newQuestion, setNewQuestion] = useState([])
+  const correctInput = useRef()
+  const questionInput = useRef()
+  const incorrectInputOne = useRef()
+  const incorrectInputTwo = useRef()
+  const incorrectInputThree = useRef()
 
   const getQuestions = async () => {
     try {
@@ -38,14 +39,47 @@ const Questions = (props) => {
   }, [])
 
   const inputHandler = (e) => {
-    // setNewUser({
-    //   ...newUser,
-    //   [e.target.name]: e.target.value
-    // })
+    setNewQuestion({
+      ...newQuestion,
+      [e.target.name]: e.target.value,
+      'possibleAnswer': [
+        correctInput.current.value,
+        incorrectInputOne.current.value,
+        incorrectInputTwo.current.value,
+        incorrectInputThree.current.value
+      ]
+    })
   }
 
-  const sendQuestion = () => {
-
+  const createQuestion = async () => {
+    try {
+      let response = await props.createQuestion(newQuestion)
+      if (response.success) {
+        toast.success("Question Created Successfully", {
+          position: "top-left",
+          style: {
+            borderRadius: "10px",
+            background: "#453ab7",
+            color: "#fff",
+            fontFamily: "Ubuntu, sans-serif",
+            height: "10vh"
+          },
+        });
+      } else {
+        throw new Error()
+      }
+    } catch (error) {
+      toast.error("Something went wrong. Try again Later", {
+        position: "top-left",
+        style: {
+          borderRadius: "10px",
+          background: "#453ab7",
+          color: "#fff",
+          fontFamily: "Ubuntu, sans-serif",
+          height: "10vh"
+        },
+      });
+    }
   }
 
 
@@ -59,22 +93,35 @@ const Questions = (props) => {
           {filtered.map((question) => <QuestionCard question={question} key={question._id} />)}
         </div>
       </div>
-      <div className={style.loginBox}>
+      <div className={style.loginBox} style={{ height: '90%' }}>
         <p>Create New Question</p>
         <form>
           <div className={style.userBox}>
-            <input ref={usernameInput} name="category" type="text" placeholder="Category" onClick={inputHandler} autoComplete="nope" />
+            <select name="category" id="category" onClick={inputHandler}>
+              <option value="" disabled selected>Choose a category</option>
+              <option value="Animals">Animals</option>
+              <option value="Music">Music</option>
+              <option value="General Knowledge">General Knowledge</option>
+              <option value="Science: Computers">Science: Computers</option>
+              <option value="Movies and series">Movies and series</option>
+            </select>
           </div>
           <div className={style.userBox}>
-            <input ref={passwordInput} name="question" type="text" placeholder="Question" onClick={inputHandler} autoComplete="nope" />
+            <input ref={questionInput} name="question" type="text" placeholder="Question" onChange={inputHandler} autoComplete="nope" />
           </div>
           <div className={style.userBox}>
-            <input ref={emailInput} name="correctAnswer" type="text" placeholder="Correct Answer" onClick={inputHandler} autoComplete="nope" />
+            <input ref={correctInput} name="correctAnswer" type="text" placeholder="Correct Answer" onChange={inputHandler} autoComplete="nope" />
           </div>
           <div className={style.userBox}>
-            <input ref={avatarInput} name="incorrectAnswer" type="text" placeholder="Image Url" onClick={inputHandler} autoComplete="nope" />
+            <input ref={incorrectInputOne} name="incorrectAnswer1" type="text" placeholder="Incorrect Answer 1" onChange={inputHandler} autoComplete="nope" />
           </div>
-          <span className={style.linkButton} onClick={sendQuestion}>
+          <div className={style.userBox}>
+            <input ref={incorrectInputTwo} name="incorrectAnswer2" type="text" placeholder="Incorrect Answer 2" onChange={inputHandler} autoComplete="nope" />
+          </div>
+          <div className={style.userBox}>
+            <input ref={incorrectInputThree} name="incorrectAnswer2" type="text" placeholder="Incorrect Answer 3" onChange={inputHandler} autoComplete="nope" />
+          </div>
+          <span className={style.linkButton} onClick={createQuestion}>
             <span></span>
             <span></span>
             <span></span>
@@ -91,6 +138,7 @@ const Questions = (props) => {
 
 const mapDispatchToProps = {
   getQuestions: questionActions.getQuestions,
+  createQuestion: questionActions.createQuestions
 };
 
 export default connect(null, mapDispatchToProps)(Questions);

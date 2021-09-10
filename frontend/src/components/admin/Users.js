@@ -16,7 +16,6 @@ const Users = (props) => {
     const emailInput = useRef()
     const avatarInput = useRef()
 
-    document.title = 'Nosy | Users - Admin Dashboard'
 
     const getUsers = async () => {
         try {

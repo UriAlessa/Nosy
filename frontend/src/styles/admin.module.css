@@ -58,6 +58,11 @@
     text-transform: uppercase;
     margin: 0 1vw;
 }
+.active{
+    font-weight: 600;
+    border-bottom: 2px solid white;
+}
+
 .infoSection {
     flex: 1;
     height: 80vh;

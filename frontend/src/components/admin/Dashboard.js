@@ -1,6 +1,10 @@
-const Dashboard = () => {
+import { useEffect } from "react"
 
-    document.title = 'Nosy - Admin Dashboard'
+const Dashboard = () => {
+    useEffect(() => {
+        // document.title = 'Nosy - Admin Dashboard'
+    }, [])
+
     return (
         <h1>soy Dashboard</h1>
     )

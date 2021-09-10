@@ -70,7 +70,8 @@ border: 2px solid #f1f2f3;
     width: 100%;
 }
 
-.loginBox .userBox input {
+.loginBox .userBox input,
+.loginBox .userBox select {
     width: 100%;
     padding: 2px 0;
     font-size: 16px;
@@ -80,6 +81,10 @@ border: 2px solid #f1f2f3;
     border-bottom: 1px solid #fff;
     outline: none;
     background: transparent;
+}
+
+.loginBox .userBox select{
+    background-color: rgba(3, 3, 63, 0.39);
 }
 
 .loginBox form .linkButton {

@@ -15,10 +15,22 @@ const AdminPanel = (props) => {
                 <div className={styles.headerContainer}>
                     <img className={styles.logo} src='/assets/logoSoloLetras.png' alt="" />
                     <nav className={styles.navContainer}>
-                        <span className={styles.spanPanel} onClick={() => setView('dashboard')}>Dashboard</span>
-                        <span className={styles.spanPanel} onClick={() => setView('users')}>Users</span>
-                        <span className={styles.spanPanel} onClick={() => setView('questions')}>Questions</span>
-                        <span className={styles.spanPanel} onClick={() => setView('games')}>Games</span>
+                        <span className={`${styles.spanPanel} ${document.title.includes('Dashboard') && styles.active}`} onClick={() => {
+                            document.title = 'Nosy - Admin Dashboard'
+                            setView('dashboard')
+                        }}>Dashboard</span>
+                        <span className={`${styles.spanPanel} ${document.title.includes('Users') && styles.active}`} onClick={() => {
+                            document.title = 'Nosy | Users - Admin Panel'
+                            setView('users')
+                        }}>Users</span>
+                        <span className={`${styles.spanPanel} ${document.title.includes('Questions') && styles.active}`} onClick={() => {
+                            document.title = 'Nosy | Questions - Admin Panel'
+                            setView('questions')
+                        }}>Questions</span>
+                        {/* <span className={`${styles.spanPanel} ${document.title.includes('Games') && styles.active}`} onClick={() => {
+                            document.title = 'Nosy | Games - Admin Panel'
+                            setView('games')
+                        }}>Games</span> */}
                     </nav>
                     <div className={styles.user}>
                         <h3>Hi, Admin</h3>
@@ -29,7 +41,7 @@ const AdminPanel = (props) => {
                     {view === 'dashboard' && <Dashboard />}
                     {view === 'users' && <Users />}
                     {view === 'questions' && <Questions />}
-                    {view === 'games' && <Games />}
+                    {/* {view === 'games' && <Games />} */}
                 </div>
 
             </div>

@@ -1,7 +1,7 @@
 import styles from "../../styles/questions.module.css";
 import { useState } from "react";
 import { connect } from "react-redux";
-import usersActions from "../../redux/actions/usersActions";
+import questionActions from "../../redux/actions/admin/questionsActions";
 
 const QuestionCard = (props) => {
     const { _id, category, question, possibleAnswers, status, creator } = props.question
@@ -48,7 +48,8 @@ const QuestionCard = (props) => {
 };
 
 const mapDispatchToProps = {
-    updateQuestion: usersActions.updateUser,
+    updateQuestion: questionActions.updateQuestion,
+    deleteQuestion: questionActions.deleteQuestion
 };
 
 export default connect(null, mapDispatchToProps)(QuestionCard);
