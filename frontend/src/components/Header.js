@@ -42,7 +42,7 @@ const Header = (props) => {
             <NavLink to="/accounts">LOG IN/SIGN UP</NavLink>
           ) : (
             <>
-            <NavLink to='/friends'>FRIENDS</NavLink>
+            <NavLink to='/friends'>FRIENDS!</NavLink>
               <div
                 onClick={showLogin}
                 style={{
