@@ -66,7 +66,7 @@ const QuestionCard = (props) => {
     }
     return () => clearTimeout(timeOut.current);
   }, [seconds]);
-
+  //Borrar este comentario
   useEffect(() => {
     let questionAudio = new Audio("/assets/question.wav");
     let correctAudio = new Audio("/assets/correct.wav");
