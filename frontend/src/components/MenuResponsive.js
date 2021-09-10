@@ -1,4 +1,4 @@
-import styles from "../styles/header.module.css";
+import styles from "../styles/other/header.module.css";
 import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
 import { NavLink, Link } from "react-router-dom";

@@ -1,4 +1,4 @@
-import style from "../styles/buttons.module.css";
+import style from "../styles/other/buttons.module.css";
 import styles from "../styles/gameButtons.module.css";
 import { PlayButton, SocialMediaFooterButton } from "../components/Buttons";
 import { connect } from "react-redux";

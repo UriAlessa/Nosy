@@ -1,5 +1,5 @@
-import styles from "../styles/roulette.module.css";
-import culo from "../styles/questionCard.module.css";
+import styles from "../styles/game/roulette.module.css";
+import style from "../styles/game/questionCard.module.css";
 import { connect } from "react-redux";
 
 const Roulette = (props) => {
@@ -13,17 +13,17 @@ const Roulette = (props) => {
   return (
     <div className={styles.rouletteContainer}>
       <div className={styles.topInfo}>
-        <div className={culo.containerInfoGame}>
-          <img className={culo.imgInfoGame} src="/assets/coin.png" alt="coin" />
-          <span>{props.coins ? props.coins : 5}</span>
+        <div className={style.containerInfoGame}>
+          <img className={style.imgInfoGame} src="/assets/coin.png" alt="coin" />
+          <span>{props.coins && props.coins}</span>
         </div>
-        <div className={culo.containerInfoGame}>
+        <div className={style.containerInfoGame}>
           <img
-            className={culo.imgInfoGame}
+            className={style.imgInfoGame}
             src="/assets/heart_2.png"
             alt="heart"
           />
-          <span>{props.game ? props.game.lifes : 5}</span>
+          <span>{props.game && props.game.lifes}</span>
         </div>
       </div>{" "}
       <div className={styles.containerRoulette}>
@@ -50,11 +50,10 @@ const Roulette = (props) => {
             <img
               key={shadow.key}
               className={styles.picShadow}
-              src={`assets/${
-                props.game.player.medals.includes(shadow.key)
-                  ? shadow.yes
-                  : shadow.no
-              }`}
+              src={`assets/${props.game.player.medals.includes(shadow.key)
+                ? shadow.yes
+                : shadow.no
+                }`}
               alt={shadow.key}
             />
           ))}
@@ -71,41 +70,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Roulette);
-
-// <div className={styles.rouletteContainer}>
-//   <div className={styles.topInfo}>
-{
-  /* <div className={styles.shadows}>
-          {shadows.map((shadow, index) => (
-            <img
-              key={index}
-              className={styles.picShadow}
-              src={`assets/${shadow}`}
-              alt={shadow}
-            />
-          ))}
-        </div>
-        <div className={culo.containerInfoGame}>
-          <img className={culo.imgInfoGame} src="/assets/coin.png" />
-          <span>{props.coins ? props.coins : 5}</span>
-        </div>
-        <div className={culo.containerInfoGame}>
-          <img className={culo.imgInfoGame} src="/assets/heart_2.png" />
-          <span>{props.game ? props.game.lifes : 5}</span>
-        </div>
-      </div>
-      <div className={styles.containerRoulette}>
-        <div
-          style={{ backgroundImage: "url('/assets/ruleta2.png')" }}
-          ref={props.roulette}
-          className={styles.roulette}
-        ></div>
-        <img
-          src="/assets/spin.png"
-          alt="spin"
-          className={styles.buttonRoulette}
-          onClick={() => {
-            !props.playing && props.rotate();
-          }}
-        /> */
-}

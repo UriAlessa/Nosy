@@ -121,7 +121,6 @@ const gameControllers = {
           { $inc: { coins: coins } },
           { new: true }
         );
-        console.log(newUserState.statistics.single_player);
         if (newGameState.player.medals.length === 5) {
           newGameState = await SinglePlayer.findOneAndUpdate(
             { _id: game_id._id },

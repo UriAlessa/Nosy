@@ -27,6 +27,11 @@
   width: 8vmin;
   position: absolute;
   top: 46%;
+  cursor: pointer;
+  transition: all 300ms;
+}
+.buttonRoulette:hover{
+  transform: scale(1.05);
 }
 .shadows {
   width: 60%;

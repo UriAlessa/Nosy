@@ -1,4 +1,4 @@
-import styles from "../styles/rules.module.css";
+import styles from "../styles/home/rules.module.css";
 const RuleCard = (props) => {
   return (
     <div className={styles.card}>
