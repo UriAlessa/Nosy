@@ -26,10 +26,7 @@ const userSchema = mongoose.Schema({
     game_id: { type: mongoose.Types.ObjectId },
     multi_player: { type: Boolean, default: true },
   },
-  friends: {
-    connected: [{ type: mongoose.Types.ObjectId, path: "user" }],
-    disconnected: [{ type: mongoose.Types.ObjectId, path: "user" }],
-  },
+  friends: [{ type: mongoose.Types.ObjectId, path: "user" }],
   friend_requests: {
     users: [{ type: mongoose.Types.ObjectId, path: "user" }],
     creator: { type: Boolean, default: false },
