@@ -77,15 +77,8 @@ io.on("connection", (socket) => {
   socket.on("direct_message", (username) => {
     io.to(username).emit("direct_message", socketUsername);
   });
-<<<<<<< HEAD
-  // socket.on("disconnection", () => {
-    // io.sockets.broadcast("disconnected", socketUsername);
-    // io.sockets.emit("disconnected", socketUsername);
-  // });
-=======
 
   socket.on("disconnection", () => {
     io.sockets.emit("disconnection", socketUsername);
   });
->>>>>>> 21b857501fa33e1c2188bd6989655acc2f4c3e41
 });
