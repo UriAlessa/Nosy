@@ -60,9 +60,11 @@
     position: relative;
 }
 ::-webkit-scrollbar{
-background-color: #0a0a0a;
-border-radius: 20px;
-border: 2px solid #f1f2f3;  
+    background-color: rgb(2, 2, 43);
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;  
+    /* -webkit-appearance: ; */
 }
 .loginBox .userBox input {
     width: 100%;

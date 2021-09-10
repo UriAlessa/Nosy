@@ -44,6 +44,7 @@ const adminQuestionsControllers = {
     }
   },
   createQuestion: async (req, res) => {
+    console.log(req.body)
     const { category, question, possibleAnswers, correctAnswer, id } = req.body;
     try {
       let newQuestion = new Question({
