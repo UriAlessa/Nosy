@@ -3,8 +3,10 @@ import Footer from '../components/Footer'
 import styles from '../styles/friends.module.css'
 import { useState } from 'react'
 import FriendCard from '../components/FriendCard'
+import { connect } from 'react-redux'
 
-const Friends = () => {
+const Friends = (props) => {
+    console.log(props)
 
     let friends = [{username: 'Daniel'}, {username: 'Uriel'}, {username: 'Sabrina'}, {username: 'Rafael'}]
 
@@ -32,4 +34,10 @@ const Friends = () => {
     )
 }
 
-export default Friends
+const mapStateToProps = (state) => {
+    return {
+        userData: state.users.userData
+    }
+}
+
+export default connect(mapStateToProps)(Friends)

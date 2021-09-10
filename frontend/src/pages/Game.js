@@ -48,6 +48,7 @@ const Game = (props) => {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Confirm",
+        background: '#302C83'
       }).then((result) => {
         if (result.value) {
           toast.promise(createGame(), {
