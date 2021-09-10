@@ -1,4 +1,4 @@
-import styles from "../styles/reviews.module.css";
+import styles from "../styles/home/reviews.module.css";
 import React, { useState, useEffect } from 'react';
 import toast from "react-hot-toast";
 import { connect } from "react-redux";
@@ -28,7 +28,7 @@ const ReviewAddNewOne = (props) => {
       description: ""
     })
     try {
-      let response = await props.postNewReview( newReview, props.token)
+      let response = await props.postNewReview(newReview, props.token)
       if (response.success) {
         setReviews(response.response)
         toast.error("Excelente! you going to see your Review in the playlist of review soon", {

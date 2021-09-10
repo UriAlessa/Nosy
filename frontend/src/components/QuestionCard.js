@@ -16,7 +16,7 @@ const QuestionCard = (props) => {
   const [incorrect, setIncorrect] = useState(false);
   const [audio, setAudio] = useState({});
   let answersContainer = useRef();
-  const [seconds, setSeconds] = useState(1500000);
+  const [seconds, setSeconds] = useState(15);
 
 
   let timeOut = useRef();
