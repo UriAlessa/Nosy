@@ -1,5 +1,11 @@
+import { useEffect } from "react"
+
 const Dashboard = () => {
-    return(
+    useEffect(() => {
+        // document.title = 'Nosy - Admin Dashboard'
+    }, [])
+
+    return (
         <h1>soy Dashboard</h1>
     )
 }

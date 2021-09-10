@@ -1,25 +1,25 @@
-import styles from "../styles/rules.module.css";
+import styles from "../styles/home/rules.module.css";
 import RuleCard from "./RuleCard";
 
 const Rules = () => {
   const InfoCards = [
     {
-      src: "/assets/color-wheel.png",
-      title: "TAKE THE DECISION",
+      src: "https://i.postimg.cc/vZmd6B8j/2.png",
+      title: "BE READY TO PROCRASTINATE",
       description:
-        "Start as anonymous or with your name so we know where to look for you 😄 Choose the category in which you want to get a doctorate and hit  PLAY on the game!",
+        "Choose an option. Alone or invite a friend ... who would you want to tempt?!",
     },
     {
-      src: "/assets/coin.png",
-      title: "START RUNNING",
+      src: "https://i.postimg.cc/0y4hM0BM/3.png",
+      title: "GET TO IT",
       description:
-        "If you are anonymous your race is against time and if you are playing with others, the race is between each other. Press the * HAND * or enter button when you have typed the answer.",
+        "Put your greatest effort into apprehending everything, laugh or cry ... and don't forget to take a photo of the moment!",
     },
     {
-      src: "/assets/debate.png",
+      src: "https://i.postimg.cc/4d600kNV/1.png",
       title: "REWARD OR PUNISHMENT",
       description:
-        "It depends on your answers you will receive a prize and a place on the podium or a lot of shame for you…! Now ... if you are a bad loser, close the tab, delete the history and look for an alibi that explains these lost hours!",
+        "You did it! do not forget to post your experience! to invite others to live it!!",
     },
   ];
 
@@ -30,7 +30,7 @@ const Rules = () => {
   return (
     <section id="howToPlay" className={styles.section}>
       <h2> HOW TO PLAY THE GAME?</h2>
-      <p> SEE HOW IT'S SIMPLE!</p>
+      <p> You sure know how to do it now!</p>
       <div className={styles.containerCards}>{render}</div>
     </section>
   );

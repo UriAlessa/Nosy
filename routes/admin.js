@@ -1,6 +1,7 @@
 const express = require("express");
 const adminGameControllers = require("../controllers/adminControllers/adminGameControllers");
 const router = express.Router();
+const passport = require("passport");
 const adminQuestionsControllers = require("../controllers/adminControllers/adminQuestionsControllers");
 const adminUsersControllers = require("../controllers/adminControllers/adminUsersControllers");
 
@@ -33,10 +34,10 @@ router
 //ADMIN USER ROUTES
 router
   .route("/user")
-  .post(adminUsersControllers.createAdminUser)
+  .post(passport.authenticate("jwt", { session: false }), adminUsersControllers.createAdminUser)
   .get(adminUsersControllers.getUsers)
   .put(adminUsersControllers.updateUser)
-  .delete(adminUsersControllers.deleteUser);
+  .delete(passport.authenticate("jwt", { session: false }), adminUsersControllers.deleteUser);
 
 //ADMIN GAME CONTROLLERS
 router.route("/game").get(adminGameControllers.getGames);
