@@ -11,7 +11,7 @@ const Friends = () => {
     return (
         <>
             <div className={styles.mainContainer}>
-                <h1 className={styles.title} style={{paddingTop: '2vh'}}>Friends</h1>
+                <h1 className={styles.title} style={{paddingTop: '2vh'}}>FRIENDS</h1>
                 <div className={styles.midContainer}>
                     <div className={styles.optionsContainer}>
                         <h2 className={styles.title}>Friend Request</h2>
