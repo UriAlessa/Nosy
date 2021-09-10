@@ -216,3 +216,10 @@ header nav a:hover {
     align-items: center;
   }
 }
+
+@media (max-width: 800px){
+  .logo {
+    width: 121px;
+    height: 76px; 
+  }
+}
