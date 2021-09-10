@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 
 const QuestionCard = (props) => {
-  const { question, possibleAnswers, correctAnswer, category, img } = props.question;
+  const { question, possibleAnswers, correctAnswer, category } = props.question;
   const [click, setClick] = useState(false);
   let repeatAnswerRef = useRef();
   const [answers, setAnswers] = useState([]);
@@ -145,6 +145,7 @@ const QuestionCard = (props) => {
         .filter((ans, index) => index !== cualquiera)
     );
   };
+  const categories = {"Movies and series":"movies.png", "Music": "music.png","General Knowledge":"cultura.png", "Science: Computers": "computer.png", "Animals": "animals.png"}
   return (
     <section
       className={styles.sectionQuestion}
@@ -183,7 +184,7 @@ const QuestionCard = (props) => {
           <div className={styles.containerGlobal}>
             <div className={styles.containerLogo}>
               <div className={styles.category}>
-                <img className={styles.imgCategory} src={img} alt="img category" />
+                <img className={styles.imgCategory} src={`/assets/${categories[category]}`} alt="img"/>
                 <h2>{category}</h2>
               </div>
               <h3>{question}</h3>
