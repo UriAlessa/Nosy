@@ -8,28 +8,21 @@ import gamesActions from "../redux/actions/gamesActions";
 import Loader from "../components/Loader";
 import Nosy from "../components/Nosy";
 import { Link } from "react-router-dom";
+import otherActions from "../redux/actions/otherActions";
+import toast from "react-hot-toast";
+const Swal = require("sweetalert2");
 
 const Game = (props) => {
   // const [questions, setQuestions] = useState([]);
+  const [coinsFront, setCoinsFront] = useState();
   const roulette = useRef();
-  let reRoll = useRef();
+  let reRoll = useRef(false);
   const [loader, setLoader] = useState(true);
   const [question, setQuestion] = useState(null);
   const [category, setCategory] = useState(null);
   const [nosy, setNosy] = useState(false);
   const [golden, setGolden] = useState(false);
   const [playing, setPlaying] = useState(false);
-
-  useEffect(() => {
-    if (props.token && !props.game) {
-      createGame();
-    }
-    if (props.game) {
-      props.setGame(localStorage.getItem("token"));
-    }
-    setLoader(false);
-    // eslint-disable-next-line
-  }, []);
 
   const createGame = async () => {
     try {
@@ -38,6 +31,37 @@ const Game = (props) => {
       console.log("We have problems. Try again later.");
     }
   };
+
+  useEffect(() => {
+    props.setPlayNow(false);
+    if (props.token && !props.game) {
+      createGame();
+    }
+    if (props.game && !props.playNow) {
+      props.setGame(localStorage.getItem("token"));
+    }
+    if (props.game && props.playNow) {
+      Swal.fire({
+        title: "There's a game in course",
+        text: "Do you want to start a new one?",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Confirm",
+      }).then((result) => {
+        if (result.value) {
+          toast.promise(createGame(), {
+            loading: "Starting new game...",
+            success: <b>Good luck & Have fun!</b>,
+            error: <b>Something went wrong</b>,
+          });
+        }
+      });
+    }
+    setLoader(false);
+    return () => props.setPlayNow(false);
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     if (category) {
@@ -50,6 +74,7 @@ const Game = (props) => {
     }
     // eslint-disable-next-line
   }, [category]);
+  useEffect(() => setCoinsFront(props.coins), [props.coins]);
 
   if (loader) {
     return <Loader />;
@@ -111,7 +136,6 @@ const Game = (props) => {
     let rand = Math.random() * 360 + 3600;
     selectCategory(rand);
   };
-
   return (
     <main
       className={styles.gameContainer}
@@ -125,21 +149,30 @@ const Game = (props) => {
             alt="goback"
           />
         </Link>
-        {props.game && props.game.status === false && props.game.lifes > 0 
-          ? <div className={styles.winner} style={{backgroundImage: 'url("/assets/winner.png")'}}></div>
-          : props.game && props.game.status === false && props.game.lifes <= 0 
-          ? <div className={styles.gameover} style={{backgroundImage: 'url("/assets/gameover1.png")'}}></div>
-          : nosy ? <Nosy categoryHandler={categoryHandler} game={props.game}/>
-          : !question 
-          ? (
-            <Roulette
-              setNosy={setNosy}
-              setGolden={setGolden}
-              rotate={rotate}
-              playing={playing}
-              roulette={roulette}
-            />
-          ) : (
+        {props.game && props.game.status === false && props.game.lifes > 0 ? (
+          <div
+            className={styles.winner}
+            style={{ backgroundImage: 'url("/assets/winner.png")' }}
+          ></div>
+        ) : props.game &&
+          props.game.status === false &&
+          props.game.lifes <= 0 ? (
+          <div
+            className={styles.gameover}
+            style={{ backgroundImage: 'url("/assets/gameover1.png")' }}
+          ></div>
+        ) : nosy ? (
+          <Nosy categoryHandler={categoryHandler} game={props.game} />
+        ) : !question ? (
+          <Roulette
+            setNosy={setNosy}
+            setGolden={setGolden}
+            rotate={rotate}
+            playing={playing}
+            roulette={roulette}
+            coinsFront={coinsFront}
+          />
+        ) : (
           <QuestionCard
             reRoll={reRoll}
             question={question}
@@ -151,6 +184,8 @@ const Game = (props) => {
             category={setCategory}
             setNosy={setNosy}
             qs_category={category}
+            coinsFront={coinsFront}
+            setCoinsFront={setCoinsFront}
           />
         )}
       </div>
@@ -163,6 +198,8 @@ const mapStateToProps = (state) => {
     render: state.questions.render,
     token: state.users.token,
     game: state.game.game,
+    coins: state.game.coins,
+    playNow: state.other.playNow,
   };
 };
 
@@ -170,6 +207,7 @@ const mapDispatchToProps = {
   getQuestion: questionActions.getQuestion,
   createGame: gamesActions.createGame,
   setGame: gamesActions.setGame,
+  setPlayNow: otherActions.setPlayNow,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
