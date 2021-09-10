@@ -176,7 +176,7 @@ const usersActions = {
     };
   },
   logOutUser: () => {
-    return (dispatch, getState) => {
+    return async (dispatch) => {
       toast("Hope to see you soon!", {
         icon: "👋",
         position: "top-right",
@@ -187,7 +187,21 @@ const usersActions = {
           fontFamily: "Ubuntu, sans-serif",
         },
       });
-      dispatch({ type: "LOG_OUT" });
+      try {
+        let res = await axios.put(
+          "http://localhost:4000/api/user/logout",
+          {},
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+        );
+        if (!res.data.success) throw new Error();
+        dispatch({ type: "LOG_OUT" });
+      } catch (error) {
+        console.error(error);
+      }
     };
   },
   sendMail: (newUser) => {
