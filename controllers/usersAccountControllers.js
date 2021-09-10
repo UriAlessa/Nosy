@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const Review = require("../models/Review");
 
 const usersAccountControllers = {
   signUp: async (req, res) => {
@@ -26,6 +27,7 @@ const usersAccountControllers = {
           username,
           avatar,
         },
+        userData: newUser,
         token,
       });
     } catch (error) {
@@ -45,19 +47,42 @@ const usersAccountControllers = {
       let match = user && bcrypt.compareSync(password, user.password);
       if (!user || !match) throw new Error("Password does not match");
       const token = jwt.sign({ ...user }, process.env.SECRETORKEY);
+      user = await User.findOneAndUpdate(
+        { username: username },
+        { $set: { connected: true } }
+      );
       res.json({
         success: true,
         user: {
           username,
           avatar: user.avatar,
         },
+        userData: user,
         token,
       });
     } catch (error) {
       res.json({ success: false, error: error.message });
     }
   },
-
+  logOut: async (req, res) => {
+    const { _id } = req.user;
+    try {
+      await User.findOneAndUpdate(
+        { _id },
+        {
+          $set: {
+            connected: false,
+            "playing_now.status": false,
+            "playing_now.game_id": null,
+            "playing_now.multi_player": true,
+          },
+        }
+      );
+      res.json({ success: true });
+    } catch (error) {
+      res.json({ success: false });
+    }
+  },
   addFriend: async (req, res) => {
     try {
       let user = await User.findOne({ username: req.body.username });
@@ -105,7 +130,63 @@ const usersAccountControllers = {
         username: req.user.username,
         avatar: req.user.avatar,
       },
+      userData: req.user,
     });
+  },
+
+  newReview: async (req, res) => {
+    let date = Date.now();
+    try {
+      const reviewToPost = await new Review({
+        img: req.body.img,
+        userId: req.user._id,
+        date,
+        title: req.body.title,
+        description: req.body.description,
+      });
+      await reviewToPost.save();
+      res.json({ success: true, response: reviewToPost });
+    } catch (err) {
+      res.json({ success: false, response: "DB trouble" });
+    }
+  },
+
+  getReviews: async (req, res) => {
+    let expired = 2592000000;
+    let dateNow = Date.now();
+    try {
+      let reviews = await Review.find().populate({
+        path: "userId",
+        model: "user",
+        select: "username avatar",
+      });
+      res.json({
+        success: true,
+        response: reviews.filter((review) => dateNow - review.date < expired),
+      });
+    } catch (error) {
+      res.json({ succes: false, response: error.message });
+    }
+  },
+
+  setEmoji: async (req, res) => {
+    try {
+      let user = await User.findOneAndUpdate(
+        { _id: req.user._id },
+        { $set: { emoji: req.body.emoji } },
+        { new: true }
+      );
+      res.json({
+        success: true,
+        user: {
+          username: user.username,
+          avatar: user.avatar,
+        },
+        userData: user,
+      });
+    } catch (error) {
+      res.json({ success: false });
+    }
   },
 };
 

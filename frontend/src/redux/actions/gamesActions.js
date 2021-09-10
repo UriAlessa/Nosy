@@ -43,6 +43,7 @@ const gamesActions = {
           coins: response.data.response.newUserState.coins,
         },
       });
+      console.log(response.data.response);
       return response.data.response;
     };
   },

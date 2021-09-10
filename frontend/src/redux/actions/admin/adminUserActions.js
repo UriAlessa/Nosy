@@ -4,9 +4,8 @@ const adminUsersActions = {
   getUsers: () => {
     let token = localStorage.getItem("token");
     return async () => {
-      console.log(process.env.SECRETORKEY);
       let response = await axios.get(
-        "https://benosy.herokuapp.com/admin/user",
+        "https://benosy.herokuapp.com/api/admin/user",
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -17,11 +16,10 @@ const adminUsersActions = {
     };
   },
   updateUser: (newUser) => {
-    console.log("llego");
     let token = localStorage.getItem("token");
     return async () => {
       let response = await axios.put(
-        "https://benosy.herokuapp.com/admin/user",
+        "https://benosy.herokuapp.com/api/admin/user",
         newUser,
         {
           headers: {
@@ -29,6 +27,38 @@ const adminUsersActions = {
           },
         }
       );
+      return response.data;
+    };
+  },
+  createUser: (user) => {
+    console.log(user);
+    let token = localStorage.getItem("token");
+    return async () => {
+      let response = await axios.post(
+        "https://benosy.herokuapp.com/api/admin/user",
+        user,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      return response.data;
+    };
+  },
+  deleteUser: (userId) => {
+    let token = localStorage.getItem("token");
+    return async () => {
+      let response = await axios.delete(
+        "https://benosy.herokuapp.com/api/admin/user",
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+          id: userId,
+        }
+      );
+      console.log(response);
       return response.data;
     };
   },

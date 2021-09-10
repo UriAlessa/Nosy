@@ -179,7 +179,7 @@ const usersActions = {
     };
   },
   logOutUser: () => {
-    return (dispatch, getState) => {
+    return async (dispatch) => {
       toast("Hope to see you soon!", {
         icon: "👋",
         position: "top-right",
@@ -190,7 +190,21 @@ const usersActions = {
           fontFamily: "Ubuntu, sans-serif",
         },
       });
-      dispatch({ type: "LOG_OUT" });
+      try {
+        let res = await axios.put(
+          "https://benosy.herokuapp.com/api/user/logout",
+          {},
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+        );
+        if (!res.data.success) throw new Error();
+        dispatch({ type: "LOG_OUT" });
+      } catch (error) {
+        console.error(error);
+      }
     };
   },
   sendMail: (newUser) => {
@@ -199,6 +213,70 @@ const usersActions = {
         ...newUser,
       });
       return response;
+    };
+  },
+
+  postNewReview: (newReview, token) => {
+    return async () => {
+      try {
+        let response = await axios.post(
+          `https://benosy.herokuapp.com/api/review`,
+          {
+            ...newReview,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (response.data.success) {
+          return { success: true, response: response.data.response };
+        } else {
+          return { success: false, response: response.data.response };
+        }
+      } catch (err) {
+        return { success: false, response: err.message };
+      }
+    };
+  },
+
+  getReviews: () => {
+    return async () => {
+      try {
+        let response = await axios.get(
+          "https://benosy.herokuapp.com/api/review"
+        );
+        if (response.data.success) {
+          return { success: true, response: response.data.response };
+        } else {
+          return { success: false, response: response.data.response };
+        }
+      } catch (error) {
+        return { success: false, response: error.message };
+      }
+    };
+  },
+
+  setEmoji: (emoji) => {
+    return async (dispatch) => {
+      const token = localStorage.getItem("token");
+      try {
+        let response = await axios.put(
+          `https://benosy.herokuapp.com/api/user/emoji`,
+          { emoji },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (!response.data.success) throw new Error();
+        dispatch({ type: "LOG_IN_USER", payload: { ...response.data, token } });
+        return response.data;
+      } catch (err) {
+        return { success: false, response: err.message };
+      }
     };
   },
 };

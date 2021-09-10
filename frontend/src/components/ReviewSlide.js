@@ -1,16 +1,21 @@
-import styles from "../styles/reviews.module.css";
+import styles from "../styles/home/reviews.module.css";
 const ReviewSlide = (props) => {
+
+  // let expired = 2592000000;//**hace unos segundos */
+  // let dateNow= Date.now()
+
+  const today = props.oneReview.date / 360
   return (
-    <div className={styles.card}>
+    <div >
+      <h4 className={styles.titleDescription}>"{props.oneReview.title}"</h4>
+      <p className={styles.subtitleDescription}>{today}</p>
+
       <div
-        className="imgCard"
-        style={{ backgroundImage: `url("${props.oneReview.src}}")` }}
+        className={styles.picGame}
+        style={{ backgroundImage: `url("${props.oneReview.img}}")` }}
       ></div>
-      <img src={props.oneReview.src} alt="review" />
-      <h3>{props.oneReview.author}</h3>
-      <p>{props.oneReview.date}</p>
-      <h4>{props.oneReview.title}</h4>
-      <p>{props.oneReview.description}</p>
+      <h3 className={styles.titleDescription}>{props.oneReview.author}</h3>
+      <p className={styles.pDescription}>{props.oneReview.description}</p>
     </div>
   );
 };

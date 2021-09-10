@@ -59,7 +59,7 @@ const AdminUsersControllers = {
     try {
       let match = key && bcrypt.compareSync(process.env.SECRETORKEY, key);
       if (!match) throw new Error("key error");
-      await User.findOneAndDelete({ _id: req.body.id });
+      await User.findOneAndDelete({ _id: req.params.id });
       res.json({ success: true });
     } catch (error) {
       res.json({ success: false, error: error.message });

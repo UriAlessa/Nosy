@@ -1,52 +1,192 @@
-div.tableContainer{
-    background-color: #110e30bd;
-    border-radius: 20px;
+.tableContainer{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(3, 3, 63, 0.39);
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
     display: flex;
-    flex-direction: column;
-}
-
-.buttonSection{
-    display: flex;
-    justify-content: center;
-}
-.button{
-    margin: 1vh 3vw;
-    font-family: "Fredoka One", cursive;
-    text-transform: uppercase;
-    color: rgb(109, 98, 231);
-    background-color: rgb(225, 223, 255);
-    border: none;
-    width: 15vw;
-    border-radius: 8px;
-    font-size: 2.8vmin;
-    padding: 2vmin 0;
-    transition: all 300ms;
-}
-
-.button:hover{
-    background-color: rgb(109, 98, 231);
-    color: rgb(225, 223, 255);
-    cursor: pointer;
-}
-
-.filterContainer{
-    margin-top: 2vh;
-    margin-bottom: 4vh;
-    display: flex;
-    justify-content: center;
-}
-
-.filterContainer input{
-    width: 50%;
-    height: 5vh;
-    padding: 1em 1em;
-    font-size: 1em;
-    border-radius: 2em;
-    outline: none;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .cardsContainer{
-    width: 100%;
-    color: white;
+    width: 60%;
+    height: 90%;
+    background-color: rgba(3, 3, 63, 0.39);
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 30px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.filterInput{
+    width: 70%;
+    border-radius: 15px;
+    border: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.486);
+    outline: none;
+    padding: 1vh 3vw;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 3vh;
+}
+
+.filterInput::placeholder{
+    color:white;
+}
+
+.loginBox{
+    width: 35%;
+    height: 80%;
+    padding: 3em 4em;
+    background-color: rgba(3, 3, 63, 0.39);
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginBox p {
+    margin: 0 0 30px;
+    color: #fff;
+    text-align: center;
+    font-family:"Ubuntu", "sans-serif" ;
+}
+
+.cardsContainer::-webkit-scrollbar{
+background-color: #04115a;
+border-radius: 20px;
+border: 2px solid #f1f2f3;  
+}
+.cardsContainer::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+.userBox{
+    width: 100%;
+}
+
+.loginBox .userBox input,
+.loginBox .userBox select {
+    width: 100%;
+    padding: 2px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.loginBox .userBox select{
+    background-color: rgba(3, 3, 63, 0.39);
+}
+
+.loginBox form .linkButton {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+}
+
+.loginBox .linkButton:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+}
+
+.loginBox .linkButton span {
+    position: absolute;
+    display: block;
+}
+
+.loginBox .linkButton span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+    0% {
+    left: -100%;
+    }
+    50%,100% {
+    left: 100%;
+    }
+}
+
+.loginBox .linkButton span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+    0% {
+    top: -100%;
+    }
+    50%,100% {
+    top: 100%;
+    }
+}
+
+.loginBox .linkButton span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+    0% {
+    right: -100%;
+    }
+    50%,100% {
+    right: 100%;
+    }
+}
+
+.loginBox .linkButton span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+    0% {
+    bottom: -100%;
+    }
+    50%,100% {
+    bottom: 100%;
+    }
+}

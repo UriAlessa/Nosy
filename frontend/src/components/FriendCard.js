@@ -1,12 +1,14 @@
 import styles from "../styles/friendCard.module.css";
+import { useState } from "react";
 
 const FriendCard = (props) => {
   const type = "acceptRequest";
+
   let result =
     type === "acceptRequest" ? (
       <div className={styles.containerButtons}>
         <button className={styles.buttonRefuse}>REFUSE</button>
-        <button className={styles.buttonAccept}>ACCEPT</button>
+        <button value={props.friend.username} className={styles.buttonAccept}>ACCEPT</button>
       </div>
     ) : (
       <div>
@@ -19,7 +21,7 @@ const FriendCard = (props) => {
       <img className={styles.logo} src="/assets/man.png" alt="logo" />
       <div>
         <div className={styles.container}>
-          <h3>Username</h3>
+          <h3>{props.friend.username}</h3>
           {result}
         </div>
       </div>

@@ -1,0 +1,177 @@
+.container {
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 45px 0;
+}
+
+.title {
+  font-family: "Fredoka One", cursive;
+  font-size: 6vmin;
+  color: #88f0c0;
+  letter-spacing: 1.4px;
+  font-weight: 100;
+}
+
+.container p {
+  opacity: 0.98;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 3vmin;
+  color: #fff;
+  letter-spacing: 0;
+ 
+}
+
+.pDescription {
+  font-family: "Ubuntu", sans-serif;
+  font-weight:normal;
+  letter-spacing: .3px;
+  color: rgb(225, 223, 255);
+  line-height: 28px;
+  margin: 20px;
+
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons p{
+  margin: 3vh 0;
+}
+
+.goGame {
+  position: absolute;
+  top: 45vh;
+  right: 2vw;
+  width: 12vmin;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.buttons p {
+  width: 280px;
+  letter-spacing: 1.4px;
+  text-align: center;
+}
+
+.socialMedia {
+  width: 40vmin;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (min-width: 1700px) {
+
+   .container .description {
+        letter-spacing: 0.2rem;
+       line-height: inherit;
+    }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    margin: 45px 0;
+    align-self: center;
+    text-align: center;
+  }
+
+  .buttons {
+    align-items: center;
+  }
+}
+
+@media (max-width: 620px) {
+  .title {
+    font-size: 5vmin;
+  }
+
+  .container p {
+    font-size: 3.5vmin;
+  }
+  .pDescription {
+    font-size: 3.5vmin;
+    letter-spacing: .1px;
+    line-height: 20px;  
+  }
+  .goGame {
+    position: absolute;
+    top: 80vh;
+    right: 3vw;
+    width: 14vmin;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+}
+
+@media (max-width: 500px) {
+  .container p {
+    font-size: 4vmin;
+  }
+
+  .pDescription {
+    font-size: 4vmin;
+    letter-spacing: 0.2rem;
+    line-height: inherit;
+  }
+  .buttons button{
+    transform: scale(1.8);
+    margin-top: 5vh;
+  }
+  .goGame {
+    position: absolute;
+    top: 90vh;
+    right: 1vw;
+    width: 12vmin;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+}
+
+@media (max-width: 300px) {
+  .container p {
+    font-size: 4vmin;
+  }
+
+  .pDescription {
+    font-size: 4vmin;
+    letter-spacing: .1px;
+    line-height: 15px;  
+  }
+}
+@media (max-width: 1100px){
+  .goGame {
+    width: 14vmin;
+  }
+
+}
+@media (max-width:800px){
+  .goGame {
+    top: 80vh;
+    right: 2vw;
+    width: 16vmin;
+  }
+}
+@media (max-width:768px){
+  .goGame {
+    top: 70vh;
+    right: 40vw;
+    width: 16vmin;
+  }
+}
+@media (max-width:768px){
+  .goGame {
+    top: 70vh;
+    right: 40vw;
+    width: 16vmin;
+  }
+}
+@media (max-width:577px){
+  .goGame {
+    width: 23vmin;
+  }
+}

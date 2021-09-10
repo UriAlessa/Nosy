@@ -5,19 +5,24 @@ const initialState = {
   username: null,
   avatar: null,
   socket: null,
+  userData: null,
 };
 
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOG_IN_USER":
       localStorage.setItem("token", action.payload.token);
+      let socket = state.socket
+        ? state.socket
+        : io("https://benosy.herokuapp.com/", {
+          query: "token=" + action.payload.token,
+        }),
       return {
         token: action.payload.token,
         username: action.payload.user.username,
         avatar: action.payload.user.avatar,
-        socket: io("https://benosy.herokuapp.com/", {
-          query: "token=" + action.payload.token,
-        }),
+        userData: action.payload.userData,
+        socket,
       };
     case "UPDATE_USER":
       break;

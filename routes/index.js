@@ -10,6 +10,12 @@ const mailControllers = require("../controllers/mailControllers");
 router.route("/user/signup").post(validator, usersAccountsControllers.signUp);
 router.route("/user/login").post(usersAccountsControllers.logIn);
 router
+  .route("/user/logout")
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    usersAccountsControllers.logOut
+  );
+router
   .route("/user/friend_request")
   .post(usersAccountsControllers.addFriend)
   .put(usersAccountsControllers.acceptFriendRequest);
@@ -48,5 +54,20 @@ router
   );
 
 router.route("/mail").post(mailControllers.sendMail);
+
+router
+  .route("/review")
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    usersAccountsControllers.newReview
+  )
+  .get(usersAccountsControllers.getReviews);
+
+router
+  .route("/user/emoji")
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    usersAccountsControllers.setEmoji
+  );
 
 module.exports = router;
