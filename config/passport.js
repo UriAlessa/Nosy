@@ -22,7 +22,6 @@ module.exports = passport.use(
           if (!response) {
             return done(null, false);
           }
-          console.log(response);
           return done(null, response);
         })
         .catch((err) => done(err, false));

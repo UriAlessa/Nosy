@@ -1,14 +1,55 @@
 import styles from '../styles/admin.module.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Users from "../components/admin/Users"
 import Dashboard from '../components/admin/Dashboard'
 import Questions from "../components/admin/Questions"
 import Games from "../components/admin/Games"
 import { connect } from 'react-redux'
+import usersActions from "../redux/actions/admin/adminUserActions";
+import questionActions from "../redux/actions/admin/questionsActions";
+
 
 const AdminPanel = (props) => {
     const [view, setView] = useState("dashboard")
-    //borrar
+    const [users, setUsers] = useState([])
+    const [questions, setQuestions] = useState([])
+    const [loader, setLoader] = useState(true)
+
+    const getUsers = async () => {
+        try {
+            let response = await props.getUsers();
+            if (response.data.success) {
+                setUsers(response.data.response);
+                // setFiltered(response.data.response)
+                setLoader(false)
+            } else {
+                throw new Error();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const getQuestions = async () => {
+        try {
+            let response = await props.getQuestions();
+            if (response.data.success) {
+                setQuestions(response.data.response);
+                // setFiltered(response.data.response)
+                setLoader(false)
+            } else {
+                throw new Error();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getUsers()
+        getQuestions()
+    }, [])
+
     return (
         <section className={styles.adminContainer}>
             <div className={styles.dataContainer}>
@@ -38,9 +79,9 @@ const AdminPanel = (props) => {
                     </div>
                 </div>
                 <div className={styles.infoSection}>
-                    {view === 'dashboard' && <Dashboard />}
-                    {view === 'users' && <Users />}
-                    {view === 'questions' && <Questions />}
+                    {view === 'dashboard' && <Dashboard users={users} qustions={questions} />}
+                    {view === 'users' && <Users users={users} />}
+                    {view === 'questions' && <Questions questions={questions} />}
                     {/* {view === 'games' && <Games />} */}
                 </div>
 
@@ -55,4 +96,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(AdminPanel)
+const mapDispatchToProps = {
+    getUsers: usersActions.getUsers,
+    getQuestions: questionActions.getQuestions,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPanel)
