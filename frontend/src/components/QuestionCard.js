@@ -57,7 +57,6 @@ const QuestionCard = (props) => {
       if (props.token && seconds === 0) {
         /* sendAnswer(false, powers_used, coins_spent); */
         sendAnswer(false, powers_used, coins_spent);
-
       }
       setTimeout(() => {
         setIncorrect(true);
@@ -69,7 +68,7 @@ const QuestionCard = (props) => {
     }
     return () => clearTimeout(timeOut.current);
   }, [seconds]);
-
+//Borrar este comentario
   useEffect(() => {
     let questionAudio = new Audio("/assets/question.wav");
     let correctAudio = new Audio("/assets/correct.wav");
