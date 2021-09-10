@@ -59,7 +59,7 @@ const Reviews = (props) => {
         </div>
         <div>
           <RankingCard />
-          {props.token && <ReviewAddComment />}
+          {props.token ? <ReviewAddComment /> : <img className={styles.picGame} src="https://i.postimg.cc/Zq2ptpcd/12.png"/>}
         </div>
       </article>
     </section>
@@ -105,3 +105,4 @@ const AllReviews = [
   //     description:"I had been told about this website but I did not know how interactive, intuitive and fun it was! It's been a month since I joined and I have a good place in the ranking, I think that says it all!"
   // }
 ];
+

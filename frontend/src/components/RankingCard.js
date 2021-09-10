@@ -23,15 +23,15 @@ const RankingCard = (props) => {
             setEmojiFace(emojiSelect[response.emoji])
           } else {
             setEmojiFace("https://i.postimg.cc/3NyQhgb8/painfull.gif")
-              toast.error("You haven't voted yet, we are so sad", {
-              position: "top-right",
-              style: {
-                borderRadius: "10px",
-                background: "#453ab7",
-                color: "#fff",
-                fontFamily: "Ubuntu, sans-serif",
-              },
-              });
+              // toast.success("You haven't voted yet, we are so sad", {
+              // position: "top-right",
+              // style: {
+              //   borderRadius: "10px",
+              //   background: "#453ab7",
+              //   color: "#fff",
+              //   fontFamily: "Ubuntu, sans-serif",
+              // },
+              // });
             }    
         })
       }
@@ -70,7 +70,7 @@ const RankingCard = (props) => {
         .then(response => {
           console.log(response)
           if (response.success) {
-            toast.error("Thanks for your vote", {
+            toast.success("Thanks for your vote", {
               position: "top-right",
               style: {
                 borderRadius: "10px",
