@@ -117,8 +117,11 @@ padding-bottom: 8vmin;
     gap: 6vmin;
 }
 .card{
-    background-color: rgba(25, 22, 61, 0.912);
+    background: rgba(18, 22, 58, 0.831);
     font-family: 'Ubuntu', sans-serif;
+    background-image: url("https://i.postimg.cc/CKmJtj3M/bkg-Solo-Clouds.png");
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 480px;
     display:flex;
     flex-direction: column;
@@ -137,7 +140,7 @@ padding-bottom: 8vmin;
 }
 
 .card img{
-    height: 30%;
+    height: 50%;
     margin: 25px 0;
 }
 .card img, .card p {
@@ -148,11 +151,11 @@ padding-bottom: 8vmin;
 .card p{
     font-size: 17px;
     margin: 10px 20px;
-    font-weight: 401;
+    font-weight: 400;
 }
 
 .card p {
-  font-size: 2.8vmin;
+  font-size: 2.4vmin;
 }
 @media only screen and (max-width: 1335px) {
 @media only screen and (max-width: 1125px) {

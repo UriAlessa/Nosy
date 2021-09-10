@@ -12,13 +12,13 @@
   color: rgb(136, 240, 192);
   text-shadow: -1px 2px 0 #389067;
   letter-spacing: 4px;
-  margin: 50px 0;
+  margin: 10px 0;
 }
 
 .articleGames {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: top;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 5vmin;
@@ -31,7 +31,8 @@
   background: radial-gradient(circle, rgba(27,33,85,0.5718662464985995) 0%, rgba(25,22,61,1) 100%);  border-radius: 10px;
   display:flex;
   flex-direction: column;
-  align-items: center;
+  align-items: top;
+  text-align:center;
   box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
   padding: 2vmin;
 }
@@ -41,8 +42,8 @@
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 20px;
-  width: 100%;
-  height: 20rem;
+  height: 12rem;
+  margin:.5em;
 }
 
 .descriptionGame {
@@ -57,6 +58,8 @@
   font-family: "Fredoka One", cursive;
   color: rgb(245, 209, 35);
   letter-spacing: 2px;
+  text-align: center;
+
 }
 
 .subtitleDescription {
@@ -66,10 +69,16 @@
   letter-spacing: 1.5px;
   font-weight: 200;
   font-size: 1.3vw;
+  text-align: center;
+  margin-bottom: 1rem;
+
 }
 .pDescription {
   font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  letter-spacing: .3px;
   color: rgb(225, 223, 255);
+  text-align: center;
 }
 .inputs {
   font-family: "Fredoka One", cursive;
@@ -86,7 +95,7 @@
 
 .buttonAddComment{
   position:relative;
-  top: 45px;
+  top: 15px;
   left: 90%;
   font-family: "Fredoka One", cursive;
   color: rgb(0, 0, 0);
@@ -94,9 +103,8 @@
   box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
   border: none;
   width: 7%;
-  border-radius: 100%;
-  font-size: 3.8vmin;
-  padding: .5vmin;
+  border-radius: 10%;
+  font-size: 4vmin;
 }
 
 .submitButton{

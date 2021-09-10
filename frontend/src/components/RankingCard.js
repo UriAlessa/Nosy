@@ -7,6 +7,36 @@ import toast from "react-hot-toast";
 
 const RankingCard = (props) => {
   const [emojiFace, setEmojiFace] = useState("https://i.postimg.cc/SR9DvBxg/enjoit.gif");
+  const [ranking, setRanking] = useState(0)
+
+  useEffect(() => {
+    getEmojiFunction();
+     // eslint-disable-next-line
+  }, []);
+
+  const getEmojiFunction = async () => {
+    if(props.token){
+      await props.getEmoji(props.token)
+        .then(response => {
+          if (response.success) {
+            console.log(response)
+            setEmojiFace(emojiSelect[response.emoji])
+          } else {
+            setEmojiFace("https://i.postimg.cc/3NyQhgb8/painfull.gif")
+              toast.error("You haven't voted yet, we are so sad", {
+              position: "top-right",
+              style: {
+                borderRadius: "10px",
+                background: "#453ab7",
+                color: "#fff",
+                fontFamily: "Ubuntu, sans-serif",
+              },
+              });
+            }    
+        })
+      }
+    }
+  
 
   const emojiSelect = {
     first: "https://i.postimg.cc/3NyQhgb8/painfull.gif",
@@ -20,10 +50,11 @@ const RankingCard = (props) => {
     setEmojiFace(
       emojiSelect[e.target.id]
     )
-
+    setEmojiFunction(e.target.id);
   }
 
-  const emojiFunction = () => {
+
+  const setEmojiFunction = async (ranking) => {
     if (!props.token) {
       toast.error("You most to be login for this", {
         position: "top-right",
@@ -35,12 +66,21 @@ const RankingCard = (props) => {
         },
       });
     } else {
-      props.putEmojiFunction(props.token)
-        .then(res => {
-          if (res.success) {
-            setEmojiFace(res.response)
+      await props.setEmoji(ranking, props.token)
+        .then(response => {
+          console.log(response)
+          if (response.success) {
+            toast.error("Thanks for your vote", {
+              position: "top-right",
+              style: {
+                borderRadius: "10px",
+                background: "#453ab7",
+                color: "#fff",
+                fontFamily: "Ubuntu, sans-serif",
+              },
+            });
           } else {
-            console.log(res.response)
+            console.log(response.response)
           }
         })
     }
@@ -74,11 +114,17 @@ const RankingCard = (props) => {
   )
 };
 
+
 const mapStateToProps = (state) => {
   return {
     token: state.users.token,
   };
 };
 
-export default connect(mapStateToProps)(RankingCard);
+const mapDispatchToProps = {
+  setEmoji: usersActions.setEmoji,
+  getEmoji: usersActions.getEmoji,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RankingCard);
 

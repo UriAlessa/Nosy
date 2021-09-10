@@ -1,18 +1,31 @@
 import styles from "../styles/reviews.module.css";
 import ReviewSlide from "../components/ReviewSlide";
 import RankingCard from "../components/RankingCard";
-import ReviewAddComment from '../components/ReviewAddComment'
+import ReviewAddComment from "./ReviewAddNewOne";
 import toast from "react-hot-toast";
 import { connect } from "react-redux";
-
+import { useState, useEffect } from "react";
+import usersActions from "../redux/actions/usersActions";
 
 const Reviews = (props) => {
+  const [allReviews, setAllReviews] = useState([]);
 
-  const render = AllReviews.map((info, index) => {
-    return <ReviewSlide oneReview={info} key={"Review" + index} />;
-  });
+  useEffect(() => {
+    getReviewsFunction();
+     // eslint-disable-next-line
+  }, []);
 
-  console.log(props)
+  const getReviewsFunction = async () => {
+    let reviews= await props.getReviews()
+    setAllReviews(reviews.response);
+  };
+
+  let render= allReviews.length !== 0 &&
+    allReviews.map((info, index) => {
+      return <ReviewSlide oneReview={info} key={"Review" + index} />
+    })
+    
+
   const inputHandler = (e) => {
     if (!props.token) {
       return toast.error("You most to be login for this", {
@@ -25,27 +38,29 @@ const Reviews = (props) => {
         },
       });
     } else {
-      return (<div>
-        <ReviewAddComment />
-      </div>
-      )
+      return (
+        <div>
+          <ReviewAddComment />
+        </div>
+      );
     }
-  }
-
-  // const renderRate = '' /**prop del ranking general que se vaya alimentando constantemente */
+  };
 
   return (
     <section id="whatTheySaying" className={styles.sectionGames}>
       <h2> WHAT ARE THEY SAYING?</h2>
-      <h4 className={styles.subtitleDescription}>Memorable moments from other players</h4>
+      <h4 className={styles.subtitleDescription}>
+        Memorable moments from other players
+      </h4>
       <article className={styles.articleGames}>
-        <div>
-        <button className={styles.buttonAddComment} onClick={inputHandler}>+</button>
-        {render}
+        <div className={styles.divGame}>
+          <button className={styles.buttonAddComment} onClick={inputHandler}>+</button>
+          {render}
         </div>
         <div>
-        <RankingCard />
-        {props.token && <ReviewAddComment />}</div>
+          <RankingCard />
+          {props.token && <ReviewAddComment />}
+        </div>
       </article>
     </section>
   );
@@ -57,7 +72,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Reviews);
+const mapDispatchToProps = {
+  getReviews: usersActions.getReviews,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Reviews);
 
 /**para Mongo*/
 const AllReviews = [
@@ -86,4 +105,3 @@ const AllReviews = [
   //     description:"I had been told about this website but I did not know how interactive, intuitive and fun it was! It's been a month since I joined and I have a good place in the ranking, I think that says it all!"
   // }
 ];
-
