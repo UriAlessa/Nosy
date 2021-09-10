@@ -1,4 +1,4 @@
-import styles from "../styles/reviews.module.css";
+import styles from "../styles/home/reviews.module.css";
 import ReviewSlide from "../components/ReviewSlide";
 import RankingCard from "../components/RankingCard";
 import ReviewAddComment from "./ReviewAddNewOne";
