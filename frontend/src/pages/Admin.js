@@ -74,7 +74,7 @@ const AdminPanel = (props) => {
                         }}>Games</span> */}
                     </nav>
                     <div className={styles.user}>
-                        <h3>Hi, Admin</h3>
+                        <h3>Hello, Admin</h3>
                         <img className={styles.avatar} src={props.avatar} alt="" />
                     </div>
                 </div>
