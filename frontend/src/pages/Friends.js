@@ -40,11 +40,13 @@ const Friends = (props) => {
               <h2 className={styles.title}>Friend Requests</h2>
               {props.userData &&
                 props.userData.friend_requests.map((req) => {
-                  <FriendCard
-                    key={req.user.username}
-                    type={req.creator ? "sentRequest" : "acceptRequest"}
-                    request={req}
-                  />;
+                  return (
+                    <FriendCard
+                      key={req.user.username}
+                      type={req.creator ? "sentRequest" : "acceptRequest"}
+                      request={req}
+                    />
+                  );
                 })}
             </div>
           ) : (

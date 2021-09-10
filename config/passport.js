@@ -17,6 +17,12 @@ module.exports = passport.use(
         .populate({
           path: "playing_now",
           populate: { path: "game_id", model: model },
+          path: "friend_requests",
+          populate: {
+            path: "user",
+            model: "user",
+            select: "username avatar",
+          },
         })
         .then((response) => {
           if (!response) {

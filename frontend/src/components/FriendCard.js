@@ -3,6 +3,9 @@ import usersActions from "../redux/actions/usersActions";
 import styles from "../styles/friendCard.module.css";
 
 const FriendCard = ({ type, request, user, ...props }) => {
+  console.log(type);
+  console.log(request);
+
   let result =
     type === "acceptRequest" ? (
       <div className={styles.containerButtons}>
@@ -44,7 +47,7 @@ const FriendCard = ({ type, request, user, ...props }) => {
     <section className={styles.section}>
       <img
         className={styles.logo}
-        src={type === "sendRequest" ? user.avatar : request.avatar}
+        src={type === "sendRequest" ? user.avatar : request.user.avatar}
         alt="logo"
       />
       <div>
