@@ -29,7 +29,7 @@
   letter-spacing: .3px;
   color: rgb(225, 223, 255);
   line-height: 28px;
-  margin: 20px 20px 20px 0;
+  margin: 20px;
 
 }
 
@@ -47,7 +47,7 @@
   position: absolute;
   top: 45vh;
   right: 2vw;
-  width: 100px;
+  width: 12vmin;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
@@ -98,6 +98,14 @@
     letter-spacing: .1px;
     line-height: 20px;  
   }
+  .goGame {
+    position: absolute;
+    top: 80vh;
+    right: 3vw;
+    width: 14vmin;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
 }
 
 @media (max-width: 500px) {
@@ -114,6 +122,14 @@
     transform: scale(1.8);
     margin-top: 5vh;
   }
+  .goGame {
+    position: absolute;
+    top: 90vh;
+    right: 1vw;
+    width: 12vmin;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
 }
 
 @media (max-width: 300px) {
@@ -127,4 +143,35 @@
     line-height: 15px;  
   }
 }
+@media (max-width: 1100px){
+  .goGame {
+    width: 14vmin;
+  }
 
+}
+@media (max-width:800px){
+  .goGame {
+    top: 80vh;
+    right: 2vw;
+    width: 16vmin;
+  }
+}
+@media (max-width:768px){
+  .goGame {
+    top: 70vh;
+    right: 40vw;
+    width: 16vmin;
+  }
+}
+@media (max-width:768px){
+  .goGame {
+    top: 70vh;
+    right: 40vw;
+    width: 16vmin;
+  }
+}
+@media (max-width:577px){
+  .goGame {
+    width: 23vmin;
+  }
+}

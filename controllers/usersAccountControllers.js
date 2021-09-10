@@ -27,6 +27,7 @@ const usersAccountControllers = {
           username,
           avatar,
         },
+        userData: newUser,
         token,
       });
     } catch (error) {
@@ -46,12 +47,17 @@ const usersAccountControllers = {
       let match = user && bcrypt.compareSync(password, user.password);
       if (!user || !match) throw new Error("Password does not match");
       const token = jwt.sign({ ...user }, process.env.SECRETORKEY);
+      user = await User.findOneAndUpdate(
+        { username: username },
+        { $set: { connected: true } }
+      );
       res.json({
         success: true,
         user: {
           username,
           avatar: user.avatar,
         },
+        userData: user,
         token,
       });
     } catch (error) {
@@ -65,6 +71,7 @@ const usersAccountControllers = {
         { _id },
         {
           $set: {
+            connected: false,
             "playing_now.status": false,
             "playing_now.game_id": null,
             "playing_now.multi_player": true,
@@ -123,82 +130,64 @@ const usersAccountControllers = {
         username: req.user.username,
         avatar: req.user.avatar,
       },
+      userData: req.user,
     });
   },
 
-  newReview: async (req, res)=>{
-    let date= Date.now()
-    try{
+  newReview: async (req, res) => {
+    let date = Date.now();
+    try {
       const reviewToPost = await new Review({
         img: req.body.img,
         userId: req.user._id,
         date,
         title: req.body.title,
-        description: req.body.description
-      })
-      await reviewToPost.save()
-      res.json({success:true, response: reviewToPost})
-    }catch(err){
-      res.json({success:false, response:"DB trouble"})
+        description: req.body.description,
+      });
+      await reviewToPost.save();
+      res.json({ success: true, response: reviewToPost });
+    } catch (err) {
+      res.json({ success: false, response: "DB trouble" });
     }
   },
 
-
-  getReviews: async (req, res)=>{
+  getReviews: async (req, res) => {
     let expired = 2592000000;
-    let dateNow= Date.now()
-    try{
+    let dateNow = Date.now();
+    try {
       let reviews = await Review.find().populate({
-        path: "userId", model:"user", select:"username avatar"
-      })
-      res.json({success: true, response: reviews.filter(review =>  dateNow - review.date < expired)
-      })
-
-    }catch(error){
-      res.json({succes:false, response: error.message})
+        path: "userId",
+        model: "user",
+        select: "username avatar",
+      });
+      res.json({
+        success: true,
+        response: reviews.filter((review) => dateNow - review.date < expired),
+      });
+    } catch (error) {
+      res.json({ succes: false, response: error.message });
     }
   },
 
-  setEmoji: async (req, res)=>{
+  setEmoji: async (req, res) => {
     try {
-      let ranking = await Ranking.findOne({ userId: req.user._id })
-      console.log(ranking)
-        if(ranking){
-          let setEmoji = await Ranking.findOneAndUpdate({ userId: req.user._id }, { $set: { emoji: req.body.ranking } }, { new: true })
-          res.json({ success: true, response: setEmoji.emoji })
-        }else {
-          const starToPost = await new Ranking({
-            emoji:req.body.ranking,
-            userId:req.user._id,
-          })
-          console.log(starToPost)
-          await starToPost.save()
-          res.json({success:true, response: starToPost.emoji})
-      }
-  } catch (error) {
-      console.log(error.message)
-  }
+      let user = await User.findOneAndUpdate(
+        { _id: req.user._id },
+        { $set: { emoji: req.body.emoji } },
+        { new: true }
+      );
+      res.json({
+        success: true,
+        user: {
+          username: user.username,
+          avatar: user.avatar,
+        },
+        userData: user,
+      });
+    } catch (error) {
+      res.json({ success: false });
+    }
   },
-
-  getEmoji: async (req, res)=>{
-    try {
-      let emoji = await Ranking.findOne({ userId: req.user._id })
-      console.log(emoji)
-      if(emoji){
-        res.json({success:true, response: emoji.emoji})
-      }else{
-        res.json({success:false, response: "The user has not voted yet"})
-      }
-  } catch (error) {
-      console.log(error.message)
-  }
-  },
-
 };
-
-
-
-
-
 
 module.exports = usersAccountControllers;

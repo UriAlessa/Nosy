@@ -64,3 +64,35 @@
     font-family: 'Fredoka One', cursive;
     color: #84eeb7;
 }
+
+@media (max-width: 768px) {
+    .midContainer {
+        flex-direction: column;
+        width: 100%;
+        margin: 2vh 0;
+    }
+
+    .optionsContainer {
+        width: 100%;
+        margin-bottom: 2vh;
+    }
+
+    .friendsList {
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    .midContainer {
+        width: 95%;
+    }
+
+    .optionsContainer{
+        width: 70%;
+    }
+
+    .friendsList {
+        width:  25%;
+    }
+}
