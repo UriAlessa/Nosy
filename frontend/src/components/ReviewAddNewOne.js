@@ -85,7 +85,7 @@ const ReviewAddNewOne = (props) => {
             className={styles.inputs}
             type="textarea"
             name="title"
-            placeholder="title of the momment"
+            placeholder="title of the moment"
             value={newReview.title}
             onChange={inputHandler}
           />

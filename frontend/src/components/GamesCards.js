@@ -8,7 +8,7 @@ const GamesCards = () => {
       description:
         "To the difficulties of drawing from your notebook, it is added that the words are selected by the opponent and on the screen different clues will appear for each participant. Laughing has never been easier! Are you interested?",
       buttonText: "hurry up!",
-      pic: "8.png",
+      pic: "juego1.png",
     },
     {
       title: "The previous",
@@ -16,7 +16,7 @@ const GamesCards = () => {
       description:
         "The app has arrived that combines the classic games of the meeting with friends before leaving. There you can find several engines to activate the unspeakable laughter and confessions among your friends! Are you interested?",
       buttonText: "Right away!",
-      pic: "9.png",
+      pic: "otroJuego.png",
     },
   ];
   return (
