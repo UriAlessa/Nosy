@@ -4,25 +4,32 @@ import Users from "../components/admin/Users"
 import Dashboard from '../components/admin/Dashboard'
 import Questions from "../components/admin/Questions"
 import Games from "../components/admin/Games"
-import Dashboard from "../components/admin/Dashboard"
+import { connect } from 'react-redux'
 
-const AdminPanel = () => {
+const AdminPanel = (props) => {
     const [view, setView] = useState("dashboard")
 
     return (
         <section className={styles.adminContainer}>
             <div className={styles.dataContainer}>
-                <nav className={styles.navContainer}>
-                    <span className={styles.spanPanel} onClick={() => setView('users')}>Users</span>
-                    <span className={styles.spanPanel} onClick={() => setView('questions')}>Questions</span>
-                    <span className={styles.spanPanel} onClick={() => setView('games')}>Games</span>
-                    <span className={styles.spanPanel} onClick={() => setView('dashboard')}>Dashboard</span>
-                </nav>
+                <div className={styles.headerContainer}>
+                    <img className={styles.logo} src='/assets/logoSoloLetras.png' alt="" />
+                    <nav className={styles.navContainer}>
+                        <span className={styles.spanPanel} onClick={() => setView('dashboard')}>Dashboard</span>
+                        <span className={styles.spanPanel} onClick={() => setView('users')}>Users</span>
+                        <span className={styles.spanPanel} onClick={() => setView('questions')}>Questions</span>
+                        <span className={styles.spanPanel} onClick={() => setView('games')}>Games</span>
+                    </nav>
+                    <div className={styles.user}>
+                        <h3>Hi, Admin</h3>
+                        <img className={styles.avatar} src={props.avatar} alt="" />
+                    </div>
+                </div>
                 <div className={styles.infoSection}>
+                    {view === 'dashboard' && <Dashboard />}
                     {view === 'users' && <Users />}
                     {view === 'questions' && <Questions />}
                     {view === 'games' && <Games />}
-                    {view === 'dashboard' && <Dashboard />}
                 </div>
 
             </div>
@@ -30,4 +37,10 @@ const AdminPanel = () => {
     )
 }
 
-export default AdminPanel
+const mapStateToProps = (state) => {
+    return {
+        avatar: state.users.avatar,
+    }
+}
+
+export default connect(mapStateToProps)(AdminPanel)

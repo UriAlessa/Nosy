@@ -1,6 +1,7 @@
 import styles from '../../styles/usercard.module.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { connect } from 'react-redux'
+import { toast } from "react-hot-toast";
 import adminUsersActions from '../../redux/actions/admin/adminUserActions'
 
 const UserCard = (props) => {
@@ -16,6 +17,16 @@ const UserCard = (props) => {
             let response = await props.updateUser(updated)
             if (response.success) {
                 setEdit(!edit)
+                toast.success("Changes Saved Successfully", {
+                    position: "top-left",
+                    style: {
+                        borderRadius: "10px",
+                        background: "#453ab7",
+                        color: "#fff",
+                        fontFamily: "Ubuntu, sans-serif",
+                        height: "10vh"
+                    },
+                });
                 props.setReload(!props.reload)
             }
         } catch (error) {
@@ -23,8 +34,25 @@ const UserCard = (props) => {
         }
     }
 
-    const deleteUser = () => {
-
+    const deleteUser = async (id) => {
+        try {
+            let response = await props.deleteUser(id)
+            if (response.success) {
+                toast.success("User deleted.", {
+                    position: "top-left",
+                    style: {
+                        borderRadius: "10px",
+                        background: "#453ab7",
+                        color: "#fff",
+                        fontFamily: "Ubuntu, sans-serif",
+                        height: "10vh"
+                    },
+                });
+                props.setReload(!props.reload)
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const inputHandler = (e) => {
@@ -50,14 +78,11 @@ const UserCard = (props) => {
                     </div>
                     <div className={styles.divConnect} style={{ width: '20%' }}>
                         <p>Connected</p>
-                        <img className={styles.connected} src={connected ? '/assets/online.png' : '/assets/offline.png'} />
+                        <img className={styles.connected} src={connected ? '/assets/online.png' : '/assets/offline.png'} alt="" />
                     </div>
                 </div>
                 <div className={styles.buttonSection}>
                     <img src='/assets/options.png' alt='' onClick={() => setViewMore(!viewMore)} />
-                    {/* <button onClick={() => setViewMore(!viewMore)}>{viewMore ? 'View Less' : 'View More'}</button>
-                    
-                     */}
                 </div>
             </article>
             {viewMore &&
@@ -94,7 +119,7 @@ const UserCard = (props) => {
                         {edit && (<img className={styles.icon} onClick={() => setEdit(!edit)} src="/assets/cancel.png" alt="" />)}
                         {edit && (<img className={styles.icon} onClick={updateUser} src="/assets/check.png" alt="" />)}
                         {!edit && (<img className={styles.icon} onClick={() => setEdit(!edit)} src="/assets/edit.png" alt="" />)}
-                        {!edit && (<img className={styles.icon} onClick={deleteUser} src="/assets/delete.png" alt="" />)}
+                        {!edit && (<img className={styles.icon} onClick={() => deleteUser(_id)} src="/assets/delete.png" alt="" />)}
                     </div>
                 </div>
             }
@@ -103,7 +128,8 @@ const UserCard = (props) => {
 }
 
 const mapDispatchToProps = {
-    updateUser: adminUsersActions.updateUser
+    updateUser: adminUsersActions.updateUser,
+    deleteUser: adminUsersActions.deleteUser
 }
 
 export default connect(null, mapDispatchToProps)(UserCard)

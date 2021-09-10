@@ -1,6 +1,6 @@
 .adminContainer{
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,24 +9,56 @@
 .dataContainer{
     width: 90%;
     height: 90vh;
-    border: 5px solid white;
+    border: 5px solid white; 
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+}
+
+.headerContainer{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 3px solid white;
 }
 
 .navContainer{
-    height: 20%;
+    min-height: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+.logo{
+    height: 8vh;
+    margin-left: 3vw;
+}
+
+.avatar{
+    height: 8vh;
+    border-radius: 100%;
+}
+
+.user{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-right: 3vw;
+}
+
+.user h3{
+    margin-right: .5em;
+}
+
 .spanPanel{
     color: rgb(240, 240, 240);
-    width: 10%;
     font-family:"Ubuntu", "sans-serif" ;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin: 0 1vw;
 }
 .infoSection {
     flex: 1;
-    /* background-color: red; */
+    height: 80vh;
 }

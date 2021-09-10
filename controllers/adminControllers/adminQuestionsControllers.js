@@ -16,7 +16,7 @@ const adminQuestionsControllers = {
   },
   readAllQuestions: async (req, res) => {
     try {
-      let questions = await Question.find();
+      let questions = await Question.find()
       if (!questions) throw new Error();
       res.json({ success: true, response: questions });
     } catch (error) {

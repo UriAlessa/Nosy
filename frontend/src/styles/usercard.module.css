@@ -1,12 +1,13 @@
 article.userCard{
+    width: 95%;
     color: white;
     border-radius: 0 0 15px 0;
     border-bottom: 1px solid white;
     margin-bottom: 1em;
+    padding: .3em 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .3em 0;
 }
 
 .userInfo{
@@ -49,7 +50,7 @@ article.userCard{
 
 .userDetails{
     padding-bottom: 3vh;
-    width: 100%;
+    width: 95%;
     background-color: white;
     display: flex;
     flex-wrap: wrap;
