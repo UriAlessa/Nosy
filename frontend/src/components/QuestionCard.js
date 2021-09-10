@@ -177,7 +177,7 @@ const QuestionCard = (props) => {
                 />
                 <span>{props.game && props.game.lifes}</span>
               </div>
-              <badge className={styles.seconds}>{(("0" + seconds).slice(-2) + '"')}</badge>
+              <p className={styles.seconds}>{(("0" + seconds).slice(-2) + '"')}</p>
             </div>
           </div>
           <div className={styles.containerGlobal}>

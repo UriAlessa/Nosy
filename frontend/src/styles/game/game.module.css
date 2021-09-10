@@ -12,7 +12,7 @@
   position: absolute;
   top: 3vh;
   left: 2vw;
-  width: 100px;
+  width: 80px;
 }
 .renderGame {
   width: 60%;
@@ -28,7 +28,7 @@
 }
 
 .winner {
-  width: 33vw;
+  width: 38vw;
   height: 16vw;
   background-size: cover;
   background-position: center;
@@ -61,36 +61,6 @@
   color: white;
 }
 
-@media (max-width: 1200px) {
-}
-
-@media (max-width: 1000px) {
-  .renderGame {
-    width: 80%;
-  }
-}
-
-@media (max-width: 700px) {
-  .renderGame {
-    width: 90%;
-  }
-}
-
-@media (max-width: 590px) {
-  .containerButtons {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    /* background-color: blue; */
-  }
-  .containerButtons img {
-    width: 50px;
-  }
-  .buttonOption {
-    padding: 1rem;
-  }
-}
-
 
 /* nosy */
 
@@ -104,6 +74,7 @@
 }
 
 .containerButtons {
+  width: 100%;
   margin-top: 6vmin;
   display: flex;
   gap: 1rem;
@@ -113,26 +84,22 @@
 }
 
 .containerButtons img {
-  width: 90px;
+  width: 12vmin;
 }
 
 .containerButtons div {
   display: flex;
   align-items: center;
-  margin: 0 3vmin
+  margin: 0 3vmin;
+  width: 40%;
 }
-
-.musicContainer {
-  justify-content: flex-start;
-  width: 35%;
-}
-
 
 .buttonOption, .buttonOptionBombed {
   padding: 1rem 2rem;
   border: none;
   font-family: "Ubuntu", sans-serif;
   font-size: 3vmin;
+  font-weight: 500;
   background-color: #ceb036;
   border-radius: 10px;
   color: white;
@@ -147,12 +114,12 @@
 }
 
 .movies {
-  background-color: #fedf0a;
+  background-color: #FFE10C;
   border-bottom: 5px solid #917e06;
 }
 
-.animals {
-  background-color: #76b02f;
+.computers {
+  background-color: #8DCC29;
   border-bottom: 5px solid #3b5818;
 }
 
@@ -161,7 +128,7 @@
   border-bottom: 5px solid #741d06;
 }
 
-.computers {
+.animals {
   background-color: #8366be;
   border-bottom: 5px solid #493969;
 }
@@ -173,4 +140,62 @@
 
 .buttonOption:hover {
   box-shadow: 1px 2px 3px rgb(80, 79, 79);
+}
+
+/* QUERIES */
+
+@media (max-width: 1000px) {
+  .renderGame {
+    width: 90%;
+  }
+}
+
+@media (max-width: 700px) {
+
+  .goBack {
+    width: 50px;
+  }
+}
+
+@media (max-width: 660px) {
+  .containerButtons {
+    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: 80%;
+    gap: 2vmin;
+    margin-left: 5vmin;
+    height: 90%;
+  }
+
+  .containerButtons div {
+    width: 80%;
+  }
+
+  .containerButtons div button {
+    height: 8vh;
+  }
+
+  .containerButtons img {
+    width: 50px;
+  }
+
+  .buttonOption {
+    padding: 1.5vmin 0;
+  }
+
+  .winner {
+    width: 58vw;
+    height: 25vw;
+  }
+
+  .gameover {
+    width: 55vw;
+    height: 30vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .containerButtons div button {
+    font-size: 4vmin;
+  }
 }
