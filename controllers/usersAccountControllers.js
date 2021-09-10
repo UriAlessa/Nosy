@@ -51,6 +51,10 @@ const usersAccountControllers = {
         { username: username },
         { $set: { connected: true } }
       );
+      user = await User.findOne({ username: username }).populate({
+        path: "friend_requests",
+        populate: { path: "user", model: "user", select: "username avatar" },
+      });
       res.json({
         success: true,
         user: {
@@ -194,18 +198,18 @@ const usersAccountControllers = {
     }
   },
   searchUsers: async (req, res) => {
-    console.log(req.body)
-    const {username} = req.body
+    console.log(req.body);
+    const { username } = req.body;
     try {
-      let user = await User.findOne({ username })
+      let user = await User.findOne({ username });
       if (!user) {
-        throw new Error('That username does not exist')
-      } 
-      res.json({ success: true, response: user})
+        throw new Error("That username does not exist");
+      }
+      res.json({ success: true, response: user });
     } catch (error) {
-      res.json({success: false, response: error.message})
+      res.json({ success: false, response: error.message });
     }
-  }
+  },
 };
 
 module.exports = usersAccountControllers;

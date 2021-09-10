@@ -72,14 +72,8 @@ const usersActions = {
             },
           }
         );
-        if (response.data.success) {
-          dispatch({
-            type: "SEND_FRIEND_REQUEST",
-            payload: { username },
-          });
-        } else {
-          throw new Error(response.data.error);
-        }
+        if (!response.data.success) throw new Error(response.data.error);
+        return response.data.success;
       } catch (error) {
         toast.error(
           error.message.includes("User") ? error.message : "Session expired",
@@ -277,21 +271,26 @@ const usersActions = {
   searchUser: (username, token) => {
     return async () => {
       try {
-        let response = await axios.post('http://localhost:4000/api/user/add_friend',
-        {username}, 
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        })
-        if (!response.data.success) throw new Error(response.data.response)
-        let user = {username: response.data.response.username, avatar: response.data.response.avatar}
-        return user
+        let response = await axios.post(
+          "http://localhost:4000/api/user/add_friend",
+          { username },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (!response.data.success) throw new Error(response.data.response);
+        let user = {
+          username: response.data.response.username,
+          avatar: response.data.response.avatar,
+        };
+        return user;
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-  }
+    };
+  },
 };
 
 export default usersActions;
