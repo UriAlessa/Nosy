@@ -3,7 +3,7 @@ const Question = require("../../models/Question");
 const adminQuestionsControllers = {
   micaController: async (req, res) => {
     const { category, img } = req.body;
-    await Question.deleteMany({ category }, { img }, { new: true });
+    await Question.updateMany({ category }, { img }, { new: true });
     res.json({ success: true });
   },
   restoreAllQuestions: async (req, res) => {
@@ -16,7 +16,7 @@ const adminQuestionsControllers = {
   },
   readAllQuestions: async (req, res) => {
     try {
-      let questions = await Question.find();
+      let questions = await Question.find()
       if (!questions) throw new Error();
       res.json({ success: true, response: questions });
     } catch (error) {

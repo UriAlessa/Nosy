@@ -1,17 +1,65 @@
 .questionsContainer{
-    background-color: red;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
 }
 
+/* QUESTIONCARD COMPONENT */
 .questionContainer{
     margin: 2vh 1vw;
-    background-color: white;
+    /* background-color: white; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2vh 1vw;
+    border: 2px solid white;
+    border-radius: 0 0 2em 2em;
+    color: white
+}
+
+.questionInfo{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.approved,
+.notApproved{
+    padding: 1vh 1em;
+    color: white;
+    border-bottom-right-radius: 1em;
+}
+
+.approved{
+    background-color: green;
+}
+
+.notApproved{
+    background-color: red;
+}
+
+.category{
+    padding: 1vh 1em;
+    color: white;
+    border-bottom-left-radius: 1em;
+}
+
+.categoryPurple{
+    background-color: #8366be;
+}
+
+.categoryBlue{
+    background-color: #2191fd;
+}
+
+.categoryRed{
+    background-color: #d9370c;
+}
+
+.categoryYellow{
+    background-color: #fedf0a;
+}
+
+.categoryGreen{
+    background-color: #76b02f;
 }
 
 .buttonsContainer{

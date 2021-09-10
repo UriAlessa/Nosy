@@ -39,6 +39,10 @@
   flex-direction: column;
 }
 
+.buttons p{
+  margin: 3vh 0;
+}
+
 .goGame {
   position: absolute;
   top: 45vh;
@@ -58,6 +62,14 @@
   width: 40vmin;
   display: flex;
   justify-content: space-between;
+}
+
+@media (min-width: 1700px) {
+
+   .container .description {
+        letter-spacing: 0.2rem;
+       line-height: inherit;
+    }
 }
 
 @media (max-width: 768px) {
@@ -95,8 +107,12 @@
 
   .pDescription {
     font-size: 4vmin;
-    letter-spacing: .1px;
-    line-height: 15px;  
+    letter-spacing: 0.2rem;
+    line-height: inherit;
+  }
+  .buttons button{
+    transform: scale(1.8);
+    margin-top: 5vh;
   }
 }
 

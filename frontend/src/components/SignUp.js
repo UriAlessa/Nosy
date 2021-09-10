@@ -47,7 +47,6 @@ const SignUp = (props) => {
     }
     let response = await props.signUpUser(newUser);
     if (!response.data.success) {
-      console.log(response)
       response.data.error.forEach((error) => {
         toast.error(error.message, {
           position: "top-right",

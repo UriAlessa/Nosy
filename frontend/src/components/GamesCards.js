@@ -1,4 +1,4 @@
-import styles from "../styles/gamesCards.module.css";
+import styles from "../styles/home/gamesCards.module.css";
 
 const GamesCards = () => {
   const data = [

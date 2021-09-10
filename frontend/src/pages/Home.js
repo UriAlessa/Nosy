@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import Reviews from "../components/Reviews";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import styles from "../styles/heroHome.module.css";
+import styles from "../styles/home/heroHome.module.css";
 import { connect } from "react-redux";
 
 const Home = (props) => {

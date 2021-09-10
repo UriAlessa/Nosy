@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import styles from "../styles/terms.module.css";
+import styles from "../styles/otherpages/terms.module.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 

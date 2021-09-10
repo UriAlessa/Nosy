@@ -1,4 +1,4 @@
-import styles from "../styles/notFound.module.css";
+import styles from "../styles/otherpages/notFound.module.css";
 import { Link } from "react-router-dom";
 
 const NotFound = () => {

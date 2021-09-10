@@ -1,5 +1,3 @@
-// import axios from 'axios'
-
 const gamesActions = {
     showMenu: (boolean) => {
         return (dispatch, getState) => {
