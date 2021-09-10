@@ -11,6 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(47, 41, 106, 0.912);
 }
 .roulette {
   width: 50vmin;

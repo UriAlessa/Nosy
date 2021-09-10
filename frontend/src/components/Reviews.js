@@ -1,14 +1,31 @@
-import styles from "../styles/reviews.module.css";
+import styles from "../styles/home/reviews.module.css";
 import ReviewSlide from "../components/ReviewSlide";
 import RankingCard from "../components/RankingCard";
-import ReviewAddComment from "../components/ReviewAddComment";
+import ReviewAddComment from "./ReviewAddNewOne";
 import toast from "react-hot-toast";
 import { connect } from "react-redux";
+import { useState, useEffect } from "react";
+import usersActions from "../redux/actions/usersActions";
 
 const Reviews = (props) => {
-  const render = AllReviews.map((info, index) => {
-    return <ReviewSlide oneReview={info} key={"Review" + index} />;
-  });
+  const [allReviews, setAllReviews] = useState([]);
+
+  useEffect(() => {
+    getReviewsFunction();
+     // eslint-disable-next-line
+  }, []);
+
+  const getReviewsFunction = async () => {
+    let reviews= await props.getReviews()
+    setAllReviews(reviews.response);
+  };
+
+  let render= allReviews.length !== 0 &&
+    allReviews.map((info, index) => {
+      return <ReviewSlide oneReview={info} key={"Review" + index} />
+    })
+    
+
   const inputHandler = (e) => {
     if (!props.token) {
       return toast.error("You most to be login for this", {
@@ -29,8 +46,6 @@ const Reviews = (props) => {
     }
   };
 
-  // const renderRate = '' /**prop del ranking general que se vaya alimentando constantemente */
-
   return (
     <section id="whatTheySaying" className={styles.sectionGames}>
       <h2> WHAT ARE THEY SAYING?</h2>
@@ -38,10 +53,8 @@ const Reviews = (props) => {
         Memorable moments from other players
       </h4>
       <article className={styles.articleGames}>
-        <div>
-          <button className={styles.buttonAddComment} onClick={inputHandler}>
-            +
-          </button>
+        <div className={styles.divGame}>
+          <button className={styles.buttonAddComment} onClick={inputHandler}>+</button>
           {render}
         </div>
         <div>
@@ -59,7 +72,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Reviews);
+const mapDispatchToProps = {
+  getReviews: usersActions.getReviews,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Reviews);
 
 /**para Mongo*/
 const AllReviews = [

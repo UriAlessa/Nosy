@@ -10,7 +10,7 @@
 .articleGameButtons{
     width: 70vw;
     height: 95vh;
-    background-color: rgb(97,89,198);
+    background-color: rgba(47, 41, 106, 0.912);
     border: 2.5px solid rgb(160,153,255);
     border-radius: 20px;
     display: flex;
@@ -69,7 +69,7 @@
     align-items: center;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    background-color:rgb(66,60,150)  ;
+    background-color:rgb(66, 61, 138)  ;
 }
 .pContact{
     color: rgb(125,122,229);

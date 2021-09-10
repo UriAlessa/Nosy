@@ -17,7 +17,7 @@
 .renderGame {
   width: 60%;
   height: 80vh;
-  background-color: #665fdf;
+  background-color: rgba(47, 41, 106, 0.912);
   /* background: rgb(102,95,223);
   background: linear-gradient(150deg, rgba(102,95,223,1) 0%, rgb(42, 39, 94) 50%, rgba(102,95,223,1) 100%); */
   border-radius: 30px;
@@ -26,7 +26,85 @@
   justify-content: center;
   align-items: center;
 }
+
+.winner {
+  width: 33vw;
+  height: 16vw;
+  background-size: cover;
+  background-position: center;
+}
+
+.gameover {
+  width: 35vw;
+  height: 20vw;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.title {
+  width: 80%;
+  font-size: 3vmin;
+  color: #88f0c0;
+  text-align: center;
+  text-shadow: -1.5px 2px 0 #3ca172;
+  font-family: "Fredoka One", cursive;
+  letter-spacing: 1.4px;
+  font-weight: 100;
+}
+
+.title p {
+  font-size: 2.5vmin;
+  text-shadow: none;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  color: white;
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 1000px) {
+  .renderGame {
+    width: 80%;
+  }
+}
+
+@media (max-width: 700px) {
+  .renderGame {
+    width: 90%;
+  }
+}
+
+@media (max-width: 590px) {
+  .containerButtons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* background-color: blue; */
+  }
+  .containerButtons img {
+    width: 50px;
+  }
+  .buttonOption {
+    padding: 1rem;
+  }
+}
+
+
+/* nosy */
+
+.nosyContainer {
+  padding: 9vmin 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .containerButtons {
+  margin-top: 6vmin;
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
@@ -34,30 +112,23 @@
   justify-content: center;
 }
 
-.containerButtons h1 {
-  text-align: center;
-  width: 80%;
-  font-family: "Fredoka One", cursive;
-  font-size: 6vmin;
-  color: #88f0c0;
-  letter-spacing: 1.4px;
-  font-weight: 100;
-  margin-bottom: 2rem;
-}
-
 .containerButtons img {
   width: 90px;
 }
 
-.containerButtons > div {
+.containerButtons div {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+  margin: 0 3vmin
+}
+
+.musicContainer {
+  justify-content: flex-start;
   width: 35%;
 }
 
-.buttonOption,
-.buttonOptionBombed {
+
+.buttonOption, .buttonOptionBombed {
   padding: 1rem 2rem;
   border: none;
   font-family: "Ubuntu", sans-serif;
@@ -66,7 +137,7 @@
   border-radius: 10px;
   color: white;
   width: 100%;
-  height: 10vh;
+  /* height: 10vh; */
   cursor: pointer;
   border-bottom: 5px solid #917a20;
   transition: all 0.3s;
@@ -101,41 +172,5 @@
 }
 
 .buttonOption:hover {
-  box-shadow: 2px 2px 5px black;
-}
-
-@media (max-width: 1200px) {
-  .containerButtons h1 {
-    margin-bottom: 1vh;
-  }
-}
-
-@media (max-width: 1000px) {
-  .renderGame {
-    width: 80%;
-  }
-  .containerButtons h1 {
-    margin-bottom: 0;
-  }
-}
-
-@media (max-width: 700px) {
-  .renderGame {
-    width: 90%;
-  }
-}
-
-@media (max-width: 590px) {
-  .containerButtons {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    /* background-color: blue; */
-  }
-  .containerButtons img {
-    width: 50px;
-  }
-  .buttonOption {
-    padding: 1rem;
-  }
+  box-shadow: 1px 2px 3px rgb(80, 79, 79);
 }

@@ -33,7 +33,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1vh 0;
+    padding-top: 1vh 0;
     background-color: #291D33;
     overflow-y: auto;
 }
@@ -41,6 +41,20 @@
 .friendsList{
     width: 35%;
     background-color: #291D33;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.searchFriend{
+    width: 100%;
+    background-color: #342E8C;
+    border: none;
+    border-top: 1px solid white;
+    padding: 1vh 1vw;
+    color: white;
+    outline: none;
+    font-family: 'Ubuntu', sans-serif; 
 }
 
 

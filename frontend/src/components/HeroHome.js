@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { PlayButton, SocialMediaHeroButton } from "../components/Buttons";
-import style from "../styles/heroHome.module.css";
+import style from "../styles/home/heroHome.module.css";
 
 const HeroHome = () => {
   return (
     <div className={style.container}>
       <h1 className={style.title}>PLAYING IS MORE FUN IF YOU AREN'T ALONE!</h1>
-      <p>
+      {/* <p className={style.pDescription}> */}
+      <p className={style.description}>
         The well-known wonder game comes to your hands! so that you entertain
         moments, awaken your mind and learn by playing.
       </p>

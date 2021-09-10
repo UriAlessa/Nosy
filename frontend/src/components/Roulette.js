@@ -1,5 +1,5 @@
-import styles from "../styles/roulette.module.css";
-import culo from "../styles/questionCard.module.css";
+import styles from "../styles/game/roulette.module.css";
+import culo from "../styles/game/questionCard.module.css";
 import { connect } from "react-redux";
 
 const Roulette = (props) => {
