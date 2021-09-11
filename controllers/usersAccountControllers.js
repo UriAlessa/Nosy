@@ -88,11 +88,10 @@ const usersAccountControllers = {
     }
   },
   addFriend: async (req, res) => {
-    console.log(req.body);
     try {
-      let user = await User.findOne({ username: req.body.username });
-      if (user) {
-        let userAdded = await User.findOneAndUpdate(
+      let userAdded = await User.findOne({ username: req.body.username });
+      if (userAdded) {
+        userAdded = await User.findOneAndUpdate(
           { username: req.body.username },
           {
             $push: { friend_requests: { user: req.user._id, creator: false } },
@@ -101,7 +100,9 @@ const usersAccountControllers = {
         );
         let user = await User.findOneAndUpdate(
           { username: req.user.username },
-          { $push: { friend_requests: { user: user._id, creator: true } } },
+          {
+            $push: { friend_requests: { user: userAdded._id, creator: true } },
+          },
           { new: true }
         );
         res.json({
@@ -119,7 +120,6 @@ const usersAccountControllers = {
     }
   },
   acceptFriendRequest: async (req, res) => {
-    console.log(req.body);
     const { username, accept } = req.body;
     try {
       let user = await User.findOne({ username });

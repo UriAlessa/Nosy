@@ -4,7 +4,7 @@ const adminQuestionActions = {
   getQuestions: () => {
     return async (dispatch) => {
       let response = await axios.get(
-        "https://benosy.herokuapp.com/api/admin/questions"
+        "http://localhost:4000/api/admin/questions"
       );
       if (response.data.success) {
         dispatch({ type: "GET_QUESTIONS", payload: response.data.response });
@@ -15,8 +15,7 @@ const adminQuestionActions = {
   createQuestion: (newQuestion) => {
     return async (dispatch) => {
       let response = await axios.post(
-        "https://benosy.herokuapp.com/api/admin/question/" +
-          newQuestion.correctAnswer,
+        "http://localhost:4000/api/admin/question/" + newQuestion.correctAnswer,
         newQuestion
       );
       console.log(response);
@@ -30,7 +29,7 @@ const adminQuestionActions = {
   updateQuestion: (editedQuestion) => {
     return async () => {
       let response = await axios.put(
-        "https://benosy.herokuapp.com/question/id",
+        "http://localhost:4000/question/id",
         editedQuestion
       );
     };
@@ -39,7 +38,7 @@ const adminQuestionActions = {
   deleteQuestion: (id) => {
     return async () => {
       let response = await axios.delete(
-        "https://benosy.herokuapp.com/api/admin/question/" + id
+        "http://localhost:4000/api/admin/question/" + id
       );
       return response.data;
     };
