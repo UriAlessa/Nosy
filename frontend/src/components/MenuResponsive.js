@@ -59,6 +59,7 @@ const MenuResponsive = (props) => {
           REVIEWS
         </a>
         {props.token && (
+          
           <p
             className={styles.logout}
             onClick={() => {
@@ -74,6 +75,7 @@ const MenuResponsive = (props) => {
             <p>LOG IN/SIGN UP</p>
           </NavLink>
         )}
+        {props.token && <NavLink to='/friends'>FRIENDS!</NavLink>}
       </nav>
       <div className={styles.socialMediaResponsiveHeader}>
         <SocialMediaFooterButton icon="instagram" />
