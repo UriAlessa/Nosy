@@ -153,6 +153,10 @@ border: 2px solid #f1f2f3;
     color: white;
 }
 
+.dataUser span{
+    font-family:"Ubuntu", "sans-serif" ;
+}
+
 .connected{
     overflow-y: scroll;
     padding: 1em;
@@ -220,5 +224,18 @@ border: 2px solid #f1f2f3;
     }
     50%,100% {
     bottom: 100%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .tableContainer{
+        display:flex;
+        flex-direction: row !important;
+        min-height: 100vh;
+    }
+    .cardsContainer,
+    .loginBox{
+        width: 100%;
+        height: auto;
     }
 }

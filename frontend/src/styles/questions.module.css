@@ -2,6 +2,12 @@
     width: 100%;
 }
 
+.questionsContainer h3{
+    color: #ccc;
+    margin-left: 1em;
+    margin-top: 2vh;
+}
+
 /* QUESTIONCARD COMPONENT */
 .questionContainer{
     margin: 2vh 1vw;
@@ -103,4 +109,14 @@
 .questionContainer h4{
     font-family: "Ubuntu", "sans-serif";
     font-weight: normal;
+}
+
+.filterContainer{
+    display: flex;
+    margin-bottom: 3vh;
+}
+
+.filterContainer h2{
+    color: white;
+    margin-right: 1em;
 }

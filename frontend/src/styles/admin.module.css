@@ -67,3 +67,17 @@
     flex: 1;
     height: 80vh;
 }
+
+
+
+@media (max-width: 1000px) {
+    .dataContainer{
+        min-height: 90vh;
+    }
+    .infoSection{
+        min-height: 80vh;
+    }
+    .dataContainer{
+        overflow: auto;
+    }
+}
