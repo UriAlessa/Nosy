@@ -6,7 +6,6 @@ const gameControllers = require("../controllers/gameControllers");
 const passport = require("passport");
 const validator = require("../controllers/validator");
 const mailControllers = require("../controllers/mailControllers");
-const socketControllers = require("../controllers/socketControllers");
 
 router.route("/user/signup").post(validator, usersAccountsControllers.signUp);
 router.route("/user/login").post(usersAccountsControllers.logIn);
