@@ -60,6 +60,7 @@ io.on("connection", (socket) => {
   io.sockets.emit("connected", socketUsername);
 
   socket.on("game_request", (username) => {
+    console.log(username);
     io.to(username).emit("game_request", socketUsername);
   });
   socket.on("answer_game_request", (username) => {

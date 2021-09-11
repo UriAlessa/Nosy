@@ -12,19 +12,18 @@ const Reviews = (props) => {
 
   useEffect(() => {
     getReviewsFunction();
-     // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const getReviewsFunction = async () => {
-    let reviews= await props.getReviews()
+    let reviews = await props.getReviews();
     setAllReviews(reviews.response);
   };
 
-  let render= allReviews.length !== 0 &&
-    allReviews.map((info, index) => {
-      return <ReviewSlide oneReview={info} key={"Review" + index} />
-    })
-    
+  // let render = allReviews.length !== 0 &&
+  //   allReviews.map((info, index) => {
+  //     return <ReviewSlide oneReview={info} key={"Review" + index} />
+  //   })
 
   const inputHandler = (e) => {
     if (!props.token) {
@@ -54,12 +53,33 @@ const Reviews = (props) => {
       </h4>
       <article className={styles.articleGames}>
         <div className={styles.divGame}>
-          <button className={styles.buttonAddComment} onClick={inputHandler}>+</button>
-          {render}
+          <div className={styles.carousel}>
+            {" "}
+            <ReviewSlide allReviews={allReviews} />
+          </div>
         </div>
-        <div>
+        <div className={styles.divGame}>
           <RankingCard />
-          {props.token ? <ReviewAddComment /> : <img className={styles.picGame} src="https://i.postimg.cc/Zq2ptpcd/12.png"/>}
+          {/* {props.token ? <ReviewAddComment /> : <img className={styles.picGame} src="https://i.postimg.cc/Zq2ptpcd/12.png" />} */}
+          {props.token ? (
+            <ReviewAddComment />
+          ) : (
+            <div>
+              <button
+                className={styles.buttonAddComment}
+                onClick={inputHandler}
+              >
+                +
+              </button>
+              <img
+                className={styles.picGame}
+                src="https://i.postimg.cc/9FbTSStZ/review.png"
+              />
+              <p className={styles.pDescription}>
+                The reviews can be seen for 24 hours ... don't miss them!
+              </p>
+            </div>
+          )}
         </div>
       </article>
     </section>
@@ -105,4 +125,3 @@ const AllReviews = [
   //     description:"I had been told about this website but I did not know how interactive, intuitive and fun it was! It's been a month since I joined and I have a good place in the ranking, I think that says it all!"
   // }
 ];
-

@@ -1,13 +1,12 @@
 import styles from "../../styles/users.module.css";
+import UserCard from "./UserCard";
 import { useState, useRef } from "react";
 import { connect } from "react-redux";
-import usersActions from "../../redux/actions/admin/adminUserActions";
-import UserCard from "./UserCard";
 import { toast } from "react-hot-toast";
+import adminUsersActions from "../../redux/actions/admin/adminUserActions";
 
 const Users = (props) => {
     const [filtered, setFiltered] = useState(props.users)
-    const [reload, setReload] = useState(false)
     const [newUser, setNewUser] = useState({})
     const usernameInput = useRef()
     const passwordInput = useRef()
@@ -64,22 +63,22 @@ const Users = (props) => {
         <div className={styles.tableContainer}>
             <div className={styles.cardsContainer}>
                 <input className={styles.filterInput} type="text" onChange={filter} placeholder="Filter by username" />
-                {filtered.map((user) => <UserCard user={user} key={user._id} setReload={setReload} reload={reload} />)}
+                {filtered.map((user) => <UserCard user={user} key={user._id} />)}
             </div>
             <div className={styles.loginBox}>
                 <p>Create Admin User</p>
                 <form>
                     <div className={styles.userBox}>
-                        <input ref={usernameInput} name="username" type="text" placeholder="Username" onClick={inputHandler} />
+                        <input ref={usernameInput} name="username" type="text" placeholder="Username" onChange={inputHandler} />
                     </div>
                     <div className={styles.userBox}>
-                        <input ref={passwordInput} name="password" type="password" placeholder="Password" onClick={inputHandler} />
+                        <input ref={passwordInput} name="password" type="password" placeholder="Password" onChange={inputHandler} />
                     </div>
                     <div className={styles.userBox}>
-                        <input ref={emailInput} name="email" type="email" placeholder="Email" onClick={inputHandler} />
+                        <input ref={emailInput} name="email" type="email" placeholder="Email" onChange={inputHandler} />
                     </div>
                     <div className={styles.userBox}>
-                        <input ref={avatarInput} name="avatar" type="text" placeholder="Image Url" onClick={inputHandler} />
+                        <input ref={avatarInput} name="avatar" type="text" placeholder="Image Url" onChange={inputHandler} />
                     </div>
                     <span className={styles.linkButton} onClick={createUser}>
                         <span></span>
@@ -94,8 +93,14 @@ const Users = (props) => {
     );
 };
 
+const mapStateToProps = (state) => {
+    return {
+        users: state.adminUsers.users
+    }
+}
+
 const mapDispatchToProps = {
-    createUser: usersActions.createUser,
+    createUser: adminUsersActions.createUser,
 };
 
-export default connect(null, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(Users);

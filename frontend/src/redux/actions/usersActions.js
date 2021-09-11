@@ -72,14 +72,12 @@ const usersActions = {
             },
           }
         );
-        if (response.data.success) {
-          dispatch({
-            type: "SEND_FRIEND_REQUEST",
-            payload: { username },
-          });
-        } else {
-          throw new Error(response.data.error);
-        }
+        if (!response.data.success) throw new Error(response.data.error);
+        dispatch({
+          type: "SEND_FRIEND_REQUEST",
+          payload: { username },
+        });
+        return response.data.success;
       } catch (error) {
         toast.error(
           error.message.includes("User") ? error.message : "Session expired",
@@ -110,13 +108,12 @@ const usersActions = {
             },
           }
         );
-        if (response.data.success) {
-          dispatch({
-            type: "ANSWER_FRIEND_REQUEST",
-            payload: { username },
-          });
-        }
-        return false;
+        if (!response.data.success) throw new Error(response.data.error);
+        dispatch({
+          type: "ANSWER_FRIEND_REQUEST",
+          payload: { username },
+        });
+        return response.data;
       } catch (error) {
         toast.error("Session expired", {
           position: "top-right",
@@ -132,19 +129,70 @@ const usersActions = {
     };
   },
   sendGameRequest: (username) => {
-    return (dispatch) => {
-      dispatch({
-        type: "SEND_GAME_REQUEST",
-        payload: { username },
-      });
+    return async (dispatch) => {
+      let token = localStorage.getItem("token");
+      try {
+        let response = await axios.post(
+          "http://localhost:4000/api/game/newgame",
+          { username },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        console.log(response.data.success);
+        if (!response.data.success) throw new Error();
+        return dispatch({
+          type: "SEND_GAME_REQUEST",
+          payload: username,
+        });
+      } catch (error) {
+        console.log(error);
+        toast.error("Session expired", {
+          position: "top-right",
+          style: {
+            borderRadius: "10px",
+            background: "#453ab7",
+            color: "#fff",
+            fontFamily: "Ubuntu, sans-serif",
+          },
+        });
+        return dispatch({ type: "LOG_OUT" });
+      }
     };
   },
-  answerGameRequest: (username) => {
+
+  answerGameRequest: (username, accept, gameId) => {
     return async (dispatch) => {
-      dispatch({
-        type: "ANSWER_GAME_REQUEST",
-        payload: { username },
-      });
+      let token = localStorage.getItem("token");
+      try {
+        let response = await axios.put(
+          "http://localhost:4000/game/newgame",
+          { username, accept, gameId },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (!response.data.success) throw new Error();
+        dispatch({
+          type: "ANSWER_GAME_REQUEST",
+          payload: username,
+        });
+      } catch (error) {
+        toast.error("Session expired", {
+          position: "top-right",
+          style: {
+            borderRadius: "10px",
+            background: "#453ab7",
+            color: "#fff",
+            fontFamily: "Ubuntu, sans-serif",
+          },
+        });
+        return dispatch({ type: "LOG_OUT" });
+      }
     };
   },
 
@@ -276,6 +324,29 @@ const usersActions = {
         return response.data;
       } catch (err) {
         return { success: false, response: err.message };
+      }
+    };
+  },
+  searchUser: (username, token) => {
+    return async () => {
+      try {
+        let response = await axios.post(
+          "http://localhost:4000/api/user/add_friend",
+          { username },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (!response.data.success) throw new Error(response.data.response);
+        let user = {
+          username: response.data.response.username,
+          avatar: response.data.response.avatar,
+        };
+        return user;
+      } catch (error) {
+        console.log(error);
       }
     };
   },

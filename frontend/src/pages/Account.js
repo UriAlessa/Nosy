@@ -8,14 +8,6 @@ import { PlayButton } from '../components/Buttons'
 const AccountSection = () => {
   const [login, setLogin] = useState(false);
 
-  const toSignUp = () => {
-    setLogin(true);
-  };
-
-  const toLogin = () => {
-    setLogin(false);
-  };
-
   return (
     <div className={styles.mainContainer}>
       <div className={styles.midContainer}>
@@ -25,7 +17,7 @@ const AccountSection = () => {
             <div className={styles.welcomeLogin}>
               <h2>Hello! New here?</h2>
               <p>Define your personal details and start journey with us</p>
-              <button onClick={toSignUp} className={styles.playButton}>
+              <button onClick={() => setLogin(true)} className={styles.playButton}>
                 <svg
                   className={styles.buttonPlayButton}
                   xmlns="http://www.w3.org/1999/xlink"
@@ -44,7 +36,7 @@ const AccountSection = () => {
               <p>
                 To keep connected with us please login with your account info
               </p>
-              <button onClick={toLogin} className={styles.playButton}>
+              <button onClick={() => setLogin(false)} className={styles.playButton}>
                 <svg
                   className={styles.buttonPlayButton}
                   xmlns="http://www.w3.org/1999/xlink"

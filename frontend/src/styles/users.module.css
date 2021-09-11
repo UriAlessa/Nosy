@@ -56,12 +56,14 @@
     font-family:"Ubuntu", "sans-serif" ;
 }
 
-.cardsContainer::-webkit-scrollbar{
+.cardsContainer::-webkit-scrollbar,
+.connected::-webkit-scrollbar{
 background-color: #04115a;
 border-radius: 20px;
 border: 2px solid #f1f2f3;  
 }
-.cardsContainer::-webkit-scrollbar-thumb {
+.cardsContainer::-webkit-scrollbar-thumb,
+.connected::-webkit-scrollbar-thumb{
     background: #ffffff;
     border-radius: 10px;
 }
@@ -125,6 +127,36 @@ border: 2px solid #f1f2f3;
     animation: btn-anim1 1s linear infinite;
 }
 
+
+.userAvatar{
+    width: 40px;
+    height: 40px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 100%;
+    margin-right: 1em;
+}
+
+.connectedUser{
+    width: 100%;
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    padding: .2em 1em;
+    margin-bottom: .5em;
+    border-radius: 20px;
+}
+
+.dataUser{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.connected{
+    overflow-y: scroll;
+    padding: 1em;
+}
 @keyframes btn-anim1 {
     0% {
     left: -100%;

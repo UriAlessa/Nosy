@@ -1,14 +1,15 @@
 import style from '../../styles/users.module.css'
 import styles from '../../styles/questions.module.css'
 import { useState, useRef } from "react";
-import questionActions from "../../redux/actions/admin/questionsActions";
+import adminQuestionActions from "../../redux/actions/admin/adminQuestionsActions";
 import { connect } from "react-redux";
 import QuestionCard from "./QuestionCard";
 import { toast } from "react-hot-toast";
 
 const Questions = (props) => {
   const [filtered, setFiltered] = useState(props.questions)
-  const [newQuestion, setNewQuestion] = useState([])
+  const [newQuestion, setNewQuestion] = useState({})
+  const [reload, setReload] = useState(true)
   const correctInput = useRef()
   const questionInput = useRef()
   const incorrectInputOne = useRef()
@@ -19,18 +20,24 @@ const Questions = (props) => {
     setNewQuestion({
       ...newQuestion,
       [e.target.name]: e.target.value,
-      'possibleAnswer': [
+      'possibleAnswers': [
         correctInput.current.value,
         incorrectInputOne.current.value,
         incorrectInputTwo.current.value,
         incorrectInputThree.current.value
-      ]
+      ],
     })
   }
 
   const createQuestion = async () => {
+    correctInput.current.value = ""
+    questionInput.current.value = ""
+    incorrectInputOne.current.value = ""
+    incorrectInputTwo.current.value = ""
+    incorrectInputThree.current.value = ""
     try {
       let response = await props.createQuestion(newQuestion)
+      console.log(response)
       if (response.success) {
         toast.success("Question Created Successfully", {
           position: "top-left",
@@ -57,8 +64,8 @@ const Questions = (props) => {
         },
       });
     }
+    setReload(!reload)
   }
-
 
   return (
     <div className={style.tableContainer}>
@@ -67,6 +74,7 @@ const Questions = (props) => {
           <input type="text" placeholder="Filter by username" />
         </div>
         <div className={styles.questionsContainer}>
+          <h2>Showing {filtered.length}</h2>
           {filtered.map((question) => <QuestionCard question={question} key={question._id} />)}
         </div>
       </div>
@@ -75,12 +83,12 @@ const Questions = (props) => {
         <form>
           <div className={style.userBox}>
             <select name="category" id="category" onClick={inputHandler}>
-              <option value="" disabled selected>Choose a category</option>
-              <option value="Animals">Animals</option>
-              <option value="Music">Music</option>
-              <option value="General Knowledge">General Knowledge</option>
-              <option value="Science: Computers">Science: Computers</option>
-              <option value="Movies and series">Movies and series</option>
+              <option defaultValue="" disabled>Choose a category</option>
+              <option defaultValue="Animals">Animals</option>
+              <option defaultValue="Music">Music</option>
+              <option defaultValue="General Knowledge">General Knowledge</option>
+              <option defaultValue="Science: Computers">Science: Computers</option>
+              <option defaultValue="Movies and series">Movies and series</option>
             </select>
           </div>
           <div className={style.userBox}>
@@ -96,7 +104,7 @@ const Questions = (props) => {
             <input ref={incorrectInputTwo} name="incorrectAnswer2" type="text" placeholder="Incorrect Answer 2" onChange={inputHandler} autoComplete="nope" />
           </div>
           <div className={style.userBox}>
-            <input ref={incorrectInputThree} name="incorrectAnswer2" type="text" placeholder="Incorrect Answer 3" onChange={inputHandler} autoComplete="nope" />
+            <input ref={incorrectInputThree} name="incorrectAnswer3" type="text" placeholder="Incorrect Answer 3" onChange={inputHandler} autoComplete="nope" />
           </div>
           <span className={style.linkButton} onClick={createQuestion}>
             <span></span>
@@ -111,9 +119,14 @@ const Questions = (props) => {
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    questions: state.adminQuestions.questions
+  }
+}
+
 const mapDispatchToProps = {
-  getQuestions: questionActions.getQuestions,
-  createQuestion: questionActions.createQuestions
+  createQuestion: adminQuestionActions.createQuestion
 };
 
-export default connect(null, mapDispatchToProps)(Questions);
+export default connect(mapStateToProps, mapDispatchToProps)(Questions);
