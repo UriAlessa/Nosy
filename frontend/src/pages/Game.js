@@ -7,6 +7,7 @@ import questionActions from "../redux/actions/questionsActions";
 import gamesActions from "../redux/actions/gamesActions";
 import Loader from "../components/Loader";
 import Nosy from "../components/Nosy";
+import StatisticGame from "../components/StatisticGame"
 import { Link } from "react-router-dom";
 import otherActions from "../redux/actions/otherActions";
 import toast from "react-hot-toast";
@@ -138,6 +139,7 @@ const Game = (props) => {
     selectCategory(rand);
   };
   return (
+   
     <main
       className={styles.gameContainer}
       style={{ backgroundImage: "url('/assets/background.png')" }}
@@ -151,17 +153,16 @@ const Game = (props) => {
           />
         </Link>
         {props.game && props.game.status === false && props.game.lifes > 0 ? (
-          <div
+         /*  <div
             className={styles.winner}
             style={{ backgroundImage: 'url("/assets/winner.png")' }}
-          ></div>
+          ></div> */
+          <StatisticGame/>
         ) : props.game &&
           props.game.status === false &&
           props.game.lifes <= 0 ? (
-          <div
-            className={styles.gameover}
-            style={{ backgroundImage: 'url("/assets/gameover1.png")' }}
-          ></div>
+            
+            <StatisticGame/>
         ) : nosy ? (
           <Nosy categoryHandler={categoryHandler} game={props.game} />
         ) : !question ? (
@@ -212,3 +213,7 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
+ {/* <div
+            className={styles.gameover}
+            style={{ backgroundImage: 'url("/assets/gameover1.png")' }}
+          ></div> */}
