@@ -10,7 +10,6 @@ import React, { useState } from "react";
 let moment = require("moment");
 
 const ReviewSlide = (props) => {
-  console.log(props.allReviews)
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
   
@@ -32,10 +31,7 @@ const ReviewSlide = (props) => {
     if (animating) return;
     setActiveIndex(newIndex);
   };
-  // const [userId] = props.allReviews;
-  // const [avatar, username] = userId;
-  // console.log(userId)
-  console.log(props.allReviews)
+  
   const slides = props.allReviews.map((review, index) => {
    
     return (
@@ -46,16 +42,15 @@ const ReviewSlide = (props) => {
       >
         <div className={styles.slides}>
           <div>
-          {review.userId && <div className={styles.reviewsPosted}><div className={styles.avatar}  style={{ backgroundImage: `url("${review.userId.avatar}}")` }}></div><p className={styles.pDescription}>@{review.userId.username}</p></div>}
-      
-
+          {review.userId && <div className={styles.reviewsPosted}><div ><img className={styles.avatar} src={review.userId.avatar}/></div><p className={styles.pDescription}>@{review.userId.username}</p></div>}
+          <h4 className={styles.titleDescription}>"{review.title}"</h4>
           <div
             className={styles.picGame}
             style={{ backgroundImage: `url("${review.img}}")` }}
           ></div>
           </div>
           <div>
-          <h4 className={styles.titleDescription}>"{review.title}"</h4>
+        
           <p className={styles.subtitleDescription}>
             {moment(review.date).fromNow()}
           </p>
@@ -92,3 +87,6 @@ const ReviewSlide = (props) => {
 };
 
 export default ReviewSlide;
+
+
+
