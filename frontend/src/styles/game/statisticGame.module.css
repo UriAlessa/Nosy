@@ -88,6 +88,7 @@
     height: 2.5vmin;
     background-color: rgb(21, 67, 123);
     border-radius:40px;
+    margin-top:0.2rem;
   
 }
 .barrita{
@@ -96,4 +97,18 @@
     border-bottom-left-radius: 40px;
     border-top-left-radius: 40px;
 
+}
+
+@media (max-width:500px){
+  .boxStatisticGame,.boxStatisticUser{
+    width: 48%;
+
+  }
+  .containerStatistics{
+    width: 105%
+  }
+  .container{
+    gap: 5rem;
+  }
+  
 }
