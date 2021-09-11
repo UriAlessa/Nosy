@@ -26,14 +26,13 @@ const userSchema = mongoose.Schema({
     game_id: { type: mongoose.Types.ObjectId },
     multi_player: { type: Boolean, default: true },
   },
-  friends: {
-    connected: [{ type: mongoose.Types.ObjectId, path: "user" }],
-    disconnected: [{ type: mongoose.Types.ObjectId, path: "user" }],
-  },
-  friend_requests: {
-    users: [{ type: mongoose.Types.ObjectId, path: "user" }],
-    creator: { type: Boolean, default: false },
-  },
+  friends: [{ type: mongoose.Types.ObjectId, path: "user" }],
+  friend_requests: [
+    {
+      user: { type: mongoose.Types.ObjectId, path: "user" },
+      creator: { type: Boolean, default: false },
+    },
+  ],
   admin: {
     flag: { type: Boolean, default: false },
     key: { type: String },
@@ -42,7 +41,7 @@ const userSchema = mongoose.Schema({
   google: { type: Boolean, default: false },
   game_requests: [
     {
-      gameId: { type: mongoose.Types.ObjectId, path: "multiplayer game" },
+      game_id: { type: mongoose.Types.ObjectId, path: "multiplayer game" },
       creator: { type: Boolean, default: false },
     },
   ],

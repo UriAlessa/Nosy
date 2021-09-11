@@ -51,6 +51,10 @@ const usersAccountControllers = {
         { username: username },
         { $set: { connected: true } }
       );
+      user = await User.findOne({ username: username }).populate({
+        path: "friend_requests",
+        populate: { path: "user", model: "user", select: "username avatar" },
+      });
       res.json({
         success: true,
         user: {
@@ -84,38 +88,50 @@ const usersAccountControllers = {
     }
   },
   addFriend: async (req, res) => {
+    console.log(req.body);
     try {
       let user = await User.findOne({ username: req.body.username });
       if (user) {
         await User.findOneAndUpdate(
           { username: req.body.username },
-          { $push: { friend_requests: { user: req.user._id, creator: false } } }
+          {
+            $push: { friend_requests: { user: req.user._id, creator: false } },
+          },
+          { new: true }
         );
         await User.findOneAndUpdate(
           { username: req.user.username },
-          { $push: { friend_requests: { user: user._id, creator: true } } }
+          { $push: { friend_requests: { user: user._id, creator: true } } },
+          { new: true }
         );
+        res.json({ success: true });
       } else {
         throw new Error("User not found");
       }
-      res.json({ success: true });
     } catch (error) {
       res.json({ success: false, error: error.message });
     }
   },
   acceptFriendRequest: async (req, res) => {
+    console.log(req.body);
     const { username, accept } = req.body;
     try {
       let user = await User.findOne({ username });
       if (accept) {
         await User.findOneAndUpdate(
           { username: req.body.username },
-          { $pull: { friend_requests: { user: req.user._id } } }
+          {
+            $pull: { friend_requests: { user: req.user._id } },
+            $push: { friends: req.user._id },
+          }
         );
       }
       await User.findOneAndUpdate(
         { username: req.user.username },
-        { $pull: { friend_requests: { user: user._id } } }
+        {
+          $pull: { friend_requests: { user: user._id } },
+          $push: { friends: user._id },
+        }
       );
       res.json({ success: accept });
     } catch (error) {
@@ -186,6 +202,19 @@ const usersAccountControllers = {
       });
     } catch (error) {
       res.json({ success: false });
+    }
+  },
+  searchUsers: async (req, res) => {
+    console.log(req.body);
+    const { username } = req.body;
+    try {
+      let user = await User.findOne({ username });
+      if (!user) {
+        throw new Error("That username does not exist");
+      }
+      res.json({ success: true, response: user });
+    } catch (error) {
+      res.json({ success: false, response: error.message });
     }
   },
 };
