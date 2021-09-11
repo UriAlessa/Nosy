@@ -5,8 +5,22 @@ import styles from "../styles/friendCard.module.css";
 const FriendCard = ({ type, request, user, friend, ...props }) => {
   let result =
     type === "acceptRequest" ? (
-      <div className={styles.containerButtons}>
-        <h3>{request.user.username}</h3>
+      <div>
+        <div className={styles.userDate}>
+        <img
+        className={styles.logo}
+        src={
+          type === "sendRequest"
+            ? user.avatar
+            : type === "culo"
+            ? friend.avatar
+            : request.user.avatar
+        }
+        alt="logo"
+      />
+       <h3>{request.user.username}</h3>
+        </div>
+        <div className= {styles.buttons}>
         <button
           onClick={(e) => props.answerFriendRequest(false, e.target.value)}
           className={styles.buttonRefuse}
@@ -20,6 +34,7 @@ const FriendCard = ({ type, request, user, friend, ...props }) => {
         >
           ACCEPT
         </button>
+        </div>
       </div>
     ) : type === "sentRequest" ? (
       <div>
@@ -44,26 +59,17 @@ const FriendCard = ({ type, request, user, friend, ...props }) => {
           value={friend.username}
           className={styles.buttonAccept}
         >
-          SEND GAME INVITATION
+          invite friend
         </button>
       </div>
     );
 
   return (
     <section className={styles.section}>
-      <img
-        className={styles.logo}
-        src={
-          type === "sendRequest"
-            ? user.avatar
-            : type === "culo"
-            ? friend.avatar
-            : request.user.avatar
-        }
-        alt="logo"
-      />
       <div>
-        <div className={styles.container}>{result}</div>
+        <div className={styles.container}>
+      {result}
+        </div>
       </div>
     </section>
   );
