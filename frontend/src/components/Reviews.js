@@ -46,7 +46,7 @@ const Reviews = (props) => {
   };
 
   return (
-    <section id="whatTheySaying" className={styles.sectionGames}>
+    <section id="reviews" className={styles.sectionGames}>
       <h2> WHAT ARE THEY SAYING?</h2>
       <h4 className={styles.subtitleDescription}>
         Memorable moments from other players
