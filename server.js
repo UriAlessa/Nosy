@@ -66,11 +66,14 @@ io.on("connection", (socket) => {
     io.to(username).emit("answer_game_request", socketUsername);
   });
   socket.on("friend_request", ({ username, requests }) => {
-    io.to(username).emit("friend_request", { socketUsername, requests });
+    io.to(username).emit("friend_request", {
+      username: socketUsername,
+      requests,
+    });
   });
   socket.on("accepted_friend_request", ({ username, requests, friends }) => {
     io.to(username).emit("accepted_friend_request", {
-      socketUsername,
+      username: socketUsername,
       requests,
       friends,
     });

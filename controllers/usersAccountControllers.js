@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Review = require("../models/Review");
+const { use } = require("passport");
 
 const usersAccountControllers = {
   signUp: async (req, res) => {
@@ -97,14 +98,40 @@ const usersAccountControllers = {
             $push: { friend_requests: { user: req.user._id, creator: false } },
           },
           { new: true }
-        );
+        )
+          .populate({
+            path: "friends",
+            model: "user",
+            select: "username avatar connected",
+          })
+          .populate({
+            path: "friend_requests",
+            populate: {
+              path: "user",
+              model: "user",
+              select: "username avatar",
+            },
+          });
         let user = await User.findOneAndUpdate(
           { username: req.user.username },
           {
             $push: { friend_requests: { user: userAdded._id, creator: true } },
           },
           { new: true }
-        );
+        )
+          .populate({
+            path: "friends",
+            model: "user",
+            select: "username avatar connected",
+          })
+          .populate({
+            path: "friend_requests",
+            populate: {
+              path: "user",
+              model: "user",
+              select: "username avatar",
+            },
+          });
         res.json({
           success: true,
           friend_requests: {
@@ -129,17 +156,45 @@ const usersAccountControllers = {
           {
             $pull: { friend_requests: { user: req.user._id } },
             $push: { friends: req.user._id },
-          }
-        );
+          },
+          { new: true }
+        )
+          .populate({
+            path: "friends",
+            model: "user",
+            select: "username avatar connected",
+          })
+          .populate({
+            path: "friend_requests",
+            populate: {
+              path: "user",
+              model: "user",
+              select: "username avatar",
+            },
+          });
         let userAdded = await User.findOneAndUpdate(
           { username: req.user.username },
           {
             $pull: { friend_requests: { user: user._id } },
             $push: { friends: user._id },
-          }
-        );
+          },
+          { new: true }
+        )
+          .populate({
+            path: "friends",
+            model: "user",
+            select: "username avatar connected",
+          })
+          .populate({
+            path: "friend_requests",
+            populate: {
+              path: "user",
+              model: "user",
+              select: "username avatar",
+            },
+          });
         res.json({
-          success: accept,
+          success: true,
           friend_requests: {
             invitator: user.friend_requests,
             invitated: userAdded.friend_requests,
@@ -149,6 +204,8 @@ const usersAccountControllers = {
             invitated: userAdded.friends,
           },
         });
+      } else {
+        throw new Error();
       }
     } catch (error) {
       res.json({ success: false, error: error.message });
@@ -221,7 +278,6 @@ const usersAccountControllers = {
     }
   },
   searchUsers: async (req, res) => {
-    console.log(req.body);
     const { username } = req.body;
     try {
       let user = await User.findOne({ username });
