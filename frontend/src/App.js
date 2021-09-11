@@ -33,18 +33,14 @@ const App = (props) => {
   useEffect(() => {
     if (props.socket && props.token && props.fetch) {
       props.socket.on("game_request", (username) => {
-        props.reFetchGameRequests();
         toast(username + " invited you to a game!", {
           icon: "🎮",
         });
       });
       props.socket.on("answer_game_request", (username) => {
-        props.startGame();
         props.history.push("/game");
       });
-      props.socket.on("change_current_player", (username) => {
-        props.reFetchCurrentPlayer();
-      });
+      props.socket.on("change_current_player", (username) => {});
       props.socket.on("friend_request", ({ username, requests }) => {
         props.setFriendRequests(requests);
         toast(username + " has sent you a friend request!", {
@@ -64,10 +60,16 @@ const App = (props) => {
         }
       );
       props.socket.on("connected", (username) => {
-        props.reFetchFriendConnected();
+        username !== props.username &&
+          toast(username + " has connected", {
+            icon: "👋",
+          });
       });
       props.socket.on("disconnection", (username) => {
-        props.reFetchFriendDisconnected();
+        username !== props.username &&
+          toast(username + " has disconnected", {
+            icon: "👋",
+          });
       });
     }
     // eslint-disable-next-line
@@ -101,6 +103,7 @@ const mapStateToProps = (state) => {
     menu: state.other.menu,
     socket: state.users.socket,
     fetch: state.users.fetch,
+    username: state.users.username,
   };
 };
 
