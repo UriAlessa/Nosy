@@ -5,13 +5,13 @@ html * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  text-decoration: none !important;
+  text-decoration: none;
 }
-a:hover {
+/* a:hover {
   color: white !important;
-}
+} */
 body {
-  background-color: rgb(41, 38, 87) !important;
+  background-color: rgb(41, 38, 87);
 }
 
 .body {

@@ -1,3 +1,4 @@
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -39,7 +40,7 @@ const App = (props) => {
       props.socket.on("answer_game_request", (username) => {
         props.history.push("/game");
       });
-      props.socket.on("change_current_player", (username) => {});
+      props.socket.on("change_current_player", (username) => { });
       props.socket.on("friend_request", ({ username, requests }) => {
         props.setFriendRequests(requests);
         toast(username + " has sent you a friend request!", {

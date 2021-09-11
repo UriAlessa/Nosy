@@ -32,11 +32,7 @@ const Roulette = (props) => {
       </div>
       <div className={styles.containerRoulette}>
         <img
-<<<<<<< HEAD
-          src="/assets/RuletaAAA.png"
-=======
-          src="/assets/ruleta1.svg"
->>>>>>> origin/sebastian
+          src="/assets/Ruleta.png"
           ref={props.roulette}
           className={styles.roulette}
           alt="rouletteeee"
@@ -57,8 +53,8 @@ const Roulette = (props) => {
               key={shadow.key}
               className={styles.picShadow}
               src={`assets/${props.game.player.medals.includes(shadow.key)
-                  ? shadow.yes
-                  : shadow.no
+                ? shadow.yes
+                : shadow.no
                 }`}
               alt={shadow.key}
             />
