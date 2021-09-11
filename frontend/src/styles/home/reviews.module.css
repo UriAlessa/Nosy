@@ -26,7 +26,8 @@
 }
 
 .divGame {
-  flex: 1;
+  flex: 0, 0, 0;
+  width: 30rem;
   background: rgb(27,33,85);
   background: radial-gradient(circle, rgba(27,33,85,0.5718662464985995) 0%, rgba(25,22,61,1) 100%);  border-radius: 10px;
   display:flex;
@@ -44,6 +45,22 @@
   border-radius: 20px;
   height: 12rem;
   margin:.5em;
+}
+.avatar{
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 100px;
+  width: 5rem;
+  height: 5rem;
+  margin:.1em;
+  background-color: rgba(255, 255, 255, 0.124);
+  box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
+  display:flex;
+}
+.reviewsPosted{
+  display:flex;
+  justify-content: space-between;
 }
 
 .descriptionGame {
@@ -119,10 +136,26 @@
   margin:1vmin;
   text-align: center;
 }
+.userStuff{
+  display:flex;
+}
 
 @media (min-width: 916px) and (max-width: 1100px) {
   .articleGames {
-    grid-template-columns: 70%;
+    grid-template-columns: 100%;
+  }
+  .divGame {
+    width: 50rem;
+  }
+  .slides{
+    display:flex;
+    flex-direction: row;
+  }
+
+  .picGame {
+    height: 12rem;
+    width: 20rem;
+    margin:.5em;
   }
 
   .sectionGames h2 {

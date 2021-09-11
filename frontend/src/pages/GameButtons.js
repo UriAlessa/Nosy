@@ -6,12 +6,6 @@ import { Link } from "react-router-dom";
 import otherActions from "../redux/actions/otherActions";
 
 const GameButtons = (props) => {
-  const sendRequest = () => {
-    if (props.socket) {
-      props.socket.emit("game_request", "rafaelmian35");
-    }
-  };
-
   return (
     <section
       className={styles.sectionGameButtons}
@@ -48,11 +42,7 @@ const GameButtons = (props) => {
               src="/assets/debate.png"
               alt="debate"
             />
-            <PlayButton
-              text="PLAY W/ FRIEND"
-              className={styles.buttonPlay}
-              onClick={sendRequest}
-            />
+            <PlayButton text="PLAY W/ FRIEND" className={styles.buttonPlay} />
           </div>
         </div>
         <div className={styles.footerArticle}>

@@ -76,4 +76,10 @@ router
     usersAccountsControllers.setEmoji
   );
 
+router
+  .route("/user/add_friend")
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    usersAccountsControllers.searchUsers
+  );
 module.exports = router;

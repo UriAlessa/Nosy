@@ -9,12 +9,13 @@ const initialState = {
 };
 
 const usersReducer = (state = initialState, action) => {
+  console.log("wep");
   switch (action.type) {
     case "LOG_IN_USER":
       localStorage.setItem("token", action.payload.token);
       let socket = state.socket
         ? state.socket
-        : io("http://localhost:4000", {
+        : io("https://benosy.herokuapp.com/", {
             query: "token=" + action.payload.token,
           });
       return {
@@ -24,26 +25,65 @@ const usersReducer = (state = initialState, action) => {
         userData: action.payload.userData,
         socket,
       };
-    case "UPDATE_USER":
-      break;
+    case "SET_FRIEND_REQUESTS":
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          friend_requests: action.payload.requests,
+        },
+      };
+    case "SET_FRIENDS":
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          friend_requests: action.payload.requests,
+          friends: action.payload.friends,
+        },
+      };
+    case "SEND_FRIEND_REQUEST":
+      console.log("wep");
+      state.socket.emit("friend_request", {
+        username: action.payload.username,
+        requests: action.payload.friend_requests.invitated,
+      });
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          friend_requests: action.payload.friend_requests.invitator,
+        },
+      };
+    case "ACCEPT_FRIEND_REQUEST":
+      console.log("wep");
+      state.socket.emit("accepted_friend_request", {
+        username: action.payload.username,
+        requests: action.payload.friend_requests.invitator,
+        friends: action.payload.friends.invitator,
+      });
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          friend_requests: action.payload.friend_requests.invitated,
+          friends: action.payload.friends.invitated,
+        },
+      };
+    case "SEND_GAME_REQUEST":
+      console.log("wep");
+      state.socket.emit("game_request", action.payload);
+      return state;
+    case "ACCEPT_GAME_REQUEST":
+      console.log("wep");
+      state.socket.emit("answer_game_request", action.payload);
+      return state;
     case "LOG_OUT":
       localStorage.removeItem("token");
       state.socket.emit("disconnection");
       return {
         initialState,
       };
-    case "SEND_FRIEND_REQUEST":
-      state.socket.emit("friend_request", action.payload.username);
-      break;
-    case "ACCEPT_FRIEND_REQUEST":
-      state.socket.emit("accepted_friend_request", action.payload.username);
-      break;
-    case "SEND_GAME_REQUEST":
-      state.socket.emit("game_request", action.payload.username);
-      break;
-    case "ACCEPT_GAME_REQUEST":
-      state.socket.emit("answer_game_request", action.payload.username);
-      break;
     default:
       return state;
   }

@@ -32,16 +32,23 @@ router
   .delete(adminQuestionsControllers.deleteQuestion);
 
 //ADMIN USER ROUTES
+router.route("/users/reset").put(adminUsersControllers.resetUsers);
+
 router
   .route("/user")
-  .post(passport.authenticate("jwt", { session: false }), adminUsersControllers.createAdminUser)
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    adminUsersControllers.createAdminUser
+  )
   .get(adminUsersControllers.getUsers)
-  .put(adminUsersControllers.updateUser)
-
+  .put(adminUsersControllers.updateUser);
 
 router
   .route("/user/:id")
-  .delete(passport.authenticate("jwt", { session: false }), adminUsersControllers.deleteUser);
+  .delete(
+    passport.authenticate("jwt", { session: false }),
+    adminUsersControllers.deleteUser
+  );
 //ADMIN GAME CONTROLLERS
 router.route("/game").get(adminGameControllers.getGames);
 module.exports = router;

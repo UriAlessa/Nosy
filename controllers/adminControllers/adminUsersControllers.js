@@ -16,11 +16,12 @@ const AdminUsersControllers = {
         email,
         avatar,
         coins: 9999999,
-        admin: { flag: true, key: nuevaKey }
+        admin: { flag: true, key: nuevaKey },
       });
       let user = await newUser.save();
       res.json({
-        success: true, response: user
+        success: true,
+        response: user,
       });
     } catch (error) {
       res.json({ success: false, error: error.message });
@@ -34,12 +35,12 @@ const AdminUsersControllers = {
       let users = await User.find();
       res.json({ success: true, response: users });
     } catch (error) {
-      console.log(error)
+      console.log(error);
       res.json({ success: false, error: error.message });
     }
   },
   updateUser: async (req, res) => {
-    console.log(req.body)
+    console.log(req.body);
     // const { key } = req.user.admin;
     try {
       // let match = key && bcrypt.compareSync(process.env.SECRETORKEY, key);
@@ -49,7 +50,7 @@ const AdminUsersControllers = {
         { ...req.body },
         { new: true }
       );
-      res.json({ success: true, modified: user });
+      res.json({ success: false, error: error.message });
     } catch (error) {
       res.json({ success: false, error: error.message });
     }
@@ -61,6 +62,14 @@ const AdminUsersControllers = {
       if (!match) throw new Error("key error");
       await User.findOneAndDelete({ _id: req.params.id });
       res.json({ success: true });
+    } catch (error) {
+      res.json({ success: false, error: error.message });
+    }
+  },
+  resetUsers: async (req, res) => {
+    try {
+      let modified = await User.updateMany({}, { ...req.body }, { new: true });
+      res.json({ success: true, modified });
     } catch (error) {
       res.json({ success: false, error: error.message });
     }

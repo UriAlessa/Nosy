@@ -14,11 +14,11 @@ const gameControllers = {
         await game.save();
         await User.findOneAndUpdate(
           { username: req.body.username },
-          { $push: { game_requests: { creator: false, gameId: game._id } } }
+          { $push: { game_requests: { creator: false, game_id: game._id } } }
         );
         await User.findOneAndUpdate(
           { username: req.user.username },
-          { $push: { game_requests: { creator: true, gameId: game._id } } }
+          { $push: { game_requests: { creator: true, game_id: game._id } } }
         );
       } else {
         game = new SinglePlayer({
@@ -47,27 +47,27 @@ const gameControllers = {
   acceptGameRequest: async (req, res) => {
     try {
       await User.updateMany(
-        { "game_requests.gameId": req.body.gameId },
+        { "game_requests.game_id": req.body.game_id },
         {
-          $pull: { game_requests: { gameId: req.body.gameId } },
+          $pull: { game_requests: { game_id: req.body.game_id } },
         }
       );
       if (req.body.accept) {
         let game = await MultiPlayer.findOneAndUpdate(
-          { _id: req.body.gameId },
-          { player2: { user: req.user._id }, status: true },
+          { _id: req.body.game_id },
+          { $set: { player2: { user: req.user._id }, status: true } },
           { new: true }
         );
         await User.updateMany(
-          { "game_requests.gameId": req.body.gameId },
+          { "game_requests.game_id": req.body.game_id },
           {
-            $pull: { game_requests: { gameId: req.body.gameId } },
-            playing_now: { status: true, game_id: game._id },
+            $pull: { game_requests: { game_id: req.body.game_id } },
+            $set: { playing_now: { status: true, game_id: game._id } },
           }
         );
         res.json({ success: true, response: game });
       } else {
-        await MultiPlayer.findOneAndDelete({ _id: req.body.gameId });
+        await MultiPlayer.findOneAndDelete({ _id: req.body.game_id });
         throw new Error("Declined");
       }
     } catch (error) {
@@ -169,6 +169,27 @@ const gameControllers = {
                 "playing_now.game_id": null,
                 "playing_now.multi_player": true,
               },
+            },
+            { new: true }
+          );
+        }
+        if (newGameState.lifes === 0) {
+          newGameState = await SinglePlayer.findOneAndUpdate(
+            { _id: game_id._id },
+            { $set: { status: false } },
+            { new: true }
+          );
+          const { total, wins } = newUserState.statistics.single_player;
+          const win_pct = (wins / (total + 1)) * 100;
+          newUserState = await User.findOneAndUpdate(
+            { _id: req.user._id },
+            {
+              $inc: { "statistics.single_player.total": 1 },
+              $inc: { "statistics.single_player.losses": 1 },
+              $inc: { "statistics.single_player.win_pct": win_pct },
+              $set: { "playing_now.status": false },
+              $set: { "playing_now.game_id": "" },
+              $set: { "playing_now.multi_player": true },
             },
             { new: true }
           );

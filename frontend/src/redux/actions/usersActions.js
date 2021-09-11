@@ -6,7 +6,7 @@ const usersActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/signup",
+          "https://benosy.herokuapp.com/api/user/signup",
           { ...newUser }
         );
         response.data.success &&
@@ -29,7 +29,7 @@ const usersActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/login",
+          "https://benosy.herokuapp.com/api/user/login",
           { ...newUser }
         );
         if (response.data.success === false) {
@@ -64,7 +64,7 @@ const usersActions = {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/friend_request",
+          "https://benosy.herokuapp.com/api/user/friend_request",
           { username },
           {
             headers: {
@@ -72,14 +72,12 @@ const usersActions = {
             },
           }
         );
-        if (response.data.success) {
-          dispatch({
-            type: "SEND_FRIEND_REQUEST",
-            payload: { username },
-          });
-        } else {
-          throw new Error(response.data.error);
-        }
+        if (!response.data.success) throw new Error(response.data.error);
+        dispatch({
+          type: "SEND_FRIEND_REQUEST",
+          payload: { username, friend_requests: response.data.friend_requests },
+        });
+        return response.data.success;
       } catch (error) {
         toast.error(
           error.message.includes("User") ? error.message : "Session expired",
@@ -102,7 +100,7 @@ const usersActions = {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.put(
-          "http://localhost:4000/api/user/friend_request",
+          "https://benosy.herokuapp.com/api/user/friend_request",
           { accept, username },
           {
             headers: {
@@ -110,13 +108,15 @@ const usersActions = {
             },
           }
         );
-        if (response.data.success) {
-          dispatch({
-            type: "ANSWER_FRIEND_REQUEST",
-            payload: { username },
-          });
-        }
-        return false;
+        if (!response.data.success) throw new Error(response.data.error);
+        return dispatch({
+          type: "ANSWER_FRIEND_REQUEST",
+          payload: {
+            username,
+            friend_requests: response.data.friend_requests,
+            friends: response.data.friends,
+          },
+        });
       } catch (error) {
         toast.error("Session expired", {
           position: "top-right",
@@ -132,19 +132,70 @@ const usersActions = {
     };
   },
   sendGameRequest: (username) => {
-    return (dispatch) => {
-      dispatch({
-        type: "SEND_GAME_REQUEST",
-        payload: { username },
-      });
+    return async (dispatch) => {
+      let token = localStorage.getItem("token");
+      try {
+        let response = await axios.post(
+          "https://benosy.herokuapp.com/api/game/newgame",
+          { username },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        console.log(response.data.success);
+        if (!response.data.success) throw new Error();
+        return dispatch({
+          type: "SEND_GAME_REQUEST",
+          payload: username,
+        });
+      } catch (error) {
+        console.log(error);
+        toast.error("Session expired", {
+          position: "top-right",
+          style: {
+            borderRadius: "10px",
+            background: "#453ab7",
+            color: "#fff",
+            fontFamily: "Ubuntu, sans-serif",
+          },
+        });
+        return dispatch({ type: "LOG_OUT" });
+      }
     };
   },
-  answerGameRequest: (username) => {
+
+  answerGameRequest: (username, accept, gameId) => {
     return async (dispatch) => {
-      dispatch({
-        type: "ANSWER_GAME_REQUEST",
-        payload: { username },
-      });
+      let token = localStorage.getItem("token");
+      try {
+        let response = await axios.put(
+          "https://benosy.herokuapp.com/game/newgame",
+          { username, accept, gameId },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (!response.data.success) throw new Error();
+        dispatch({
+          type: "ANSWER_GAME_REQUEST",
+          payload: username,
+        });
+      } catch (error) {
+        toast.error("Session expired", {
+          position: "top-right",
+          style: {
+            borderRadius: "10px",
+            background: "#453ab7",
+            color: "#fff",
+            fontFamily: "Ubuntu, sans-serif",
+          },
+        });
+        return dispatch({ type: "LOG_OUT" });
+      }
     };
   },
 
@@ -152,11 +203,14 @@ const usersActions = {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
       try {
-        let response = await axios.get("http://localhost:4000/api/user/token", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
+        let response = await axios.get(
+          "https://benosy.herokuapp.com/api/user/token",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
         dispatch({
           type: "LOG_IN_USER",
           payload: { ...response.data, token },
@@ -189,7 +243,7 @@ const usersActions = {
       });
       try {
         let res = await axios.put(
-          "http://localhost:4000/api/user/logout",
+          "https://benosy.herokuapp.com/api/user/logout",
           {},
           {
             headers: {
@@ -206,7 +260,7 @@ const usersActions = {
   },
   sendMail: (newUser) => {
     return async () => {
-      let response = await axios.post("http://localhost:4000/api/mail", {
+      let response = await axios.post("https://benosy.herokuapp.com/api/mail", {
         ...newUser,
       });
       return response;
@@ -217,7 +271,7 @@ const usersActions = {
     return async () => {
       try {
         let response = await axios.post(
-          `http://localhost:4000/api/review`,
+          `https://benosy.herokuapp.com/api/review`,
           {
             ...newReview,
           },
@@ -241,7 +295,9 @@ const usersActions = {
   getReviews: () => {
     return async () => {
       try {
-        let response = await axios.get("http://localhost:4000/api/review");
+        let response = await axios.get(
+          "https://benosy.herokuapp.com/api/review"
+        );
         if (response.data.success) {
           return { success: true, response: response.data.response };
         } else {
@@ -258,7 +314,7 @@ const usersActions = {
       const token = localStorage.getItem("token");
       try {
         let response = await axios.put(
-          `http://localhost:4000/api/user/emoji`,
+          `https://benosy.herokuapp.com/api/user/emoji`,
           { emoji },
           {
             headers: {
@@ -271,6 +327,29 @@ const usersActions = {
         return response.data;
       } catch (err) {
         return { success: false, response: err.message };
+      }
+    };
+  },
+  searchUser: (username, token) => {
+    return async () => {
+      try {
+        let response = await axios.post(
+          "https://benosy.herokuapp.com/api/user/add_friend",
+          { username },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (!response.data.success) throw new Error(response.data.response);
+        let user = {
+          username: response.data.response.username,
+          avatar: response.data.response.avatar,
+        };
+        return user;
+      } catch (error) {
+        console.log(error);
       }
     };
   },

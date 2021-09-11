@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <div className={styles.notFound}>
+    <div className={styles.notFound} >
       <div
         className={styles.gif}
         style={{ backgroundImage: "url('/assets/error-Page.gif')" }}>

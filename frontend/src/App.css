@@ -9,7 +9,7 @@ html * {
 }
 
 body {
-    background-color: rgb(41, 38, 87);
+    background-color: rgb(41, 38, 87) !important;
 }
 
 .body {
@@ -38,6 +38,20 @@ body {
   min-height: 100vh;
 }
 
+.swal2-title {
+  color: #84eeb7 !important;
+  font-family: 'Fredoka One', cursive;
+}
+
+.swal2-content {
+  color: white !important;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.swal2-cancel {
+  background: #E0390D !important;
+}
+
 @media (max-width: 768px) {
   .heroHome {
     align-items: center;
@@ -48,4 +62,12 @@ body {
     background-position: inherit;
   }
  
+}
+
+span.sr-only{
+  display: none !important
+}
+span.carousel-control-next-icon, span.carousel-control-prev-icon {
+  display: none !important
+  
 }
