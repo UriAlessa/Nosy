@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Footer from "../components/Footer";
 import styles from "../styles/friends.module.css";
 import goBack from "../styles/game/game.module.css";
@@ -12,7 +12,7 @@ const Friends = (props) => {
   const [filtered, setFiltered] = useState([]);
   const [allFriends, setAllFriends] = useState([]);
   const [userSearched, setUserSearched] = useState();
-  const [user, setUser] = useState([]);
+  const friendSearched = useRef();
   const [switchOptions, setSwitchOptions] = useState(false);
 
   const filterFriends = (e) => {
@@ -29,7 +29,9 @@ const Friends = (props) => {
   }, [props.userData]);
 
   const clickHandler = async () => {
-    setUserSearched(await props.searchUser(user, props.token));
+    setUserSearched(
+      await props.searchUser(friendSearched.current.value, props.token)
+    );
   };
   console.log(props.userData && props.userData);
   return (
@@ -81,9 +83,9 @@ const Friends = (props) => {
                 <FriendCard type="culo" friend={friend} key={friend.username} />
               ))}
             <input
+              ref={friendSearched}
               className={styles.searchFriend}
               placeholder="Type to search a friend..."
-              onChange={filterFriends}
             />
           </div>
           <button onClick={() => setSwitchOptions(true)}>Search friend</button>
