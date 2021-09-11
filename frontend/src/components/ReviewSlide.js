@@ -32,10 +32,7 @@ const ReviewSlide = (props) => {
     if (animating) return;
     setActiveIndex(newIndex);
   };
-  // const [userId] = props.allReviews;
-  // const [avatar, username] = userId;
-  // console.log(userId)
-  console.log(props.allReviews)
+  
   const slides = props.allReviews.map((review, index) => {
    
     return (
@@ -92,3 +89,6 @@ const ReviewSlide = (props) => {
 };
 
 export default ReviewSlide;
+
+
+

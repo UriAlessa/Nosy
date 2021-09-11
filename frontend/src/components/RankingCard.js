@@ -60,7 +60,7 @@ const RankingCard = (props) => {
       <div className={styles.rating}>
         <input
           type="radio"
-          name="fifth"
+          name="rating"
           id="rating-5"
           className={styles.rating5}
         />
@@ -68,7 +68,7 @@ const RankingCard = (props) => {
 
         <input
           type="radio"
-          name="fourth"
+          name="rating"
           id="rating-4"
           className={styles.rating4}
         />
@@ -76,7 +76,7 @@ const RankingCard = (props) => {
 
         <input
           type="radio"
-          name="third"
+          name="rating"
           id="rating-3"
           className={styles.rating3}
         />
@@ -84,7 +84,7 @@ const RankingCard = (props) => {
 
         <input
           type="radio"
-          name="second"
+          name="rating"
           id="rating-2"
           className={styles.rating2}
         />
@@ -92,7 +92,7 @@ const RankingCard = (props) => {
 
         <input
           type="radio"
-          name="first"
+          name="rating"
           id="rating-1"
           className={styles.rating1}
         />
