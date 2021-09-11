@@ -55,8 +55,8 @@ const adminQuestionsControllers = {
         status: true,
         creator: id,
       });
-      await newQuestion.save();
-      res.json({ success: true });
+      let questionAdded = await newQuestion.save();
+      res.json({ success: true, response: questionAdded });
     } catch (error) {
       res.json({ success: false, error: error.message });
     }
@@ -74,7 +74,7 @@ const adminQuestionsControllers = {
   updateQuestion: async (req, res) => {
     try {
       let modified = await Question.findOneAndUpdate(
-        { _id: req.params.id },
+        { _id: req.body.id },
         { ...req.body },
         { new: true }
       );

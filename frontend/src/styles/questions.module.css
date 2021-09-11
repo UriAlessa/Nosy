@@ -69,8 +69,38 @@
 
 .buttonsContainer{
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 1em;
 }
 
 .buttonsContainer img{
     width: 30px;
+}
+
+
+.questionSection{
+    width: 100%;
+    margin: 1.3em 0;
+    display: flex;
+    min-height: 10vh;
+}
+
+.question{
+    width:50%;
+    padding: 0 2vw;
+}
+
+.answerContainer{
+    width: 40%;
+}
+
+.toEdit{
+    width: 80%;
+}
+
+.questionContainer p,
+.questionContainer h4{
+    font-family: "Ubuntu", "sans-serif";
+    font-weight: normal;
 }

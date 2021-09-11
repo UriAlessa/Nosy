@@ -5,43 +5,61 @@ import Dashboard from '../components/admin/Dashboard'
 import Questions from "../components/admin/Questions"
 import Games from "../components/admin/Games"
 import { connect } from 'react-redux'
-import usersActions from "../redux/actions/admin/adminUserActions";
-import questionActions from "../redux/actions/admin/questionsActions";
+import adminUserActions from "../redux/actions/admin/adminUserActions";
+import adminQuestionsActions from "../redux/actions/admin/adminQuestionsActions";
+import { toast } from "react-hot-toast";
+import Loader from '../components/Loader'
 
 
 const AdminPanel = (props) => {
     const [view, setView] = useState("dashboard")
-    const [users, setUsers] = useState([])
-    const [questions, setQuestions] = useState([])
     const [loader, setLoader] = useState(true)
 
     const getUsers = async () => {
-        try {
-            let response = await props.getUsers();
-            if (response.data.success) {
-                setUsers(response.data.response);
-                // setFiltered(response.data.response)
-                setLoader(false)
-            } else {
-                throw new Error();
+        if (!props.users.length) {
+            try {
+                let response = await props.getUsers();
+                if (response.success) {
+                    setLoader(false)
+                } else {
+                    throw new Error();
+                }
+            } catch (error) {
+                toast.error("Something went wrong. Try again later.", {
+                    position: "top-left",
+                    style: {
+                        borderRadius: "10px",
+                        background: "#453ab7",
+                        color: "#fff",
+                        fontFamily: "Ubuntu, sans-serif",
+                        height: "10vh"
+                    },
+                });
             }
-        } catch (error) {
-            console.log(error);
         }
     };
 
     const getQuestions = async () => {
-        try {
-            let response = await props.getQuestions();
-            if (response.data.success) {
-                setQuestions(response.data.response);
-                // setFiltered(response.data.response)
-                setLoader(false)
-            } else {
-                throw new Error();
+        if (!props.questions.length) {
+            try {
+                let response = await props.getQuestions();
+                if (response.success) {
+                    setLoader(false)
+                } else {
+                    throw new Error();
+                }
+            } catch (error) {
+                toast.error("Something went wrong. Try again later.", {
+                    position: "top-left",
+                    style: {
+                        borderRadius: "10px",
+                        background: "#453ab7",
+                        color: "#fff",
+                        fontFamily: "Ubuntu, sans-serif",
+                        height: "10vh"
+                    },
+                });
             }
-        } catch (error) {
-            console.log(error);
         }
     };
 
@@ -49,6 +67,10 @@ const AdminPanel = (props) => {
         getUsers()
         getQuestions()
     }, [])
+
+    if (loader) {
+        return <Loader />
+    }
 
     return (
         <section className={styles.adminContainer}>
@@ -79,9 +101,9 @@ const AdminPanel = (props) => {
                     </div>
                 </div>
                 <div className={styles.infoSection}>
-                    {view === 'dashboard' && <Dashboard users={users} qustions={questions} />}
-                    {view === 'users' && <Users users={users} />}
-                    {view === 'questions' && <Questions questions={questions} />}
+                    {view === 'dashboard' && <Dashboard />}
+                    {view === 'users' && <Users />}
+                    {view === 'questions' && <Questions />}
                     {/* {view === 'games' && <Games />} */}
                 </div>
 
@@ -93,12 +115,14 @@ const AdminPanel = (props) => {
 const mapStateToProps = (state) => {
     return {
         avatar: state.users.avatar,
+        users: state.adminUsers.users,
+        questions: state.adminQuestions.questions
     }
 }
 
 const mapDispatchToProps = {
-    getUsers: usersActions.getUsers,
-    getQuestions: questionActions.getQuestions,
+    getUsers: adminUserActions.getUsers,
+    getQuestions: adminQuestionsActions.getQuestions,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminPanel)
