@@ -28,13 +28,11 @@ const Roulette = (props) => {
       </div>{" "}
       <div className={styles.containerRoulette}>
         <img
-          src="/assets/ruletaAA.png"
+          src="/assets/ruletaAAA.png"
           ref={props.roulette}
           className={styles.roulette}
           alt="roulette"
         />
-        {/* <div style={{ backgroundImage: "url('/assets/ruleta2.png')" }} ref={props.roulette} className={styles.roulette}>
-        </div> */}
         <img
           src="/assets/spin.png"
           alt="spin"
