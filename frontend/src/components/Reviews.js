@@ -20,12 +20,6 @@ const Reviews = (props) => {
     setAllReviews(reviews.response);
   };
 
-  let render= allReviews.length !== 0 &&
-    allReviews.map((info, index) => {
-      return <ReviewSlide oneReview={info} key={"Review" + index} />
-    })
-    
-
   const inputHandler = (e) => {
     if (!props.token) {
       return toast.error("You most to be login for this", {
@@ -54,12 +48,17 @@ const Reviews = (props) => {
       </h4>
       <article className={styles.articleGames}>
         <div className={styles.divGame}>
-          <button className={styles.buttonAddComment} onClick={inputHandler}>+</button>
-          {render}
+          <div className={styles.carousel}> <ReviewSlide allReviews={allReviews}/></div>
         </div>
-        <div>
+        <div className={styles.divGame}>
           <RankingCard />
-          {props.token ? <ReviewAddComment /> : <img className={styles.picGame} src="https://i.postimg.cc/Zq2ptpcd/12.png"/>}
+          {props.token ? <ReviewAddComment /> 
+          : 
+          <div>
+            <button className={styles.buttonAddComment} onClick={inputHandler}>+</button>
+            <img className={styles.picGame} src="https://i.postimg.cc/9FbTSStZ/review.png"/>
+            <p className={styles.pDescription}>The reviews can be seen for 24 hours ... don't miss them!</p>
+            </div>}
         </div>
       </article>
     </section>

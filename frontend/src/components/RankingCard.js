@@ -56,7 +56,7 @@ const RankingCard = (props) => {
     }
   };
   return (
-    <div className={styles.divGame}>
+    <div>
       <div className={styles.rating}>
         <input
           type="radio"

@@ -9,7 +9,7 @@ html * {
 }
 
 body {
-    background-color: rgb(41, 38, 87);
+    background-color: rgb(41, 38, 87) !important;
 }
 
 .body {
@@ -48,4 +48,12 @@ body {
     background-position: inherit;
   }
  
+}
+
+span.sr-only{
+  display: none !important
+}
+span.carousel-control-next-icon, span.carousel-control-prev-icon {
+  display: none !important
+  
 }
