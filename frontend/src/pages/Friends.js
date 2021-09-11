@@ -15,14 +15,16 @@ const Friends = (props) => {
 
   const filterFriends = (e) => {
     setFiltered(
-      props.users.filter((user) => user.username.startsWith(e.target.value))
+      props.userData.friends.filter((user) =>
+        user.username.startsWith(e.target.value)
+      )
     );
   };
 
   useEffect(() => {
-    // setFiltered(props.userData.friends)
-    // setAllFriends(props.userData.friends)
-  }, []);
+    setFiltered(props.userData && props.userData.friends);
+    setAllFriends(props.userData && props.userData.friends);
+  }, [props.userData]);
 
   const clickHandler = async () => {
     setUserSearched(await props.searchUser(user, props.token));
@@ -66,11 +68,12 @@ const Friends = (props) => {
           <div className={styles.friendsList}>
             <h2 className={styles.title}>Friend List</h2>
             {filtered.map((friend) => (
-              <FriendCard friend={friend} key={friend.username} />
+              <FriendCard type="culo" friend={friend} key={friend.username} />
             ))}
             <input
               className={styles.searchFriend}
               placeholder="Type to search a friend..."
+              onChange={filterFriends}
             />
           </div>
           <button onClick={() => setSwitchOptions(true)}>Search friend</button>
