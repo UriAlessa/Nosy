@@ -57,7 +57,7 @@ io.on("connection", (socket) => {
 
   socket.join(socketUsername);
 
-  socket.broadcast.emit("connected", socketUsername);
+  io.sockets.emit("connected", socketUsername);
 
   socket.on("game_request", (username) => {
     io.to(username).emit("game_request", socketUsername);
@@ -83,6 +83,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnection", () => {
-    socket.broadcast.emit("disconnection", socketUsername);
+    io.sockets.emit("disconnection", socketUsername);
   });
 });
