@@ -1,47 +1,45 @@
 .section{
-    background-color: rgb(109,98,231);
-    width:50%;
-    height: 20vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border-radius: 10px;
-    box-shadow: 0 5px 16px 0 rgb(0 0 0 / 25%);
-    margin: 1vw;
-}
-
-.container {
-  height: 100%;
+  width: 80%;
+  border: 1.3px solid white;
+  margin: .5rem;
+  height: 18vh;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 }
 
+
 .logo {
-  width: 8vw;
+  width: 3.5vw;
+  border-radius: 50px;
   align-self: center;
 }
 
 .container h3 {
   color: white;
-  font-size: 6vmin;
-  text-align: center;
+  font-size: 2.8vmin;
   font-family: "Ubuntu", sans-serif;
 }
 
-.containerButtons {
+.buttons,
+  .userDate{
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  justify-content: center;
 }
-
+.userDate >* {
+  margin: .3rem;
+}
+.buttons>*{
+  margin: .5rem;
+}
 .container button{
     font-family: 'Ubuntu', sans-serif;
-    padding: 1rem 1.8rem;
     cursor: pointer;
     border: none;
-    border-radius: 10px;
+    width: 3.5rem;
+    border-radius: 3px;
     color:white;
-    box-shadow: 0 5px 16px 0 rgb(0 0 0 / 25%);
     background-color: #43b14b;
 }
 

@@ -3,30 +3,51 @@ import usersActions from "../redux/actions/usersActions";
 import styles from "../styles/friendCard.module.css";
 
 const FriendCard = ({ type, request, user, friend, ...props }) => {
+  const ImageFriendCard = (
+    <img
+      className={styles.logo}
+      src={
+        type === "sendRequest"
+          ? user.avatar
+          : type === "culo"
+          ? friend.avatar
+          : request.user.avatar
+      }
+      alt="logo"
+    />
+  );
+
   let result =
     type === "acceptRequest" ? (
-      <div className={styles.containerButtons}>
-        <h3>{request.user.username}</h3>
-        <button
-          onClick={(e) => props.answerFriendRequest(false, e.target.value)}
-          className={styles.buttonRefuse}
-        >
-          REFUSE
-        </button>
-        <button
-          onClick={(e) => props.answerFriendRequest(true, e.target.value)}
-          value={request.user.username}
-          className={styles.buttonAccept}
-        >
-          ACCEPT
-        </button>
+      <div>
+        <div className={styles.userDate}>
+          {ImageFriendCard}
+          <h3>{request.user.username}</h3>
+        </div>
+        <div className={styles.buttons}>
+          <button
+            onClick={(e) => props.answerFriendRequest(false, e.target.value)}
+            className={styles.buttonRefuse}
+          >
+            REFUSE
+          </button>
+          <button
+            onClick={(e) => props.answerFriendRequest(true, e.target.value)}
+            value={request.user.username}
+            className={styles.buttonAccept}
+          >
+            ACCEPT
+          </button>
+        </div>
       </div>
     ) : type === "sentRequest" ? (
       <div>
+        {ImageFriendCard}
         <h3>{request.user.username}</h3>
       </div>
     ) : type === "sendRequest" ? (
       <div>
+        {ImageFriendCard}
         <h3>{user.username}</h3>
         <button
           onClick={(e) => props.addFriend(e.target.value)}
@@ -38,6 +59,7 @@ const FriendCard = ({ type, request, user, friend, ...props }) => {
       </div>
     ) : (
       <div>
+        {ImageFriendCard}
         <h3>{friend.username}</h3>
         <button
           onClick={(e) => {
@@ -46,24 +68,13 @@ const FriendCard = ({ type, request, user, friend, ...props }) => {
           value={friend.username}
           className={styles.buttonAccept}
         >
-          SEND GAME INVITATION
+          invite friend
         </button>
       </div>
     );
 
   return (
     <section className={styles.section}>
-      <img
-        className={styles.logo}
-        src={
-          type === "sendRequest"
-            ? user.avatar
-            : type === "culo"
-            ? friend.avatar
-            : request.user.avatar
-        }
-        alt="logo"
-      />
       <div>
         <div className={styles.container}>{result}</div>
       </div>

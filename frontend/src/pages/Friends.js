@@ -12,6 +12,7 @@ const Friends = (props) => {
   const [filtered, setFiltered] = useState([]);
   const [allFriends, setAllFriends] = useState([]);
   const [userSearched, setUserSearched] = useState();
+  const [user, setUser] = useState();
   const friendSearched = useRef();
   const [switchOptions, setSwitchOptions] = useState(false);
 
@@ -36,10 +37,11 @@ const Friends = (props) => {
   console.log(props.userData && props.userData);
   return (
     <>
-      <div className={styles.mainContainer}>
-        <h1 className={styles.title} style={{ paddingTop: "2vh" }}>
-          FRIENDS
-        </h1>
+      <div
+        className={styles.mainContainer}
+        style={{ backgroundImage: "url(https://i.postimg.cc/fL7dnP7m/13.png)" }}
+      >
+        <h1 className={styles.title}>FRIENDS</h1>
         <Link to="/">
           <img
             src="/assets/goback.png"
@@ -48,9 +50,13 @@ const Friends = (props) => {
           />
         </Link>
         <div className={styles.midContainer}>
+          <div className={styles.contP}>
+            <p onClick={() => setSwitchOptions(true)}>Search friend</p>
+            <p onClick={() => setSwitchOptions(false)}>Friend request</p>
+          </div>
           {!switchOptions ? (
             <div className={styles.optionsContainer}>
-              <h2 className={styles.title}>Friend Requests</h2>
+              <h3 className={styles.subtitle}>Requests</h3>
               {props.userData &&
                 props.userData.friend_requests.map((req) => {
                   return (
@@ -64,36 +70,41 @@ const Friends = (props) => {
             </div>
           ) : (
             <div className={styles.optionsContainer}>
-              <h2 className={styles.title}>Search Friends</h2>
-              <input
-                type="text"
-                onChange={(e) => setUser(e.target.value)}
-                placeholder="Search your friend"
-              />
-              <button onClick={clickHandler}>Search</button>
+              <h3 className={styles.subtitle}>Search Friends</h3>
+              <div className={styles.search}>
+                <input
+                  ref={friendSearched}
+                  className={styles.inputSearch}
+                  type="text"
+                  placeholder="Search your friend"
+                />
+                <button onClick={clickHandler}>Search</button>
+              </div>
               {userSearched && (
                 <FriendCard type="sendRequest" user={userSearched} />
               )}
             </div>
           )}
           <div className={styles.friendsList}>
-            <h2 className={styles.title}>Friend List</h2>
-            {filtered &&
-              filtered.map((friend) => (
-                <FriendCard type="culo" friend={friend} key={friend.username} />
-              ))}
+            <h3 className={styles.subtitle}> List</h3>
+            {filtered.map((friend) => (
+              <FriendCard type="culo" friend={friend} key={friend.username} />
+            ))}
             <input
-              ref={friendSearched}
               className={styles.searchFriend}
+              onChange={(e) => setUser(e.target.value)}
+              value={user}
               placeholder="Type to search a friend..."
             />
           </div>
-          <button onClick={() => setSwitchOptions(true)}>Search friend</button>
-          <button onClick={() => setSwitchOptions(false)}>
-            Friend request
-          </button>
         </div>
-        <Footer />
+        <Link to="/">
+          <img
+            src="/assets/goback.png"
+            className={styles.goBackHome}
+            alt="goback"
+          />
+        </Link>
       </div>
     </>
   );

@@ -1,84 +1,128 @@
 .mainContainer {
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    background-image: url('https://stopots.com/images/background.png');
+    flex-direction: column;
+    justify-content: center;
     background-position: center;
     background-size: cover;
 }
 
 .midContainer, .optionsContainer, .friendsList {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
 }
-
+.subtitle{
+    font-family: 'Ubuntu', sans-serif; 
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    margin: 1rem 0;
+}
 .midContainer {
-    min-height: 60vh;
-    background-color: #1C1659;
-    width: 90%;
     display: flex;
+    width: 80%;
     align-items: center;
-    justify-content: space-between;
-    padding: 1vh 1vw;
-    border: 1px solid #FFBF3F;
+    flex-flow: wrap;
+    justify-content: center;
+    box-shadow: 0 8px 16px 0 rgb(0 0 0 / 58%);
+    min-height: 70vh;
 }
 
 .optionsContainer, .friendsList {
     height: 50vh;
-    width: 60%;
+    width: 45%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 1vh 0;
-    background-color: #291D33;
     overflow-y: auto;
 }
-
+.friendsList::-webkit-scrollbar{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1.5px solid #f1f2f3;  
+}
+.friendsList::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
 .friendsList{
-    width: 35%;
-    background-color: #291D33;
+    width: 45%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: .5rem;
 }
 
-.searchFriend{
-    width: 100%;
-    background-color: #342E8C;
+.searchFriend,.inputSearch ,.optionsContainer button{
+    width: 80%;
     border: none;
-    border-top: 1px solid white;
+    box-shadow: 0 8px 16px 0 rgb(0 0 0 / 58%);
     padding: 1vh 1vw;
-    color: white;
     outline: none;
     font-family: 'Ubuntu', sans-serif; 
+    margin: 0.5rem;
 }
-
-
-/* Title Fonts */
+::placeholder{
+    color: white;
+}
+.searchFriend,.optionsContainer, .friendsList{
+    background: rgb(27,33,85);
+    background: radial-gradient(circle, rgba(27,33,85,0.5718662464985995) 0%, rgba(25,22,61,1) 100%);  border-radius: 10px;
+}
+.search{
+    display: flex;
+    gap: .3rem;
+    margin-top: 1vh;
+}
+.inputSearch{
+    width: 80%;
+    border-radius: 3px;
+}
+.search button {
+    border:none; 
+    width: 6vw;
+    border-radius: 3px;
+    background-color: #84eeb7;
+}
+.contP{
+    width: 100%;
+    display: flex;
+    font-family: 'Ubuntu', sans-serif; 
+    color: white;
+    justify-content: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+.contP>*{
+    border-bottom: 1.5px solid white;
+    border-left: 1.5px solid white;
+    font-weight: bold;
+}
 
 .title {
     font-family: 'Fredoka One', cursive;
+    text-shadow: -1px 2px 0 #389067;
     color: #84eeb7;
 }
-
+.goBackHome{
+    width: 5vw;
+    position: absolute;
+    top: 0%;
+    left: 2%;
+}
 @media (max-width: 768px) {
     .midContainer {
         flex-direction: column;
         width: 100%;
         margin: 2vh 0;
     }
-
-    .optionsContainer {
-        width: 100%;
-        margin-bottom: 2vh;
+    .optionsContainer,.friendsList  {
+        width: 90%;
+        margin-top: 1rem;
     }
-
-    .friendsList {
-        width: 100%;
+    .search button {
+        width: 12vw;
     }
 }
 
@@ -87,7 +131,7 @@
     .midContainer {
         width: 95%;
     }
-
+   
     .optionsContainer{
         width: 70%;
     }
