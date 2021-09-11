@@ -25,17 +25,17 @@ const Roulette = (props) => {
           />
           <span>{props.game && props.game.lifes}</span>
         </div>
-      </div>{" "}
+      </div>
       <div className={styles.containerRoulette}>
         <img
           src="/assets/ruletaAAA.png"
           ref={props.roulette}
           className={styles.roulette}
-          alt="roulette"
+          alt="rouletteeee"
         />
         <img
           src="/assets/spin.png"
-          alt="spin"
+          alt="spins"
           className={styles.buttonRoulette}
           onClick={() => {
             !props.playing && props.rotate();
