@@ -27,12 +27,6 @@ const usersReducer = (state = initialState, action) => {
       };
     case "UPDATE_USER":
       break;
-    case "LOG_OUT":
-      localStorage.removeItem("token");
-      state.socket.emit("disconnection");
-      return {
-        initialState,
-      };
     case "SEND_FRIEND_REQUEST":
       console.log("wep");
       state.socket.emit("friend_request", action.payload);
@@ -49,6 +43,12 @@ const usersReducer = (state = initialState, action) => {
       console.log("wep");
       state.socket.emit("answer_game_request", action.payload);
       return state;
+    case "LOG_OUT":
+      localStorage.removeItem("token");
+      state.socket.emit("disconnection");
+      return {
+        initialState,
+      };
     default:
       return state;
   }

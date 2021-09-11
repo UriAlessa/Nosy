@@ -18,6 +18,7 @@ import AdminPanel from "./pages/Admin";
 import Loader from "./components/Loader";
 import gamesActions from "./redux/actions/gamesActions";
 import Friends from "./pages/Friends";
+import appMasterFunction from "./appMasterFunction";
 
 const App = (props) => {
   useEffect(() => {
@@ -29,29 +30,7 @@ const App = (props) => {
   }, []);
 
   useEffect(() => {
-    if (props.socket && props.token) {
-      props.socket.on("game_request", (username) => {
-        console.log(username);
-      });
-      props.socket.on("answer_game_request", (username) => {
-        console.log(username);
-      });
-      props.socket.on("change_current_player", (username) => {
-        console.log(username);
-      });
-      props.socket.on("friend_request", (username) => {
-        console.log(username);
-      });
-      props.socket.on("accepted_friend_request", (username) => {
-        console.log(username);
-      });
-      props.socket.on("connected", (username) => {
-        console.log(username);
-      });
-      props.socket.on("disconnection", (username) => {
-        console.log(username);
-      });
-    }
+    appMasterFunction();
     // eslint-disable-next-line
   }, [props.socket]);
 

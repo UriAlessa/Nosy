@@ -41,7 +41,6 @@ const FriendCard = ({ type, request, user, friend, ...props }) => {
         <h3>{friend.username}</h3>
         <button
           onClick={(e) => {
-            props.socket.emit("game_request", e.target.value);
             props.sendGameRequest(e.target.value);
           }}
           value={friend.username}
@@ -71,12 +70,10 @@ const FriendCard = ({ type, request, user, friend, ...props }) => {
     </section>
   );
 };
-const mapStateToProps = (state) => {
-  return { socket: state.users.socket };
-};
+
 const mapDispatchToProps = {
   addFriend: usersActions.addFriend,
   answerFriendRequest: usersActions.answerFriendRequest,
   sendGameRequest: usersActions.sendGameRequest,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(FriendCard);
+export default connect(null, mapDispatchToProps)(FriendCard);

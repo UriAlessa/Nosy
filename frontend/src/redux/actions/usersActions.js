@@ -75,7 +75,7 @@ const usersActions = {
         if (!response.data.success) throw new Error(response.data.error);
         dispatch({
           type: "SEND_FRIEND_REQUEST",
-          payload: { username },
+          payload: username,
         });
         return response.data.success;
       } catch (error) {
@@ -111,7 +111,7 @@ const usersActions = {
         if (!response.data.success) throw new Error(response.data.error);
         dispatch({
           type: "ANSWER_FRIEND_REQUEST",
-          payload: { username },
+          payload: username,
         });
         return response.data;
       } catch (error) {
