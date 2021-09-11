@@ -109,10 +109,9 @@ const mapDispatchToProps = {
   logInLS: usersActions.logInLS,
   showMenuResponsive: otherActions.showMenu,
   setGame: gamesActions.setGame,
-  appMasterFunction: otherActions.appMasterFunction,
-  reFetchGameRequests: socketActions.reFetchGameRequests,
-  startGame: socketActions.startGame,
-  reFetchCurrentPlayer: socketActions.reFetchCurrentPlayer,
+  // reFetchGameRequests: socketActions.reFetchGameRequests,
+  // startGame: socketActions.startGame,
+  // reFetchCurrentPlayer: socketActions.reFetchCurrentPlayer,
   setFriendRequests: socketActions.setFriendRequests,
   setFriends: socketActions.setFriends,
 };
