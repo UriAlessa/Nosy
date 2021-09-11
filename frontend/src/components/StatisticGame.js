@@ -1,22 +1,20 @@
 import styles from "../styles/game/statisticGame.module.css";
 import { connect } from "react-redux";
-import {useState} from "react"
 
 
 const StatisticGame = (props)=>{
-  const [user, setUser]=useState({})
     console.log(props.game)
     console.log(props.statisticsUser)
     console.log(props.game.player)
     let percent=Math.round(props.statisticsUser.statistics.single_player.win_pct)
     console.log(percent)
 
-
+  let img = props.game.lifes===0 ? "/assets/gameover1.png" : "/assets/winner.png"
 
     return(
         <div className={styles.container}>
           
-          <img className={styles.gameover} src="/assets/gameover1.png" alt="gameOver"/>
+          <img className={styles.gameover} src={img} alt="gameOver"/>
           <div className={styles.containerStatistics}>
               <div className={styles.srcUser}  style={props.statisticsUser&&{ backgroundImage: `url("${props.statisticsUser.avatar}")` }}></div>
               <div className={styles.box1}>

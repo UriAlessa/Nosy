@@ -157,12 +157,12 @@ const Game = (props) => {
             className={styles.winner}
             style={{ backgroundImage: 'url("/assets/winner.png")' }}
           ></div> */
-          <StatisticGame/>
+          <StatisticGame lifes={props.game.lifes}/>
         ) : props.game &&
           props.game.status === false &&
           props.game.lifes <= 0 ? (
             
-            <StatisticGame/>
+            <StatisticGame lifes={props.game.lifes}/>
         ) : nosy ? (
           <Nosy categoryHandler={categoryHandler} game={props.game} />
         ) : !question ? (
