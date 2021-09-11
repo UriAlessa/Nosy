@@ -83,34 +83,4 @@ router
     passport.authenticate("jwt", { session: false }),
     usersAccountsControllers.searchUsers
   );
-router
-  .route("/socket/game_request")
-  .put(
-    passport.authenticate("jwt", { session: false }),
-    socketControllers.gameRequest
-  );
-router
-  .route("/socket/start_game")
-  .put(
-    passport.authenticate("jwt", { session: false }),
-    socketControllers.startGame
-  );
-router
-  .route("/socket/change_current_player")
-  .put(
-    passport.authenticate("jwt", { session: false }),
-    socketControllers.changeCurrentPlayer
-  );
-router
-  .route("/socket/friend_requests")
-  .put(
-    passport.authenticate("jwt", { session: false }),
-    socketControllers.friendRequest
-  );
-router
-  .route("/socket/friends")
-  .put(
-    passport.authenticate("jwt", { session: false }),
-    socketControllers.friends
-  );
 module.exports = router;
