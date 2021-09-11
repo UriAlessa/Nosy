@@ -194,26 +194,36 @@ header nav a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 8vh;
 }
 
 .navlinkFriends {
   width: 100%;
   color: #18157c;
   padding: 4vmin 0;
-  border-bottom: 1px solid #4b4b4b;
   border-radius: 10px 10px 0 0;
+  border: none;
+  border-bottom: 1px solid #18157c;
 }
 
 .logOutP {
   width: 100%;
   padding: 2.3vmin 0;
   border-radius: 0 0 10px 10px ;
+  border-top: 1px solid #18157c;
 }
 
-.logoutContainer p:hover, .logoutContainer a:hover {
-  background-color: rgb(73, 73, 73);
-  color: white;
+.logoutContainer p:hover {
+  background-color: #FDB739;
+  border-top: 1px solid #18157c;
 }
+
+.navlinkFriends:hover {
+  background-color: #FDB739;
+  border-bottom: 1px solid #18157c;
+}
+
+
 
 @media (max-width: 1124px) {
   .hiddenNavIcon {
