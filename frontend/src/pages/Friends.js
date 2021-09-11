@@ -42,13 +42,6 @@ const Friends = (props) => {
         style={{ backgroundImage: "url(https://i.postimg.cc/fL7dnP7m/13.png)" }}
       >
         <h1 className={styles.title}>FRIENDS</h1>
-        <Link to="/">
-          <img
-            src="/assets/goback.png"
-            className={goBack.goBack}
-            alt="goBack"
-          />
-        </Link>
         <div className={styles.midContainer}>
           <div className={styles.contP}>
             <p onClick={() => setSwitchOptions(true)}>Search friend</p>
