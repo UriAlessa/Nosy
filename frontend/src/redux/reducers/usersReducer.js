@@ -43,7 +43,7 @@ const usersReducer = (state = initialState, action) => {
         },
       };
     case "SEND_FRIEND_REQUEST":
-      console.log("wep");
+      console.log(action.payload);
       state.socket.emit("friend_request", {
         username: action.payload.username,
         requests: action.payload.friend_requests.invitated,

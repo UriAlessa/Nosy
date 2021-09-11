@@ -44,8 +44,8 @@ const Friends = (props) => {
         <h1 className={styles.title}>FRIENDS</h1>
         <div className={styles.midContainer}>
           <div className={styles.contP}>
-            <p onClick={() => setSwitchOptions(true)}>Search friend</p>
-            <p onClick={() => setSwitchOptions(false)}>Friend request</p>
+            <p onClick={() => setSwitchOptions(false)}>Search friend</p>
+            <p onClick={() => setSwitchOptions(true)}>Friend request</p>
           </div>
           {switchOptions ? (
             <div className={styles.optionsContainer}>

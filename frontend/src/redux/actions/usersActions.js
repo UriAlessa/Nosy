@@ -76,13 +76,11 @@ const usersActions = {
             },
           }
         );
-        console.log(response.data.success);
         if (!response.data.success) throw new Error(response.data.error);
-        dispatch({
+        return dispatch({
           type: "SEND_FRIEND_REQUEST",
           payload: { username, friend_requests: response.data.friend_requests },
         });
-        return response.data.success;
       } catch (error) {
         toast.error(
           error.message.includes("User") ? error.message : "Session expired",

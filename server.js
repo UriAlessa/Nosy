@@ -66,6 +66,7 @@ io.on("connection", (socket) => {
     io.to(username).emit("answer_game_request", socketUsername);
   });
   socket.on("friend_request", ({ username, requests }) => {
+    console.log({ username, requests });
     io.to(username).emit("friend_request", {
       username: socketUsername,
       requests,
