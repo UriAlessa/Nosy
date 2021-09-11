@@ -1,3 +1,4 @@
+import { connect } from "react-redux";
 import {
   Carousel,
   CarouselItem,
@@ -9,8 +10,9 @@ import styles from "../styles/home/reviews.module.css";
 import React, { useState } from "react";
 let moment = require("moment");
 
+
+
 const ReviewSlide = (props) => {
-  console.log(props.allReviews)
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
   
@@ -43,9 +45,7 @@ const ReviewSlide = (props) => {
       >
         <div className={styles.slides}>
           <div>
-          {review.userId && <div className={styles.reviewsPosted}><div className={styles.avatar}  style={{ backgroundImage: `url("${review.userId.avatar}}")` }}></div><p className={styles.pDescription}>@{review.userId.username}</p></div>}
-      
-
+          {review.userId && <div className={styles.reviewsPosted}><div className={styles.avatar}  style={{ backgroundImage: `url("${props.userData.avatar}}")` }}></div><p className={styles.pDescription}>@{review.userId.username}</p></div>}
           <div
             className={styles.picGame}
             style={{ backgroundImage: `url("${review.img}}")` }}
@@ -88,7 +88,14 @@ const ReviewSlide = (props) => {
   );
 };
 
-export default ReviewSlide;
+const mapStateToProps = (state) => {
+  return {
+    token: state.users.token,
+    userData: state.users.userData,
+  };
+};
+
+export default connect(mapStateToProps)(ReviewSlide);
 
 
 

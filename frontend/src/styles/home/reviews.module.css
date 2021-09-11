@@ -103,7 +103,7 @@
   font-family: "Fredoka One", cursive;
   color: rgb(159, 158, 167);
   background-color: transparent;
-  box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
+  box-shadow: 0 5px 8px 0 rgb(0 0 0 / 35%);
   margin: 0.5rem;
   border: none;
   width: 100%;
@@ -364,4 +364,14 @@
   flex-wrap: wrap;
   align-items: center;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.message{
+  position:absolute;
+  top:80px;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: lighter;
+  letter-spacing: 0.3px;
+  color: rgb(245, 209, 35);
+  text-align: center;
 }
