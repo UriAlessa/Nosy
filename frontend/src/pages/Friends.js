@@ -1,7 +1,5 @@
 import React, { useRef } from "react";
-import Footer from "../components/Footer";
 import styles from "../styles/friends.module.css";
-import goBack from "../styles/game/game.module.css";
 import { useEffect, useState } from "react";
 import FriendCard from "../components/FriendCard";
 import { connect } from "react-redux";

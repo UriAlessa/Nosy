@@ -28,10 +28,10 @@ const Header = (props) => {
       <div className={styles.logo} style={{ backgroundImage: 'url("/assets/LogoRuleta.png")' }}></div>
       <div className={styles.content}>
         <nav>
-          {document.title != "Nosy" && <NavLink to="/">
+          {document.title !== "Nosy" && <NavLink to="/">
             <p>HOME</p>
           </NavLink>}
-          {document.title == "Nosy" && 
+          {document.title === "Nosy" && 
             <>
               <a href="#howToPlay">HOW TO PLAY</a>
               <a href="#nextGames">NEXT GAMES</a>

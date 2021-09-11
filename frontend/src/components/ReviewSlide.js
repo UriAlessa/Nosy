@@ -42,7 +42,7 @@ const ReviewSlide = (props) => {
       >
         <div className={styles.slides}>
           <div>
-          {review.userId && <div className={styles.reviewsPosted}><div ><img className={styles.avatar} src={review.userId.avatar}/></div><p className={styles.pDescription}>@{review.userId.username}</p></div>}
+          {review.userId && <div className={styles.reviewsPosted}><div ><img alt='avatar' className={styles.avatar} src={review.userId.avatar}/></div><p className={styles.pDescription}>@{review.userId.username}</p></div>}
           <h4 className={styles.titleDescription}>"{review.title}"</h4>
           <div
             className={styles.picGame}
