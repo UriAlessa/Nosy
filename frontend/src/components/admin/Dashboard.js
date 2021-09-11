@@ -1,8 +1,8 @@
 import style from '../../styles/users.module.css'
 import styles from '../../styles/questions.module.css'
+import { connect } from 'react-redux'
 
 const Dashboard = (props) => {
-    const { users, questions } = props
 
     return (
         <div className={style.tableContainer}>
@@ -13,15 +13,29 @@ const Dashboard = (props) => {
                 <div className={styles.questionsContainer}>
                 </div>
             </div>
-            <div className={style.loginBox} style={{ height: '90%' }}>
-                <p>Online Users</p>
-                {users.map((user) => {
-                    if (true) {
-                        return <span>{user.username}</span>
+            <div className={`${style.loginBox} ${style.connected}`} style={{ height: '90%' }}>
+                <p>Online Users ({props.users.filter((user) => user.connected === true).length})</p>
+                {props.users.map((user) => {
+                    if (user.connected) {
+                        return (
+                            <div className={style.connectedUser} key={user._id}>
+                                <div style={{ backgroundImage: `url('${user.avatar}')` }} className={style.userAvatar}></div>
+                                <div className={style.dataUser}>
+                                    <span>Username: {user.username}</span>
+                                    <span>Coins: {user.coins}</span>
+                                </div>
+                            </div>
+                        )
                     }
                 })}
             </div>
         </div>
     )
 }
-export default Dashboard
+
+const mapStateToProps = (state) => {
+    return {
+        users: state.adminUsers.users
+    }
+}
+export default connect(mapStateToProps)(Dashboard)

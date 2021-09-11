@@ -12,19 +12,19 @@ const Reviews = (props) => {
 
   useEffect(() => {
     getReviewsFunction();
-     // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const getReviewsFunction = async () => {
-    let reviews= await props.getReviews()
+    let reviews = await props.getReviews()
     setAllReviews(reviews.response);
   };
 
-  let render= allReviews.length !== 0 &&
+  let render = allReviews.length !== 0 &&
     allReviews.map((info, index) => {
       return <ReviewSlide oneReview={info} key={"Review" + index} />
     })
-    
+
 
   const inputHandler = (e) => {
     if (!props.token) {
@@ -59,7 +59,7 @@ const Reviews = (props) => {
         </div>
         <div>
           <RankingCard />
-          {props.token ? <ReviewAddComment /> : <img className={styles.picGame} src="https://i.postimg.cc/Zq2ptpcd/12.png"/>}
+          {props.token ? <ReviewAddComment /> : <img className={styles.picGame} src="https://i.postimg.cc/Zq2ptpcd/12.png" />}
         </div>
       </article>
     </section>

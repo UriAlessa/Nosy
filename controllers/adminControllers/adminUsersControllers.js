@@ -18,9 +18,9 @@ const AdminUsersControllers = {
         coins: 9999999,
         admin: { flag: true, key: nuevaKey }
       });
-      await newUser.save();
+      let user = await newUser.save();
       res.json({
-        success: true,
+        success: true, response: user
       });
     } catch (error) {
       res.json({ success: false, error: error.message });

@@ -52,6 +52,7 @@ const App = (props) => {
         console.log(username);
       });
     }
+    // eslint-disable-next-line
   }, [props.socket]);
 
   return (

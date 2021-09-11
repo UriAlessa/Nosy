@@ -37,8 +37,11 @@ router
   .post(passport.authenticate("jwt", { session: false }), adminUsersControllers.createAdminUser)
   .get(adminUsersControllers.getUsers)
   .put(adminUsersControllers.updateUser)
-  .delete(passport.authenticate("jwt", { session: false }), adminUsersControllers.deleteUser);
 
+
+router
+  .route("/user/:id")
+  .delete(passport.authenticate("jwt", { session: false }), adminUsersControllers.deleteUser);
 //ADMIN GAME CONTROLLERS
 router.route("/game").get(adminGameControllers.getGames);
 module.exports = router;
