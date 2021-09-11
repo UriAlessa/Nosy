@@ -1,3 +1,15 @@
+  
 /frontend/node_modules
 /node_modules
-.env
+/todo_rafa.txt
+/frontend/_cacache
+/frontend/_logs
+/_cacache
+/_logs
+/_npx
+/_update-notifier-last-checked
+/frontend/_update-notifier-last-checked
+.DS_Store                                   
+/frontend/.DS_Store                         
+/frontend/public/.DS_Store                 
+/frontend/public/assets/.DS_Store

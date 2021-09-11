@@ -138,7 +138,13 @@ const QuestionCard = (props) => {
         .filter((ans, index) => index !== cualquiera)
     );
   };
-  const categories = {"Movies and series":"movies.png", "Music": "music.png","General Knowledge":"cultura.png", "Science: Computers": "computer.png", "Animals": "animals.png"}
+  const categories = {
+    "Movies and series": "movies.png",
+    Music: "music.png",
+    "General Knowledge": "cultura.png",
+    "Science: Computers": "computer.png",
+    Animals: "animals.png",
+  };
   return (
     <section
       className={styles.sectionQuestion}
@@ -179,7 +185,11 @@ const QuestionCard = (props) => {
           <div className={styles.containerGlobal}>
             <div className={styles.containerLogo}>
               <div className={styles.category}>
-                <img className={styles.imgCategory} src={`/assets/${categories[category]}`} alt="img"/>
+                <img
+                  className={styles.imgCategory}
+                  src={`/assets/${categories[category]}`}
+                  alt="img"
+                />
                 <h2>{category}</h2>
               </div>
               <h3>{question}</h3>

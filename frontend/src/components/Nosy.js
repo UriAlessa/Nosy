@@ -2,6 +2,7 @@ import styles from "../styles/game/game.module.css";
 
 const Nosy = (props) => {
   const { categoryHandler } = props;
+  console.log(props);
   return (
     <div className={styles.nosyContainer}>
       <div className={styles.title}>
@@ -50,7 +51,7 @@ const Nosy = (props) => {
                 onClick={categoryHandler}
                 className={`${styles.buttonOption} ${styles.computers}`}
               >
-                Science: Computers
+                Science Computer
               </button>
             </div>
           )}

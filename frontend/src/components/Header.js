@@ -25,24 +25,23 @@ const Header = (props) => {
 
   return (
     <header>
-      <div
-        className={styles.logo}
-        style={{ backgroundImage: 'url("/assets/logoSoloLetras.png")' }}
-      ></div>
-      {/* <div className={styles.logo} style={{ backgroundImage: 'url("../assets/bb.png")' }}></div> */}
+      <div className={styles.logo} style={{ backgroundImage: 'url("/assets/LogoRuleta.png")' }}></div>
       <div className={styles.content}>
         <nav>
-          <NavLink to="/">
+          {document.title != "Nosy" && <NavLink to="/">
             <p>HOME</p>
-          </NavLink>
-          <a href="#howToPlay">HOW TO PLAY</a>
-          <a href="#nextGames">NEXT GAMES</a>
-          <a href="#reviews">REVIEWS</a>
+          </NavLink>}
+          {document.title == "Nosy" && 
+            <>
+              <a href="#howToPlay">HOW TO PLAY</a>
+              <a href="#nextGames">NEXT GAMES</a>
+              <a href="#reviews">REVIEWS</a>
+            </>
+          }
           {!props.token ? (
             <NavLink to="/accounts">LOG IN/SIGN UP</NavLink>
           ) : (
             <>
-            <NavLink to='/friends'>FRIENDS!</NavLink>
               <div
                 onClick={showLogin}
                 style={{
@@ -79,6 +78,9 @@ const Header = (props) => {
                     className={styles.logoutContainer}
                     onMouseLeave={showLogin}
                   >
+                    <NavLink to='/friends'>
+                      FRIENDS!
+                    </NavLink>
                     <p>LOG OUT</p>
                   </div>
                 )}
