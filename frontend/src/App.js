@@ -18,7 +18,6 @@ import AdminPanel from "./pages/Admin";
 import Loader from "./components/Loader";
 import gamesActions from "./redux/actions/gamesActions";
 import Friends from "./pages/Friends";
-import { request } from "express";
 import socketActions from "./redux/actions/socketActions";
 
 const App = (props) => {
@@ -31,7 +30,7 @@ const App = (props) => {
   }, []);
 
   useEffect(() => {
-    if (props.socket && props.token && props.fetch) {
+    if (props.socket && props.token) {
       props.socket.on("game_request", (username) => {
         toast(username + " invited you to a game!", {
           icon: "🎮",
@@ -102,7 +101,6 @@ const mapStateToProps = (state) => {
     token: state.users.token,
     menu: state.other.menu,
     socket: state.users.socket,
-    fetch: state.users.fetch,
     username: state.users.username,
   };
 };
