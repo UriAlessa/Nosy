@@ -54,10 +54,10 @@ const Friends = (props) => {
             <p onClick={() => setSwitchOptions(true)}>Search friend</p>
             <p onClick={() => setSwitchOptions(false)}>Friend request</p>
           </div>
-          {!switchOptions ? (
+          {switchOptions ? (
             <div className={styles.optionsContainer}>
               <h3 className={styles.subtitle}>Requests</h3>
-              {props.userData &&
+              {props.userData ? (
                 props.userData.friend_requests.map((req) => {
                   return (
                     <FriendCard
@@ -66,7 +66,10 @@ const Friends = (props) => {
                       request={req}
                     />
                   );
-                })}
+                })
+              ) : (
+                <h2>You don't have friend requests yet 😔</h2>
+              )}
             </div>
           ) : (
             <div className={styles.optionsContainer}>
@@ -87,9 +90,10 @@ const Friends = (props) => {
           )}
           <div className={styles.friendsList}>
             <h3 className={styles.subtitle}> List</h3>
-            {filtered.map((friend) => (
-              <FriendCard type="culo" friend={friend} key={friend.username} />
-            ))}
+            {filtered &&
+              filtered.map((friend) => (
+                <FriendCard type="culo" friend={friend} key={friend.username} />
+              ))}
             <input
               className={styles.searchFriend}
               onChange={(e) => setUser(e.target.value)}

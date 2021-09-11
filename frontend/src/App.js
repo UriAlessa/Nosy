@@ -29,7 +29,6 @@ const App = (props) => {
   }, []);
 
   useEffect(() => {
-    let token = localStorage.getItem("token");
     if (props.socket && props.token) {
       props.appMasterFunction(props.socket, props.logInLS);
     }
