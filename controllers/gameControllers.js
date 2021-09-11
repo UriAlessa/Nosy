@@ -173,6 +173,27 @@ const gameControllers = {
             { new: true }
           );
         }
+        if (newGameState.lifes === 0) {
+          newGameState = await SinglePlayer.findOneAndUpdate(
+            { _id: game_id._id },
+            { $set: { status: false } },
+            { new: true }
+          );
+          const { total, wins } = newUserState.statistics.single_player;
+          const win_pct = (wins / (total + 1)) * 100;
+          newUserState = await User.findOneAndUpdate(
+            { _id: req.user._id },
+            {
+              $inc: { "statistics.single_player.total": 1 },
+              $inc: { "statistics.single_player.losses": 1 },
+              $inc: { "statistics.single_player.win_pct": win_pct },
+              $set: { "playing_now.status": false },
+              $set: { "playing_now.game_id": "" },
+              $set: { "playing_now.multi_player": true },
+            },
+            { new: true }
+          );
+        }
         res.json({ success: true, response: { newGameState, newUserState } });
       }
     } catch (error) {

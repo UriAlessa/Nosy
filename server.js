@@ -65,11 +65,15 @@ io.on("connection", (socket) => {
   socket.on("answer_game_request", (username) => {
     io.to(username).emit("answer_game_request", socketUsername);
   });
-  socket.on("friend_request", (username) => {
-    io.to(username).emit("friend_request", socketUsername);
+  socket.on("friend_request", ({ username, requests }) => {
+    io.to(username).emit("friend_request", { socketUsername, requests });
   });
-  socket.on("accepted_friend_request", (username) => {
-    io.to(username).emit("accepted_friend_request", socketUsername);
+  socket.on("accepted_friend_request", ({ username, requests, friends }) => {
+    io.to(username).emit("accepted_friend_request", {
+      socketUsername,
+      requests,
+      friends,
+    });
   });
   socket.on("change_current_player", (username) => {
     io.to(username).emit("change_current_player", socketUsername);

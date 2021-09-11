@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
 import Footer from "../components/Footer";
 import styles from "../styles/friends.module.css";
+import goBack from "../styles/game/game.module.css";
 import { useEffect, useState } from "react";
 import FriendCard from "../components/FriendCard";
 import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
+import { Link } from "react-router-dom";
 
 const Friends = (props) => {
   const [filtered, setFiltered] = useState([]);
   const [allFriends, setAllFriends] = useState([]);
   const [userSearched, setUserSearched] = useState();
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState();
+  const friendSearched = useRef();
   const [switchOptions, setSwitchOptions] = useState(false);
 
   const filterFriends = (e) => {
@@ -27,20 +30,27 @@ const Friends = (props) => {
   }, [props.userData]);
 
   const clickHandler = async () => {
-    setUserSearched(await props.searchUser(user, props.token));
+    setUserSearched(
+      await props.searchUser(friendSearched.current.value, props.token)
+    );
   };
   console.log(props.userData && props.userData);
   return (
     <>
-      <div className={styles.mainContainer}>
-        <h1 className={styles.title} style={{ paddingTop: "2vh" }}>
-          FRIENDS
-        </h1>
+      <div
+        className={styles.mainContainer}
+        style={{ backgroundImage: "url(https://i.postimg.cc/fL7dnP7m/13.png)" }}
+      >
+        <h1 className={styles.title}>FRIENDS</h1>
         <div className={styles.midContainer}>
-          {!switchOptions ? (
+          <div className={styles.contP}>
+            <p onClick={() => setSwitchOptions(true)}>Search friend</p>
+            <p onClick={() => setSwitchOptions(false)}>Friend request</p>
+          </div>
+          {switchOptions ? (
             <div className={styles.optionsContainer}>
-              <h2 className={styles.title}>Friend Requests</h2>
-              {props.userData &&
+              <h3 className={styles.subtitle}>Requests</h3>
+              {props.userData ? (
                 props.userData.friend_requests.map((req) => {
                   return (
                     <FriendCard
@@ -49,39 +59,49 @@ const Friends = (props) => {
                       request={req}
                     />
                   );
-                })}
+                })
+              ) : (
+                <h2>You don't have friend requests yet 😔</h2>
+              )}
             </div>
           ) : (
             <div className={styles.optionsContainer}>
-              <h2 className={styles.title}>Search Friends</h2>
-              <input
-                type="text"
-                onChange={(e) => setUser(e.target.value)}
-                placeholder="Search your friend"
-              />
-              <button onClick={clickHandler}>Search</button>
+              <h3 className={styles.subtitle}>Search Friends</h3>
+              <div className={styles.search}>
+                <input
+                  ref={friendSearched}
+                  className={styles.inputSearch}
+                  type="text"
+                  placeholder="Search your friend"
+                />
+                <button onClick={clickHandler}>Search</button>
+              </div>
               {userSearched && (
                 <FriendCard type="sendRequest" user={userSearched} />
               )}
             </div>
           )}
           <div className={styles.friendsList}>
-            <h2 className={styles.title}>Friend List</h2>
-            {filtered.map((friend) => (
-              <FriendCard type="culo" friend={friend} key={friend.username} />
-            ))}
+            <h3 className={styles.subtitle}> List</h3>
+            {filtered &&
+              filtered.map((friend) => (
+                <FriendCard type="culo" friend={friend} key={friend.username} />
+              ))}
             <input
               className={styles.searchFriend}
+              onChange={(e) => setUser(e.target.value)}
+              value={user}
               placeholder="Type to search a friend..."
-              onChange={filterFriends}
             />
           </div>
-          <button onClick={() => setSwitchOptions(true)}>Search friend</button>
-          <button onClick={() => setSwitchOptions(false)}>
-            Friend request
-          </button>
         </div>
-        <Footer />
+        <Link to="/">
+          <img
+            src="/assets/goback.png"
+            className={styles.goBackHome}
+            alt="goback"
+          />
+        </Link>
       </div>
     </>
   );

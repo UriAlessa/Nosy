@@ -13,11 +13,12 @@ import usersActions from "./redux/actions/usersActions";
 import otherActions from "./redux/actions/otherActions";
 import FriendCard from "./components/FriendCard";
 import GameButtons from "./pages/GameButtons";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import AdminPanel from "./pages/Admin";
 import Loader from "./components/Loader";
 import gamesActions from "./redux/actions/gamesActions";
 import Friends from "./pages/Friends";
+import socketActions from "./redux/actions/socketActions";
 
 const App = (props) => {
   useEffect(() => {
@@ -31,27 +32,46 @@ const App = (props) => {
   useEffect(() => {
     if (props.socket && props.token) {
       props.socket.on("game_request", (username) => {
-        console.log(username);
+        toast(username + " invited you to a game!", {
+          icon: "🎮",
+        });
       });
       props.socket.on("answer_game_request", (username) => {
-        console.log(username);
+        props.history.push("/game");
       });
-      props.socket.on("change_current_player", (username) => {
-        console.log(username);
+      props.socket.on("change_current_player", (username) => {});
+      props.socket.on("friend_request", ({ username, requests }) => {
+        props.setFriendRequests(requests);
+        toast(username + " has sent you a friend request!", {
+          icon: "🤝",
+        });
       });
-      props.socket.on("friend_request", (username) => {
-        console.log(username);
-      });
-      props.socket.on("accepted_friend_request", (username) => {
-        console.log(username);
-      });
+      props.socket.on(
+        "accepted_friend_request",
+        ({ username, requests, friends }) => {
+          props.setFriends(requests, friends);
+          toast(
+            username + " accepted your friend request! Invite him to a game",
+            {
+              icon: "🤝",
+            }
+          );
+        }
+      );
       props.socket.on("connected", (username) => {
-        console.log(username);
+        username !== props.username &&
+          toast(username + " has connected", {
+            icon: "👋",
+          });
       });
       props.socket.on("disconnection", (username) => {
-        console.log(username);
+        username !== props.username &&
+          toast(username + " has disconnected", {
+            icon: "👋",
+          });
       });
     }
+    // eslint-disable-next-line
   }, [props.socket]);
 
   return (
@@ -81,6 +101,7 @@ const mapStateToProps = (state) => {
     token: state.users.token,
     menu: state.other.menu,
     socket: state.users.socket,
+    username: state.users.username,
   };
 };
 
@@ -88,6 +109,11 @@ const mapDispatchToProps = {
   logInLS: usersActions.logInLS,
   showMenuResponsive: otherActions.showMenu,
   setGame: gamesActions.setGame,
+  // reFetchGameRequests: socketActions.reFetchGameRequests,
+  // startGame: socketActions.startGame,
+  // reFetchCurrentPlayer: socketActions.reFetchCurrentPlayer,
+  setFriendRequests: socketActions.setFriendRequests,
+  setFriends: socketActions.setFriends,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -39,11 +39,13 @@ const gamesActions = {
       dispatch({
         type: "SET_GAME",
         payload: {
+          statisticsUser: response.data.response.newUserState,
           game: response.data.response.newGameState,
           coins: response.data.response.newUserState.coins,
         },
       });
       console.log(response.data.response);
+      console.log(response.data.response.newUserState);
       return response.data.response;
     };
   },

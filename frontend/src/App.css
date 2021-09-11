@@ -5,11 +5,13 @@ html * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  text-decoration: none;
+  text-decoration: none !important;
 }
-
+a:hover {
+  color: white !important;
+}
 body {
-    background-color: rgb(41, 38, 87);
+  background-color: rgb(41, 38, 87) !important;
 }
 
 .body {
@@ -19,7 +21,6 @@ body {
   background-size: cover;
   background-position: bottom;
 }
-
 
 /* body{
   background-repeat: no-repeat;
@@ -40,16 +41,16 @@ body {
 
 .swal2-title {
   color: #84eeb7 !important;
-  font-family: 'Fredoka One', cursive;
+  font-family: "Fredoka One", cursive;
 }
 
 .swal2-content {
   color: white !important;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .swal2-cancel {
-  background: #E0390D !important;
+  background: #e0390d !important;
 }
 
 @media (max-width: 768px) {
@@ -57,9 +58,16 @@ body {
     align-items: center;
   }
 }
-@media (max-width: 1100px){
-  .body{
+@media (max-width: 1100px) {
+  .body {
     background-position: inherit;
   }
- 
+}
+
+span.sr-only {
+  display: none !important;
+}
+span.carousel-control-next-icon,
+span.carousel-control-prev-icon {
+  display: none !important;
 }

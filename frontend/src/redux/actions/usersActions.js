@@ -7,7 +7,9 @@ const usersActions = {
       try {
         let response = await axios.post(
           "http://localhost:4000/api/user/signup",
-          { ...newUser }
+          {
+            ...newUser,
+          }
         );
         response.data.success &&
           dispatch({ type: "LOG_IN_USER", payload: response.data });
@@ -30,7 +32,9 @@ const usersActions = {
       try {
         let response = await axios.post(
           "http://localhost:4000/api/user/login",
-          { ...newUser }
+          {
+            ...newUser,
+          }
         );
         if (response.data.success === false) {
           toast.error(response.data.error, {
@@ -72,10 +76,11 @@ const usersActions = {
             },
           }
         );
+        console.log(response.data.success);
         if (!response.data.success) throw new Error(response.data.error);
         dispatch({
           type: "SEND_FRIEND_REQUEST",
-          payload: { username },
+          payload: { username, friend_requests: response.data.friend_requests },
         });
         return response.data.success;
       } catch (error) {
@@ -91,7 +96,7 @@ const usersActions = {
             },
           }
         );
-        return dispatch({ type: "LOG_OUT" });
+        // return dispatch({ type: "LOG_OUT" });
       }
     };
   },
@@ -109,11 +114,14 @@ const usersActions = {
           }
         );
         if (!response.data.success) throw new Error(response.data.error);
-        dispatch({
+        return dispatch({
           type: "ANSWER_FRIEND_REQUEST",
-          payload: { username },
+          payload: {
+            username,
+            friend_requests: response.data.friend_requests,
+            friends: response.data.friends,
+          },
         });
-        return response.data;
       } catch (error) {
         toast.error("Session expired", {
           position: "top-right",
@@ -141,12 +149,14 @@ const usersActions = {
             },
           }
         );
+        console.log(response.data.success);
         if (!response.data.success) throw new Error();
-        dispatch({
+        return dispatch({
           type: "SEND_GAME_REQUEST",
-          payload: { username },
+          payload: username,
         });
       } catch (error) {
+        console.log(error);
         toast.error("Session expired", {
           position: "top-right",
           style: {
@@ -161,13 +171,13 @@ const usersActions = {
     };
   },
 
-  answerGameRequest: (username, gameId) => {
+  answerGameRequest: (username, accept, gameId) => {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.put(
           "http://localhost:4000/game/newgame",
-          {},
+          { username, accept, gameId },
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -177,7 +187,7 @@ const usersActions = {
         if (!response.data.success) throw new Error();
         dispatch({
           type: "ANSWER_GAME_REQUEST",
-          payload: { username },
+          payload: username,
         });
       } catch (error) {
         toast.error("Session expired", {

@@ -8,8 +8,10 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/home/heroHome.module.css";
 import { connect } from "react-redux";
+import VideosHome from "../components/VideosHome";
 
 const Home = (props) => {
+  document.title = "Nosy"
   useEffect(() => {
     window.scroll(0, 0);
     props.history.push("/");
@@ -33,6 +35,7 @@ const Home = (props) => {
         <Header />
         <HeroHome />
       </div>
+      <VideosHome />
       <Rules />
       <Reviews />
       <GamesCards />

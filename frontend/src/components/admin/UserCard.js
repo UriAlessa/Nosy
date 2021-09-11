@@ -7,8 +7,6 @@ import adminUsersActions from '../../redux/actions/admin/adminUserActions'
 const UserCard = (props) => {
     const { username, email, avatar, coins, _id, connected, statistics, admin } = props.user
     const [viewMore, setViewMore] = useState(false)
-
-
     const [edit, setEdit] = useState(false)
     const [updated, setUpdated] = useState({})
 
@@ -27,7 +25,6 @@ const UserCard = (props) => {
                         height: "10vh"
                     },
                 });
-                props.setReload(!props.reload)
             }
         } catch (error) {
             console.log(error)
@@ -37,6 +34,7 @@ const UserCard = (props) => {
     const deleteUser = async (id) => {
         try {
             let response = await props.deleteUser(id)
+            console.log(response)
             if (response.success) {
                 toast.success("User deleted.", {
                     position: "top-left",
@@ -48,7 +46,6 @@ const UserCard = (props) => {
                         height: "10vh"
                     },
                 });
-                props.setReload(!props.reload)
             }
         } catch (error) {
             console.log(error)

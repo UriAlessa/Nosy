@@ -11,19 +11,20 @@ const questionActions = {
   },
   updateQuestion: () => {
     return async () => {
-      let response = await axios.put()
-    }
+      let response = await axios.put();
+    };
   },
   createQuestion: (newQuestion) => {
     return async () => {
-      let response = await axios.post('http://localhost/api/admin/questions', newQuestion)
-      return response
-    }
+      let response = await axios.post(
+        "http://localhost:4000/api/admin/questions",
+        newQuestion
+      );
+      return response;
+    };
   },
   deleteQuestion: () => {
-    return async () => {
-
-    }
-  }
+    return async () => {};
+  },
 };
 export default questionActions;
