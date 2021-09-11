@@ -141,14 +141,14 @@ const usersActions = {
             },
           }
         );
-        console.log("maru te amo");
         console.log(response.data.success);
-        if (!response.data.success) throw new Error("la puta madre");
+        if (!response.data.success) throw new Error();
         return dispatch({
           type: "SEND_GAME_REQUEST",
           payload: username,
         });
       } catch (error) {
+        console.log(error);
         toast.error("Session expired", {
           position: "top-right",
           style: {
@@ -158,7 +158,7 @@ const usersActions = {
             fontFamily: "Ubuntu, sans-serif",
           },
         });
-        //  return dispatch({ type: "LOG_OUT" });
+        return dispatch({ type: "LOG_OUT" });
       }
     };
   },
@@ -179,7 +179,7 @@ const usersActions = {
         if (!response.data.success) throw new Error();
         dispatch({
           type: "ANSWER_GAME_REQUEST",
-          payload: { username },
+          payload: username,
         });
       } catch (error) {
         toast.error("Session expired", {

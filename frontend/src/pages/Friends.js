@@ -1,10 +1,12 @@
 import React from "react";
 import Footer from "../components/Footer";
 import styles from "../styles/friends.module.css";
+import goBack from "../styles/game/game.module.css";
 import { useEffect, useState } from "react";
 import FriendCard from "../components/FriendCard";
 import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
+import { Link } from "react-router-dom";
 
 const Friends = (props) => {
   const [filtered, setFiltered] = useState([]);
@@ -36,6 +38,13 @@ const Friends = (props) => {
         <h1 className={styles.title} style={{ paddingTop: "2vh" }}>
           FRIENDS
         </h1>
+        <Link to="/">
+          <img
+            src="/assets/goback.png"
+            className={goBack.goBack}
+            alt="goBack"
+          />
+        </Link>
         <div className={styles.midContainer}>
           {!switchOptions ? (
             <div className={styles.optionsContainer}>
