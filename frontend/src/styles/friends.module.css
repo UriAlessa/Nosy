@@ -53,9 +53,10 @@
     justify-content: space-between;
     margin: .5rem;
 }
-
+.optionsContainer button{
+    padding: 1rem;
+}
 .searchFriend,.inputSearch ,.optionsContainer button{
-    width: 80%;
     border: none;
     box-shadow: 0 8px 16px 0 rgb(0 0 0 / 58%);
     padding: 1vh 1vw;
@@ -131,7 +132,7 @@
     .midContainer {
         width: 95%;
     }
-   
+
     .optionsContainer{
         width: 70%;
     }

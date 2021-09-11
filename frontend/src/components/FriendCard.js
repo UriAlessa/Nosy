@@ -4,22 +4,23 @@ import styles from "../styles/friendCard.module.css";
 
 const FriendCard = ({ type, request, user, friend, ...props }) => {
   const ImageFriendCard = (
-    <img
+    <div
       className={styles.logo}
-      src={
-        type === "sendRequest"
-          ? user.avatar
-          : type === "culo"
-          ? friend.avatar
-          : request.user.avatar
-      }
-      alt="logo"
-    />
+      style={{
+        backgroundImage: `url('${
+          type === "sendRequest"
+            ? user.avatar
+            : type === "friends"
+            ? friend.avatar
+            : request.user.avatar
+        }')`,
+      }}
+    ></div>
   );
 
   let result =
     type === "acceptRequest" ? (
-      <div>
+      <div className={styles.divUserDate}>
         <div className={styles.userDate}>
           {ImageFriendCard}
           <h3>{request.user.username}</h3>
@@ -34,41 +35,42 @@ const FriendCard = ({ type, request, user, friend, ...props }) => {
           <button
             onClick={(e) => props.answerFriendRequest(true, e.target.value)}
             value={request.user.username}
-            className={styles.buttonAccept}
           >
             ACCEPT
           </button>
         </div>
       </div>
     ) : type === "sentRequest" ? (
-      <div>
+      <div className={styles.divFriend}>
         {ImageFriendCard}
         <h3>{request.user.username}</h3>
       </div>
     ) : type === "sendRequest" ? (
-      <div>
-        {ImageFriendCard}
-        <h3>{user.username}</h3>
+      <div className={styles.divFriend}>
+        <div className={styles.friendInfo}>
+          {ImageFriendCard}
+          <h3>{user.username}</h3>
+        </div>
         <button
           onClick={(e) => props.addFriend(e.target.value)}
           value={user.username}
-          className={styles.buttonAccept}
         >
           SEND INVITATION
         </button>
       </div>
     ) : (
-      <div>
-        {ImageFriendCard}
-        <h3>{friend.username}</h3>
+      <div className={styles.divFriend}>
+        <div className={styles.friendInfo}>
+          {ImageFriendCard}
+          <h3>{friend.username}</h3>
+        </div>
         <button
           onClick={(e) => {
             props.sendGameRequest(e.target.value);
           }}
           value={friend.username}
-          className={styles.buttonAccept}
         >
-          invite friend
+          invite to play
         </button>
       </div>
     );

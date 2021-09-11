@@ -26,13 +26,16 @@ const Friends = (props) => {
 
   useEffect(() => {
     setFiltered(props.userData && props.userData.friends);
-    setAllFriends(props.userData && props.userData.friends);
   }, [props.userData]);
 
   const clickHandler = async () => {
-    setUserSearched(
-      await props.searchUser(friendSearched.current.value, props.token)
-    );
+    friendSearched.current.value !== props.username &&
+      !props.userData.friends.some(
+        (friend) => friend.username === friendSearched.current.value
+      ) &&
+      setUserSearched(
+        await props.searchUser(friendSearched.current.value, props.token)
+      );
   };
   return (
     <>
@@ -84,12 +87,15 @@ const Friends = (props) => {
             <h3 className={styles.subtitle}> List</h3>
             {filtered &&
               filtered.map((friend) => (
-                <FriendCard type="culo" friend={friend} key={friend.username} />
+                <FriendCard
+                  type="friends"
+                  friend={friend}
+                  key={friend.username}
+                />
               ))}
             <input
               className={styles.searchFriend}
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
+              onChange={filterFriends}
               placeholder="Type to search a friend..."
             />
           </div>
@@ -110,6 +116,7 @@ const mapStateToProps = (state) => {
   return {
     userData: state.users.userData,
     token: state.users.token,
+    username: state.users.username,
   };
 };
 

@@ -1,92 +1,90 @@
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-} from "reactstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import styles from "../styles/home/reviews.module.css";
 import React, { useState } from "react";
 let moment = require("moment");
 
 const ReviewSlide = (props) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
-  
-  const next = () => {
-    if (animating) return;
-    const nextIndex =
-      activeIndex === props.allReviews.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const previous = () => {
-    if (animating) return;
-    const nextIndex =
-      activeIndex === 0 ? props.allReviews.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const goToIndex = (newIndex) => {
-    if (animating) return;
-    setActiveIndex(newIndex);
-  };
-  
-  const slides = props.allReviews.map((review, index) => {
-   
-    return (
-      <CarouselItem
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-        key={index}
-      >
-        <div className={styles.slides}>
-          <div>
-          {review.userId && <div className={styles.reviewsPosted}><div ><img className={styles.avatar} src={review.userId.avatar}/></div><p className={styles.pDescription}>@{review.userId.username}</p></div>}
-          <h4 className={styles.titleDescription}>"{review.title}"</h4>
-          <div
-            className={styles.picGame}
-            style={{ backgroundImage: `url("${review.img}}")` }}
-          ></div>
-          </div>
-          <div>
-        
-          <p className={styles.subtitleDescription}>
-            {moment(review.date).fromNow()}
-          </p>
-          <h3 className={styles.titleDescription}>{review.author}</h3>
-          <p className={styles.pDescription}>{review.description}</p>
-          </div>
-        </div>
-      </CarouselItem>
-    );
-  });
-
   return (
-    <Carousel className= "carousel-fade"
-      activeIndex={activeIndex} next={next} previous={previous}>
-      <CarouselIndicators
-        items={slides}
-        activeIndex={activeIndex}
-        onClickHandler={goToIndex}
-      />
-
-      {slides}
-      <CarouselControl
-        direction="prev"
-        directionText="PREVIOUS"
-        onClickHandler={previous}
-      />
-      <CarouselControl
-        direction="next"
-        directionText="NEXT"
-        onClickHandler={next}
-      />
+    <Carousel
+      additionalTransfrom={0}
+      arrows
+      autoPlaySpeed={3000}
+      centerMode={false}
+      className=""
+      containerClass="container-with-dots"
+      dotListClass=""
+      draggable
+      focusOnSelect={false}
+      infinite
+      itemClass=""
+      keyBoardControl
+      minimumTouchDrag={80}
+      renderButtonGroupOutside={false}
+      renderDotsOutside={false}
+      responsive={{
+        desktop: {
+          breakpoint: {
+            max: 3000,
+            min: 1024,
+          },
+          items: 1,
+          partialVisibilityGutter: 40,
+        },
+        mobile: {
+          breakpoint: {
+            max: 464,
+            min: 0,
+          },
+          items: 1,
+          partialVisibilityGutter: 30,
+        },
+        tablet: {
+          breakpoint: {
+            max: 1024,
+            min: 464,
+          },
+          items: 1,
+          partialVisibilityGutter: 30,
+        },
+      }}
+      showDots={false}
+      sliderClass=""
+      slidesToSlide={1}
+      swipeable
+    >
+      {props.allReviews.map((review, index) => {
+        return (
+          <div className={styles.slides}>
+            <div>
+              {review.userId && (
+                <div className={styles.reviewsPosted}>
+                  <div>
+                    <img className={styles.avatar} src={review.userId.avatar} />
+                  </div>
+                  <p className={styles.pDescription}>
+                    @{review.userId.username}
+                  </p>
+                </div>
+              )}
+              <h4 className={styles.titleDescription}>"{review.title}"</h4>
+              <div
+                className={styles.picGame}
+                style={{ backgroundImage: `url("${review.img}}")` }}
+              ></div>
+            </div>
+            <div>
+              <p className={styles.subtitleDescription}>
+                {moment(review.date).fromNow()}
+              </p>
+              <h3 className={styles.titleDescription}>{review.author}</h3>
+              <p className={styles.pDescription}>{review.description}</p>
+            </div>
+          </div>
+        );
+      })}
     </Carousel>
   );
 };
 
 export default ReviewSlide;
-
-
-
