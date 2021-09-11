@@ -113,18 +113,25 @@ const usersAccountControllers = {
     }
   },
   acceptFriendRequest: async (req, res) => {
+    console.log(req.body);
     const { username, accept } = req.body;
     try {
       let user = await User.findOne({ username });
       if (accept) {
         await User.findOneAndUpdate(
           { username: req.body.username },
-          { $pull: { friend_requests: { user: req.user._id } } }
+          {
+            $pull: { friend_requests: { user: req.user._id } },
+            $push: { friends: req.user._id },
+          }
         );
       }
       await User.findOneAndUpdate(
         { username: req.user.username },
-        { $pull: { friend_requests: { user: user._id } } }
+        {
+          $pull: { friend_requests: { user: user._id } },
+          $push: { friends: user._id },
+        }
       );
       res.json({ success: accept });
     } catch (error) {
