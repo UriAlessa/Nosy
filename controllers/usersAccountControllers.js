@@ -151,7 +151,7 @@ const usersAccountControllers = {
   },
 
   newReview: async (req, res) => {
-    let date = Date.now();
+    let date = new Date();
     try {
       const reviewToPost = await new Review({
         img: req.body.img,

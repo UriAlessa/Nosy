@@ -141,10 +141,12 @@ const usersActions = {
             },
           }
         );
-        if (!response.data.success) throw new Error();
-        dispatch({
+        console.log("maru te amo");
+        console.log(response.data.success);
+        if (!response.data.success) throw new Error("la puta madre");
+        return dispatch({
           type: "SEND_GAME_REQUEST",
-          payload: { username },
+          payload: username,
         });
       } catch (error) {
         toast.error("Session expired", {
@@ -156,18 +158,18 @@ const usersActions = {
             fontFamily: "Ubuntu, sans-serif",
           },
         });
-        return dispatch({ type: "LOG_OUT" });
+        //  return dispatch({ type: "LOG_OUT" });
       }
     };
   },
 
-  answerGameRequest: (username, gameId) => {
+  answerGameRequest: (username, accept, gameId) => {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.put(
           "http://localhost:4000/game/newgame",
-          {},
+          { username, accept, gameId },
           {
             headers: {
               Authorization: "Bearer " + token,

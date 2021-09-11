@@ -67,9 +67,10 @@ const Friends = (props) => {
           )}
           <div className={styles.friendsList}>
             <h2 className={styles.title}>Friend List</h2>
-            {filtered.map((friend) => (
-              <FriendCard type="culo" friend={friend} key={friend.username} />
-            ))}
+            {filtered &&
+              filtered.map((friend) => (
+                <FriendCard type="culo" friend={friend} key={friend.username} />
+              ))}
             <input
               className={styles.searchFriend}
               placeholder="Type to search a friend..."

@@ -39,6 +39,7 @@ const gameControllers = {
           { new: true }
         );
       }
+      console.log("maru te amo yes yes yes claro que yes");
       res.json({ success: true, response: { game, coins: req.user.coins } });
     } catch (error) {
       res.json({ success: false, error: error.message });
