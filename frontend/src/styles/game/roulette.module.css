@@ -14,8 +14,8 @@
   background-color: rgba(47, 41, 106, 0.912);
 }
 .roulette {
-  width: 50vmin;
-  height: 50vmin;
+  width: 55vmin;
+  height: 55vmin;
   transition: all 4s;
   border-radius: 100%;
   background-position: center;
