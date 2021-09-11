@@ -34,7 +34,6 @@ const Friends = (props) => {
       await props.searchUser(friendSearched.current.value, props.token)
     );
   };
-  console.log(props.userData && props.userData);
   return (
     <>
       <div

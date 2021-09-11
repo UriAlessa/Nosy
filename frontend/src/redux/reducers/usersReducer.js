@@ -9,7 +9,6 @@ const initialState = {
 };
 
 const usersReducer = (state = initialState, action) => {
-  console.log("wep");
   switch (action.type) {
     case "LOG_IN_USER":
       localStorage.setItem("token", action.payload.token);
@@ -30,7 +29,7 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         userData: {
           ...state.userData,
-          friend_requests: action.payload.requests,
+          friend_requests: action.payload.friend_requests,
         },
       };
     case "SET_FRIENDS":
@@ -38,12 +37,11 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         userData: {
           ...state.userData,
-          friend_requests: action.payload.requests,
+          friend_requests: action.payload.friend_requests,
           friends: action.payload.friends,
         },
       };
     case "SEND_FRIEND_REQUEST":
-      console.log(action.payload);
       state.socket.emit("friend_request", {
         username: action.payload.username,
         requests: action.payload.friend_requests.invitated,
@@ -56,7 +54,6 @@ const usersReducer = (state = initialState, action) => {
         },
       };
     case "ACCEPT_FRIEND_REQUEST":
-      console.log("wep");
       state.socket.emit("accepted_friend_request", {
         username: action.payload.username,
         requests: action.payload.friend_requests.invitator,
@@ -71,11 +68,9 @@ const usersReducer = (state = initialState, action) => {
         },
       };
     case "SEND_GAME_REQUEST":
-      console.log("wep");
       state.socket.emit("game_request", action.payload);
       return state;
     case "ACCEPT_GAME_REQUEST":
-      console.log("wep");
       state.socket.emit("answer_game_request", action.payload);
       return state;
     case "LOG_OUT":
