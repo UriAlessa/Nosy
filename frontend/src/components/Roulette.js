@@ -32,7 +32,11 @@ const Roulette = (props) => {
       </div>
       <div className={styles.containerRoulette}>
         <img
+<<<<<<< HEAD
           src="/assets/RuletaAAA.png"
+=======
+          src="/assets/ruleta1.svg"
+>>>>>>> origin/sebastian
           ref={props.roulette}
           className={styles.roulette}
           alt="rouletteeee"

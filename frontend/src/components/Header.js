@@ -74,14 +74,13 @@ const Header = (props) => {
                 </div>
                 {props.token && login && (
                   <div
-                    onClick={() => props.logOutUser()}
                     className={styles.logoutContainer}
                     onMouseLeave={showLogin}
                   >
-                    <NavLink to='/friends'>
+                    <NavLink className={styles.navlinkFriends} to='/friends'>
                       FRIENDS!
                     </NavLink>
-                    <p>LOG OUT</p>
+                    <p className={styles.logOutP} onClick={() => props.logOutUser()}>LOG OUT</p>
                   </div>
                 )}
               </div>
