@@ -18,7 +18,6 @@ import AdminPanel from "./pages/Admin";
 import Loader from "./components/Loader";
 import gamesActions from "./redux/actions/gamesActions";
 import Friends from "./pages/Friends";
-import appMasterFunction from "./appMasterFunction";
 
 const App = (props) => {
   useEffect(() => {
@@ -30,7 +29,10 @@ const App = (props) => {
   }, []);
 
   useEffect(() => {
-    appMasterFunction();
+    let token = localStorage.getItem("token");
+    if (props.socket && props.token) {
+      props.appMasterFunction(props.socket, props.logInLS);
+    }
     // eslint-disable-next-line
   }, [props.socket]);
 
@@ -68,6 +70,7 @@ const mapDispatchToProps = {
   logInLS: usersActions.logInLS,
   showMenuResponsive: otherActions.showMenu,
   setGame: gamesActions.setGame,
+  appMasterFunction: otherActions.appMasterFunction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
