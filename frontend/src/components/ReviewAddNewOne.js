@@ -108,7 +108,8 @@ const ReviewAddNewOne = (props) => {
             className={styles.inputs}
             type="textarea"
             name="title"
-            placeholder="title of the moment"
+            maxlength="18"
+            placeholder="title -18 characters max-"
             value={newReview.title}
             onChange={inputHandler}
           />
@@ -116,7 +117,8 @@ const ReviewAddNewOne = (props) => {
             className={styles.inputs}
             type="textarea"
             name="description"
-            placeholder="description"
+            placeholder="description -100 characters max-"
+            maxlength="100"
             value={newReview.description}
             onChange={inputHandler}
           />

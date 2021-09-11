@@ -1,4 +1,3 @@
-import { connect } from "react-redux";
 import {
   Carousel,
   CarouselItem,
@@ -9,8 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../styles/home/reviews.module.css";
 import React, { useState } from "react";
 let moment = require("moment");
-
-
 
 const ReviewSlide = (props) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -45,14 +42,15 @@ const ReviewSlide = (props) => {
       >
         <div className={styles.slides}>
           <div>
-          {review.userId && <div className={styles.reviewsPosted}><div className={styles.avatar}  style={{ backgroundImage: `url("${props.userData.avatar}}")` }}></div><p className={styles.pDescription}>@{review.userId.username}</p></div>}
+          {review.userId && <div className={styles.reviewsPosted}><div ><img className={styles.avatar} src={review.userId.avatar}/></div><p className={styles.pDescription}>@{review.userId.username}</p></div>}
+          <h4 className={styles.titleDescription}>"{review.title}"</h4>
           <div
             className={styles.picGame}
             style={{ backgroundImage: `url("${review.img}}")` }}
           ></div>
           </div>
           <div>
-          <h4 className={styles.titleDescription}>"{review.title}"</h4>
+        
           <p className={styles.subtitleDescription}>
             {moment(review.date).fromNow()}
           </p>
@@ -88,14 +86,7 @@ const ReviewSlide = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    token: state.users.token,
-    userData: state.users.userData,
-  };
-};
-
-export default connect(mapStateToProps)(ReviewSlide);
+export default ReviewSlide;
 
 
 
