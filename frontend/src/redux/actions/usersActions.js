@@ -75,7 +75,7 @@ const usersActions = {
         if (!response.data.success) throw new Error(response.data.error);
         dispatch({
           type: "SEND_FRIEND_REQUEST",
-          payload: username,
+          payload: { username, friend_requests: response.data.friend_requests },
         });
         return response.data.success;
       } catch (error) {
@@ -109,11 +109,14 @@ const usersActions = {
           }
         );
         if (!response.data.success) throw new Error(response.data.error);
-        dispatch({
+        return dispatch({
           type: "ANSWER_FRIEND_REQUEST",
-          payload: username,
+          payload: {
+            username,
+            friend_requests: response.data.friend_requests,
+            friends: response.data.friends,
+          },
         });
-        return response.data;
       } catch (error) {
         toast.error("Session expired", {
           position: "top-right",

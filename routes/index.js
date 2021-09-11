@@ -6,6 +6,7 @@ const gameControllers = require("../controllers/gameControllers");
 const passport = require("passport");
 const validator = require("../controllers/validator");
 const mailControllers = require("../controllers/mailControllers");
+const socketControllers = require("../controllers/socketControllers");
 
 router.route("/user/signup").post(validator, usersAccountsControllers.signUp);
 router.route("/user/login").post(usersAccountsControllers.logIn);
@@ -77,9 +78,39 @@ router
   );
 
 router
-  .route('/user/add_friend')
-  .post(passport.authenticate("jwt", { session: false }),
+  .route("/user/add_friend")
+  .post(
+    passport.authenticate("jwt", { session: false }),
     usersAccountsControllers.searchUsers
-  )
-
+  );
+router
+  .route("/socket/game_request")
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    socketControllers.gameRequest
+  );
+router
+  .route("/socket/start_game")
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    socketControllers.startGame
+  );
+router
+  .route("/socket/change_current_player")
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    socketControllers.changeCurrentPlayer
+  );
+router
+  .route("/socket/friend_requests")
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    socketControllers.friendRequest
+  );
+router
+  .route("/socket/friends")
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    socketControllers.friends
+  );
 module.exports = router;

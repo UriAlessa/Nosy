@@ -92,19 +92,25 @@ const usersAccountControllers = {
     try {
       let user = await User.findOne({ username: req.body.username });
       if (user) {
-        await User.findOneAndUpdate(
+        let userAdded = await User.findOneAndUpdate(
           { username: req.body.username },
           {
             $push: { friend_requests: { user: req.user._id, creator: false } },
           },
           { new: true }
         );
-        await User.findOneAndUpdate(
+        let user = await User.findOneAndUpdate(
           { username: req.user.username },
           { $push: { friend_requests: { user: user._id, creator: true } } },
           { new: true }
         );
-        res.json({ success: true });
+        res.json({
+          success: true,
+          friend_requests: {
+            invitator: user.friend_requests,
+            invitated: userAdded.friend_requests,
+          },
+        });
       } else {
         throw new Error("User not found");
       }
@@ -118,22 +124,32 @@ const usersAccountControllers = {
     try {
       let user = await User.findOne({ username });
       if (accept) {
-        await User.findOneAndUpdate(
+        user = await User.findOneAndUpdate(
           { username: req.body.username },
           {
             $pull: { friend_requests: { user: req.user._id } },
             $push: { friends: req.user._id },
           }
         );
+        let userAdded = await User.findOneAndUpdate(
+          { username: req.user.username },
+          {
+            $pull: { friend_requests: { user: user._id } },
+            $push: { friends: user._id },
+          }
+        );
+        res.json({
+          success: accept,
+          friend_requests: {
+            invitator: user.friend_requests,
+            invitated: userAdded.friend_requests,
+          },
+          friends: {
+            invitator: user.friends,
+            invitated: userAdded.friends,
+          },
+        });
       }
-      await User.findOneAndUpdate(
-        { username: req.user.username },
-        {
-          $pull: { friend_requests: { user: user._id } },
-          $push: { friends: user._id },
-        }
-      );
-      res.json({ success: accept });
     } catch (error) {
       res.json({ success: false, error: error.message });
     }

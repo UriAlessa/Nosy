@@ -25,16 +25,51 @@ const usersReducer = (state = initialState, action) => {
         userData: action.payload.userData,
         socket,
       };
-    case "UPDATE_USER":
-      break;
+    case "SET_FRIEND_REQUESTS":
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          friend_requests: action.payload.requests,
+        },
+      };
+    case "SET_FRIENDS":
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          friend_requests: action.payload.requests,
+          friends: action.payload.friends,
+        },
+      };
     case "SEND_FRIEND_REQUEST":
       console.log("wep");
-      state.socket.emit("friend_request", action.payload);
-      return state;
+      state.socket.emit("friend_request", {
+        username: action.payload.username,
+        requests: action.payload.friend_requests.invitated,
+      });
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          friend_requests: action.payload.friend_requests.invitator,
+        },
+      };
     case "ACCEPT_FRIEND_REQUEST":
       console.log("wep");
-      state.socket.emit("accepted_friend_request", action.payload);
-      return state;
+      state.socket.emit("accepted_friend_request", {
+        username: action.payload.username,
+        requests: action.payload.friend_requests.invitator,
+        friends: action.payload.friends.invitator,
+      });
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          friend_requests: action.payload.friend_requests.invitated,
+          friends: action.payload.friends.invitated,
+        },
+      };
     case "SEND_GAME_REQUEST":
       console.log("wep");
       state.socket.emit("game_request", action.payload);

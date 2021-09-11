@@ -57,20 +57,23 @@ io.on("connection", (socket) => {
 
   socket.join(socketUsername);
 
-  io.sockets.emit("connected", socketUsername);
+  socket.broadcast.emit("connected", socketUsername);
 
   socket.on("game_request", (username) => {
-    console.log(username);
     io.to(username).emit("game_request", socketUsername);
   });
   socket.on("answer_game_request", (username) => {
     io.to(username).emit("answer_game_request", socketUsername);
   });
-  socket.on("friend_request", (username) => {
-    io.to(username).emit("friend_request", socketUsername);
+  socket.on("friend_request", ({ username, requests }) => {
+    io.to(username).emit("friend_request", { socketUsername, requests });
   });
-  socket.on("accepted_friend_request", (username) => {
-    io.to(username).emit("accepted_friend_request", socketUsername);
+  socket.on("accepted_friend_request", ({ username, requests, friends }) => {
+    io.to(username).emit("accepted_friend_request", {
+      socketUsername,
+      requests,
+      friends,
+    });
   });
   socket.on("change_current_player", (username) => {
     io.to(username).emit("change_current_player", socketUsername);
@@ -80,6 +83,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnection", () => {
-    io.sockets.emit("disconnection", socketUsername);
+    socket.broadcast.emit("disconnection", socketUsername);
   });
 });
