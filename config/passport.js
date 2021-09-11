@@ -14,7 +14,7 @@ module.exports = passport.use(
         ? "multiplayer game"
         : "singleplayer game";
       User.findOne({ _id: payload._doc._id })
-        .populate({ path: "friends", model: "user", select: "username avatar" })
+        .populate({ path: "friends", model: "user", select: "username avatar connected" })
         .populate({
           path: "friend_requests",
           populate: { path: "user", model: "user", select: "username avatar" },
