@@ -28,7 +28,7 @@ const Roulette = (props) => {
       </div>
       <div className={styles.containerRoulette}>
         <img
-          src="/assets/Ruleta.png"
+          src="/assets/ruleta.svg"
           ref={props.roulette}
           className={styles.roulette}
           alt="rouletteeee"
