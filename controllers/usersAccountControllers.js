@@ -84,21 +84,26 @@ const usersAccountControllers = {
     }
   },
   addFriend: async (req, res) => {
+    console.log(req.body);
     try {
       let user = await User.findOne({ username: req.body.username });
       if (user) {
         await User.findOneAndUpdate(
           { username: req.body.username },
-          { $push: { friend_requests: { user: req.user._id, creator: false } } }
+          {
+            $push: { friend_requests: { user: req.user._id, creator: false } },
+          },
+          { new: true }
         );
         await User.findOneAndUpdate(
           { username: req.user.username },
-          { $push: { friend_requests: { user: user._id, creator: true } } }
+          { $push: { friend_requests: { user: user._id, creator: true } } },
+          { new: true }
         );
+        res.json({ success: true });
       } else {
         throw new Error("User not found");
       }
-      res.json({ success: true });
     } catch (error) {
       res.json({ success: false, error: error.message });
     }
