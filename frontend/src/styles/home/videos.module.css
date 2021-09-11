@@ -1,0 +1,50 @@
+.videosHome {
+    width: 100%;
+    padding: 0 9%;
+    text-align: center;
+    margin-bottom: 10vh;
+}
+
+.videosHome h2 {
+    color:#84eeb7;
+    margin-top: 1rem;
+    font-size: 5vmin;
+    text-shadow: -1px 2px 0 #389067;
+    font-family: 'Fredoka One', cursive;
+    margin-bottom: 5vh;
+    font-weight: 100;
+}
+
+.videosHome > div {
+    display: flex;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 5%;
+}
+
+.videosHome > div > div {
+    border-radius: 10px;
+    background-color: #16183F;
+    padding: 3vmin;
+}
+
+.videosHome h3 {
+    font-size: 4vmin;
+    color: #F5D123;
+    font-family: "Ubuntu", sans-serif;
+    margin-bottom: 3vmin;
+}
+
+.videosHome video {
+    width: 100%;
+    height: 40vh;
+    border: 5px solid white;
+    border-radius: 10px;
+}
+
+@media (max-width: 1000px) {
+    .videosHome > div {
+        grid-template-columns: 80%;
+    }
+}

@@ -29,7 +29,7 @@ const Rules = () => {
 
   return (
     <section id="howToPlay" className={styles.section}>
-      <h2> HOW TO PLAY THE GAME?</h2>
+      <h2>PLAY WITH FRIENDS</h2>
       <p> You sure know how to do it now!</p>
       <div className={styles.containerCards}>{render}</div>
     </section>

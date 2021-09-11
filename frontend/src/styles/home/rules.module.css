@@ -12,6 +12,7 @@ html * {
   margin-top: 1rem;
   font-size: 5vmin;
   text-shadow: -1px 2px 0 #389067;
+  font-weight: 100;
 }
 .section h2, .section p{
   text-align: center;
