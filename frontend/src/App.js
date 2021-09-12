@@ -61,15 +61,17 @@ const App = (props) => {
       );
       props.socket.on("connected", (username) => {
         username !== props.username &&
-          toast(username + " has connected", {
-            icon: "👋",
-          });
+          props.userData.friends.some(
+            (friend) => friend.username === username
+          ) &&
+          props.setFriendsList();
       });
       props.socket.on("disconnection", (username) => {
         username !== props.username &&
-          toast(username + " has disconnected", {
-            icon: "👋",
-          });
+          props.userData.friends.some(
+            (friend) => friend.username === username
+          ) &&
+          props.setFriendsList();
       });
     }
     // eslint-disable-next-line
@@ -113,6 +115,7 @@ const mapDispatchToProps = {
   setFriendRequests: socketActions.setFriendRequests,
   setFriends: socketActions.setFriends,
   setGameRequests: socketActions.setGameRequests,
+  setFriendsList: socketActions.setFriendsList,
   // reFetchGameRequests: socketActions.reFetchGameRequests,
   // startGame: socketActions.startGame,
   // reFetchCurrentPlayer: socketActions.reFetchCurrentPlayer,

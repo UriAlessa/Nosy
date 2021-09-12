@@ -41,6 +41,14 @@ const usersReducer = (state = initialState, action) => {
           friends: action.payload.friends,
         },
       };
+    case "SET_FRIENDS_LIST":
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          friends: action.payload,
+        },
+      };
     case "SET_GAME_REQUESTS":
       return {
         ...state,
