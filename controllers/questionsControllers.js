@@ -20,7 +20,7 @@ const questionsControllers = {
           let question;
           do {
             question = await Question.findOne({ category }).skip(random);
-          } while (questions.some((qs) => qs.question._id === question._id));
+          } while (questions.some((qs) => qs.question === question._id));
           if (!question) throw new Error();
           res.json({ success: true, response: question });
         });
