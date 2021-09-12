@@ -20,7 +20,7 @@ const Home = (props) => {
   return (
     <div
       className="body"
-      style={{ backgroundImage: 'url("/assets/transparentSmall.png")' }}
+      style={{ backgroundImage: 'url("/assets/backgroundHome.png")' }}
     >
       {props.game && (
         <Link to="/game">

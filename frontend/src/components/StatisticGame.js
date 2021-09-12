@@ -9,7 +9,7 @@ const StatisticGame = (props)=>{
     let percent=Math.round(props.statisticsUser.statistics.single_player.win_pct)
     console.log(percent)
 
-  let img = props.game.lifes===0 ? "/assets/gameover1.png" : "/assets/winner.png"
+  let img = props.game.lifes===0 ? "/assets/gameover.png" : "/assets/winner.png"
 
     return(
         <div className={styles.container}>
