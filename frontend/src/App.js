@@ -37,9 +37,17 @@ const App = (props) => {
           icon: "🎮",
         });
       });
-      props.socket.on("answer_game_request", (username) => {
-        props.history.push("/game");
-      });
+      props.socket.on(
+        "accepted_game_request",
+        async ({ username, requests, game, coins }) => {
+          await props.setGameRequests(requests);
+          await props.setGame(game, coins);
+          toast(username + " invited you to a game!", {
+            icon: "🎮",
+          });
+          props.history.push("/game");
+        }
+      );
       props.socket.on("change_current_player", (username) => {});
       props.socket.on("friend_request", ({ username, requests }) => {
         props.setFriendRequests(requests);
@@ -124,9 +132,10 @@ const mapDispatchToProps = {
   setFriends: socketActions.setFriends,
   setGameRequests: socketActions.setGameRequests,
   setFriendsList: socketActions.setFriendsList,
+  setGame: socketActions.setGame,
+  changeCurrentPlayer: socketActions.changeCurrentPlayer,
   // reFetchGameRequests: socketActions.reFetchGameRequests,
   // startGame: socketActions.startGame,
-  // reFetchCurrentPlayer: socketActions.reFetchCurrentPlayer,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

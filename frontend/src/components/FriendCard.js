@@ -27,7 +27,7 @@ const FriendCard = ({
       }}
     ></div>
   );
-
+  console.log(props.userData);
   let result =
     type === "acceptRequest" ? (
       <div className={styles.divFriend}>
@@ -37,13 +37,10 @@ const FriendCard = ({
         </div>
         <div className={styles.buttons}>
           <button
+            id={game && request.game_id}
             onClick={(e) =>
               game
-                ? props.answerGameRequest(
-                    false,
-                    e.target.value,
-                    props.userData.game_requests.game_id
-                  )
+                ? props.answerGameRequest(false, e.target.value, e.target.id)
                 : props.answerFriendRequest(false, e.target.value)
             }
             className={styles.buttonRefuse}
@@ -52,13 +49,10 @@ const FriendCard = ({
             REFUSE
           </button>
           <button
+            id={game && request.game_id}
             onClick={(e) =>
               game
-                ? props.answerGameRequest(
-                    true,
-                    e.target.value,
-                    props.userData.game_requests.game_id
-                  )
+                ? props.answerGameRequest(true, e.target.value, e.target.id)
                 : props.answerFriendRequest(true, e.target.value)
             }
             value={request.user.username}
@@ -158,6 +152,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   addFriend: usersActions.addFriend,
   answerFriendRequest: usersActions.answerFriendRequest,
+  answerGameRequest: usersActions.answerGameRequest,
   sendGameRequest: usersActions.sendGameRequest,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(FriendCard);

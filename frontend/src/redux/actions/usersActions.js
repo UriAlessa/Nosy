@@ -170,7 +170,7 @@ const usersActions = {
             fontFamily: "Ubuntu, sans-serif",
           },
         });
-        // return dispatch({ type: "LOG_OUT" });
+        return dispatch({ type: "LOG_OUT" });
       }
     };
   },
@@ -189,25 +189,30 @@ const usersActions = {
           }
         );
         if (!response.data.success) throw new Error();
+        console.log(response.data);
         if (accept) {
+          dispatch({
+            type: "SET_GAME",
+            payload: {
+              game: response.data.game,
+              coins: response.data.coins.invitated,
+            },
+          });
           return dispatch({
             type: "ACCEPT_GAME_REQUEST",
             payload: {
               username,
-              friend_requests: response.data.friend_requests,
-              friends: response.data.friends,
+              game_requests: response.data.game_requests,
+              game: response.data.game,
+              coins: response.data.coins.invitator,
             },
           });
         } else {
           return dispatch({
             type: "DECLINE_GAME_REQUEST",
-            payload: { friend_requests: response.data.friend_requests },
+            payload: { game_requests: response.data.game_requests },
           });
         }
-        dispatch({
-          type: "ANSWER_GAME_REQUEST",
-          payload: username,
-        });
       } catch (error) {
         toast.error("Session expired", {
           position: "top-right",
@@ -218,7 +223,7 @@ const usersActions = {
             fontFamily: "Ubuntu, sans-serif",
           },
         });
-        return dispatch({ type: "LOG_OUT" });
+        // return dispatch({ type: "LOG_OUT" });
       }
     };
   },

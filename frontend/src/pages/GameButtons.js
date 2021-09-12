@@ -88,6 +88,7 @@ const GameButtons = (props) => {
                         key={`${req.user.username}${index}`}
                         type={req.creator ? "sentRequest" : "acceptRequest"}
                         request={req}
+                        game={true}
                       />
                     );
                   })

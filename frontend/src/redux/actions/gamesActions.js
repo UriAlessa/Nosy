@@ -44,8 +44,6 @@ const gamesActions = {
           coins: response.data.response.newUserState.coins,
         },
       });
-      console.log(response.data.response);
-      console.log(response.data.response.newUserState);
       return response.data.response;
     };
   },

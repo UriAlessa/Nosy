@@ -1,12 +1,16 @@
-import styles from '../styles/accounts.module.css'
-import Login from '../components/Login'
-import SignUp from '../components/SignUp'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { PlayButton } from '../components/Buttons'
+import styles from "../styles/accounts.module.css";
+import Login from "../components/Login";
+import SignUp from "../components/SignUp";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { PlayButton } from "../components/Buttons";
 
-const AccountSection = () => {
+const AccountSection = (props) => {
   const [login, setLogin] = useState(false);
+
+  useEffect(() => {
+    props.history.push("/accounts");
+  }, []);
 
   return (
     <div className={styles.mainContainer}>
@@ -17,7 +21,10 @@ const AccountSection = () => {
             <div className={styles.welcomeLogin}>
               <h2>Hello! New here?</h2>
               <p>Define your personal details and start journey with us</p>
-              <button onClick={() => setLogin(true)} className={styles.playButton}>
+              <button
+                onClick={() => setLogin(true)}
+                className={styles.playButton}
+              >
                 <svg
                   className={styles.buttonPlayButton}
                   xmlns="http://www.w3.org/1999/xlink"
@@ -36,7 +43,10 @@ const AccountSection = () => {
               <p>
                 To keep connected with us please login with your account info
               </p>
-              <button onClick={() => setLogin(false)} className={styles.playButton}>
+              <button
+                onClick={() => setLogin(false)}
+                className={styles.playButton}
+              >
                 <svg
                   className={styles.buttonPlayButton}
                   xmlns="http://www.w3.org/1999/xlink"
