@@ -11,12 +11,12 @@ import { connect } from "react-redux";
 import VideosHome from "../components/VideosHome";
 
 const Home = (props) => {
-  document.title = "Nosy"
+  document.title = "Nosy";
   useEffect(() => {
     window.scroll(0, 0);
     props.history.push("/");
     // eslint-disable-next-line
-  }, []);
+  }, [props.game]);
   return (
     <div
       className="body"

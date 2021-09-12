@@ -11,7 +11,7 @@ const StatisticGame = (props) => {
   console.log(percent);
 
   let img =
-    props.game.lifes === 0 ? "/assets/gameover1.png" : "/assets/winner.png";
+    props.game.lifes === 0 ? "/assets/gameover.png" : "/assets/winner.png";
 
   return (
     <div className={styles.container}>
