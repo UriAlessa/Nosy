@@ -56,39 +56,44 @@ const GameButtons = (props) => {
           />
         </div>
         {playWithFriend ? (
-          <div style={{ display: "flex" }}>
+          <div
+            style={{ display: "flex", width: "100%", justifyContent: "center" }}
+          >
             <div className={styles2.friendsList}>
               <h3 className={styles2.subtitle}> List</h3>
-              {filtered &&
-                filtered.map((friend) => (
-                  <FriendCard
-                    type="friends"
-                    friend={friend}
-                    key={friend.username}
-                  />
-                ))}
+              <div className={styles2.listContainer}>
+                {filtered &&
+                  filtered.map((friend) => (
+                    <FriendCard
+                      type="friends"
+                      friend={friend}
+                      key={friend.username}
+                    />
+                  ))}
+              </div>
               <input
                 className={styles2.searchFriend}
                 onChange={filterFriends}
                 placeholder="Type to search a friend..."
               />
             </div>
-            <div className={styles2.optionsContainer}>
+            <div className={styles2.friendsList}>
               <h3 className={styles2.subtitle}>Requests</h3>
-              {props.userData & (props.userData.game_requests.length > 0) ? (
-                props.userData.game_requests.map((req) => {
-                  return (
-                    <FriendCard
-                      key={req.gameId.player1.user.username}
-                      type={req.creator ? "sentRequest" : "acceptRequest"}
-                      request={req.gameId.player1}
-                      game={true}
-                    />
-                  );
-                })
-              ) : (
-                <h2>You don't have friend requests yet 😔</h2>
-              )}
+              <div className={styles2.listContainer}>
+                {props.userData ? (
+                  props.userData.friend_requests.map((req) => {
+                    return (
+                      <FriendCard
+                        key={req.user.username}
+                        type={req.creator ? "sentRequest" : "acceptRequest"}
+                        request={req}
+                      />
+                    );
+                  })
+                ) : (
+                  <h2>You don't have friend requests yet 😔</h2>
+                )}
+              </div>
             </div>
           </div>
         ) : (

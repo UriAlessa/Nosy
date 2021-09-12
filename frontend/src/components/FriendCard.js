@@ -2,6 +2,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
 import styles from "../styles/friendCard.module.css";
+import stylesConected from "../styles/usercard.module.css";
 
 const FriendCard = ({
   type,
@@ -29,8 +30,8 @@ const FriendCard = ({
 
   let result =
     type === "acceptRequest" ? (
-      <div className={styles.divUserDate}>
-        <div className={styles.userDate}>
+      <div className={styles.divFriend}>
+        <div className={styles.friendInfo}>
           {ImageFriendCard}
           <h3>{request.user.username}</h3>
         </div>
@@ -96,22 +97,37 @@ const FriendCard = ({
           {ImageFriendCard}
           <h3>{friend.username}</h3>
         </div>
-        <button
-          onClick={(e) => {
-            props.sendGameRequest(e.target.value);
-          }}
-          value={friend.username}
-        >
-          invite to play
-        </button>
+        <div className={styles.connection}>
+          {
+            <div className={stylesConected.divConnect}>
+              <img
+                className={stylesConected.connected}
+                src={
+                  friend.connected
+                    ? "/assets/online.png"
+                    : "/assets/offline.png"
+                }
+                alt="conected"
+              />
+            </div>
+          }
+          <button
+            onClick={(e) => {
+              props.sendGameRequest(e.target.value);
+            }}
+            value={friend.username}
+          >
+            invite to play
+          </button>
+        </div>
       </div>
     );
 
   return (
-    <section className={styles.section}>
-      <div>
-        <div className={styles.container}>{result}</div>
-      </div>
+    <section
+      className={styles.sectionFriend} //type === "acceptRequest" ? styles.section :
+    >
+      <div className={styles.container}>{result}</div>
     </section>
   );
 };

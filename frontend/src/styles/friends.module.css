@@ -18,7 +18,10 @@
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  margin: 1rem 0;
+  padding: 1rem 0;
+  width: 100%;
+  border-bottom: 1.3px solid white;
+  text-align: center;
 }
 .midContainer {
   display: flex;
@@ -55,6 +58,14 @@
   flex-direction: column;
   justify-content: space-between;
   margin: 0.5rem;
+}
+.listContainer {
+  flex: 1;
+  width: 98%;
+}
+.listContainer:first-child {
+  border-top: 1.3px solid white;
+  border-bottom: 1.3px solid white;
 }
 .optionsContainer button {
   padding: 1rem;
