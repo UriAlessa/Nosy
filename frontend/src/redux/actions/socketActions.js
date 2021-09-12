@@ -46,9 +46,12 @@ const socketActions = {
       }
     };
   },
-  setGame: (game, coins) => {
+  setMultiGame: (game, coins) => {
     return (dispatch) => {
-      dispatch({ type: "SET_GAME", payload: { game, coins } });
+      dispatch({
+        type: "SET_GAME",
+        payload: { game, coins, statistics: null },
+      });
     };
   },
 };

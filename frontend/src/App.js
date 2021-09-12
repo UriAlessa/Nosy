@@ -41,7 +41,7 @@ const App = (props) => {
         "accepted_game_request",
         ({ username, requests, playing_now, game, coins }) => {
           props.setGameRequests(requests, playing_now);
-          props.setGame(game, coins);
+          props.setMultiGame(game, coins);
           toast(username + " accepted your game invitation!", {
             icon: "🎮",
           });
@@ -131,7 +131,7 @@ const mapDispatchToProps = {
   setFriends: socketActions.setFriends,
   setGameRequests: socketActions.setGameRequests,
   setFriendsList: socketActions.setFriendsList,
-  setGame: socketActions.setGame,
+  setMultiGame: socketActions.setMultiGame,
   // changeCurrentPlayer: socketActions.changeCurrentPlayer,
   // reFetchGameRequests: socketActions.reFetchGameRequests,
   // startGame: socketActions.startGame,
