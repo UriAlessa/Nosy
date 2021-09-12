@@ -19,6 +19,7 @@ import Loader from "./components/Loader";
 import gamesActions from "./redux/actions/gamesActions";
 import Friends from "./pages/Friends";
 import socketActions from "./redux/actions/socketActions";
+import GameMultiPlayer from "./pages/GameMultiPlayer";
 
 const App = (props) => {
   useEffect(() => {
@@ -93,7 +94,7 @@ const App = (props) => {
       <Toaster />
       {props.menu && <MenuResponsive />}
       <Switch>
-        <Route path="/prueba" component={FriendCard} />
+        <Route path="/prueba" component={GameMultiPlayer} />
         <Route exact path="/" {...props} component={Home} />
         <Route path="/terms" component={Terms} />
         <Route path="/privacy" component={Privacy} />
