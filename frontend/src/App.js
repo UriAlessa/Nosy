@@ -59,17 +59,23 @@ const App = (props) => {
           );
         }
       );
-      props.socket.on("connected", (username) => {
-        username !== props.username &&
-          toast(username + " has connected", {
-            icon: "👋",
-          });
+      props.socket.on("connected", async (username) => {
+        if (
+          username !== props.username &&
+          props.userData.friends.length > 0 &&
+          props.userData.friends.some((friend) => friend.username === username)
+        ) {
+          await props.setFriendsList();
+        }
       });
-      props.socket.on("disconnection", (username) => {
-        username !== props.username &&
-          toast(username + " has disconnected", {
-            icon: "👋",
-          });
+      props.socket.on("disconnection", async (username) => {
+        if (
+          username !== props.username &&
+          props.userData.friends.length > 0 &&
+          props.userData.friends.some((friend) => friend.username === username)
+        ) {
+          await props.setFriendsList();
+        }
       });
     }
     // eslint-disable-next-line
@@ -85,7 +91,7 @@ const App = (props) => {
         <Route path="/terms" component={Terms} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/notfound" component={NotFound} />
-        <Route path="/game" component={Game} />
+        <Route path="/game" component={!props.token ? Home : Game} />
         <Route path="/accounts" component={!props.token ? Account : Home} />
         <Route path="/friends" component={Friends} />
         <Route path="/selectgame" component={GameButtons} />
@@ -103,6 +109,7 @@ const mapStateToProps = (state) => {
     menu: state.other.menu,
     socket: state.users.socket,
     username: state.users.username,
+    userData: state.users.userData,
   };
 };
 
@@ -113,6 +120,7 @@ const mapDispatchToProps = {
   setFriendRequests: socketActions.setFriendRequests,
   setFriends: socketActions.setFriends,
   setGameRequests: socketActions.setGameRequests,
+  setFriendsList: socketActions.setFriendsList,
   // reFetchGameRequests: socketActions.reFetchGameRequests,
   // startGame: socketActions.startGame,
   // reFetchCurrentPlayer: socketActions.reFetchCurrentPlayer,

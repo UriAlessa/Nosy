@@ -15,14 +15,44 @@ const gameControllers = {
 
         let userInvitated = await User.findOneAndUpdate(
           { username: req.body.username },
-          { $push: { game_requests: { creator: false, game_id: game._id } } },
+          {
+            $push: {
+              game_requests: {
+                creator: false,
+                game_id: game._id,
+                user: req.user._id,
+              },
+            },
+          },
           { new: true }
-        );
+        ).populate({
+          path: "game_requests",
+          populate: {
+            path: "user",
+            model: "user",
+            select: "username avatar connected",
+          },
+        });
         let user = await User.findOneAndUpdate(
           { username: req.user.username },
-          { $push: { game_requests: { creator: true, game_id: game._id } } },
+          {
+            $push: {
+              game_requests: {
+                creator: true,
+                game_id: game._id,
+                user: userInvitated._id,
+              },
+            },
+          },
           { new: true }
-        );
+        ).populate({
+          path: "game_requests",
+          populate: {
+            path: "user",
+            model: "user",
+            select: "username avatar connected",
+          },
+        });
         res.json({
           success: true,
           game_requests: {
@@ -35,7 +65,7 @@ const gameControllers = {
           player: { user: req.user._id },
         });
         await game.save();
-        await User.findOneAndUpdate(
+        let user = await User.findOneAndUpdate(
           { _id: req.user._id },
           {
             $set: {
@@ -48,7 +78,14 @@ const gameControllers = {
           },
           { new: true }
         );
-        res.json({ success: true, response: { game, coins: req.user.coins } });
+        // .populate({
+        //   path: "playing_now",
+        //   populate: { path: "game_id", model: "singleplayer game" },
+        // });
+        res.json({
+          success: true,
+          response: { game, coins: req.user.coins, user },
+        });
       }
     } catch (error) {
       res.json({ success: false, error: error.message });

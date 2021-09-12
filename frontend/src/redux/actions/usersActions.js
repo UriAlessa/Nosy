@@ -156,7 +156,7 @@ const usersActions = {
         );
 
         if (!response.data.success) throw new Error();
-        return dispatch({
+        dispatch({
           type: "SEND_GAME_REQUEST",
           payload: { username, game_requests: response.data.game_requests },
         });
@@ -170,7 +170,7 @@ const usersActions = {
             fontFamily: "Ubuntu, sans-serif",
           },
         });
-        return dispatch({ type: "LOG_OUT" });
+        // return dispatch({ type: "LOG_OUT" });
       }
     };
   },
@@ -180,7 +180,7 @@ const usersActions = {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.put(
-          "http://localhost:4000/game/newgame",
+          "http://localhost:4000/api/game/newgame",
           { username, accept, game_id },
           {
             headers: {

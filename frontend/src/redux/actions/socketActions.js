@@ -1,4 +1,4 @@
-import toast from "react-hot-toast";
+import axios from "axios";
 
 const socketActions = {
   // reFetchGameRequests: () => {
@@ -84,12 +84,27 @@ const socketActions = {
       });
     };
   },
-  // setFriends: (requests, friends) => {
-  //   return (dispatch) =>
-  //     dispatch({
-  //       type: "SET_FRIENDS",
-  //       payload: { friend_requests: requests, friends },
-  //     });
-  // },
+  setFriendsList: () => {
+    return async (dispatch) => {
+      let token = localStorage.getItem("token");
+      try {
+        let response = await axios.get(
+          "http://localhost:4000/api/user/friend_list",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (!response.data.success) throw new Error();
+        return dispatch({
+          type: "SET_FRIENDS_LIST",
+          payload: response.data.friends_list,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  },
 };
 export default socketActions;

@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Review = require("../models/Review");
 const { use } = require("passport");
+const { singlePlayer } = require("../models/Game");
 
 const usersAccountControllers = {
   signUp: async (req, res) => {
@@ -52,10 +53,16 @@ const usersAccountControllers = {
         { username: username },
         { $set: { connected: true } }
       );
-      user = await User.findOne({ username: username }).populate({
-        path: "friend_requests",
-        populate: { path: "user", model: "user", select: "username avatar" },
-      });
+      user = await User.findOne({ username: username })
+        .populate({
+          path: "friends",
+          model: "user",
+          select: "username avatar connected",
+        })
+        .populate({
+          path: "friend_requests",
+          populate: { path: "user", model: "user", select: "username avatar" },
+        });
       res.json({
         success: true,
         user: {
@@ -70,7 +77,7 @@ const usersAccountControllers = {
     }
   },
   logOut: async (req, res) => {
-    const { _id } = req.user;
+    const { _id, playing_now } = req.user;
     try {
       await User.findOneAndUpdate(
         { _id },
@@ -195,6 +202,14 @@ const usersAccountControllers = {
               model: "user",
               select: "username avatar",
             },
+          })
+          .populate({
+            path: "game_requests",
+            populate: {
+              path: "user",
+              model: "user",
+              select: "username avatar connected",
+            },
           });
       } else {
         userNotAdded = await User.findOneAndUpdate(
@@ -236,7 +251,9 @@ const usersAccountControllers = {
       res.json({ success: false, error: error.message });
     }
   },
-
+  getFriendsList: async (req, res) => {
+    res.json({ success: true, friends_list: req.user.friends });
+  },
   verifyToken: async (req, res) => {
     res.json({
       success: true,
