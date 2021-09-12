@@ -2,7 +2,8 @@ const Question = require("../models/Question");
 
 const questionsControllers = {
   getQuestion: async (req, res) => {
-    const { category, game } = req.params;
+    const { category } = req.params;
+    const { game } = req.body;
     let questions;
     if (game.current_player) {
       questions =
@@ -12,15 +13,18 @@ const questionsControllers = {
     } else {
       questions = game.player.questions;
     }
-    questions = questions.map((qs) => qs.question);
+    questions = questions.length > 0 && questions.map((qs) => qs.question);
     try {
-      let allQuestoins = await Question.find({ category });
-      let randomQuestion;
-      do {
-        randomQuestion = allQuestoins.find(
-          (qs, ind, arr) => arr[Math.random() * allQuestoins.length]
-        );
-      } while (questions.some((qs) => qs === randomQuestion._id));
+      let allQuestions;
+      if (questions) {
+        allQuestions = await Question.find({ category }).find({
+          _id: { $nin: questions },
+        });
+      } else {
+        allQuestions = await Question.find({ category });
+      }
+      let randomQuestion =
+        allQuestions[Math.floor(Math.random() * allQuestions.length)];
       res.json({ success: true, response: randomQuestion });
     } catch (error) {
       res.json({ success: false, error: error.message });
