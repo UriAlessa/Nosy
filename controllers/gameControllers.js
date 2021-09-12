@@ -121,7 +121,7 @@ const gameControllers = {
           { new: true }
         );
         let player1 = await User.findOne({
-          _id: req.user._id,
+          username,
         }).populate({
           path: "game_requests",
           populate: {
@@ -131,7 +131,7 @@ const gameControllers = {
           },
         });
         let player2 = await User.findOne({
-          username,
+          username: req.user.username,
         }).populate({
           path: "game_requests",
           populate: {

@@ -106,6 +106,7 @@ const usersReducer = (state = initialState, action) => {
         },
       };
     case "ACCEPT_GAME_REQUEST":
+      console.log(action.payload);
       state.socket.emit("accepted_game_request", {
         username: action.payload.username,
         requests: action.payload.game_requests.invitator,
