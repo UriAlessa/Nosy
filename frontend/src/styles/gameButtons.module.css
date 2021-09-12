@@ -1,199 +1,193 @@
-.sectionGameButtons{
-    width: 100vw;
-    min-height: 100vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.sectionGameButtons {
+  width: 100vw;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.articleGameButtons{
-    width: 70vw;
-    height: 95vh;
-    background-color: rgba(47, 41, 106, 0.912);
-    border: 2.5px solid rgb(160,153,255);
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap:3rem; 
-
+.articleGameButtons {
+  width: 70vw;
+  height: 95vh;
+  background-color: rgba(47, 41, 106, 0.912);
+  border: 2.5px solid rgb(160, 153, 255);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
-.divGameButtons{
-    width: 60%;
-    height: 40vh;
-    box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-   
+.divGameButtons {
+  width: 60%;
+  height: 40vh;
+  box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
-.divContainerCards{
-    display: flex;
-    width: 100%;
-    height: 70%;
-    gap: 1rem;
-    justify-content: center;
-    padding:0 2rem;
-    /* align-items: center; */
+.divContainerCards {
+  display: flex;
+  width: 100%;
+  height: 70%;
+  gap: 1rem;
+  justify-content: center;
+  padding: 0 2rem;
+  /* align-items: center; */
 }
-.avatars{
-    width: 10vw;
+.avatars {
+  width: 10vw;
 }
-.titleArticle{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-top: 4vh;
+.titleArticle {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 4vh;
   /*   background-color: red; */
-    gap:0.5rem;
-    padding:0 1rem;
+  gap: 0.5rem;
+  padding: 0 1rem;
 }
-.logo{
-    width: 20vw;
-    align-self: center;
-  
+.logo {
+  width: 20vw;
+  align-self: center;
 }
-.socialMedia{
-    display: flex;
-    width: 100%;
-    gap:1rem;
+.socialMedia {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
 }
-.footerArticle{
-    width: 100%;
-    height: 15vh;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    background-color:rgb(66, 61, 138)  ;
+.footerArticle {
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: rgb(66, 61, 138);
 }
-.pContact{
-    color: rgb(125,122,229);
-    text-transform: uppercase;
-    font-family: "Ubuntu", sans-serif;
+.pContact {
+  color: rgb(125, 122, 229);
+  text-transform: uppercase;
+  font-family: "Ubuntu", sans-serif;
 }
-.pCopyrigth, .apps{
-    color: rgb(125,122,229);
-    font-family: "Ubuntu", sans-serif;
-    font-size: 1vw;
-    text-align: center;
+.pCopyrigth,
+.apps {
+  color: rgb(125, 122, 229);
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1vw;
+  text-align: center;
 }
-.divApps{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 30%;
+.divApps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30%;
 }
-.apps{
-font-size: 1.7vw;
+.apps {
+  font-size: 1.7vw;
 }
 .picApp {
-    width: 2vw;
+  width: 2vw;
 }
-.picAppPS{
-    width: 1.8vw;
+.picAppPS {
+  width: 1.8vw;
 }
-.containerApps{
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+.containerApps {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
-
-
 
 @media only screen and (max-width: 1024px) {
-    .divContainerCards{
-        flex-direction: column;
-        align-items: center;
-    }
-    .divGameButtons{
-        width: 60%;
-    }
-     .articleGameButtons{
-        height: 125vh;
-        width: 60vw;
-        gap:1.5rem;
-    } 
-    .sectionGameButtons{
-        height: 150vh;
-    }
-    .footerArticle{
-        height: 20vh;
-    }
-    .avatars{
-        width: 13vw;
-    }
-    .logo{
-        width: 20vw;
-    }
+  .divContainerCards {
+    flex-direction: column;
+    align-items: center;
   }
-  @media only screen and (max-width: 870px){
-    .logo{
-        width: 25vw;
-    }
+  .divGameButtons {
+    width: 60%;
   }
-  @media only screen and (max-width: 870px){
-    .logo{
-        width: 25vw;
-    }
-    .articleGameButtons{
-        width:70%;
-    } 
-    .divGameButtons{
-        width: 70%;
-    }
+  .articleGameButtons {
+    height: 125vh;
+    width: 60vw;
+    gap: 1.5rem;
   }
-  @media only screen and (max-width: 768px){
-    .articleGameButtons{
-        height: 140vh;
-        width:70%;
-        gap:2rem;
-    } 
-    .sectionGameButtons{
-        height: 150vh;
-    }
-    .logo{
-        width: 30vw;
-    }
-    .picAppPS{
-        width: 3vw
-    }
-    .picApp{
-        width: 4vw
-    }
-    .pCopyrigth{
-        font-size: 2vmin;
-    }
+  .sectionGameButtons {
+    height: 150vh;
   }
-  @media only screen and (max-width: 630px){
-    .articleGameButtons{
-        width:90%;
-        gap:2rem;
-    } 
+  .footerArticle {
+    height: 20vh;
+  }
+  .avatars {
+    width: 13vw;
+  }
+  .logo {
+    width: 20vw;
+  }
+}
+@media only screen and (max-width: 870px) {
+  .logo {
+    width: 25vw;
+  }
+}
+@media only screen and (max-width: 870px) {
+  .logo {
+    width: 25vw;
+  }
+  .articleGameButtons {
+    width: 70%;
+  }
+  .divGameButtons {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .articleGameButtons {
+    height: 140vh;
+    width: 70%;
+    gap: 2rem;
+  }
+  .sectionGameButtons {
+    height: 150vh;
+  }
+  .logo {
+    width: 30vw;
+  }
+  .picAppPS {
+    width: 3vw;
+  }
+  .picApp {
+    width: 4vw;
+  }
+  .pCopyrigth {
+    font-size: 2vmin;
+  }
+}
+@media only screen and (max-width: 630px) {
+  .articleGameButtons {
+    width: 90%;
+    gap: 2rem;
+  }
 
-    .avatars{
-        width: 15vw;
-    }
-    .logo{
-        width: 30vw;
-    }
-    .apps{
-        font-size: 2.5vmin;
-    }
+  .avatars {
+    width: 15vw;
   }
-  @media only screen and (max-width: 470px){
-    .divGameButtons{
-        width: 80%;
-    }
-    .logo{
-        width: 42vw;
-    }
-    .avatars{
-        width: 23vw;
-    }
-    
+  .logo {
+    width: 30vw;
   }
+  .apps {
+    font-size: 2.5vmin;
+  }
+}
+@media only screen and (max-width: 470px) {
+  .divGameButtons {
+    width: 80%;
+  }
+  .logo {
+    width: 42vw;
+  }
+  .avatars {
+    width: 23vw;
+  }
+}
