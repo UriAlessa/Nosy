@@ -5,7 +5,6 @@ import React, { useState } from "react";
 let moment = require("moment");
 
 const ReviewSlide = (props) => {
-
   return (
     <Carousel
       additionalTransfrom={0}
@@ -77,10 +76,7 @@ const ReviewSlide = (props) => {
           </div>
         );
       })}
-
-
     </Carousel>
-
   );
 };
 

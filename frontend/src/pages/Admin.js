@@ -116,7 +116,8 @@ const mapStateToProps = (state) => {
     return {
         avatar: state.users.avatar,
         users: state.adminUsers.users,
-        questions: state.adminQuestions.questions
+        questions: state.adminQuestions.questions,
+        reload: state.adminQuestions.reload
     }
 }
 

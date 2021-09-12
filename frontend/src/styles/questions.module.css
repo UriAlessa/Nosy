@@ -113,10 +113,15 @@
 
 .filterContainer{
     display: flex;
+    margin-top: 3vh;
     margin-bottom: 3vh;
 }
 
 .filterContainer h2{
     color: white;
     margin-right: 1em;
+}
+
+.buttonsContainer svg{
+    cursor: pointer;
 }

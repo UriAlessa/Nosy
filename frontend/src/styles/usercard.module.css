@@ -43,6 +43,11 @@ article.userCard{
     display: flex;
     align-items: center;
 }
+
+.divConnect p{
+    margin-right: 5px;
+}
+
 .connected{
     width: 16px;
     height: 16px;
@@ -61,14 +66,21 @@ article.userCard{
 }
 
 .userDetails label{
-    color: black;
+    color: white;
     margin-top: 2vh;
+    font-family:"Ubuntu", "sans-serif";
+
 }
 
 .userData{
     display: flex;
     flex-direction: column;
     padding: 0 3vw;
+}
+
+.userData input{
+    font-family:"Ubuntu", "sans-serif";
+
 }
 
 .buttonsContainer{
@@ -83,3 +95,36 @@ article.userCard{
     margin: 0 1vw;
 }
 
+.statistics{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 3vw;
+}
+
+.singleplayer,
+.multiplayer{
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: .5em 1.5em;
+}
+
+.singleplayer{
+    margin-bottom: 2vh;
+}
+
+.statistics h4{
+    text-align: center;
+}
+
+.statistics p,
+.statistics h4{
+    color: white;
+    font-family:"Ubuntu", "sans-serif";
+
+}
+
+.buttonsContainer svg{
+    cursor: pointer;
+    margin: 0 10px;
+}

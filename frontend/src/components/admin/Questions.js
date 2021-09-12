@@ -146,7 +146,8 @@ const Questions = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    questions: state.adminQuestions.questions
+    questions: state.adminQuestions.questions,
+    reload: state.adminQuestions.reload
   }
 }
 
