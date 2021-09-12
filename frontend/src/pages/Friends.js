@@ -26,9 +26,9 @@ const Friends = (props) => {
 
   const clickHandler = async () => {
     friendSearched.current.value !== props.username &&
-    !props.userData.friends.some(
-      (friend) => friend.username === friendSearched.current.value
-    ) &&
+      !props.userData.friends.some(
+        (friend) => friend.username === friendSearched.current.value
+      ) &&
       !props.userData.friend_requests.some(
         (req) => req.user.username === friendSearched.current.value
       ) &&
@@ -46,7 +46,7 @@ const Friends = (props) => {
         <div className={styles.midContainer}>
           <div className={styles.contP}>
             <p onClick={() => setSwitchOptions(false)}>Search friend</p>
-            <p onClick={() => setSwitchOptions(true)}>Friend request</p>
+            <p onClick={() => setSwitchOptions(true)}>Friends requests</p>
           </div>
           {switchOptions ? (
             <div className={styles.friendsList}>
