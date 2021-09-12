@@ -89,7 +89,7 @@ const socketActions = {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.get(
-          "http://localhost:4000/api/user/friend_list",
+          "https://benosy.herokuapp.com/api/user/friend_list",
           {
             headers: {
               Authorization: "Bearer " + token,
