@@ -32,7 +32,8 @@ const App = (props) => {
 
   useEffect(() => {
     if (props.socket && props.token) {
-      props.socket.on("game_request", (username) => {
+      props.socket.on("game_request", ({ username, requests }) => {
+        props.setGameRequests(requests);
         toast(username + " invited you to a game!", {
           icon: "🎮",
         });
@@ -110,11 +111,12 @@ const mapDispatchToProps = {
   logInLS: usersActions.logInLS,
   showMenuResponsive: otherActions.showMenu,
   setGame: gamesActions.setGame,
+  setFriendRequests: socketActions.setFriendRequests,
+  setFriends: socketActions.setFriends,
+  setGameRequests: socketActions.setGameRequests,
   // reFetchGameRequests: socketActions.reFetchGameRequests,
   // startGame: socketActions.startGame,
   // reFetchCurrentPlayer: socketActions.reFetchCurrentPlayer,
-  setFriendRequests: socketActions.setFriendRequests,
-  setFriends: socketActions.setFriends,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -26,39 +26,47 @@ const ReviewSlide = (props) => {
         desktop: {
           breakpoint: {
             max: 3000,
-            min: 1024
+            min: 1024,
           },
           items: 1,
-          partialVisibilityGutter: 40
+          partialVisibilityGutter: 40,
         },
         mobile: {
           breakpoint: {
             max: 464,
-            min: 0
+            min: 0,
           },
           items: 1,
-          partialVisibilityGutter: 30
+          partialVisibilityGutter: 30,
         },
         tablet: {
           breakpoint: {
             max: 1024,
-            min: 464
+            min: 464,
           },
           items: 1,
-          partialVisibilityGutter: 30
-        }
+          partialVisibilityGutter: 30,
+        },
       }}
       showDots={false}
       sliderClass=""
       slidesToSlide={1}
       swipeable
     >
-
       {props.allReviews.map((review, index) => {
         return (
-          <div className={styles.slides}>
+          <div className={styles.slides} key={review._id}>
             <div>
-              {review.userId && <div className={styles.reviewsPosted}><div ><img className={styles.avatar} src={review.userId.avatar} /></div><p className={styles.pDescription}>@{review.userId.username}</p></div>}
+              {review.userId && (
+                <div className={styles.reviewsPosted}>
+                  <div>
+                    <img className={styles.avatar} src={review.userId.avatar} />
+                  </div>
+                  <p className={styles.pDescription}>
+                    @{review.userId.username}
+                  </p>
+                </div>
+              )}
               <h4 className={styles.titleDescription}>"{review.title}"</h4>
               <div
                 className={styles.picGame}
@@ -66,7 +74,6 @@ const ReviewSlide = (props) => {
               ></div>
             </div>
             <div>
-
               <p className={styles.subtitleDescription}>
                 {moment(review.date).fromNow()}
               </p>

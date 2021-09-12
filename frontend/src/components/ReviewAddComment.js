@@ -36,7 +36,7 @@ const ReviewAddComment = (props) => {
           <p className={styles.submitButton}>Post new review</p>
           <input
             className={styles.inputs}
-            type="textarea"
+            type="text"
             name="img"
             placeholder="picture of the moment"
             value={newComment.img}
@@ -44,7 +44,7 @@ const ReviewAddComment = (props) => {
           />
           <input
             className={styles.inputs}
-            type="textarea"
+            type="text"
             name="title"
             placeholder="title of the momment"
             value={newComment.title}
@@ -52,7 +52,7 @@ const ReviewAddComment = (props) => {
           />
           <input
             className={styles.inputs}
-            type="textarea"
+            type="text"
             name="description"
             placeholder="description"
             value={newComment.description}

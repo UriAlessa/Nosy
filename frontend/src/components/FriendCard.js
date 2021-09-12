@@ -1,90 +1,146 @@
+import { useState } from "react";
 import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
 import styles from "../styles/friendCard.module.css";
+import stylesConected from "../styles/usercard.module.css";
 
-const FriendCard = ({ type, request, user, friend, ...props }) => {
+const FriendCard = ({
+  type,
+  request,
+  user,
+  friend,
+  game = false,
+  ...props
+}) => {
+  const [clicked, setClicked] = useState(false);
   const ImageFriendCard = (
-    <img
+    <div
       className={styles.logo}
-      src={
-        type === "sendRequest"
-          ? user.avatar
-          : type === "culo"
-          ? friend.avatar
-          : request.user.avatar
-      }
-      alt="logo"
-    />
+      style={{
+        backgroundImage: `url('${
+          type === "sendRequest"
+            ? user.avatar
+            : type === "friends"
+            ? friend.avatar
+            : request.user.avatar
+        }')`,
+      }}
+    ></div>
   );
 
   let result =
     type === "acceptRequest" ? (
-      <div>
-        <div className={styles.userDate}>
+      <div className={styles.divFriend}>
+        <div className={styles.friendInfo}>
           {ImageFriendCard}
           <h3>{request.user.username}</h3>
         </div>
         <div className={styles.buttons}>
           <button
-            onClick={(e) => props.answerFriendRequest(false, e.target.value)}
+            onClick={(e) =>
+              game
+                ? props.answerGameRequest(
+                    false,
+                    e.target.value,
+                    props.userData.game_requests.game_id
+                  )
+                : props.answerFriendRequest(false, e.target.value)
+            }
             className={styles.buttonRefuse}
+            value={request.user.username}
           >
             REFUSE
           </button>
           <button
-            onClick={(e) => props.answerFriendRequest(true, e.target.value)}
+            onClick={(e) =>
+              game
+                ? props.answerGameRequest(
+                    true,
+                    e.target.value,
+                    props.userData.game_requests.game_id
+                  )
+                : props.answerFriendRequest(true, e.target.value)
+            }
             value={request.user.username}
-            className={styles.buttonAccept}
           >
             ACCEPT
           </button>
         </div>
       </div>
     ) : type === "sentRequest" ? (
-      <div>
+      <div className={styles.divFriend}>
         {ImageFriendCard}
         <h3>{request.user.username}</h3>
       </div>
     ) : type === "sendRequest" ? (
-      <div>
-        {ImageFriendCard}
-        <h3>{user.username}</h3>
+      <div className={styles.divFriend}>
+        <div className={styles.friendInfo}>
+          {ImageFriendCard}
+          <h3>{user.username}</h3>
+        </div>
         <button
-          onClick={(e) => props.addFriend(e.target.value)}
+          onClick={(e) => {
+            props.addFriend(e.target.value);
+            setClicked(true);
+            setTimeout(() => props.setUserSearched(null), 1000);
+          }}
+          disabled={clicked}
+          className={clicked ? styles.buttonRefuse : styles.accept}
           value={user.username}
-          className={styles.buttonAccept}
         >
           SEND INVITATION
         </button>
       </div>
     ) : (
-      <div>
-        {ImageFriendCard}
-        <h3>{friend.username}</h3>
-        <button
-          onClick={(e) => {
-            props.sendGameRequest(e.target.value);
-          }}
-          value={friend.username}
-          className={styles.buttonAccept}
-        >
-          invite friend
-        </button>
+      <div className={styles.divFriend}>
+        <div className={styles.friendInfo}>
+          {ImageFriendCard}
+          <h3>{friend.username}</h3>
+        </div>
+        <div className={styles.connection}>
+          {
+            <div className={stylesConected.divConnect}>
+              <img
+                className={stylesConected.connected}
+                src={
+                  friend.connected
+                    ? "/assets/online.png"
+                    : "/assets/offline.png"
+                }
+                alt="conected"
+              />
+            </div>
+          }
+          <button
+            onClick={(e) => {
+              props.sendGameRequest(e.target.value);
+            }}
+            value={friend.username}
+          >
+            invite to play
+          </button>
+        </div>
       </div>
     );
 
   return (
-    <section className={styles.section}>
-      <div>
-        <div className={styles.container}>{result}</div>
-      </div>
+    <section
+      className={styles.sectionFriend} //type === "acceptRequest" ? styles.section :
+    >
+      <div className={styles.container}>{result}</div>
     </section>
   );
 };
-
+const mapStateToProps = (state) => {
+  {
+    return {
+      userData: state.users.userData,
+    };
+  }
+};
 const mapDispatchToProps = {
   addFriend: usersActions.addFriend,
   answerFriendRequest: usersActions.answerFriendRequest,
   sendGameRequest: usersActions.sendGameRequest,
 };
-export default connect(null, mapDispatchToProps)(FriendCard);
+export default connect(mapStateToProps, mapDispatchToProps)(FriendCard);
