@@ -112,14 +112,21 @@ const usersActions = {
           }
         );
         if (!response.data.success) throw new Error(response.data.error);
-        return dispatch({
-          type: "ACCEPT_FRIEND_REQUEST",
-          payload: {
-            username,
-            friend_requests: response.data.friend_requests,
-            friends: response.data.friends,
-          },
-        });
+        if (accept) {
+          return dispatch({
+            type: "ACCEPT_FRIEND_REQUEST",
+            payload: {
+              username,
+              friend_requests: response.data.friend_requests,
+              friends: response.data.friends,
+            },
+          });
+        } else {
+          return dispatch({
+            type: "DECLINE_FRIEND_REQUEST",
+            payload: { friend_request: response.data.friend_requests },
+          });
+        }
       } catch (error) {
         toast.error("Session expired", {
           position: "top-right",

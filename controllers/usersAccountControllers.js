@@ -150,12 +150,13 @@ const usersAccountControllers = {
     const { username, accept } = req.body;
     try {
       let user = await User.findOne({ username });
+
       if (accept) {
-        user = await User.findOneAndUpdate(
-          { username: req.body.username },
+        let userAdded = await User.findOneAndUpdate(
+          { username: req.user.username },
           {
-            $pull: { friend_requests: { user: req.user._id } },
-            $push: { friends: req.user._id },
+            $pull: { friend_requests: { user: user._id } },
+            $push: { friends: user._id },
           },
           { new: true }
         )
@@ -172,11 +173,11 @@ const usersAccountControllers = {
               select: "username avatar",
             },
           });
-        let userAdded = await User.findOneAndUpdate(
-          { username: req.user.username },
+        user = await User.findOneAndUpdate(
+          { username: req.body.username },
           {
-            $pull: { friend_requests: { user: user._id } },
-            $push: { friends: user._id },
+            $pull: { friend_requests: { user: req.user._id } },
+            $push: { friends: req.user._id },
           },
           { new: true }
         )
@@ -205,7 +206,26 @@ const usersAccountControllers = {
           },
         });
       } else {
-        throw new Error();
+        let userAdded = await User.findOneAndUpdate(
+          { username: req.user.username },
+          {
+            $pull: { friend_requests: { user: user._id } },
+          },
+          { new: true }
+        ).populate({
+          path: "friend_requests",
+          populate: {
+            path: "user",
+            model: "user",
+            select: "username avatar",
+          },
+        });
+        res.json({
+          success: true,
+          friend_requests: {
+            invitated: userAdded.friend_requests,
+          },
+        });
       }
     } catch (error) {
       res.json({ success: false, error: error.message });

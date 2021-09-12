@@ -67,6 +67,14 @@ const usersReducer = (state = initialState, action) => {
           friends: action.payload.friends.invitated,
         },
       };
+    case "DECLINE_FRIEND_REQUEST":
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          friend_requests: action.payload.friend_requests.invitated,
+        },
+      };
     case "SEND_GAME_REQUEST":
       state.socket.emit("game_request", action.payload);
       return state;

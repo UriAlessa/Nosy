@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const Friends = (props) => {
   const [filtered, setFiltered] = useState([]);
-  const [userSearched, setUserSearched] = useState();
+  const [userSearched, setUserSearched] = useState({});
   const friendSearched = useRef();
   const [switchOptions, setSwitchOptions] = useState(false);
 
@@ -28,6 +28,9 @@ const Friends = (props) => {
     friendSearched.current.value !== props.username &&
       !props.userData.friends.some(
         (friend) => friend.username === friendSearched.current.value
+      ) &&
+      !props.userData.friend_requests.some(
+        (req) => req.user.username === friendSearched.current.value
       ) &&
       setUserSearched(
         await props.searchUser(friendSearched.current.value, props.token)
