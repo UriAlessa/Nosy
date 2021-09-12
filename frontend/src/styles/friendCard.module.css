@@ -1,17 +1,21 @@
-.section{
+.section {
   width: 80%;
   border: 1.3px solid white;
-  margin: .5rem;
-  height: 18vh;
+  margin: 0.5rem;
+  min-height: 20vh;
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
 }
-
 
 .logo {
   width: 3.5vw;
+  height: 3.5vw;
   border-radius: 50px;
+  background-position: center;
+  background-size: cover;
   align-self: center;
 }
 
@@ -22,49 +26,77 @@
 }
 
 .buttons,
-  .userDate{
+.userDate {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.userDate >* {
-  margin: .3rem;
+.divFriend {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
-.buttons>*{
-  margin: .5rem;
+div.friendInfo {
+  margin-right: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.container button{
-    font-family: 'Ubuntu', sans-serif;
-    cursor: pointer;
-    border: none;
-    width: 3.5rem;
-    border-radius: 3px;
-    color:white;
-    background-color: #43b14b;
+.divUserDate {
+  margin: 0.5rem;
 }
-
-.container .buttonRefuse{
-    background-color: #cb5b3b;
+.userDate {
+  margin-top: 0.5rem;
 }
-
-@media(min-width:400px) and (max-width:800px){
-  .section {
-    width: 80%;
-    height: 25vh;
-    margin: 1vw;
-  }
-  .logo{
-    width: 15vw;
-  }
+.userDate > * {
+  margin: 0.3rem;
+}
+.buttons {
+  margin-bottom: 0.3rem;
+}
+.buttons > * {
+  margin: 0.5rem;
+}
 .container button {
+  font-family: "Ubuntu", sans-serif;
+  cursor: pointer;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 3px;
+  color: white;
+  background-color: #43b14b;
+  text-transform: uppercase;
+}
+.accept {
+  font-family: "Ubuntu", sans-serif;
+  cursor: pointer;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 3px;
+  color: white;
+  background-color: #43b14b;
+  text-transform: uppercase;
+}
+
+.container .buttonRefuse {
+  background-color: #cb5b3b;
+}
+
+@media (min-width: 400px) and (max-width: 800px) {
+  /* .section {
+    width: 80%;
+    margin: 1vw;
+  } */
+  .logo {
+    width: 3rem;
+    height: 3rem;
+  }
+  .container button {
     padding: 0.5rem 1.8rem;
+  }
 }
-}
-@media(min-width:650px) and (max-width:800px){
-    .logo{
-        width: 10vw;
-      }
-    .section { 
-        width: 50%;
-    }
+@media (min-width: 650px) and (max-width: 800px) {
+  .section {
+    width: 50%;
+  }
 }

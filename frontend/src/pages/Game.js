@@ -68,7 +68,7 @@ const Game = (props) => {
   useEffect(() => {
     if (category) {
       props
-        .getQuestion(category)
+        .getQuestion(category, props.game)
         .then((res) => {
           setQuestion(res);
         })
@@ -93,47 +93,41 @@ const Game = (props) => {
     let degrees = rand / 360;
     degrees = (degrees - parseInt(degrees.toString().split(".")[0])) * 360;
     roulette.current.style.transform = "rotate(+" + rand + "deg)";
+    setPlaying(!playing);
     switch (true) {
       case degrees > 30 && degrees <= 90:
         setTimeout(() => {
-          setPlaying(!playing);
           setCategory("Movies and series");
         }, 5000);
         break;
       case degrees > 90 && degrees <= 150:
         setTimeout(() => {
-          setPlaying(!playing);
           setCategory("Science: Computers");
         }, 5000);
         break;
       case degrees > 150 && degrees <= 210:
         setTimeout(() => {
-          setPlaying(!playing);
           setCategory("General Knowledge");
         }, 5000);
         break;
       case degrees > 210 && degrees <= 270:
         setTimeout(() => {
-          setPlaying(!playing);
           setCategory("Animals");
         }, 5000);
         break;
       case degrees > 270 && degrees <= 330:
         setTimeout(() => {
-          setPlaying(!playing);
           setCategory("Music");
         }, 5000);
         break;
       default:
         setTimeout(() => {
-          setPlaying(!playing);
           setNosy(true);
           setGolden(true);
         }, 5000);
     }
   };
   const rotate = () => {
-    setPlaying(!playing);
     audio.play();
     let rand = Math.random() * 360 + 3600;
     selectCategory(rand);
@@ -166,6 +160,7 @@ const Game = (props) => {
             rotate={rotate}
             playing={playing}
             roulette={roulette}
+            coinsFront={coinsFront}
           />
         ) : (
           <QuestionCard
