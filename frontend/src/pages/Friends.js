@@ -78,7 +78,11 @@ const Friends = (props) => {
                 <button onClick={clickHandler}>Search</button>
               </div>
               {userSearched && (
-                <FriendCard type="sendRequest" user={userSearched} />
+                <FriendCard
+                  type="sendRequest"
+                  setUserSearched={setUserSearched}
+                  user={userSearched}
+                />
               )}
             </div>
           )}
