@@ -43,5 +43,11 @@ const adminQuestionActions = {
       return response.data;
     };
   },
-};
+  reload: () => {
+    return (dispatch) => {
+      dispatch({ type: 'RELOAD' })
+    }
+  }
+}
+
 export default adminQuestionActions;

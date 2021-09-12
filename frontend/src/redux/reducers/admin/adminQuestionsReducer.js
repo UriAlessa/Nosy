@@ -1,5 +1,6 @@
 const adminQuestionsReducer = (state = {
     questions: [],
+    reload: []
 }, action) => {
     switch (action.type) {
         case "GET_QUESTIONS":
@@ -11,6 +12,11 @@ const adminQuestionsReducer = (state = {
             return {
                 ...state,
                 questions: state.questions.push(action.payload)
+            }
+        case "RELOAD":
+            return {
+                ...state,
+                reload: !state.reload
             }
         // case "DELETE_QUESTION":
         //     console.log('llego acá')

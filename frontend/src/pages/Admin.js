@@ -8,11 +8,18 @@ import adminUserActions from "../redux/actions/admin/adminUserActions";
 import adminQuestionsActions from "../redux/actions/admin/adminQuestionsActions";
 import { toast } from "react-hot-toast";
 import Loader from '../components/Loader'
+import usersActions from "../redux/actions/usersActions";
 
 
 const AdminPanel = (props) => {
     const [view, setView] = useState("dashboard")
     const [loader, setLoader] = useState(true)
+    const [reviews, setReviews] = useState([])
+    const [reload, setReload] = useState(true)
+
+    useEffect(() => {
+
+    }, [reload])
 
     const getUsers = async () => {
         if (!props.users.length) {
@@ -62,10 +69,36 @@ const AdminPanel = (props) => {
         }
     };
 
+    const getReviews = async () => {
+        if (!reviews.length) {
+            try {
+                let response = await props.getReviews();
+                if (response.success) {
+                    setReviews(response.response);
+                    setLoader(false)
+                } else {
+                    throw new Error();
+                }
+            } catch (error) {
+                toast.error("Something went wrong. Try again later.", {
+                    position: "top-left",
+                    style: {
+                        borderRadius: "10px",
+                        background: "#453ab7",
+                        color: "#fff",
+                        fontFamily: "Ubuntu, sans-serif",
+                        height: "10vh"
+                    },
+                });
+            }
+        }
+    };
+
     useEffect(() => {
         getUsers()
         getQuestions()
-    }, [])
+        getReviews()
+    }, [reload])
 
     if (loader) {
         return <Loader />
@@ -75,7 +108,7 @@ const AdminPanel = (props) => {
         <section className={styles.adminContainer}>
             <div className={styles.dataContainer}>
                 <div className={styles.headerContainer}>
-                    <img className={styles.logo} src='/assets/logoSoloLetras.png' alt="" />
+                    <img className={styles.logo} src='/assets/LogoRuleta.png' alt="" />
                     <nav className={styles.navContainer}>
                         <span className={`${styles.spanPanel} ${document.title.includes('Dashboard') && styles.active}`} onClick={() => {
                             document.title = 'Nosy - Admin Dashboard'
@@ -89,21 +122,16 @@ const AdminPanel = (props) => {
                             document.title = 'Nosy | Questions - Admin Panel'
                             setView('questions')
                         }}>Questions</span>
-                        {/* <span className={`${styles.spanPanel} ${document.title.includes('Games') && styles.active}`} onClick={() => {
-                            document.title = 'Nosy | Games - Admin Panel'
-                            setView('games')
-                        }}>Games</span> */}
                     </nav>
                     <div className={styles.user}>
                         <h3>Hello, Admin</h3>
-                        <img className={styles.avatar} src={props.avatar} alt="" />
+                        <div className={styles.iconAvatar} style={{ backgroundImage: `url('${props.avatar}')` }} alt=""></div>
                     </div>
                 </div>
                 <div className={styles.infoSection}>
-                    {view === 'dashboard' && <Dashboard />}
+                    {view === 'dashboard' && <Dashboard reviews={reviews.sort((a, b) => b.date - a.date)} setreload={setReload} reload={reload} />}
                     {view === 'users' && <Users />}
                     {view === 'questions' && <Questions />}
-                    {/* {view === 'games' && <Games />} */}
                 </div>
 
             </div>
@@ -115,13 +143,16 @@ const mapStateToProps = (state) => {
     return {
         avatar: state.users.avatar,
         users: state.adminUsers.users,
-        questions: state.adminQuestions.questions
+        questions: state.adminQuestions.questions,
+        reload: state.adminQuestions.reload,
+        reviews: state.adminUsers.reviews
     }
 }
 
 const mapDispatchToProps = {
     getUsers: adminUserActions.getUsers,
     getQuestions: adminQuestionsActions.getQuestions,
+    getReviews: usersActions.getReviews,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminPanel)

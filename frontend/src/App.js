@@ -1,3 +1,4 @@
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";

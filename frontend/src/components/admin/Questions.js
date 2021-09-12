@@ -7,14 +7,21 @@ import QuestionCard from "./QuestionCard";
 import { toast } from "react-hot-toast";
 
 const Questions = (props) => {
+  const [allQuestions, setAllQuestions] = useState(props.questions)
   const [filtered, setFiltered] = useState(props.questions)
   const [newQuestion, setNewQuestion] = useState({})
-  const [reload, setReload] = useState(true)
   const correctInput = useRef()
   const questionInput = useRef()
   const incorrectInputOne = useRef()
   const incorrectInputTwo = useRef()
   const incorrectInputThree = useRef()
+
+  const categories = []
+  props.questions.map((question) => {
+    if (!categories.includes(question.category)) {
+      categories.push(question.category)
+    }
+  })
 
   const inputHandler = (e) => {
     setNewQuestion({
@@ -64,23 +71,48 @@ const Questions = (props) => {
         },
       });
     }
-    setReload(!reload)
+  }
+
+  const filter = (e) => {
+    console.log(e.target.value)
+    setFiltered(allQuestions.filter((question) => {
+      console.log(question.category)
+      if (question.category === e.target.value) {
+        return question
+      }
+      if (e.target.value === 'View All') {
+        return question
+      }
+    }))
+  }
+
+  const reload = (_id) => {
+    console.log('me ejecuto')
+    setFiltered(filtered.filter((question) => {
+      if (question._id !== _id) {
+        return question
+      }
+    }))
   }
 
   return (
     <div className={style.tableContainer}>
       <div className={style.cardsContainer}>
         <div className={styles.filterContainer}>
-          <input type="text" placeholder="Filter by username" />
+          <h2>Filter by category</h2>
+          <select onClick={filter}>
+            <option defaultValue="">View All</option>
+            {categories.map((category) => <option defaultValue={category} key={category}>{category}</option>)}
+          </select>
         </div>
         <div className={styles.questionsContainer}>
-          <h2>Showing {filtered.length}</h2>
-          {filtered.map((question) => <QuestionCard question={question} key={question._id} />)}
+          <h3>Showing {filtered.length} of {props.questions.length} questions.</h3>
+          {filtered.map((question) => <QuestionCard question={question} key={question._id} reload={reload} />)}
         </div>
       </div>
       <div className={style.loginBox} style={{ height: '90%' }}>
         <p>Create New Question</p>
-        <form>
+        <form className={style.userForm}>
           <div className={style.userBox}>
             <select name="category" id="category" onClick={inputHandler}>
               <option defaultValue="" disabled>Choose a category</option>
@@ -121,7 +153,8 @@ const Questions = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    questions: state.adminQuestions.questions
+    questions: state.adminQuestions.questions,
+    reload: state.adminQuestions.reload
   }
 }
 

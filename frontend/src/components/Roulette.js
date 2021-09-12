@@ -108,7 +108,7 @@ if(props.game){
       </div>
       <div className={styles.containerRoulette}>
         <img
-          src="/assets/ruleta1.svg"
+          src="/assets/Ruleta.png"
           ref={props.roulette}
           className={styles.roulette}
           alt="rouletteeee"
@@ -132,11 +132,10 @@ if(props.game){
             <img
               key={shadow.key}
               className={styles.picShadow}
-              src={`assets/${
-                props.game.player.medals.includes(shadow.key)
-                  ? shadow.yes
-                  : shadow.no
-              }`}
+              src={`assets/${props.game.player.medals.includes(shadow.key)
+                ? shadow.yes
+                : shadow.no
+                }`}
               alt={shadow.key}
             />
           ))}

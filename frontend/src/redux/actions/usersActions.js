@@ -333,6 +333,21 @@ const usersActions = {
       }
     };
   },
+  deleteReview: (id) => {
+    console.log(id)
+    return async () => {
+      try {
+        let response = await axios.delete("http://localhost:4000/api/review/" + id);
+        if (response.data.success) {
+          return { success: true };
+        } else {
+          return { success: false };
+        }
+      } catch (error) {
+        return { success: false, response: error.message };
+      }
+    };
+  },
 
   setEmoji: (emoji) => {
     return async (dispatch) => {
