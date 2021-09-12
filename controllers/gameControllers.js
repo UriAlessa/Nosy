@@ -18,11 +18,19 @@ const gameControllers = {
           { $push: { game_requests: { creator: false, game_id: game._id } } },
           { new: true }
         );
+        // .populate({
+        //   path: "playing_now",
+        //   populate: { path: "game_id", model: "multiplayer game" },
+        // });
         let user = await User.findOneAndUpdate(
           { username: req.user.username },
           { $push: { game_requests: { creator: true, game_id: game._id } } },
           { new: true }
         );
+        // .populate({
+        //   path: "playing_now",
+        //   populate: { path: "game_id", model: "multiplayer game" },
+        // });
         res.json({
           success: true,
           game_requests: {
@@ -35,7 +43,7 @@ const gameControllers = {
           player: { user: req.user._id },
         });
         await game.save();
-        await User.findOneAndUpdate(
+        let user = await User.findOneAndUpdate(
           { _id: req.user._id },
           {
             $set: {
@@ -48,7 +56,14 @@ const gameControllers = {
           },
           { new: true }
         );
-        res.json({ success: true, response: { game, coins: req.user.coins } });
+        // .populate({
+        //   path: "playing_now",
+        //   populate: { path: "game_id", model: "singleplayer game" },
+        // });
+        res.json({
+          success: true,
+          response: { game, coins: req.user.coins, user },
+        });
       }
     } catch (error) {
       res.json({ success: false, error: error.message });

@@ -64,6 +64,7 @@ const App = (props) => {
           props.userData.friends.some(
             (friend) => friend.username === username
           ) &&
+          console.log("hola soy connected") &&
           props.setFriendsList();
       });
       props.socket.on("disconnection", (username) => {
@@ -71,6 +72,7 @@ const App = (props) => {
           props.userData.friends.some(
             (friend) => friend.username === username
           ) &&
+          console.log("hola soy disconnection") &&
           props.setFriendsList();
       });
     }
@@ -87,7 +89,7 @@ const App = (props) => {
         <Route path="/terms" component={Terms} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/notfound" component={NotFound} />
-        <Route path="/game" component={Game} />
+        <Route path="/game" component={!props.token ? Home : Game} />
         <Route path="/accounts" component={!props.token ? Account : Home} />
         <Route path="/friends" component={Friends} />
         <Route path="/selectgame" component={GameButtons} />
