@@ -1,8 +1,11 @@
 import style from "../styles/other/buttons.module.css";
 
-const PlayButton = ({ text }) => {
+const PlayButton = ({ text, setPlayWithFriend }) => {
   return (
-    <button className={style.playButton}>
+    <button
+      className={style.playButton}
+      onClick={() => text === "PLAY W/ FRIEND" && setPlayWithFriend(true)}
+    >
       <svg
         className={style.buttonPlayButton}
         xmlns="http://www.w3.org/1999/xlink"

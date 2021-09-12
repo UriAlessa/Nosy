@@ -7,7 +7,7 @@ import usersActions from "../redux/actions/usersActions";
 import { Link } from "react-router-dom";
 
 const Friends = (props) => {
-  const [filtered, setFiltered] = useState([]);
+  const [filtered, setFiltered] = useState();
   const [userSearched, setUserSearched] = useState();
   const friendSearched = useRef();
   const [switchOptions, setSwitchOptions] = useState(false);

@@ -31,15 +31,16 @@ const App = (props) => {
 
   useEffect(() => {
     if (props.socket && props.token) {
-      props.socket.on("game_request", (username) => {
+      props.socket.on("game_request", ({ username, requests }) => {
+        props.setGameRequests(requests);
         toast(username + " invited you to a game!", {
           icon: "🎮",
         });
       });
-      // props.socket.on("answer_game_request", (username) => {
-      //   props.history.push("/game");
-      // });
-      // props.socket.on("change_current_player", (username) => {});
+      props.socket.on("answer_game_request", (username) => {
+        props.history.push("/game");
+      });
+      props.socket.on("change_current_player", (username) => {});
       props.socket.on("friend_request", ({ username, requests }) => {
         props.setFriendRequests(requests);
         toast(username + " has sent you a friend request!", {
@@ -111,6 +112,7 @@ const mapDispatchToProps = {
   setGame: gamesActions.setGame,
   setFriendRequests: socketActions.setFriendRequests,
   setFriends: socketActions.setFriends,
+  setGameRequests: socketActions.setGameRequests,
   // reFetchGameRequests: socketActions.reFetchGameRequests,
   // startGame: socketActions.startGame,
   // reFetchCurrentPlayer: socketActions.reFetchCurrentPlayer,

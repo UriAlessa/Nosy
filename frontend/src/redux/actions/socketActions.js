@@ -76,5 +76,20 @@ const socketActions = {
         payload: { friend_requests: requests, friends },
       });
   },
+  setGameRequests: (requests) => {
+    return (dispatch) => {
+      dispatch({
+        type: "SET_GAME_REQUESTS",
+        payload: { game_requests: requests },
+      });
+    };
+  },
+  // setFriends: (requests, friends) => {
+  //   return (dispatch) =>
+  //     dispatch({
+  //       type: "SET_FRIENDS",
+  //       payload: { friend_requests: requests, friends },
+  //     });
+  // },
 };
 export default socketActions;

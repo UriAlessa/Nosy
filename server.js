@@ -59,8 +59,11 @@ io.on("connection", (socket) => {
 
   io.sockets.emit("connected", socketUsername);
 
-  socket.on("game_request", (username) => {
-    io.to(username).emit("game_request", socketUsername);
+  socket.on("game_request", ({ username, requests }) => {
+    io.to(username).emit("game_request", {
+      username: socketUsername,
+      requests,
+    });
   });
   socket.on("answer_game_request", (username) => {
     io.to(username).emit("answer_game_request", socketUsername);

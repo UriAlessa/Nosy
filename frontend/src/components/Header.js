@@ -66,14 +66,16 @@ const Header = (props) => {
                     className={styles.logoUser}
                     style={{
                       backgroundImage: `url('${props.avatar}')`,
-                      height: "35px",
-                      width: "35px",
+                      height: "50px",
+                      width: "50px",
                       backgroundPosition: "center",
                       backgroundSize: "cover",
                       borderRadius: "50%",
                     }}
                   ></div>
-                  <p>Hello, {props.username}</p>
+                  <span style={{ fontSize: "1.2rem" }}>
+                    Hello, {props.username}
+                  </span>
                   <svg
                     className={styles.arrowDown}
                     xmlns="http://www.w3.org/2000/svg"
