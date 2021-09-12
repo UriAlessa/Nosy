@@ -195,6 +195,7 @@ const usersActions = {
             payload: {
               game: response.data.game,
               coins: response.data.coins.invitated,
+              statistics: null,
             },
           });
           return dispatch({

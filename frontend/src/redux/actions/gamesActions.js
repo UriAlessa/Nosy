@@ -18,7 +18,7 @@ const gamesActions = {
       const { game, coins } = response.data.response;
       dispatch({
         type: "SET_GAME",
-        payload: { game, coins },
+        payload: { game, coins, statistics: null },
       });
     };
   },
@@ -39,7 +39,7 @@ const gamesActions = {
       dispatch({
         type: "SET_GAME",
         payload: {
-          statisticsUser: response.data.response.newUserState,
+          statistics: response.data.response.newUserState.statistics,
           game: response.data.response.newGameState,
           coins: response.data.response.newUserState.coins,
         },
@@ -65,6 +65,7 @@ const gamesActions = {
         payload: {
           game: response.data.response.game,
           coins: response.data.response.coins,
+          statistics: null,
         },
       });
     };
