@@ -109,6 +109,7 @@ const mapStateToProps = (state) => {
     menu: state.other.menu,
     socket: state.users.socket,
     username: state.users.username,
+    userData: state.users.userData,
   };
 };
 
