@@ -133,7 +133,7 @@ const mapDispatchToProps = {
   setGameRequests: socketActions.setGameRequests,
   setFriendsList: socketActions.setFriendsList,
   setGame: socketActions.setGame,
-  changeCurrentPlayer: socketActions.changeCurrentPlayer,
+  // changeCurrentPlayer: socketActions.changeCurrentPlayer,
   // reFetchGameRequests: socketActions.reFetchGameRequests,
   // startGame: socketActions.startGame,
 };
