@@ -33,7 +33,7 @@ const ReviewAddNewOne = (props) => {
         toast.custom((t) => (
           <div
             className={`${
-              t.visible ? 'animate-enter' : 'animate-leave'
+              t.visible ? "animate-enter" : "animate-leave"
             } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
           >
             <div className="flex-1 w-0 p-4">
@@ -50,7 +50,8 @@ const ReviewAddNewOne = (props) => {
                     {props.userData.username}
                   </p>
                   <p className="mt-1 text-sm text-gray-500">
-                  Excelente! you going to see your Review in the playlist of review soon
+                    Excelente! you going to see your Review in the playlist of
+                    review soon
                   </p>
                 </div>
               </div>
@@ -64,7 +65,7 @@ const ReviewAddNewOne = (props) => {
               </button>
             </div>
           </div>
-        ))
+        ));
       } else {
         console.log(response);
         toast.error("Something went wrong! try again later please!", {
@@ -92,7 +93,7 @@ const ReviewAddNewOne = (props) => {
   };
 
   return (
-    <div >
+    <div>
       <small>
         <span className="">
           <p className={styles.submitButton}>Post THE moment</p>
@@ -108,7 +109,7 @@ const ReviewAddNewOne = (props) => {
             className={styles.inputs}
             type="textarea"
             name="title"
-            maxlength="18"
+            maxLength="18"
             placeholder="title -18 characters max-"
             value={newReview.title}
             onChange={inputHandler}
@@ -118,7 +119,7 @@ const ReviewAddNewOne = (props) => {
             type="textarea"
             name="description"
             placeholder="description -100 characters max-"
-            maxlength="100"
+            maxLength="100"
             value={newReview.description}
             onChange={inputHandler}
           />

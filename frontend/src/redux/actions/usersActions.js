@@ -76,13 +76,11 @@ const usersActions = {
             },
           }
         );
-        console.log(response.data.success);
         if (!response.data.success) throw new Error(response.data.error);
-        dispatch({
+        return dispatch({
           type: "SEND_FRIEND_REQUEST",
           payload: { username, friend_requests: response.data.friend_requests },
         });
-        return response.data.success;
       } catch (error) {
         toast.error(
           error.message.includes("User") ? error.message : "Session expired",
@@ -114,14 +112,21 @@ const usersActions = {
           }
         );
         if (!response.data.success) throw new Error(response.data.error);
-        return dispatch({
-          type: "ANSWER_FRIEND_REQUEST",
-          payload: {
-            username,
-            friend_requests: response.data.friend_requests,
-            friends: response.data.friends,
-          },
-        });
+        if (accept) {
+          return dispatch({
+            type: "ACCEPT_FRIEND_REQUEST",
+            payload: {
+              username,
+              friend_requests: response.data.friend_requests,
+              friends: response.data.friends,
+            },
+          });
+        } else {
+          return dispatch({
+            type: "DECLINE_FRIEND_REQUEST",
+            payload: { friend_requests: response.data.friend_requests },
+          });
+        }
       } catch (error) {
         toast.error("Session expired", {
           position: "top-right",
@@ -149,14 +154,13 @@ const usersActions = {
             },
           }
         );
-        console.log(response.data.success);
+
         if (!response.data.success) throw new Error();
-        return dispatch({
+        dispatch({
           type: "SEND_GAME_REQUEST",
-          payload: username,
+          payload: { username, game_requests: response.data.game_requests },
         });
       } catch (error) {
-        console.log(error);
         toast.error("Session expired", {
           position: "top-right",
           style: {
@@ -166,18 +170,18 @@ const usersActions = {
             fontFamily: "Ubuntu, sans-serif",
           },
         });
-        return dispatch({ type: "LOG_OUT" });
+        // return dispatch({ type: "LOG_OUT" });
       }
     };
   },
 
-  answerGameRequest: (username, accept, gameId) => {
+  answerGameRequest: (accept, username, game_id) => {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.put(
-          "http://localhost:4000/game/newgame",
-          { username, accept, gameId },
+          "http://localhost:4000/api/game/newgame",
+          { username, accept, game_id },
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -185,6 +189,21 @@ const usersActions = {
           }
         );
         if (!response.data.success) throw new Error();
+        if (accept) {
+          return dispatch({
+            type: "ACCEPT_GAME_REQUEST",
+            payload: {
+              username,
+              friend_requests: response.data.friend_requests,
+              friends: response.data.friends,
+            },
+          });
+        } else {
+          return dispatch({
+            type: "DECLINE_GAME_REQUEST",
+            payload: { friend_requests: response.data.friend_requests },
+          });
+        }
         dispatch({
           type: "ANSWER_GAME_REQUEST",
           payload: username,

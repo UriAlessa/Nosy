@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 import VideosHome from "../components/VideosHome";
 
 const Home = (props) => {
-  document.title = "Nosy"
+  document.title = "Nosy";
   useEffect(() => {
     window.scroll(0, 0);
     props.history.push("/");
@@ -22,7 +22,7 @@ const Home = (props) => {
       className="body"
       style={{ backgroundImage: 'url("/assets/transparentSmall.png")' }}
     >
-      {props.game && (
+      {props.game && props.game.status && (
         <Link to="/game">
           <img
             src="/assets/goback.png"
