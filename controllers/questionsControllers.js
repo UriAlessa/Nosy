@@ -17,10 +17,10 @@ const questionsControllers = {
         .count()
         .exec(async (err, count) => {
           let random = Math.floor(Math.random() * count);
-          let question;
+          let randomQuestion;
           do {
-            question = await Question.findOne({ category }).skip(random);
-          } while (questions.some((qs) => qs.question === question._id));
+            randomQuestion = await Question.findOne({ category }).skip(random);
+          } while (questions.some((qs) => qs.question === randomQuestion._id));
           if (!question) throw new Error();
           res.json({ success: true, response: question });
         });
