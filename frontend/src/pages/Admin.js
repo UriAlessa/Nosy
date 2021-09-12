@@ -9,11 +9,15 @@ import adminUserActions from "../redux/actions/admin/adminUserActions";
 import adminQuestionsActions from "../redux/actions/admin/adminQuestionsActions";
 import { toast } from "react-hot-toast";
 import Loader from '../components/Loader'
+import usersActions from "../redux/actions/usersActions";
 
 
 const AdminPanel = (props) => {
     const [view, setView] = useState("dashboard")
     const [loader, setLoader] = useState(true)
+    const [reviews, setReviews] = useState([])
+
+    console.log(reviews)
 
     const getUsers = async () => {
         if (!props.users.length) {
@@ -63,9 +67,36 @@ const AdminPanel = (props) => {
         }
     };
 
+    const getReviews = async () => {
+        if (!reviews.length) {
+            try {
+                let response = await props.getReviews();
+                console.log(response)
+                if (response.success) {
+                    setReviews(response.response);
+                    setLoader(false)
+                } else {
+                    throw new Error();
+                }
+            } catch (error) {
+                toast.error("Something went wrong. Try again later.", {
+                    position: "top-left",
+                    style: {
+                        borderRadius: "10px",
+                        background: "#453ab7",
+                        color: "#fff",
+                        fontFamily: "Ubuntu, sans-serif",
+                        height: "10vh"
+                    },
+                });
+            }
+        }
+    };
+
     useEffect(() => {
         getUsers()
         getQuestions()
+        getReviews()
     }, [])
 
     if (loader) {
@@ -90,10 +121,6 @@ const AdminPanel = (props) => {
                             document.title = 'Nosy | Questions - Admin Panel'
                             setView('questions')
                         }}>Questions</span>
-                        {/* <span className={`${styles.spanPanel} ${document.title.includes('Games') && styles.active}`} onClick={() => {
-                            document.title = 'Nosy | Games - Admin Panel'
-                            setView('games')
-                        }}>Games</span> */}
                     </nav>
                     <div className={styles.user}>
                         <h3>Hello, Admin</h3>
@@ -101,10 +128,9 @@ const AdminPanel = (props) => {
                     </div>
                 </div>
                 <div className={styles.infoSection}>
-                    {view === 'dashboard' && <Dashboard />}
+                    {view === 'dashboard' && <Dashboard reviews={reviews} />}
                     {view === 'users' && <Users />}
                     {view === 'questions' && <Questions />}
-                    {/* {view === 'games' && <Games />} */}
                 </div>
 
             </div>
@@ -117,13 +143,15 @@ const mapStateToProps = (state) => {
         avatar: state.users.avatar,
         users: state.adminUsers.users,
         questions: state.adminQuestions.questions,
-        reload: state.adminQuestions.reload
+        reload: state.adminQuestions.reload,
+        reviews: state.adminUsers.reviews
     }
 }
 
 const mapDispatchToProps = {
     getUsers: adminUserActions.getUsers,
     getQuestions: adminQuestionsActions.getQuestions,
+    getReviews: usersActions.getReviews,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminPanel)

@@ -125,3 +125,39 @@
 .buttonsContainer svg{
     cursor: pointer;
 }
+
+/* 
+.resumeContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.resumeSection{
+    width: 100%;
+    height: 50%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviewContainer{
+    padding: 1vh 4vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviewPic{
+    width: 40%;
+    height: 25vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: yellow;
+}
+
+.reviews{
+    height: 50%;
+    background-color: blue;
+} */

@@ -16,6 +16,7 @@ const UserCard = (props) => {
         setEdit(!edit)
         try {
             let response = await props.updateUser(updated)
+            console.log(response)
             if (response.success) {
                 toast.success("Changes Saved Successfully", {
                     position: "top-left",
@@ -70,6 +71,7 @@ const UserCard = (props) => {
         })
     }
 
+    console.log(updated)
     return (
         <>
             <article className={styles.userCard}>

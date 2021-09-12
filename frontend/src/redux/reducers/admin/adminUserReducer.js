@@ -1,5 +1,6 @@
 const adminUserReducer = (state = {
     users: [],
+    reviews: []
 }, action) => {
     switch (action.type) {
         case "GET_USERS":
@@ -13,7 +14,6 @@ const adminUserReducer = (state = {
                 users: state.users.push(action.payload)
             }
         case "DELETE_USER":
-            console.log('llego acá')
             return {
                 ...state,
                 users: state.users.filter((user) => {
@@ -21,6 +21,11 @@ const adminUserReducer = (state = {
                         return user
                     }
                 })
+            }
+        case "GET_REVIEWS":
+            return {
+                ...state,
+                reviews: action.payload
             }
         default:
             return { ...state };
