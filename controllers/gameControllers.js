@@ -91,8 +91,6 @@ const gameControllers = {
     const { accept, game_id, username } = req.body;
     try {
       if (accept) {
-        console.log("aque asd");
-
         let game = await MultiPlayer.findOneAndUpdate(
           { _id: game_id },
           { $set: { player2: { user: req.user._id }, status: true } },
@@ -142,7 +140,6 @@ const gameControllers = {
             select: "username avatar connected",
           },
         });
-
         res.json({
           success: true,
           game,

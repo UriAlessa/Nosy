@@ -27,7 +27,6 @@ const FriendCard = ({
       }}
     ></div>
   );
-  console.log(props.userData);
   let result =
     type === "acceptRequest" ? (
       <div className={styles.divFriend}>
