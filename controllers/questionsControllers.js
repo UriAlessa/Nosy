@@ -21,8 +21,7 @@ const questionsControllers = {
           do {
             randomQuestion = await Question.findOne({ category }).skip(random);
           } while (questions.some((qs) => qs.question === randomQuestion._id));
-          if (!question) throw new Error();
-          res.json({ success: true, response: question });
+          res.json({ success: true, response: randomQuestion });
         });
     } catch (error) {
       res.json({ success: false, error: error.message });
