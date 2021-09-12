@@ -61,6 +61,7 @@ const App = (props) => {
       );
       props.socket.on("connected", (username) => {
         username !== props.username &&
+          props.userData.friends.length > 0 &&
           props.userData.friends.some(
             (friend) => friend.username === username
           ) &&
@@ -69,6 +70,7 @@ const App = (props) => {
       });
       props.socket.on("disconnection", (username) => {
         username !== props.username &&
+          props.userData.friends.length > 0 &&
           props.userData.friends.some(
             (friend) => friend.username === username
           ) &&
