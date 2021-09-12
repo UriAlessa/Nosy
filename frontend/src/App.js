@@ -42,7 +42,7 @@ const App = (props) => {
         async ({ username, requests, playing_now, game, coins }) => {
           await props.setGameRequests(requests, playing_now);
           await props.setGame(game, coins);
-          toast(username + " invited you to a game!", {
+          toast(username + " accepted your game invitation!", {
             icon: "🎮",
           });
           props.history.push("/game");
