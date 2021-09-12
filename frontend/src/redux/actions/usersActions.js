@@ -180,7 +180,7 @@ const usersActions = {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.put(
-          "https://benosy.herokuapp.com/game/newgame",
+          "https://benosy.herokuapp.com/api/game/newgame",
           { username, accept, game_id },
           {
             headers: {
