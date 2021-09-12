@@ -232,11 +232,14 @@ const usersActions = {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
       try {
-        let response = await axios.get("https://benosy.herokuapp.com/api/user/token", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
+        let response = await axios.get(
+          "https://benosy.herokuapp.com/api/user/token",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
         dispatch({
           type: "LOG_IN_USER",
           payload: { ...response.data, token },
@@ -321,7 +324,9 @@ const usersActions = {
   getReviews: () => {
     return async () => {
       try {
-        let response = await axios.get("https://benosy.herokuapp.com/api/review");
+        let response = await axios.get(
+          "https://benosy.herokuapp.com/api/review"
+        );
         if (response.data.success) {
           return { success: true, response: response.data.response };
         } else {

@@ -50,12 +50,15 @@ const usersReducer = (state = initialState, action) => {
         },
       };
     case "SET_GAME_REQUESTS":
+      console.log(action.payload);
       return {
         ...state,
         userData: {
           ...state.userData,
           game_requests: action.payload.game_requests,
-          playing_now: action.payload.playing_now,
+          playing_now: action.payload.playing_now
+            ? action.payload.playing_now
+            : state.userData.playing_now,
         },
       };
     case "SEND_FRIEND_REQUEST":

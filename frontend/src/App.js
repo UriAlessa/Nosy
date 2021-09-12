@@ -32,16 +32,16 @@ const App = (props) => {
   useEffect(() => {
     if (props.socket && props.token) {
       props.socket.on("game_request", ({ username, requests }) => {
-        props.setGameRequests(requests);
+        props.setGameRequests(requests, false);
         toast(username + " invited you to a game!", {
           icon: "🎮",
         });
       });
       props.socket.on(
         "accepted_game_request",
-        async ({ username, requests, playing_now, game, coins }) => {
-          await props.setGameRequests(requests, playing_now);
-          await props.setGame(game, coins);
+        ({ username, requests, playing_now, game, coins }) => {
+          props.setGameRequests(requests, playing_now);
+          props.setGame(game, coins);
           toast(username + " accepted your game invitation!", {
             icon: "🎮",
           });
