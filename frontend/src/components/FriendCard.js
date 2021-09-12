@@ -125,7 +125,11 @@ const FriendCard = ({
 
   return (
     <section
-      className={styles.sectionFriend} //type === "acceptRequest" ? styles.section :
+      className={
+        type === "sendRequest"
+          ? styles.sectionFriendSearched
+          : styles.sectionFriend
+      } //type === "acceptRequest" ? styles.section :
     >
       <div className={styles.container}>{result}</div>
     </section>

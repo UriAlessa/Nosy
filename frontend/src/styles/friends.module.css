@@ -97,8 +97,14 @@
 }
 .search {
   display: flex;
+  align-items: center;
   gap: 0.3rem;
   margin-top: 1vh;
+}
+.searchContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .inputSearch {
   width: 80%;
@@ -109,6 +115,7 @@
   width: 6vw;
   border-radius: 3px;
   background-color: #84eeb7;
+  padding: 1vh 1vw;
 }
 .contP {
   width: 100%;
