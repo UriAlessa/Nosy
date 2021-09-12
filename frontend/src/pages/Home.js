@@ -16,13 +16,13 @@ const Home = (props) => {
     window.scroll(0, 0);
     props.history.push("/");
     // eslint-disable-next-line
-  }, [props.game]);
+  }, []);
   return (
     <div
       className="body"
       style={{ backgroundImage: 'url("/assets/transparentSmall.png")' }}
     >
-      {props.game && (
+      {props.game && props.game.status && (
         <Link to="/game">
           <img
             src="/assets/goback.png"

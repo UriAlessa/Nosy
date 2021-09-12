@@ -1,5 +1,5 @@
-import style from "../styles/other/buttons.module.css";
 import styles from "../styles/gameButtons.module.css";
+import styles2 from "../styles/friends.module.css";
 import { PlayButton, SocialMediaFooterButton } from "../components/Buttons";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -65,6 +65,13 @@ const GameButtons = (props) => {
             </div>
           </div>
         </div>
+        <Link to="/">
+          <img
+            src="/assets/goback.png"
+            className={styles2.goBackHome}
+            alt="goback"
+          />
+        </Link>
       </article>
     </section>
   );

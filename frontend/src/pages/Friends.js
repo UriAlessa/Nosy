@@ -1,7 +1,5 @@
 import React, { useRef } from "react";
-import Footer from "../components/Footer";
 import styles from "../styles/friends.module.css";
-import goBack from "../styles/game/game.module.css";
 import { useEffect, useState } from "react";
 import FriendCard from "../components/FriendCard";
 import { connect } from "react-redux";
@@ -10,9 +8,7 @@ import { Link } from "react-router-dom";
 
 const Friends = (props) => {
   const [filtered, setFiltered] = useState([]);
-  const [allFriends, setAllFriends] = useState([]);
   const [userSearched, setUserSearched] = useState();
-  const [user, setUser] = useState();
   const friendSearched = useRef();
   const [switchOptions, setSwitchOptions] = useState(false);
 
