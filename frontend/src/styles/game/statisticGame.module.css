@@ -11,13 +11,13 @@
   cursor: pointer;
 }
 .afterGame {
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
 }
-.buttonsAfterGame {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+.buttonsAfterGame button {
+  margin: 1vh 0;
 }
 .container {
   padding: 1rem;

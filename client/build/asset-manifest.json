@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.a2ed5ef7.chunk.css",
+    "main.css": "/static/css/main.63a9184a.chunk.css",
     "main.js": "/static/js/main.ffeef31f.chunk.js",
     "main.js.map": "/static/js/main.ffeef31f.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.4eab1d6a.js",
@@ -10,7 +10,7 @@
     "static/js/2.78f2db79.chunk.js.map": "/static/js/2.78f2db79.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.e1b25a95.chunk.css.map": "/static/css/2.e1b25a95.chunk.css.map",
-    "static/css/main.a2ed5ef7.chunk.css.map": "/static/css/main.a2ed5ef7.chunk.css.map",
+    "static/css/main.63a9184a.chunk.css.map": "/static/css/main.63a9184a.chunk.css.map",
     "static/js/2.78f2db79.chunk.js.LICENSE.txt": "/static/js/2.78f2db79.chunk.js.LICENSE.txt",
     "static/media/buttons.module.css": "/static/media/socialMediaHero.db7204a2.svg",
     "static/media/styles.css": "/static/media/revicons.e8746a62.woff"
@@ -19,7 +19,7 @@
     "static/js/runtime-main.4eab1d6a.js",
     "static/css/2.e1b25a95.chunk.css",
     "static/js/2.78f2db79.chunk.js",
-    "static/css/main.a2ed5ef7.chunk.css",
+    "static/css/main.63a9184a.chunk.css",
     "static/js/main.ffeef31f.chunk.js"
   ]
 }
