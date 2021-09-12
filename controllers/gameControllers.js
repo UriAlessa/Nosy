@@ -145,11 +145,11 @@ const gameControllers = {
           game,
           coins: { invitated: player2.coins, invitator: player1.coins },
           game_requests: {
-            invitatator: player1.game_requests,
+            invitator: player1.game_requests,
             invitated: player2.game_requests,
           },
           playing_now: {
-            invitatator: player1.playing_now,
+            invitator: player1.playing_now,
             invitated: player2.playing_now,
           },
         });

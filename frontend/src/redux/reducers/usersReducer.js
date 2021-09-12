@@ -112,7 +112,10 @@ const usersReducer = (state = initialState, action) => {
       console.log(action.payload);
       state.socket.emit("accepted_game_request", {
         username: action.payload.username,
-        requests: action.payload.game_requests.invitator,
+        requests:
+          action.payload.game_requests.invitator.length > 0
+            ? action.payload.game_requests.invitator
+            : [],
         playing_now: action.payload.playing_now.invitator,
         game: action.payload.game,
         coins: action.payload.coins,
