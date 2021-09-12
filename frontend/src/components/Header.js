@@ -39,8 +39,8 @@ const Header = (props) => {
           {document.title == "Nosy" && (
             <>
               <a href="#howToPlay">HOW TO PLAY</a>
-              <a href="#nextGames">NEXT GAMES</a>
               <a href="#reviews">REVIEWS</a>
+              <a href="#nextGames">NEXT GAMES</a>
             </>
           )}
           {!props.token ? (

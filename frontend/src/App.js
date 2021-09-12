@@ -91,7 +91,7 @@ const App = (props) => {
         <Route path="/terms" component={Terms} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/notfound" component={NotFound} />
-        <Route path="/game" component={!props.token ? Account : Game} />
+        <Route path="/game" component={!props.token ? Account : Home} />
         <Route path="/accounts" component={!props.token ? Account : Home} />
         <Route path="/friends" component={Friends} />
         <Route

@@ -41,6 +41,10 @@
   outline: none;
 }
 
+.inputForm::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .socialMediaHeroButton {
   width: 9.5vmin;
   height: 9vmin;

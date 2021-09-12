@@ -5,58 +5,6 @@ import React, { useState } from "react";
 let moment = require("moment");
 
 const ReviewSlide = (props) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
-  
-  const next = () => {
-    if (animating) return;
-    const nextIndex =
-      activeIndex === props.allReviews.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const previous = () => {
-    if (animating) return;
-    const nextIndex =
-      activeIndex === 0 ? props.allReviews.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const goToIndex = (newIndex) => {
-    if (animating) return;
-    setActiveIndex(newIndex);
-  };
-  
-  const slides = props.allReviews.map((review, index) => {
-   
-    return (
-      <CarouselItem
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-        key={index}
-      >
-        <div className={styles.slides}>
-          <div>
-          {review.userId && <div className={styles.reviewsPosted}><div ><img alt='avatar' className={styles.avatar} src={review.userId.avatar}/></div><p className={styles.pDescription}>@{review.userId.username}</p></div>}
-          <h4 className={styles.titleDescription}>"{review.title}"</h4>
-          <div
-            className={styles.picGame}
-            style={{ backgroundImage: `url("${review.img}}")` }}
-          ></div>
-          </div>
-          <div>
-        
-          <p className={styles.subtitleDescription}>
-            {moment(review.date).fromNow()}
-          </p>
-          <h3 className={styles.titleDescription}>{review.author}</h3>
-          <p className={styles.pDescription}>{review.description}</p>
-          </div>
-        </div>
-      </CarouselItem>
-    );
-  });
-
   return (
     <Carousel
       additionalTransfrom={0}

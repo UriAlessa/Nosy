@@ -1,15 +1,26 @@
 import styles from '../styles/accounts.module.css'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { PlayButton } from '../components/Buttons'
+import Loader from '../components/Loader'
+import toast from 'react-hot-toast'
+import { connect } from 'react-redux'
 
-const AccountSection = () => {
+const AccountSection = (props) => {
   const [login, setLogin] = useState(false);
+  const [loader, setLoader] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(false)
+    }, 2000);
+  }, [])
 
   return (
     <div className={styles.mainContainer}>
+      {loader && <Loader />}
       <div className={styles.midContainer}>
         {!login ? (
           <>
@@ -58,4 +69,10 @@ const AccountSection = () => {
   );
 };
 
-export default AccountSection;
+const mapStateToProps = (state) => {
+  return {
+    token: state.users.token,
+  };
+};
+
+export default connect(mapStateToProps)(AccountSection)
