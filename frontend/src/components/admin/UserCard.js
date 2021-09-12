@@ -12,6 +12,8 @@ const UserCard = (props) => {
     const [edit, setEdit] = useState(false)
     const [updated, setUpdated] = useState({})
 
+    console.log(connected)
+
     const updateUser = async () => {
         setEdit(!edit)
         try {

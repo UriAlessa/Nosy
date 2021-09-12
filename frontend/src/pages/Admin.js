@@ -107,7 +107,7 @@ const AdminPanel = (props) => {
         <section className={styles.adminContainer}>
             <div className={styles.dataContainer}>
                 <div className={styles.headerContainer}>
-                    <img className={styles.logo} src='/assets/logoSoloLetras.png' alt="" />
+                    <img className={styles.logo} src='/assets/LogoRuleta.png' alt="" />
                     <nav className={styles.navContainer}>
                         <span className={`${styles.spanPanel} ${document.title.includes('Dashboard') && styles.active}`} onClick={() => {
                             document.title = 'Nosy - Admin Dashboard'
@@ -124,7 +124,7 @@ const AdminPanel = (props) => {
                     </nav>
                     <div className={styles.user}>
                         <h3>Hello, Admin</h3>
-                        <img className={styles.avatar} src={props.avatar} alt="" />
+                        <div className={styles.iconAvatar} style={{ backgroundImage: `url('${props.avatar}')` }} alt=""></div>
                     </div>
                 </div>
                 <div className={styles.infoSection}>
