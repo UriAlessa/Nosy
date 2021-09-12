@@ -6,7 +6,7 @@ const usersActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/signup",
+          "https://benosy.herokuapp.com/api/user/signup",
           {
             ...newUser,
           }
@@ -31,7 +31,7 @@ const usersActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/login",
+          "https://benosy.herokuapp.com/api/user/login",
           {
             ...newUser,
           }
@@ -68,7 +68,7 @@ const usersActions = {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/friend_request",
+          "https://benosy.herokuapp.com/api/user/friend_request",
           { username },
           {
             headers: {
@@ -103,7 +103,7 @@ const usersActions = {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.put(
-          "http://localhost:4000/api/user/friend_request",
+          "https://benosy.herokuapp.com/api/user/friend_request",
           { accept, username },
           {
             headers: {
@@ -146,7 +146,7 @@ const usersActions = {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/game/newgame",
+          "https://benosy.herokuapp.com/api/game/newgame",
           { username },
           {
             headers: {
@@ -158,7 +158,7 @@ const usersActions = {
         if (!response.data.success) throw new Error();
         return dispatch({
           type: "SEND_GAME_REQUEST",
-          payload: username,
+          payload: { username, game_requests: response.data.game_requests },
         });
       } catch (error) {
         toast.error("Session expired", {
@@ -175,13 +175,13 @@ const usersActions = {
     };
   },
 
-  answerGameRequest: (username, accept, gameId) => {
+  answerGameRequest: (accept, username, game_id) => {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.put(
-          "http://localhost:4000/game/newgame",
-          { username, accept, gameId },
+          "https://benosy.herokuapp.com/game/newgame",
+          { username, accept, game_id },
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -189,6 +189,21 @@ const usersActions = {
           }
         );
         if (!response.data.success) throw new Error();
+        if (accept) {
+          return dispatch({
+            type: "ACCEPT_GAME_REQUEST",
+            payload: {
+              username,
+              friend_requests: response.data.friend_requests,
+              friends: response.data.friends,
+            },
+          });
+        } else {
+          return dispatch({
+            type: "DECLINE_GAME_REQUEST",
+            payload: { friend_requests: response.data.friend_requests },
+          });
+        }
         dispatch({
           type: "ANSWER_GAME_REQUEST",
           payload: username,
@@ -212,11 +227,14 @@ const usersActions = {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
       try {
-        let response = await axios.get("http://localhost:4000/api/user/token", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
+        let response = await axios.get(
+          "https://benosy.herokuapp.com/api/user/token",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
         dispatch({
           type: "LOG_IN_USER",
           payload: { ...response.data, token },
@@ -249,7 +267,7 @@ const usersActions = {
       });
       try {
         let res = await axios.put(
-          "http://localhost:4000/api/user/logout",
+          "https://benosy.herokuapp.com/api/user/logout",
           {},
           {
             headers: {
@@ -266,7 +284,7 @@ const usersActions = {
   },
   sendMail: (newUser) => {
     return async () => {
-      let response = await axios.post("http://localhost:4000/api/mail", {
+      let response = await axios.post("https://benosy.herokuapp.com/api/mail", {
         ...newUser,
       });
       return response;
@@ -277,7 +295,7 @@ const usersActions = {
     return async () => {
       try {
         let response = await axios.post(
-          `http://localhost:4000/api/review`,
+          `https://benosy.herokuapp.com/api/review`,
           {
             ...newReview,
           },
@@ -301,7 +319,9 @@ const usersActions = {
   getReviews: () => {
     return async () => {
       try {
-        let response = await axios.get("http://localhost:4000/api/review");
+        let response = await axios.get(
+          "https://benosy.herokuapp.com/api/review"
+        );
         if (response.data.success) {
           return { success: true, response: response.data.response };
         } else {
@@ -318,7 +338,7 @@ const usersActions = {
       const token = localStorage.getItem("token");
       try {
         let response = await axios.put(
-          `http://localhost:4000/api/user/emoji`,
+          `https://benosy.herokuapp.com/api/user/emoji`,
           { emoji },
           {
             headers: {
@@ -338,7 +358,7 @@ const usersActions = {
     return async () => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/add_friend",
+          "https://benosy.herokuapp.com/api/user/add_friend",
           { username },
           {
             headers: {

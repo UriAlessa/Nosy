@@ -18,7 +18,10 @@
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  margin: 1rem 0;
+  padding: 1rem 0;
+  width: 100%;
+  border-bottom: 1.3px solid white;
+  text-align: center;
 }
 .midContainer {
   display: flex;
@@ -56,6 +59,14 @@
   justify-content: space-between;
   margin: 0.5rem;
 }
+.listContainer {
+  flex: 1;
+  width: 98%;
+}
+.listContainer:first-child {
+  border-top: 1.3px solid white;
+  border-bottom: 1.3px solid white;
+}
 .optionsContainer button {
   padding: 1rem;
 }
@@ -86,8 +97,14 @@
 }
 .search {
   display: flex;
+  align-items: center;
   gap: 0.3rem;
   margin-top: 1vh;
+}
+.searchContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .inputSearch {
   width: 80%;
@@ -98,6 +115,7 @@
   width: 6vw;
   border-radius: 3px;
   background-color: #84eeb7;
+  padding: 1vh 1vw;
 }
 .contP {
   width: 100%;

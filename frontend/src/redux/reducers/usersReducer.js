@@ -14,7 +14,7 @@ const usersReducer = (state = initialState, action) => {
       localStorage.setItem("token", action.payload.token);
       let socket = state.socket
         ? state.socket
-        : io("http://localhost:4000/", {
+        : io("https://benosy.herokuapp.com/", {
             query: "token=" + action.payload.token,
           });
       return {
@@ -39,6 +39,22 @@ const usersReducer = (state = initialState, action) => {
           ...state.userData,
           friend_requests: action.payload.friend_requests,
           friends: action.payload.friends,
+        },
+      };
+    case "SET_FRIENDS_LIST":
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          friends: action.payload,
+        },
+      };
+    case "SET_GAME_REQUESTS":
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          game_requests: action.payload.game_requests,
         },
       };
     case "SEND_FRIEND_REQUEST":
@@ -77,11 +93,31 @@ const usersReducer = (state = initialState, action) => {
         },
       };
     case "SEND_GAME_REQUEST":
-      state.socket.emit("game_request", action.payload);
-      return state;
+      state.socket.emit("game_request", {
+        username: action.payload.username,
+        requests: action.payload.friend_requests.invitated,
+      });
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          game_requests: action.payload.game_requests.invitator,
+        },
+      };
     case "ACCEPT_GAME_REQUEST":
-      state.socket.emit("answer_game_request", action.payload);
-      return state;
+      state.socket.emit("accepted_friend_request", {
+        username: action.payload.username,
+        requests: action.payload.friend_requests.invitator,
+        friends: action.payload.friends.invitator,
+      });
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          friend_requests: action.payload.friend_requests.invitated,
+          friends: action.payload.friends.invitated,
+        },
+      };
     case "LOG_OUT":
       localStorage.removeItem("token");
       state.socket.emit("disconnection");

@@ -11,21 +11,39 @@ const gameControllers = {
           player1: { user: req.user._id },
           current_player: req.user._id,
         });
-        await game.save();
-        await User.findOneAndUpdate(
+        game = await game.save();
+
+        let userInvitated = await User.findOneAndUpdate(
           { username: req.body.username },
-          { $push: { game_requests: { creator: false, game_id: game._id } } }
+          { $push: { game_requests: { creator: false, game_id: game._id } } },
+          { new: true }
         );
-        await User.findOneAndUpdate(
+        // .populate({
+        //   path: "playing_now",
+        //   populate: { path: "game_id", model: "multiplayer game" },
+        // });
+        let user = await User.findOneAndUpdate(
           { username: req.user.username },
-          { $push: { game_requests: { creator: true, game_id: game._id } } }
+          { $push: { game_requests: { creator: true, game_id: game._id } } },
+          { new: true }
         );
+        // .populate({
+        //   path: "playing_now",
+        //   populate: { path: "game_id", model: "multiplayer game" },
+        // });
+        res.json({
+          success: true,
+          game_requests: {
+            invitator: user.game_requests,
+            invitated: userInvitated.game_requests,
+          },
+        });
       } else {
         game = new SinglePlayer({
           player: { user: req.user._id },
         });
         await game.save();
-        await User.findOneAndUpdate(
+        let user = await User.findOneAndUpdate(
           { _id: req.user._id },
           {
             $set: {
@@ -38,20 +56,21 @@ const gameControllers = {
           },
           { new: true }
         );
+        // .populate({
+        //   path: "playing_now",
+        //   populate: { path: "game_id", model: "singleplayer game" },
+        // });
+        res.json({
+          success: true,
+          response: { game, coins: req.user.coins, user },
+        });
       }
-      res.json({ success: true, response: { game, coins: req.user.coins } });
     } catch (error) {
       res.json({ success: false, error: error.message });
     }
   },
   acceptGameRequest: async (req, res) => {
     try {
-      await User.updateMany(
-        { "game_requests.game_id": req.body.game_id },
-        {
-          $pull: { game_requests: { game_id: req.body.game_id } },
-        }
-      );
       if (req.body.accept) {
         let game = await MultiPlayer.findOneAndUpdate(
           { _id: req.body.game_id },
@@ -61,11 +80,21 @@ const gameControllers = {
         await User.updateMany(
           { "game_requests.game_id": req.body.game_id },
           {
-            $pull: { game_requests: { game_id: req.body.game_id } },
             $set: { playing_now: { status: true, game_id: game._id } },
-          }
+          },
+          { new: true }
         );
-        res.json({ success: true, response: game });
+        let users = await User.updateMany(
+          { "game_requests.game_id": req.body.game_id },
+          {
+            $pull: { game_requests: { game_id: req.body.game_id } },
+          },
+          { new: true }
+        );
+        console.log(users);
+        // let player1 =
+        // let player2 =
+        // res.json({ success: true, game, {game_requests:{invitatator:users,invitated:users} });
       } else {
         await MultiPlayer.findOneAndDelete({ _id: req.body.game_id });
         throw new Error("Declined");

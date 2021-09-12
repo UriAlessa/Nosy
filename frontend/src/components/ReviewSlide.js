@@ -55,7 +55,7 @@ const ReviewSlide = (props) => {
     >
       {props.allReviews.map((review, index) => {
         return (
-          <div className={styles.slides}>
+          <div className={styles.slides} key={review._id}>
             <div>
               {review.userId && (
                 <div className={styles.reviewsPosted}>
