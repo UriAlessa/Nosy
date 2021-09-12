@@ -12,17 +12,16 @@ const questionsControllers = {
     } else {
       questions = game.player.questions;
     }
+    questions = questions.map((qs) => qs.question);
     try {
-      Question.find({ category })
-        .count()
-        .exec(async (err, count) => {
-          let random = Math.floor(Math.random() * count);
-          let randomQuestion;
-          do {
-            randomQuestion = await Question.findOne({ category }).skip(random);
-          } while (questions.some((qs) => qs.question === randomQuestion._id));
-          res.json({ success: true, response: randomQuestion });
-        });
+      let allQuestoins = await Question.find({ category });
+      let randomQuestion;
+      do {
+        randomQuestion = allQuestoins.find(
+          (qs, ind, arr) => arr[Math.random() * allQuestoins.length]
+        );
+      } while (questions.some((qs) => qs === randomQuestion._id));
+      res.json({ success: true, response: randomQuestion });
     } catch (error) {
       res.json({ success: false, error: error.message });
     }
