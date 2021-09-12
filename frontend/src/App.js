@@ -59,23 +59,23 @@ const App = (props) => {
           );
         }
       );
-      props.socket.on("connected", (username) => {
-        username !== props.username &&
+      props.socket.on("connected", async (username) => {
+        if (
+          username !== props.username &&
           props.userData.friends.length > 0 &&
-          props.userData.friends.some(
-            (friend) => friend.username === username
-          ) &&
-          console.log("hola soy connected") &&
-          props.setFriendsList();
+          props.userData.friends.some((friend) => friend.username === username)
+        ) {
+          await props.setFriendsList();
+        }
       });
-      props.socket.on("disconnection", (username) => {
-        username !== props.username &&
+      props.socket.on("disconnection", async (username) => {
+        if (
+          username !== props.username &&
           props.userData.friends.length > 0 &&
-          props.userData.friends.some(
-            (friend) => friend.username === username
-          ) &&
-          console.log("hola soy disconnection") &&
-          props.setFriendsList();
+          props.userData.friends.some((friend) => friend.username === username)
+        ) {
+          await props.setFriendsList();
+        }
       });
     }
     // eslint-disable-next-line
