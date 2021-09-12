@@ -16,7 +16,6 @@ const UserCard = (props) => {
         setEdit(!edit)
         try {
             let response = await props.updateUser(updated)
-            console.log(response)
             if (response.success) {
                 toast.success("Changes Saved Successfully", {
                     position: "top-left",
@@ -30,7 +29,16 @@ const UserCard = (props) => {
                 });
             }
         } catch (error) {
-            console.log(error)
+            toast.error("Something went wrong.", {
+                position: "top-left",
+                style: {
+                    borderRadius: "10px",
+                    background: "#453ab7",
+                    color: "#fff",
+                    fontFamily: "Ubuntu, sans-serif",
+                    height: "10vh"
+                },
+            });
         }
     }
 
@@ -38,7 +46,16 @@ const UserCard = (props) => {
         try {
             props.deleteUser(id)
         } catch (error) {
-            console.log(error)
+            toast.error("Something went wrong.", {
+                position: "top-left",
+                style: {
+                    borderRadius: "10px",
+                    background: "#453ab7",
+                    color: "#fff",
+                    fontFamily: "Ubuntu, sans-serif",
+                    height: "10vh"
+                },
+            });
         }
     }
 
@@ -71,7 +88,6 @@ const UserCard = (props) => {
         })
     }
 
-    console.log(updated)
     return (
         <>
             <article className={styles.userCard}>

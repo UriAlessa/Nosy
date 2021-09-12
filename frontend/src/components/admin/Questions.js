@@ -105,7 +105,7 @@ const Questions = (props) => {
       </div>
       <div className={style.loginBox} style={{ height: '90%' }}>
         <p>Create New Question</p>
-        <form>
+        <form className={style.userForm}>
           <div className={style.userBox}>
             <select name="category" id="category" onClick={inputHandler}>
               <option defaultValue="" disabled>Choose a category</option>

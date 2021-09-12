@@ -34,7 +34,6 @@ const adminUsersActions = {
     };
   },
   updateUser: (newUser) => {
-    console.log(newUser)
     let token = localStorage.getItem("token");
     return async (dispatch) => {
       let response = await axios.put(
@@ -46,7 +45,6 @@ const adminUsersActions = {
           },
         }
       );
-      console.log(response)
       if (response.data.success) {
         await dispatch({ type: "DELETE_USER", payload: newUser });
         return response.data;
@@ -55,7 +53,6 @@ const adminUsersActions = {
   },
 
   deleteUser: (userId) => {
-    console.log('action delete')
     let token = localStorage.getItem("token");
     return async (dispatch) => {
       let response = await axios.delete(

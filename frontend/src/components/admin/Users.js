@@ -67,7 +67,7 @@ const Users = (props) => {
             </div>
             <div className={styles.loginBox}>
                 <p>Create Admin User</p>
-                <form>
+                <form className={styles.userForm}>
                     <div className={styles.userBox}>
                         <input ref={usernameInput} name="username" type="text" placeholder="Username" onChange={inputHandler} />
                     </div>

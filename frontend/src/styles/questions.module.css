@@ -126,6 +126,14 @@
     cursor: pointer;
 }
 
+.correctAnswer{
+    color: green
+}
+
+.incorrectAnswer{
+    color: red;
+}
+
 /* 
 .resumeContainer{
     display: flex;

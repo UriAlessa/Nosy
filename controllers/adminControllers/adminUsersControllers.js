@@ -35,12 +35,10 @@ const AdminUsersControllers = {
       let users = await User.find();
       res.json({ success: true, response: users });
     } catch (error) {
-      console.log(error);
       res.json({ success: false, error: error.message });
     }
   },
   updateUser: async (req, res) => {
-    console.log(req.body);
     // const { key } = req.user.admin;
     try {
       // let match = key && bcrypt.compareSync(process.env.SECRETORKEY, key);
@@ -56,7 +54,6 @@ const AdminUsersControllers = {
     }
   },
   deleteUser: async (req, res) => {
-    console.log(req.params.id)
     // const { key } = req.user.admin;
     try {
       // let match = key && bcrypt.compareSync(process.env.SECRETORKEY, key);

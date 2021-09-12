@@ -1,5 +1,5 @@
 import styles from "../../styles/questions.module.css";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { connect } from "react-redux";
 import adminQuestionActions from "../../redux/actions/admin/adminQuestionsActions";
 import { toast } from "react-hot-toast";
@@ -7,7 +7,7 @@ const Swal = require("sweetalert2");
 
 
 const QuestionCard = (props) => {
-    const { _id, category, question, possibleAnswers, status, creator } = props.question
+    const { _id, category, question, possibleAnswers, status, correctAnswer } = props.question
     const [edit, setEdit] = useState(false);
     const [updated, setUpdated] = useState({})
 
@@ -32,16 +32,6 @@ const QuestionCard = (props) => {
         try {
             let response = await props.deleteQuestion(_id)
             if (response.success) {
-                toast.success("Question deleted.", {
-                    position: "top-left",
-                    style: {
-                        borderRadius: "10px",
-                        background: "#453ab7",
-                        color: "#fff",
-                        fontFamily: "Ubuntu, sans-serif",
-                        height: "10vh"
-                    },
-                });
                 props.reload()
             } else {
                 throw new Error()
@@ -79,7 +69,6 @@ const QuestionCard = (props) => {
             }
         });
     }
-
 
     const updateQuestion = async () => {
         try {
@@ -126,7 +115,7 @@ const QuestionCard = (props) => {
                     {
                         possibleAnswers.map((answer, index) => {
                             return (
-                                edit ? <input defaultValue={answer} key={index} onChange={inputHandler} /> : <p key={index}>{answer}</p>
+                                edit ? <input defaultValue={answer} key={index} onChange={inputHandler} className={answer === correctAnswer ? styles.correctAnswer : styles.incorrectAnswer} /> : <p className={answer === correctAnswer ? styles.correctAnswer : styles.incorrectAnswer} key={index}>{answer}</p>
                             )
                         })
                     }
