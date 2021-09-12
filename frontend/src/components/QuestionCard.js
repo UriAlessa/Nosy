@@ -257,6 +257,7 @@ const QuestionCard = (props) => {
                         <img
                           className={styles.imgPowersCoin}
                           src="/assets/coin.png"
+                          alt='coin'
                         />
                       </div>
                     </div>
@@ -287,6 +288,7 @@ const QuestionCard = (props) => {
                         <img
                           className={styles.imgPowersCoin}
                           src="/assets/coin.png"
+                          alt='coin'
                         />
                       </div>
                     </div>
@@ -320,6 +322,7 @@ const QuestionCard = (props) => {
                     <img
                       className={styles.imgPowersCoin}
                       src="/assets/coin.png"
+                      alt='coin'
                     />
                   </div>
                 </div>

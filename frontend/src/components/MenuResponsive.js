@@ -46,9 +46,11 @@ const MenuResponsive = (props) => {
         </div>
       )}
       <nav>
-        <Link to="/" onClick={showMenu}>
-          <p>HOME</p>
-        </Link>
+      {document.title != "Nosy" && (
+            <NavLink to="/">
+              <p>HOME</p>
+            </NavLink>
+          )}
         <a onClick={showMenu} href="#howToPlay">
           HOW TO PLAY
         </a>

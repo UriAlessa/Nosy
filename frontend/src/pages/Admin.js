@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import Users from "../components/admin/Users"
 import Dashboard from '../components/admin/Dashboard'
 import Questions from "../components/admin/Questions"
-import Games from "../components/admin/Games"
 import { connect } from 'react-redux'
 import adminUserActions from "../redux/actions/admin/adminUserActions";
 import adminQuestionsActions from "../redux/actions/admin/adminQuestionsActions";

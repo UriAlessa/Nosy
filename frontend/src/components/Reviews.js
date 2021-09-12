@@ -74,6 +74,7 @@ const Reviews = (props) => {
               <img
                 className={styles.picGame}
                 src="https://i.postimg.cc/9FbTSStZ/review.png"
+                alt='review'
               />
               <p className={styles.pDescription}>
                 The reviews can be seen for 24 hours ... don't miss them!

@@ -14,8 +14,6 @@ footer {
 }
 
 .footerLogo {
-  /* width: 150px;
-  height: 60px; */
   width: 160px;
   height: 80px;
   background-repeat: no-repeat;
@@ -23,12 +21,8 @@ footer {
   background-position: center;
 }
 
-.footerHorizon {
-  width: 163px;
-  height: 48px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+.footerMindHubLogo {
+  width: 130px;
 }
 
 .footerNav {

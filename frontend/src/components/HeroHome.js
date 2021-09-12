@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { PlayButton, SocialMediaHeroButton } from "../components/Buttons";
+import { PlayButton } from "../components/Buttons";
 import style from "../styles/home/heroHome.module.css";
 
 const HeroHome = () => {
