@@ -115,7 +115,7 @@ const gameControllers = {
         await User.updateMany(
           { "game_requests.game_id": game_id },
           {
-            $set: { playing_now: { status: true, game_id: game_id } },
+            $set: { playing_now: { status: true, game_id } },
             $pull: { game_requests: { game_id: game_id } },
           },
           { new: true }
@@ -147,6 +147,10 @@ const gameControllers = {
           game_requests: {
             invitatator: player1.game_requests,
             invitated: player2.game_requests,
+          },
+          playing_now: {
+            invitatator: player1.playing_now,
+            invitated: player2.playing_now,
           },
         });
       } else {

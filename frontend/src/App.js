@@ -39,8 +39,8 @@ const App = (props) => {
       });
       props.socket.on(
         "accepted_game_request",
-        async ({ username, requests, game, coins }) => {
-          await props.setGameRequests(requests);
+        async ({ username, requests, playing_now, game, coins }) => {
+          await props.setGameRequests(requests, playing_now);
           await props.setGame(game, coins);
           toast(username + " invited you to a game!", {
             icon: "🎮",

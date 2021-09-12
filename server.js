@@ -65,14 +65,18 @@ io.on("connection", (socket) => {
       requests,
     });
   });
-  socket.on("accepted_game_request", ({ username, requests, game, coins }) => {
-    io.to(username).emit("accepted_game_request", {
-      username: socketUsername,
-      requests,
-      game,
-      coins,
-    });
-  });
+  socket.on(
+    "accepted_game_request",
+    ({ username, requests, playing_now, game, coins }) => {
+      io.to(username).emit("accepted_game_request", {
+        username: socketUsername,
+        requests,
+        playing_now,
+        game,
+        coins,
+      });
+    }
+  );
   socket.on("friend_request", ({ username, requests }) => {
     io.to(username).emit("friend_request", {
       username: socketUsername,
