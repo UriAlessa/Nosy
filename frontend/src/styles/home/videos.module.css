@@ -26,7 +26,6 @@
 .videosHome > div > div {
     border-radius: 10px;
     background-color: #16183F;
-    padding: 3vmin;
 }
 
 .videosHome h3 {
@@ -36,9 +35,9 @@
     margin-bottom: 3vmin;
 }
 
-.videosHome video {
+.videosHome iframe {
     width: 100%;
-    height: 40vh;
+    height: 21.5vw;
     border: 5px solid white;
     border-radius: 10px;
 }
@@ -47,4 +46,10 @@
     .videosHome > div {
         grid-template-columns: 80%;
     }
+
+    .videosHome iframe {
+        height: 33.5vw;
+    }
+
+
 }
