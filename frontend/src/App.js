@@ -40,14 +40,11 @@ const App = (props) => {
       props.socket.on(
         "accepted_game_request",
         ({ username, requests, playing_now, game, coins }) => {
-          console.log({ requests, playing_now, game, coins });
           props.setGameRequests(requests, playing_now);
-          console.log("Hoola");
           props.setGame(game, coins);
           toast(username + " accepted your game invitation!", {
             icon: "🎮",
           });
-          props.history.push("/game");
         }
       );
       props.socket.on("change_current_player", (username) => {});

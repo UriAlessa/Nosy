@@ -39,7 +39,8 @@ const FriendCard = ({
             id={game && request.game_id}
             onClick={(e) =>
               game
-                ? props.answerGameRequest(false, e.target.value, e.target.id)
+                ? props.answerGameRequest(false, e.target.value, e.target.id) &&
+                  props.history.push("/game")
                 : props.answerFriendRequest(false, e.target.value)
             }
             className={styles.buttonRefuse}
