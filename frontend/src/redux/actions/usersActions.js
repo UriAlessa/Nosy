@@ -189,7 +189,6 @@ const usersActions = {
           }
         );
         if (!response.data.success) throw new Error();
-        console.log(response.data);
         if (accept) {
           dispatch({
             type: "SET_GAME",
@@ -202,6 +201,7 @@ const usersActions = {
             type: "ACCEPT_GAME_REQUEST",
             payload: {
               username,
+              playing_now: response.data.playing_now,
               game_requests: response.data.game_requests,
               game: response.data.game,
               coins: response.data.coins.invitator,

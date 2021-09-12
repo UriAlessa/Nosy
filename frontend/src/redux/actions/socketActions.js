@@ -1,5 +1,4 @@
 import axios from "axios";
-import { dispatch } from "react-hot-toast/dist/core/store";
 
 const socketActions = {
   setFriendRequests: (requests) => {
@@ -17,11 +16,11 @@ const socketActions = {
         payload: { friend_requests: requests, friends },
       });
   },
-  setGameRequests: (requests) => {
+  setGameRequests: (requests, playing_now) => {
     return (dispatch) => {
       dispatch({
         type: "SET_GAME_REQUESTS",
-        payload: { game_requests: requests },
+        payload: { game_requests: requests, playing_now },
       });
     };
   },

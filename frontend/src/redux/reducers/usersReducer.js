@@ -55,6 +55,7 @@ const usersReducer = (state = initialState, action) => {
         userData: {
           ...state.userData,
           game_requests: action.payload.game_requests,
+          playing_now: action.payload.playing_now,
         },
       };
     case "SEND_FRIEND_REQUEST":
@@ -108,6 +109,7 @@ const usersReducer = (state = initialState, action) => {
       state.socket.emit("accepted_friend_request", {
         username: action.payload.username,
         requests: action.payload.game_requests.invitator,
+        playing_now: action.payload.playing_now.invitator,
         game: action.payload.game,
         coins: action.payload.coins,
       });
@@ -116,6 +118,7 @@ const usersReducer = (state = initialState, action) => {
         userData: {
           ...state.userData,
           game_requests: action.payload.game_requests.invitated,
+          playing_now: action.payload.playing_now.invitated,
         },
       };
     case "LOG_OUT":
