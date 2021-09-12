@@ -22,6 +22,14 @@ header {
   background-repeat: no-repeat;
 }
 
+.logoR {
+  width: 200px;
+  height: 90px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 header nav {
   display: flex;
   justify-content: space-between;
