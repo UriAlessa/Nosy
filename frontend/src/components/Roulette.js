@@ -34,7 +34,7 @@ const Roulette = (props) => {
           alt="rouletteeee"
         />
         <img
-          src="/assets/spin1.png"
+          src="/assets/spin3.png"
           alt="spins"
           className={styles.buttonRoulette}
           onClick={() => {
