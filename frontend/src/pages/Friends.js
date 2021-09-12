@@ -70,22 +70,26 @@ const Friends = (props) => {
           ) : (
             <div className={styles.friendsList}>
               <h3 className={styles.subtitle}>Search Friends</h3>
-              <div className={styles.search}>
-                <input
-                  ref={friendSearched}
-                  className={styles.inputSearch}
-                  type="text"
-                  placeholder="Search your friend"
-                />
-                <button onClick={clickHandler}>Search</button>
+              <div className={styles.searchContainer}>
+                <div className={styles.search}>
+                  <input
+                    ref={friendSearched}
+                    className={styles.inputSearch}
+                    type="text"
+                    placeholder="Search your friend"
+                  />
+                  <button onClick={clickHandler}>Search</button>
+                </div>
               </div>
-              {userSearched && (
-                <FriendCard
-                  type="sendRequest"
-                  setUserSearched={setUserSearched}
-                  user={userSearched}
-                />
-              )}
+              <div className={styles.listContainer}>
+                {userSearched && (
+                  <FriendCard
+                    type="sendRequest"
+                    setUserSearched={setUserSearched}
+                    user={userSearched}
+                  />
+                )}
+              </div>
             </div>
           )}
           <div className={styles.friendsList}>

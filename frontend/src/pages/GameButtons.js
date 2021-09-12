@@ -51,7 +51,7 @@ const GameButtons = (props) => {
           </div>
           <img
             className={styles.logo}
-            src="/assets/logoSoloLetras.png"
+            src="/assets/LogoRuleta.png"
             alt="logo"
           />
         </div>
