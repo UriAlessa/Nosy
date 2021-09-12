@@ -42,7 +42,6 @@ const usersReducer = (state = initialState, action) => {
         },
       };
     case "SET_FRIENDS_LIST":
-      console.log("user reducer");
       return {
         ...state,
         userData: {

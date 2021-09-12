@@ -87,7 +87,6 @@ const socketActions = {
   setFriendsList: () => {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
-      console.log("action setFL");
       try {
         let response = await axios.get(
           "https://benosy.herokuapp.com/api/user/friend_list",
@@ -98,8 +97,6 @@ const socketActions = {
           }
         );
         if (!response.data.success) throw new Error();
-        console.log("success true");
-        console.log(response.data);
         return dispatch({
           type: "SET_FRIENDS_LIST",
           payload: response.data.friends_list,

@@ -246,7 +246,6 @@ const usersAccountControllers = {
   getFriendsList: async (req, res) => {
     res.json({ success: true, friends_list: req.user.friends });
   },
-
   verifyToken: async (req, res) => {
     res.json({
       success: true,
