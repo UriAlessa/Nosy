@@ -148,11 +148,13 @@ const usersAccountControllers = {
   },
   acceptFriendRequest: async (req, res) => {
     const { username, accept } = req.body;
+    console.log(username);
     try {
       let user = await User.findOne({ username });
-
+      let userNotAdded;
+      let userAdded;
       if (accept) {
-        let userAdded = await User.findOneAndUpdate(
+        userAdded = await User.findOneAndUpdate(
           { username: req.user.username },
           {
             $pull: { friend_requests: { user: user._id } },
@@ -194,20 +196,9 @@ const usersAccountControllers = {
               select: "username avatar",
             },
           });
-        res.json({
-          success: true,
-          friend_requests: {
-            invitator: user.friend_requests,
-            invitated: userAdded.friend_requests,
-          },
-          friends: {
-            invitator: user.friends,
-            invitated: userAdded.friends,
-          },
-        });
       } else {
-        let userAdded = await User.findOneAndUpdate(
-          { username: req.user.username },
+        userNotAdded = await User.findOneAndUpdate(
+          { _id: req.user._id },
           {
             $pull: { friend_requests: { user: user._id } },
           },
@@ -220,13 +211,27 @@ const usersAccountControllers = {
             select: "username avatar",
           },
         });
-        res.json({
-          success: true,
-          friend_requests: {
-            invitated: userAdded.friend_requests,
-          },
-        });
       }
+      const response = accept
+        ? {
+            success: true,
+            friend_requests: {
+              invitator: user.friend_requests,
+              invitated: userAdded.friend_requests,
+            },
+            friends: {
+              invitator: user.friends,
+              invitated: userAdded.friends,
+            },
+          }
+        : {
+            success: true,
+            friend_requests: {
+              invitated: userNotAdded.friend_requests,
+            },
+          };
+      console.log("holas");
+      res.json(response);
     } catch (error) {
       res.json({ success: false, error: error.message });
     }

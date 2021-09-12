@@ -31,6 +31,7 @@ const FriendCard = ({ type, request, user, friend, ...props }) => {
           <button
             onClick={(e) => props.answerFriendRequest(false, e.target.value)}
             className={styles.buttonRefuse}
+            value={request.user.username}
           >
             REFUSE
           </button>
@@ -57,7 +58,7 @@ const FriendCard = ({ type, request, user, friend, ...props }) => {
           onClick={(e) => {
             props.addFriend(e.target.value);
             setClicked(true);
-            setTimeout(() => props.setUserSeached(null), 1000);
+            setTimeout(() => props.setUserSearched(null), 1000);
           }}
           disabled={clicked}
           className={clicked ? styles.buttonRefuse : styles.accept}

@@ -14,7 +14,7 @@ const usersReducer = (state = initialState, action) => {
       localStorage.setItem("token", action.payload.token);
       let socket = state.socket
         ? state.socket
-        : io("https://benosy.herokuapp.com/", {
+        : io("http://localhost:4000/", {
             query: "token=" + action.payload.token,
           });
       return {
@@ -68,6 +68,7 @@ const usersReducer = (state = initialState, action) => {
         },
       };
     case "DECLINE_FRIEND_REQUEST":
+      console.log(action.payload);
       return {
         ...state,
         userData: {
