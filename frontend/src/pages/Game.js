@@ -36,12 +36,15 @@ const Game = (props) => {
   useEffect(() => {
     props.setPlayNow(false);
     if (props.token && !props.game) {
+      console.log("soy create game");
       createGame();
     }
     if (props.game && !props.playNow) {
+      console.log("soy set game");
       props.setGame(localStorage.getItem("token"));
     }
     if (props.game && props.playNow) {
+      console.log("soy la sweetalert");
       Swal.fire({
         title: "There's a game in course",
         text: "Do you want to start a new one?",

@@ -65,7 +65,7 @@ const gameControllers = {
           player: { user: req.user._id },
         });
         await game.save();
-        let user = await User.findOneAndUpdate(
+        await User.findOneAndUpdate(
           { _id: req.user._id },
           {
             $set: {
@@ -80,7 +80,7 @@ const gameControllers = {
         );
         res.json({
           success: true,
-          response: { game, coins: req.user.coins, user },
+          response: { game, coins: req.user.coins },
         });
       }
     } catch (error) {
@@ -161,15 +161,11 @@ const gameControllers = {
       res.json({ success: false, error: error.message });
     }
   },
-  getCurrentGame: async (req, res) => {
-    try {
-      res.json({
-        success: true,
-        response: { game: req.user.playing_now.game_id, coins: req.user.coins },
-      });
-    } catch (error) {
-      res.json({ success: false, error: error.message });
-    }
+  getCurrentGame: (req, res) => {
+    res.json({
+      success: true,
+      response: { game: req.user.playing_now.game_id, coins: req.user.coins },
+    });
   },
   answer: async (req, res) => {
     const { question, answer, nosy, powers_used, coins_spent } = req.body;

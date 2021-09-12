@@ -11,7 +11,7 @@ const gameReducer = (
         coins: action.payload.coins,
       };
     default:
-      return { ...state };
+      return state;
   }
 };
 
