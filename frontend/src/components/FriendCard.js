@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
 import styles from "../styles/friendCard.module.css";
 
 const FriendCard = ({ type, request, user, friend, ...props }) => {
+  const [clicked, setClicked] = useState(false);
   const ImageFriendCard = (
     <div
       className={styles.logo}
@@ -52,7 +54,12 @@ const FriendCard = ({ type, request, user, friend, ...props }) => {
           <h3>{user.username}</h3>
         </div>
         <button
-          onClick={(e) => props.addFriend(e.target.value)}
+          onClick={(e) => {
+            props.addFriend(e.target.value);
+            setClicked(true);
+          }}
+          disabled={clicked}
+          className={clicked ? styles.buttonRefuse : styles.accept}
           value={user.username}
         >
           SEND INVITATION

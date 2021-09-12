@@ -1,7 +1,7 @@
-.section{
+.section {
   width: 80%;
   border: 1.3px solid white;
-  margin: .5rem;
+  margin: 0.5rem;
   min-height: 20vh;
   border-radius: 10px;
   display: flex;
@@ -9,7 +9,6 @@
   align-items: center;
   padding: 0.5rem;
 }
-
 
 .logo {
   width: 3.5vw;
@@ -27,67 +26,77 @@
 }
 
 .buttons,
-  .userDate{
+.userDate {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.divFriend{
+.divFriend {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
-div.friendInfo{
+div.friendInfo {
   margin-right: 2em;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.divUserDate{
+.divUserDate {
   margin: 0.5rem;
 }
-.userDate{
+.userDate {
   margin-top: 0.5rem;
 }
-.userDate >* {
-  margin: .3rem;
+.userDate > * {
+  margin: 0.3rem;
 }
-.buttons{
+.buttons {
   margin-bottom: 0.3rem;
 }
-.buttons>*{
-  margin: .5rem;
+.buttons > * {
+  margin: 0.5rem;
 }
-.container button{
-    font-family: 'Ubuntu', sans-serif;
-    cursor: pointer;
-    border: none;
-    padding: 0.5rem ;
-    border-radius: 3px;
-    color:white;
-    background-color: #43b14b;
-    text-transform: uppercase;
+.container button {
+  font-family: "Ubuntu", sans-serif;
+  cursor: pointer;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 3px;
+  color: white;
+  background-color: #43b14b;
+  text-transform: uppercase;
+}
+.accept {
+  font-family: "Ubuntu", sans-serif;
+  cursor: pointer;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 3px;
+  color: white;
+  background-color: #43b14b;
+  text-transform: uppercase;
 }
 
-.container .buttonRefuse{
-    background-color: #cb5b3b;
+.container .buttonRefuse {
+  background-color: #cb5b3b;
 }
 
-@media(min-width:400px) and (max-width:800px){
+@media (min-width: 400px) and (max-width: 800px) {
   /* .section {
     width: 80%;
     margin: 1vw;
   } */
-  .logo{
+  .logo {
     width: 3rem;
     height: 3rem;
   }
-.container button {
+  .container button {
     padding: 0.5rem 1.8rem;
+  }
 }
-}
-@media(min-width:650px) and (max-width:800px){
-    .section { 
-        width: 50%;
-    }
+@media (min-width: 650px) and (max-width: 800px) {
+  .section {
+    width: 50%;
+  }
 }
