@@ -1,66 +1,6 @@
 import axios from "axios";
 
 const socketActions = {
-  // reFetchGameRequests: () => {
-  //   return async (dispatch) => {
-  //     try {
-  //     } catch (error) {
-  //       toast.error(
-  //         error.message.includes("User") ? error.message : "Session expired",
-  //         {
-  //           position: "top-right",
-  //           style: {
-  //             borderRadius: "10px",
-  //             background: "#453ab7",
-  //             color: "#fff",
-  //             fontFamily: "Ubuntu, sans-serif",
-  //           },
-  //         }
-  //       );
-  //       return dispatch({ type: "LOG_OUT" });
-  //     }
-  //   };
-  // },
-  // startGame: () => {
-  //   return async (dispatch) => {
-  //     try {
-  //     } catch (error) {
-  //       toast.error(
-  //         error.message.includes("User") ? error.message : "Session expired",
-  //         {
-  //           position: "top-right",
-  //           style: {
-  //             borderRadius: "10px",
-  //             background: "#453ab7",
-  //             color: "#fff",
-  //             fontFamily: "Ubuntu, sans-serif",
-  //           },
-  //         }
-  //       );
-  //       return dispatch({ type: "LOG_OUT" });
-  //     }
-  //   };
-  // },
-  // reFetchCurrentPlayer: () => {
-  //   return async (dispatch) => {
-  //     try {
-  //     } catch (error) {
-  //       toast.error(
-  //         error.message.includes("User") ? error.message : "Session expired",
-  //         {
-  //           position: "top-right",
-  //           style: {
-  //             borderRadius: "10px",
-  //             background: "#453ab7",
-  //             color: "#fff",
-  //             fontFamily: "Ubuntu, sans-serif",
-  //           },
-  //         }
-  //       );
-  //       return dispatch({ type: "LOG_OUT" });
-  //     }
-  //   };
-  // },
   setFriendRequests: (requests) => {
     return (dispatch) => {
       dispatch({
@@ -89,7 +29,7 @@ const socketActions = {
       let token = localStorage.getItem("token");
       try {
         let response = await axios.get(
-          "https://benosy.herokuapp.com/api/user/friend_list",
+          "https://benosy.herokuapp.com/user/friend_list",
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -104,6 +44,11 @@ const socketActions = {
       } catch (error) {
         console.error(error);
       }
+    };
+  },
+  setGame: (game, coins) => {
+    return (dispatch) => {
+      dispatch({ type: "SET_GAME", payload: { game, coins } });
     };
   },
 };

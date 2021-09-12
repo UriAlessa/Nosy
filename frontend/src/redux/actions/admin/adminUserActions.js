@@ -4,14 +4,11 @@ const adminUsersActions = {
   getUsers: () => {
     let token = localStorage.getItem("token");
     return async (dispatch) => {
-      let response = await axios.get(
-        "https://benosy.herokuapp.com/api/admin/user",
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
+      let response = await axios.get("https://benosy.herokuapp.com/api/admin/user", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
       if (response.data.success) {
         dispatch({ type: "GET_USERS", payload: response.data.response });
         return response.data;

@@ -37,9 +37,17 @@ const App = (props) => {
           icon: "🎮",
         });
       });
-      props.socket.on("answer_game_request", (username) => {
-        props.history.push("/game");
-      });
+      props.socket.on(
+        "accepted_game_request",
+        async ({ username, requests, game, coins }) => {
+          await props.setGameRequests(requests);
+          await props.setGame(game, coins);
+          toast(username + " invited you to a game!", {
+            icon: "🎮",
+          });
+          props.history.push("/game");
+        }
+      );
       props.socket.on("change_current_player", (username) => {});
       props.socket.on("friend_request", ({ username, requests }) => {
         props.setFriendRequests(requests);
@@ -91,10 +99,13 @@ const App = (props) => {
         <Route path="/terms" component={Terms} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/notfound" component={NotFound} />
-        <Route path="/game" component={!props.token ? Home : Game} />
+        <Route path="/game" component={!props.token ? Account : Game} />
         <Route path="/accounts" component={!props.token ? Account : Home} />
         <Route path="/friends" component={Friends} />
-        <Route path="/selectgame" component={GameButtons} />
+        <Route
+          path="/selectgame"
+          component={!props.token ? Account : GameButtons}
+        />
         <Route path="/admin" component={AdminPanel} />
         <Route path="/loader" component={Loader} />
         <Redirect to="/notFound" />
@@ -121,9 +132,10 @@ const mapDispatchToProps = {
   setFriends: socketActions.setFriends,
   setGameRequests: socketActions.setGameRequests,
   setFriendsList: socketActions.setFriendsList,
+  setGame: socketActions.setGame,
+  changeCurrentPlayer: socketActions.changeCurrentPlayer,
   // reFetchGameRequests: socketActions.reFetchGameRequests,
   // startGame: socketActions.startGame,
-  // reFetchCurrentPlayer: socketActions.reFetchCurrentPlayer,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

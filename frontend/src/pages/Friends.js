@@ -25,7 +25,7 @@ const Friends = (props) => {
   }, [props.userData]);
 
   const clickHandler = async () => {
-    // friendSearched.current.value !== props.username &&
+    friendSearched.current.value !== props.username &&
     !props.userData.friends.some(
       (friend) => friend.username === friendSearched.current.value
     ) &&
@@ -50,7 +50,7 @@ const Friends = (props) => {
           </div>
           {switchOptions ? (
             <div className={styles.friendsList}>
-              <h3 className={styles.subtitle}>Requests</h3>
+              <h3 className={styles.subtitle}>friend Requests</h3>
               <div className={styles.listContainer}>
                 {props.userData ? (
                   props.userData.friend_requests.map((req) => {
@@ -93,14 +93,14 @@ const Friends = (props) => {
             </div>
           )}
           <div className={styles.friendsList}>
-            <h3 className={styles.subtitle}> List</h3>
+            <h3 className={styles.subtitle}>friends List</h3>
             <div className={styles.listContainer}>
               {filtered &&
-                filtered.map((friend) => (
+                filtered.map((friend, index) => (
                   <FriendCard
                     type="friends"
                     friend={friend}
-                    key={friend.username}
+                    key={`${friend.username}${index}`}
                   />
                 ))}
             </div>

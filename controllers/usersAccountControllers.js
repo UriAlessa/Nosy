@@ -62,6 +62,14 @@ const usersAccountControllers = {
         .populate({
           path: "friend_requests",
           populate: { path: "user", model: "user", select: "username avatar" },
+        })
+        .populate({
+          path: "game_requests",
+          populate: {
+            path: "user",
+            model: "user",
+            select: "username avatar connected",
+          },
         });
       res.json({
         success: true,
@@ -155,7 +163,6 @@ const usersAccountControllers = {
   },
   acceptFriendRequest: async (req, res) => {
     const { username, accept } = req.body;
-    console.log(username);
     try {
       let user = await User.findOne({ username });
       let userNotAdded;
@@ -202,6 +209,14 @@ const usersAccountControllers = {
               model: "user",
               select: "username avatar",
             },
+          })
+          .populate({
+            path: "game_requests",
+            populate: {
+              path: "user",
+              model: "user",
+              select: "username avatar connected",
+            },
           });
       } else {
         userNotAdded = await User.findOneAndUpdate(
@@ -237,7 +252,7 @@ const usersAccountControllers = {
               invitated: userNotAdded.friend_requests,
             },
           };
-      console.log("holas");
+
       res.json(response);
     } catch (error) {
       res.json({ success: false, error: error.message });

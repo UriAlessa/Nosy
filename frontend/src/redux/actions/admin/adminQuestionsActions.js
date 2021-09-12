@@ -15,8 +15,7 @@ const adminQuestionActions = {
   createQuestion: (newQuestion) => {
     return async (dispatch) => {
       let response = await axios.post(
-        "https://benosy.herokuapp.com/api/admin/question/" +
-          newQuestion.correctAnswer,
+        "https://benosy.herokuapp.com/api/admin/question/" + newQuestion.correctAnswer,
         newQuestion
       );
       console.log(response);

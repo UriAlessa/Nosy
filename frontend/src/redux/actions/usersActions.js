@@ -156,7 +156,7 @@ const usersActions = {
         );
 
         if (!response.data.success) throw new Error();
-        return dispatch({
+        dispatch({
           type: "SEND_GAME_REQUEST",
           payload: { username, game_requests: response.data.game_requests },
         });
@@ -189,25 +189,30 @@ const usersActions = {
           }
         );
         if (!response.data.success) throw new Error();
+        console.log(response.data);
         if (accept) {
+          dispatch({
+            type: "SET_GAME",
+            payload: {
+              game: response.data.game,
+              coins: response.data.coins.invitated,
+            },
+          });
           return dispatch({
             type: "ACCEPT_GAME_REQUEST",
             payload: {
               username,
-              friend_requests: response.data.friend_requests,
-              friends: response.data.friends,
+              game_requests: response.data.game_requests,
+              game: response.data.game,
+              coins: response.data.coins.invitator,
             },
           });
         } else {
           return dispatch({
             type: "DECLINE_GAME_REQUEST",
-            payload: { friend_requests: response.data.friend_requests },
+            payload: { game_requests: response.data.game_requests },
           });
         }
-        dispatch({
-          type: "ANSWER_GAME_REQUEST",
-          payload: username,
-        });
       } catch (error) {
         toast.error("Session expired", {
           position: "top-right",
@@ -218,7 +223,7 @@ const usersActions = {
             fontFamily: "Ubuntu, sans-serif",
           },
         });
-        return dispatch({ type: "LOG_OUT" });
+        // return dispatch({ type: "LOG_OUT" });
       }
     };
   },
@@ -227,14 +232,11 @@ const usersActions = {
     return async (dispatch) => {
       let token = localStorage.getItem("token");
       try {
-        let response = await axios.get(
-          "https://benosy.herokuapp.com/api/user/token",
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
+        let response = await axios.get("https://benosy.herokuapp.com/api/user/token", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
         dispatch({
           type: "LOG_IN_USER",
           payload: { ...response.data, token },
@@ -319,9 +321,7 @@ const usersActions = {
   getReviews: () => {
     return async () => {
       try {
-        let response = await axios.get(
-          "https://benosy.herokuapp.com/api/review"
-        );
+        let response = await axios.get("https://benosy.herokuapp.com/api/review");
         if (response.data.success) {
           return { success: true, response: response.data.response };
         } else {
