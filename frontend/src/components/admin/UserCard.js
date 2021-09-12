@@ -12,7 +12,6 @@ const UserCard = (props) => {
     const [edit, setEdit] = useState(false)
     const [updated, setUpdated] = useState({})
 
-    console.log(connected)
 
     const updateUser = async () => {
         setEdit(!edit)
@@ -47,6 +46,7 @@ const UserCard = (props) => {
     const deleteUser = async (id) => {
         try {
             props.deleteUser(id)
+            props.reload(_id)
         } catch (error) {
             toast.error("Something went wrong.", {
                 position: "top-left",

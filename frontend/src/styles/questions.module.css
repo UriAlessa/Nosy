@@ -134,38 +134,78 @@
     color: red;
 }
 
-/* 
+
 .resumeContainer{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    overflow-y: hidden;
 }
 
 .resumeSection{
     width: 100%;
-    height: 50%;
-    background-color: red;
+    height: 100%;
+    /* background-color: red; */
     display: flex;
-    justify-content: center;
     align-items: center;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    font-family: "Ubuntu", "sans-serif";
+    padding: 0 10px;
+
+}
+
+.resumeSection h2{
+    color: white;
+    font-family: "Ubuntu", "sans-serif";
+    margin-bottom: 3vh;
+    margin-top: 2vh;
 }
 
 .reviewContainer{
-    padding: 1vh 4vw;
+    width: 100%;
+    padding: 1vh 2vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* background-color: green; */
+    margin-bottom: 2vh;
+    border: 1px solid white;
+    border-radius: 20px;
+    color: white;
 }
 
 .reviewPic{
-    width: 40%;
+    width: 100%;
     height: 25vh;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-color: yellow;
+    border-radius: 30px;
+}
+
+
+
+.resumeSection::-webkit-scrollbar,
+.connected::-webkit-scrollbar{
+background-color: #04115a;
+border-radius: 20px;
+border: 2px solid #f1f2f3;  
+}
+.resumeSection::-webkit-scrollbar-thumb,
+.connected::-webkit-scrollbar-thumb{
+    background: #ffffff;
+    border-radius: 10px;
 }
 
 .reviews{
-    height: 50%;
-    background-color: blue;
-} */
+    height: 100%;
+    /* background-color: salmon; */
+}
+
+.reviewContainer svg{
+    cursor: pointer;
+    align-self: flex-end;
+}

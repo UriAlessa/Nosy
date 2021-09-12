@@ -28,11 +28,11 @@ const QuestionCard = (props) => {
         })
     }
 
-    const deleteQuestion = async (_id) => {
+    const deleteQuestion = async (id) => {
         try {
-            let response = await props.deleteQuestion(_id)
+            props.reload(id)
+            let response = await props.deleteQuestion(id)
             if (response.success) {
-                props.reload()
             } else {
                 throw new Error()
             }
@@ -147,7 +147,6 @@ const QuestionCard = (props) => {
 const mapDispatchToProps = {
     updateQuestion: adminQuestionActions.updateQuestion,
     deleteQuestion: adminQuestionActions.deleteQuestion,
-    reload: adminQuestionActions.reload
 };
 
 export default connect(null, mapDispatchToProps)(QuestionCard);

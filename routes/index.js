@@ -70,6 +70,10 @@ router
   .get(usersAccountsControllers.getReviews);
 
 router
+  .route("/review/:id")
+  .delete(usersAccountsControllers.deleteReview)
+
+router
   .route("/user/emoji")
   .put(
     passport.authenticate("jwt", { session: false }),

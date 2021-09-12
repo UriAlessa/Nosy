@@ -10,7 +10,6 @@ const Questions = (props) => {
   const [allQuestions, setAllQuestions] = useState(props.questions)
   const [filtered, setFiltered] = useState(props.questions)
   const [newQuestion, setNewQuestion] = useState({})
-  const [reload, setReload] = useState(true)
   const correctInput = useRef()
   const questionInput = useRef()
   const incorrectInputOne = useRef()
@@ -72,7 +71,6 @@ const Questions = (props) => {
         },
       });
     }
-    setReload(!reload)
   }
 
   const filter = (e) => {
@@ -83,6 +81,15 @@ const Questions = (props) => {
         return question
       }
       if (e.target.value === 'View All') {
+        return question
+      }
+    }))
+  }
+
+  const reload = (_id) => {
+    console.log('me ejecuto')
+    setFiltered(filtered.filter((question) => {
+      if (question._id !== _id) {
         return question
       }
     }))
@@ -100,7 +107,7 @@ const Questions = (props) => {
         </div>
         <div className={styles.questionsContainer}>
           <h3>Showing {filtered.length} of {props.questions.length} questions.</h3>
-          {filtered.map((question) => <QuestionCard question={question} key={question._id} />)}
+          {filtered.map((question) => <QuestionCard question={question} key={question._id} reload={reload} />)}
         </div>
       </div>
       <div className={style.loginBox} style={{ height: '90%' }}>

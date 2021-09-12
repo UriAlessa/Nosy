@@ -16,8 +16,11 @@ const AdminPanel = (props) => {
     const [view, setView] = useState("dashboard")
     const [loader, setLoader] = useState(true)
     const [reviews, setReviews] = useState([])
+    const [reload, setReload] = useState(true)
 
-    console.log(reviews)
+    useEffect(() => {
+
+    }, [reload])
 
     const getUsers = async () => {
         if (!props.users.length) {
@@ -71,7 +74,6 @@ const AdminPanel = (props) => {
         if (!reviews.length) {
             try {
                 let response = await props.getReviews();
-                console.log(response)
                 if (response.success) {
                     setReviews(response.response);
                     setLoader(false)
@@ -97,7 +99,7 @@ const AdminPanel = (props) => {
         getUsers()
         getQuestions()
         getReviews()
-    }, [])
+    }, [reload])
 
     if (loader) {
         return <Loader />
@@ -128,7 +130,7 @@ const AdminPanel = (props) => {
                     </div>
                 </div>
                 <div className={styles.infoSection}>
-                    {view === 'dashboard' && <Dashboard reviews={reviews} />}
+                    {view === 'dashboard' && <Dashboard reviews={reviews.sort((a, b) => b.date - a.date)} setreload={setReload} reload={reload} />}
                     {view === 'users' && <Users />}
                     {view === 'questions' && <Questions />}
                 </div>

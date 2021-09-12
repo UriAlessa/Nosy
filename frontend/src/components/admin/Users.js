@@ -13,6 +13,14 @@ const Users = (props) => {
     const emailInput = useRef()
     const avatarInput = useRef()
 
+    const reload = (id) => {
+        setFiltered(filtered.filter((user) => {
+            if (user._id !== id) {
+                return user
+            }
+        }))
+    }
+
     const inputHandler = (e) => {
         setNewUser({
             ...newUser,
@@ -63,7 +71,7 @@ const Users = (props) => {
         <div className={styles.tableContainer}>
             <div className={styles.cardsContainer}>
                 <input className={styles.filterInput} type="text" onChange={filter} placeholder="Filter by username" />
-                {filtered.map((user) => <UserCard user={user} key={user._id} />)}
+                {filtered.map((user) => <UserCard user={user} key={user._id} reload={reload} />)}
             </div>
             <div className={styles.loginBox}>
                 <p>Create Admin User</p>
