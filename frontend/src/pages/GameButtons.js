@@ -60,14 +60,15 @@ const GameButtons = (props) => {
             style={{ display: "flex", width: "100%", justifyContent: "center" }}
           >
             <div className={styles2.friendsList}>
-              <h3 className={styles2.subtitle}> List</h3>
+              <h3 className={styles2.subtitle}>friends List</h3>
               <div className={styles2.listContainer}>
                 {filtered &&
-                  filtered.map((friend) => (
+                  filtered.map((friend, index) => (
                     <FriendCard
                       type="friends"
                       friend={friend}
-                      key={friend.username}
+                      key={`${friend.username}${index}`}
+                      game={true}
                     />
                   ))}
               </div>
@@ -78,13 +79,13 @@ const GameButtons = (props) => {
               />
             </div>
             <div className={styles2.friendsList}>
-              <h3 className={styles2.subtitle}>Requests</h3>
+              <h3 className={styles2.subtitle}>game Requests</h3>
               <div className={styles2.listContainer}>
                 {props.userData ? (
-                  props.userData.friend_requests.map((req) => {
+                  props.userData.game_requests.map((req, index) => {
                     return (
                       <FriendCard
-                        key={req.user.username}
+                        key={`${req.user.username}${index}`}
                         type={req.creator ? "sentRequest" : "acceptRequest"}
                         request={req}
                       />

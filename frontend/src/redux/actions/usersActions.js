@@ -156,7 +156,7 @@ const usersActions = {
         );
 
         if (!response.data.success) throw new Error();
-        return dispatch({
+        dispatch({
           type: "SEND_GAME_REQUEST",
           payload: { username, game_requests: response.data.game_requests },
         });
@@ -170,7 +170,7 @@ const usersActions = {
             fontFamily: "Ubuntu, sans-serif",
           },
         });
-        return dispatch({ type: "LOG_OUT" });
+        // return dispatch({ type: "LOG_OUT" });
       }
     };
   },

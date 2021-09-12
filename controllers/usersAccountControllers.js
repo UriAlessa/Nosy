@@ -202,6 +202,14 @@ const usersAccountControllers = {
               model: "user",
               select: "username avatar",
             },
+          })
+          .populate({
+            path: "game_requests",
+            populate: {
+              path: "user",
+              model: "user",
+              select: "username avatar connected",
+            },
           });
       } else {
         userNotAdded = await User.findOneAndUpdate(

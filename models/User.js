@@ -41,6 +41,7 @@ const userSchema = mongoose.Schema({
   google: { type: Boolean, default: false },
   game_requests: [
     {
+      user: { type: mongoose.Types.ObjectId, path: "user" },
       game_id: { type: mongoose.Types.ObjectId, path: "multiplayer game" },
       creator: { type: Boolean, default: false },
     },

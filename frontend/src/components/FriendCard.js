@@ -69,8 +69,21 @@ const FriendCard = ({
       </div>
     ) : type === "sentRequest" ? (
       <div className={styles.divFriend}>
-        {ImageFriendCard}
-        <h3>{request.user.username}</h3>
+        <div className={styles.friendInfo}>
+          {ImageFriendCard}
+          <h3>{request.user.username}</h3>
+        </div>
+        <button
+          onClick={(e) => {
+            props.addFriend(e.target.value);
+            setClicked(true);
+            setTimeout(() => props.setUserSearched(null), 1000);
+          }}
+          disabled={true}
+          className={styles.buttonRefuse}
+        >
+          REQUEST SENT
+        </button>
       </div>
     ) : type === "sendRequest" ? (
       <div className={styles.divFriend}>
@@ -113,11 +126,11 @@ const FriendCard = ({
           }
           <button
             onClick={(e) => {
-              props.sendGameRequest(e.target.value);
+              game ? props.sendGameRequest(e.target.value) : props.chat();
             }}
             value={friend.username}
           >
-            invite to play
+            {game ? "invite to play" : "invite to chat"}
           </button>
         </div>
       </div>
