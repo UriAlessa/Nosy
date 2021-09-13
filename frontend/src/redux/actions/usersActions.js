@@ -373,7 +373,7 @@ const usersActions = {
   searchUser: (username, token) => {
     return async () => {
       try {
-        let response = await axios.post(
+        var response = await axios.post(
           "http://localhost:4000/api/user/add_friend",
           { username },
           {
@@ -389,7 +389,15 @@ const usersActions = {
         };
         return user;
       } catch (error) {
-        console.log(error);
+        toast.error(response.data.response, {
+          position: "top-center",
+          style: {
+            borderRadius: "10px",
+            background: "#453ab7",
+            color: "#fff",
+            fontFamily: "Ubuntu, sans-serif",
+          },
+        });
       }
     };
   },
