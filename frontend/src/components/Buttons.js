@@ -1,10 +1,20 @@
+import toast from "react-hot-toast";
 import style from "../styles/other/buttons.module.css";
 
-const PlayButton = ({ text, setPlayWithFriend }) => {
+const PlayButton = ({ text, setPlayWithFriend }, props) => {
   return (
     <button
       className={style.playButton}
-      onClick={() => text === "PLAY W/ FRIEND" && setPlayWithFriend(true)}
+      onClick={() => text === "PLAY W/ FRIEND" ? setPlayWithFriend(true) : (text === "PLAY NOW" && !props.token) && toast.error("You need to log in to play game.", {
+        position: "top-center",
+        style: {
+          borderRadius: "10px",
+          background: "#453ab7",
+          color: "#fff",
+          fontFamily: "Ubuntu, sans-serif",
+          height: "10vh"
+        },
+      })}
     >
       <svg
         className={style.buttonPlayButton}

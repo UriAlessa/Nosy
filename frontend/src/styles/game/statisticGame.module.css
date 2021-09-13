@@ -3,6 +3,8 @@
   height: 4.5rem;
   border-radius: 100px;
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .gameover {
   width: 50vmin;

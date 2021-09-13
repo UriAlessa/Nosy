@@ -1,8 +1,9 @@
 .sectionGames {
-  margin: 5% 9%;
+  margin: 15vh 9%;
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 .sectionGames h2 {
@@ -22,6 +23,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 5vmin;
+  margin-top: 5vh;
 }
 
 .divGame {
@@ -133,8 +135,8 @@
 
 .buttonAddComment {
   position: relative;
-  top: 15px;
-  left: 90%;
+  top: -15px;
+  left: 85%;
   font-family: "Fredoka One", cursive;
   color: rgb(0, 0, 0);
   background-color: rgb(245, 209, 35);
@@ -143,6 +145,7 @@
   width: 7%;
   border-radius: 10%;
   font-size: 4vmin;
+  cursor: pointer;
 }
 
 .submitButton {
@@ -213,6 +216,9 @@
     width: 25vw;
     font-size: 2vw;
   }
+  .buttonAddComment{
+    left: 75%;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 916px) {
@@ -241,6 +247,9 @@
   .buttonDescription {
     width: 25vw;
     font-size: 2.5vw;
+  }
+  .buttonAddComment{
+    left: 70%;
   }
 }
 
@@ -273,6 +282,10 @@
 
   .pDescription {
     font-size: 2.4vw;
+  }
+  .buttonAddComment{
+    top: -15px;
+    left: 74%;
   }
 }
 
@@ -308,6 +321,10 @@
   }
   .pDescription {
     font-size: 2.3vw;
+  }
+  .buttonAddComment{
+    top: -15px;
+    left: 74%;
   }
 }
 
