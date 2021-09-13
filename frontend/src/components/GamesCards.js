@@ -3,16 +3,16 @@ import styles from "../styles/home/gamesCards.module.css";
 const GamesCards = () => {
   const data = [
     {
-      title: "HISTORY",
+      title: "CORONA-DATA",
       description:
-        "Sabri los mandará",
-      pic: "juego1.png",
+        "She was highly discriminated against because of her appearance until she learned to take advantage of her memory, and today she guards all the memorable events of the health catastrophe in recent years.",
+      pic: "history.png",
     },
     {
       title: "SPORTS",
       description:
-        "Sabri los mandará",
-      pic: "otroJuego.png",
+        "He was never adept at sports, however no one can beat his memory, and for this reason he guards this category and the most curious data about it! If you feel identified, do not stop entering the game because it is coming soon!",
+      pic: "sport3.png",
     },
   ];
   return (

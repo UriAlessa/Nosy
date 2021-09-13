@@ -6,6 +6,7 @@ const gameControllers = require("../controllers/gameControllers");
 const passport = require("passport");
 const validator = require("../controllers/validator");
 const mailControllers = require("../controllers/mailControllers");
+const validatorReview = require("../controllers/adminControllers/validatorReview");
 
 router.route("/user/signup").post(validator, usersAccountsControllers.signUp);
 router.route("/user/login").post(usersAccountsControllers.logIn);
@@ -70,8 +71,7 @@ router.route("/mail").post(mailControllers.sendMail);
 
 router
   .route("/review")
-  .post(
-    passport.authenticate("jwt", { session: false }),
+  .post(validatorReview, passport.authenticate("jwt", { session: false }),
     usersAccountsControllers.newReview
   )
   .get(usersAccountsControllers.getReviews);
