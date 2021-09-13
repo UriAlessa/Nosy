@@ -22,7 +22,6 @@
   display: flex;
   justify-content: space-between;
   width: 90%;
-  background-color: blanchedalmond;
 }
 .card{
   background-color: rgba(25, 22, 61, 0.912);
