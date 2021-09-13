@@ -1,3 +1,4 @@
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -19,6 +20,7 @@ import Loader from "./components/Loader";
 import gamesActions from "./redux/actions/gamesActions";
 import Friends from "./pages/Friends";
 import socketActions from "./redux/actions/socketActions";
+import GameMultiPlayer from "./pages/GameMultiPlayer";
 
 const App = (props) => {
   useEffect(() => {
@@ -32,15 +34,22 @@ const App = (props) => {
   useEffect(() => {
     if (props.socket && props.token) {
       props.socket.on("game_request", ({ username, requests }) => {
-        props.setGameRequests(requests);
+        props.setGameRequests(requests, false);
         toast(username + " invited you to a game!", {
           icon: "🎮",
         });
       });
-      props.socket.on("answer_game_request", (username) => {
-        props.history.push("/game");
-      });
-      props.socket.on("change_current_player", (username) => {});
+      props.socket.on(
+        "accepted_game_request",
+        ({ username, requests, playing_now, game, coins }) => {
+          props.setGameRequests(requests, playing_now);
+          props.setMultiGame(game, coins);
+          toast(username + " accepted your game invitation!", {
+            icon: "🎮",
+          });
+        }
+      );
+      props.socket.on("change_current_player", (username) => { });
       props.socket.on("friend_request", ({ username, requests }) => {
         props.setFriendRequests(requests);
         toast(username + " has sent you a friend request!", {
@@ -86,12 +95,12 @@ const App = (props) => {
       <Toaster />
       {props.menu && <MenuResponsive />}
       <Switch>
-        <Route path="/prueba" component={FriendCard} />
+        <Route path="/prueba" component={GameMultiPlayer} />
         <Route exact path="/" {...props} component={Home} />
         <Route path="/terms" component={Terms} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/notfound" component={NotFound} />
-        <Route path="/game" component={!props.token ? Account : Home} />
+        <Route path="/game" component={Game} />
         <Route path="/accounts" component={!props.token ? Account : Home} />
         <Route path="/friends" component={Friends} />
         <Route
@@ -124,9 +133,10 @@ const mapDispatchToProps = {
   setFriends: socketActions.setFriends,
   setGameRequests: socketActions.setGameRequests,
   setFriendsList: socketActions.setFriendsList,
+  setMultiGame: socketActions.setMultiGame,
+  // changeCurrentPlayer: socketActions.changeCurrentPlayer,
   // reFetchGameRequests: socketActions.reFetchGameRequests,
   // startGame: socketActions.startGame,
-  // reFetchCurrentPlayer: socketActions.reFetchCurrentPlayer,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const Friends = (props) => {
   const [filtered, setFiltered] = useState();
-  const [userSearched, setUserSearched] = useState();
+  const [userSearched, setUserSearched] = useState(null);
   const friendSearched = useRef();
   const [switchOptions, setSwitchOptions] = useState(false);
 
@@ -25,10 +25,10 @@ const Friends = (props) => {
   }, [props.userData]);
 
   const clickHandler = async () => {
-    // friendSearched.current.value !== props.username &&
-    !props.userData.friends.some(
-      (friend) => friend.username === friendSearched.current.value
-    ) &&
+    friendSearched.current.value !== props.username &&
+      !props.userData.friends.some(
+        (friend) => friend.username === friendSearched.current.value
+      ) &&
       !props.userData.friend_requests.some(
         (req) => req.user.username === friendSearched.current.value
       ) &&
@@ -41,13 +41,13 @@ const Friends = (props) => {
     <>
       <div
         className={styles.mainContainer}
-        style={{ backgroundImage: "url(https://i.postimg.cc/fL7dnP7m/13.png)" }}
+        style={{ backgroundImage: "url('/assets/background.png')" }}
       >
         <h1 className={styles.title}>FRIENDS</h1>
         <div className={styles.midContainer}>
           <div className={styles.contP}>
             <p onClick={() => setSwitchOptions(false)}>Search friend</p>
-            <p onClick={() => setSwitchOptions(true)}>Friend request</p>
+            <p onClick={() => setSwitchOptions(true)}>Friends requests</p>
           </div>
           {switchOptions ? (
             <div className={styles.friendsList}>

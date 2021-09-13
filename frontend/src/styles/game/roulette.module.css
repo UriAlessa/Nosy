@@ -41,7 +41,7 @@
   /* background-color: red; */
 }
 .picShadow {
-  width: 4vw;
+  width: 90px;
   margin-bottom: 5px;
 }
 .topInfo {
@@ -54,6 +54,25 @@
 
 .avatar {
   width: 5vw;
+}
+.containerMultiplayer{
+  border:1px solid black;
+  display: flex;
+  width: 100%;
+  padding: 0.5rem;
+  justify-content: space-between;
+}
+
+.shadowsMultiplayer{
+  width: 50%;
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+}
+.userAvatar{
+ /*  border-radius: 100px;
+  width: 3rem;
+  height: 3rem; */
 }
 
 @media (max-width: 700px) {

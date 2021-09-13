@@ -51,7 +51,7 @@ const Nosy = (props) => {
                 onClick={categoryHandler}
                 className={`${styles.buttonOption} ${styles.computers}`}
               >
-                Science Computer
+                Science: Computers
               </button>
             </div>
           )}

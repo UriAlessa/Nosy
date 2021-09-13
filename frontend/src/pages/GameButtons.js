@@ -21,20 +21,8 @@ const GameButtons = (props) => {
 
   useEffect(() => {
     setFiltered(props.userData && props.userData.friends);
+    // if (props.userData.playing_now.status) props.history.push("/game");
   }, [props.userData]);
-
-  // const clickHandler = async () => {
-  //   // friendSearched.current.value !== props.username &&
-  //   !props.userData.friends.some(
-  //     (friend) => friend.username === friendSearched.current.value
-  //   ) &&
-  //     !props.userData.friend_requests.some(
-  //       (req) => req.user.username === friendSearched.current.value
-  //     ) &&
-  //     setUserSearched(
-  //       await props.searchUser(friendSearched.current.value, props.token)
-  //     );
-  // };
 
   return (
     <section
@@ -88,6 +76,7 @@ const GameButtons = (props) => {
                         key={`${req.user.username}${index}`}
                         type={req.creator ? "sentRequest" : "acceptRequest"}
                         request={req}
+                        game={true}
                       />
                     );
                   })

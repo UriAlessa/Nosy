@@ -22,6 +22,14 @@ header {
   background-repeat: no-repeat;
 }
 
+.logoR {
+  width: 200px;
+  height: 90px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 header nav {
   display: flex;
   justify-content: space-between;
@@ -31,7 +39,6 @@ header nav {
   font-size: 14px;
   letter-spacing: 1.22px;
   font-family: "Ubuntu", sans-serif;
-  /* width: 100%; */
 }
 
 header nav a,
@@ -252,12 +259,5 @@ header nav a:hover {
 
   .menuResponsive nav {
     align-items: center;
-  }
-}
-
-@media (max-width: 800px){
-  .logo {
-    width: 121px;
-    height: 76px; 
   }
 }

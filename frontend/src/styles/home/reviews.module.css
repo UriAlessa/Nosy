@@ -101,20 +101,21 @@
   text-align: center;
 }
 .inputs {
-  font-family: "Fredoka One", cursive;
-  color: white;
+  font-family: "Fredoka One";
+  font-weight: lighter;
+  color: rgb(255, 255, 255);
   background-color: transparent;
   box-shadow: 0 5px 8px 0 rgb(0 0 0 / 35%);
   margin: 0.5rem;
   border: none;
   width: 100%;
   border-radius: 8px;
-  font-size: 2.8vmin;
+  font-size: 2.2vmin;
   padding: 1.5vmin;
 }
 
-.input::placeholder {
-  color: rgb(159, 158, 167);
+.inputs::placeholder {
+  color: rgba(159, 158, 167, 0.385);
 }
 
 .buttonAddComment {
@@ -149,10 +150,10 @@
 
 @media (min-width: 916px) and (max-width: 1100px) {
   .articleGames {
-    grid-template-columns: 100%;
+    grid-template-columns: 90%;
   }
   .divGame {
-    width: 50rem;
+    width: 40rem !important;
   }
   .slides {
     display: flex;
@@ -162,7 +163,6 @@
 
   .picGame {
     height: 12rem;
-    width: 20rem;
     margin: 0.5em;
   }
 
@@ -186,6 +186,15 @@
     grid-template-columns: 90%;
   }
 
+  .divGame {
+    width: 40rem !important;
+  }
+
+  .picGame {
+    height: 10rem;
+    margin: 0.5em;
+  }
+
   .sectionGames h2 {
     font-size: 4.5vw;
   }
@@ -204,6 +213,14 @@
 @media (min-width: 550px) and (max-width: 768px) {
   .articleGames {
     grid-template-columns: 100%;
+  }
+  .divGame {
+    width: 30rem !important;
+  }
+
+  .picGame {
+    height: 8rem;
+    margin: 0.5em;
   }
 
   .sectionGames h2 {
@@ -231,6 +248,51 @@
   }
   .sectionGames h2 {
     font-size: 6vw;
+  }
+  
+  .divGame {
+    width: 25rem !important;
+  }
+
+  .picGame {
+    height: 6rem;
+    margin: 0.5em;
+  }
+  .titleDescription {
+    font-size: 3vw;
+    text-align: center;
+  }
+
+  .subtitleDescription {
+    font-size: 2.5vw;
+  }
+
+  .buttonDescription {
+    min-width: 25vw;
+    font-size: 2.5vw;
+    align-self: center;
+  }
+  .pDescription {
+    font-size: 2.3vw;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .articleGames {
+    grid-template-columns: 100%;
+  }
+  .sectionGames h2 {
+    font-size: 6vw;
+  }
+  
+  .divGame {
+    width: 20rem;
+  }
+
+  .picGame {
+    height: 4rem;
+    margin: 0.5em;
   }
   .titleDescription {
     font-size: 3vw;

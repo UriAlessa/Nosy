@@ -118,15 +118,23 @@
   border-top-left-radius: 40px;
 }
 
+@media (max-width: 650px){
+  .afterGame{
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 500px) {
   .boxStatisticGame,
   .boxStatisticUser {
     width: 48%;
   }
   .containerStatistics {
-    width: 105%;
+    width: 100%;
   }
   .container {
     gap: 5rem;
   }
 }
+
+

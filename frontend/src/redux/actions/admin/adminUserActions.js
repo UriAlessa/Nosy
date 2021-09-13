@@ -56,7 +56,7 @@ const adminUsersActions = {
     let token = localStorage.getItem("token");
     return async (dispatch) => {
       let response = await axios.delete(
-        "http://localhost:4000/api/admin/user" + userId,
+        "http://localhost:4000/api/admin/user/" + userId,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -65,6 +65,17 @@ const adminUsersActions = {
       );
       if (response.data.success) {
         await dispatch({ type: "DELETE_USER", payload: userId });
+        return response.data;
+      }
+    };
+  },
+  getReviews: () => {
+    return async (dispatch) => {
+      let response = await axios.get(
+        "http://localhost:4000/api/review"
+      );
+      if (response.data.success) {
+        dispatch({ type: "GET_REVIEWS", payload: response.data.response });
         return response.data;
       }
     };

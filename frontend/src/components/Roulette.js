@@ -3,13 +3,86 @@ import style from "../styles/game/questionCard.module.css";
 import { connect } from "react-redux";
 
 const Roulette = (props) => {
+  console.log(props.game)
+  const user_avatar = "/assets/avatars.png"
   const shadows = [
     { no: "shadow4.png", yes: "music.png", key: "Music" },
-    { no: "shadow1.png", yes: "computer.png", key: "Science: Computers" },
+    { no: "shadow5.png", yes: "computer.png", key: "Science: Computers" },
     { no: "shadow3.png", yes: "cultura.png", key: "General Knowledge" },
-    { no: "shadow5.png", yes: "animals.png", key: "Animals" },
+    { no: "shadow1.png", yes: "animals.png", key: "Animals" },
     { no: "shadow2.png", yes: "movies.png", key: "Movies and series" },
   ];
+  let resultToRender = <div className={styles.shadows} ></div>
+  if (props.game) {
+    resultToRender = props.game.current_player
+      ? <div className={styles.containerMultiplayer}>
+        <div className={styles.shadowsMultiplayer}>
+
+          <div className={styles.userAvatar}
+            style={{ backgroundImage: `url(${user_avatar})` }}
+          ></div>
+          <img className={styles.userAvatar} src={user_avatar} />
+          {props.game &&
+            shadows.map((shadow) => (
+              <img
+                key={shadow.key}
+                className={style.picShadow}
+                src={`assets/${props.game.player.medals.includes(shadow.key)
+                  ? shadow.yes
+                  : shadow.no
+                  }`}
+                alt={shadow.key}
+              />
+            ))}
+        </div>
+        <div className={styles.shadowsMultiplayer}>
+          <img src={user_avatar} />
+          {props.game &&
+            shadows.map((shadow) => (
+              <img
+                key={shadow.key}
+                className={styles.picShadow}
+                src={`assets/${props.game.player.medals.includes(shadow.key)
+                  ? shadow.yes
+                  : shadow.no
+                  }`}
+                alt={shadow.key}
+              />
+            ))}
+        </div>
+      </div>
+      : <div className={styles.shadows}>
+        {props.game &&
+          shadows.map((shadow) => (
+            <img
+              key={shadow.key}
+              className={styles.picShadow}
+              src={`assets/${props.game.player.medals.includes(shadow.key)
+                ? shadow.yes
+                : shadow.no
+                }`}
+              alt={shadow.key}
+            />
+          ))}
+      </div>
+
+    {/* <div className={styles.shadows}>
+  {props.game &&
+    shadows.map((shadow) => (
+      <img
+        key={shadow.key}
+        className={styles.picShadow}
+        src={`assets/${
+          props.game.player.medals.includes(shadow.key)
+            ? shadow.yes
+            : shadow.no
+        }`}
+        alt={shadow.key}
+      />
+    ))}
+</div> */}
+  }
+
   return (
     <div className={styles.rouletteContainer}>
       <div className={styles.topInfo}>
@@ -38,7 +111,7 @@ const Roulette = (props) => {
           alt="rouletteeee"
         />
         <img
-          src="/assets/spin.png"
+          src="/assets/spin3.png"
           alt="spins"
           className={styles.buttonRoulette}
           onClick={() => {
@@ -46,21 +119,24 @@ const Roulette = (props) => {
           }}
         />
       </div>
-      <div className={styles.shadows}>
+      {
+        resultToRender
+      }
+
+      {/* <div className={styles.shadows}>
         {props.game &&
           shadows.map((shadow) => (
             <img
               key={shadow.key}
               className={styles.picShadow}
-              src={`assets/${
-                props.game.player.medals.includes(shadow.key)
-                  ? shadow.yes
-                  : shadow.no
-              }`}
+              src={`assets/${props.game.player.medals.includes(shadow.key)
+                ? shadow.yes
+                : shadow.no
+                }`}
               alt={shadow.key}
             />
           ))}
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -62,6 +62,14 @@ const usersAccountControllers = {
         .populate({
           path: "friend_requests",
           populate: { path: "user", model: "user", select: "username avatar" },
+        })
+        .populate({
+          path: "game_requests",
+          populate: {
+            path: "user",
+            model: "user",
+            select: "username avatar connected",
+          },
         });
       res.json({
         success: true,
@@ -155,7 +163,6 @@ const usersAccountControllers = {
   },
   acceptFriendRequest: async (req, res) => {
     const { username, accept } = req.body;
-    console.log(username);
     try {
       let user = await User.findOne({ username });
       let userNotAdded;
@@ -229,23 +236,23 @@ const usersAccountControllers = {
       }
       const response = accept
         ? {
-            success: true,
-            friend_requests: {
-              invitator: user.friend_requests,
-              invitated: userAdded.friend_requests,
-            },
-            friends: {
-              invitator: user.friends,
-              invitated: userAdded.friends,
-            },
-          }
+          success: true,
+          friend_requests: {
+            invitator: user.friend_requests,
+            invitated: userAdded.friend_requests,
+          },
+          friends: {
+            invitator: user.friends,
+            invitated: userAdded.friends,
+          },
+        }
         : {
-            success: true,
-            friend_requests: {
-              invitated: userNotAdded.friend_requests,
-            },
-          };
-      console.log("holas");
+          success: true,
+          friend_requests: {
+            invitated: userNotAdded.friend_requests,
+          },
+        };
+
       res.json(response);
     } catch (error) {
       res.json({ success: false, error: error.message });
@@ -294,6 +301,16 @@ const usersAccountControllers = {
       res.json({
         success: true,
         response: reviews.filter((review) => dateNow - review.date < expired),
+      });
+    } catch (error) {
+      res.json({ succes: false, response: error.message });
+    }
+  },
+  deleteReview: async (req, res) => {
+    try {
+      await Review.findOneAndDelete({ _id: req.params.id })
+      res.json({
+        success: true,
       });
     } catch (error) {
       res.json({ succes: false, response: error.message });

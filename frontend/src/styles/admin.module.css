@@ -20,6 +20,7 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 3px solid white;
+    align-items: center;
 }
 
 .navContainer{
@@ -66,4 +67,27 @@
 .infoSection {
     flex: 1;
     height: 80vh;
+}
+
+.iconAvatar{
+    height: 8vh;
+    width: 8vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 100%;
+}
+
+
+
+@media (max-width: 1000px) {
+    .dataContainer{
+        min-height: 90vh;
+    }
+    .infoSection{
+        min-height: 80vh;
+    }
+    .dataContainer{
+        overflow: auto;
+    }
 }

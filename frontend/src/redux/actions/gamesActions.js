@@ -16,9 +16,10 @@ const gamesActions = {
         throw new Error();
       }
       const { game, coins } = response.data.response;
+      console.log(game);
       dispatch({
         type: "SET_GAME",
-        payload: { game, coins },
+        payload: { game, coins, statistics: null },
       });
     };
   },
@@ -39,13 +40,11 @@ const gamesActions = {
       dispatch({
         type: "SET_GAME",
         payload: {
-          statisticsUser: response.data.response.newUserState,
+          statistics: response.data.response.newUserState.statistics,
           game: response.data.response.newGameState,
           coins: response.data.response.newUserState.coins,
         },
       });
-      console.log(response.data.response);
-      console.log(response.data.response.newUserState);
       return response.data.response;
     };
   },
@@ -62,11 +61,13 @@ const gamesActions = {
       if (!response.data.success) {
         throw new Error();
       }
+      console.log(response.data.response.game);
       dispatch({
         type: "SET_GAME",
         payload: {
           game: response.data.response.game,
           coins: response.data.response.coins,
+          statistics: null,
         },
       });
     };

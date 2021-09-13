@@ -10,9 +10,10 @@ module.exports = passport.use(
       secretOrKey: process.env.SECRETORKEY,
     },
     (payload, done) => {
-      const model = payload._doc.playing_now.multiplayer
-        ? "multiplayer game"
-        : "singleplayer game";
+      const model =
+        payload._doc.playing_now.status && payload._doc.playing_now.multiplayer
+          ? "multiplayer game"
+          : "singleplayer game";
       User.findOne({ _id: payload._doc._id })
         .populate({
           path: "friends",

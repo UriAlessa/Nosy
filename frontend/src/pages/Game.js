@@ -36,12 +36,15 @@ const Game = (props) => {
   useEffect(() => {
     props.setPlayNow(false);
     if (props.token && !props.game) {
+      console.log("soy create game");
       createGame();
     }
     if (props.game && !props.playNow) {
+      console.log("soy set game");
       props.setGame(localStorage.getItem("token"));
     }
     if (props.game && props.playNow) {
+      console.log("soy la sweetalert");
       Swal.fire({
         title: "There's a game in course",
         text: "Do you want to start a new one?",
@@ -95,31 +98,31 @@ const Game = (props) => {
     roulette.current.style.transform = "rotate(+" + rand + "deg)";
     setPlaying(!playing);
     switch (true) {
-      case degrees > 30 && degrees <= 90:
-        setTimeout(() => {
-          setCategory("Movies and series");
-        }, 5000);
-        break;
-      case degrees > 90 && degrees <= 150:
-        setTimeout(() => {
-          setCategory("Science: Computers");
-        }, 5000);
-        break;
-      case degrees > 150 && degrees <= 210:
-        setTimeout(() => {
-          setCategory("General Knowledge");
-        }, 5000);
-        break;
-      case degrees > 210 && degrees <= 270:
-        setTimeout(() => {
-          setCategory("Animals");
-        }, 5000);
-        break;
-      case degrees > 270 && degrees <= 330:
-        setTimeout(() => {
-          setCategory("Music");
-        }, 5000);
-        break;
+      // case degrees > 30 && degrees <= 90:
+      //   setTimeout(() => {
+      //     setCategory("Movies and series");
+      //   }, 5000);
+      //   break;
+      // case degrees > 90 && degrees <= 150:
+      //   setTimeout(() => {
+      //     setCategory("Science: Computers");
+      //   }, 5000);
+      //   break;
+      // case degrees > 150 && degrees <= 210:
+      //   setTimeout(() => {
+      //     setCategory("General Knowledge");
+      //   }, 5000);
+      //   break;
+      // case degrees > 210 && degrees <= 270:
+      //   setTimeout(() => {
+      //     setCategory("Animals");
+      //   }, 5000);
+      //   break;
+      // case degrees > 270 && degrees <= 330:
+      //   setTimeout(() => {
+      //     setCategory("Music");
+      //   }, 5000);
+      //   break;
       default:
         setTimeout(() => {
           setNosy(true);
@@ -146,11 +149,11 @@ const Game = (props) => {
           />
         </Link>
         {props.game && props.game.status === false && props.game.lifes > 0 ? (
-          <StatisticGame lifes={props.game.lifes} />
+          <StatisticGame lifes={props.game.lifes} {...props} />
         ) : props.game &&
           props.game.status === false &&
           props.game.lifes <= 0 ? (
-          <StatisticGame lifes={props.game.lifes} />
+          <StatisticGame lifes={props.game.lifes} {...props} />
         ) : nosy ? (
           <Nosy categoryHandler={categoryHandler} game={props.game} />
         ) : !question ? (

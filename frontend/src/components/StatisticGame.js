@@ -3,11 +3,11 @@ import styles2 from "../styles/accounts.module.css";
 import { connect } from "react-redux";
 
 const StatisticGame = (props) => {
-  console.log(props.game);
+  console.log(props);
   console.log(props.statisticsUser);
   console.log(props.game.player);
   let percent = Math.round(
-    props.statisticsUser.statistics.single_player.win_pct
+    props.statisticsUser.single_player.win_pct
   );
   console.log(percent);
 
@@ -32,19 +32,6 @@ const StatisticGame = (props) => {
             </svg>
             <strong>PLAY AGAIN</strong>
           </button>
-          <button
-            onClick={() => props.history.push("/")}
-            className={styles2.playButton}
-          >
-            <svg
-              className={styles2.buttonPlayButton}
-              xmlns="http://www.w3.org/1999/xlink"
-              viewBox="0 0 163.861 163.861"
-            >
-              <path d="M34.857,3.613C20.084-4.861,8.107,2.081,8.107,19.106v125.637c0,17.042,11.977,23.975,26.75,15.509L144.67,97.275   c14.778-8.477,14.778-22.211,0-30.686L34.857,3.613z" />
-            </svg>
-            <strong>BACK TO HOME</strong>
-          </button>
         </div>
       </div>
 
@@ -53,7 +40,7 @@ const StatisticGame = (props) => {
           className={styles.srcUser}
           style={
             props.statisticsUser && {
-              backgroundImage: `url("${props.statisticsUser.avatar}")`,
+              backgroundImage: `url("${props.avatar}")`,
             }
           }
         ></div>
@@ -80,10 +67,10 @@ const StatisticGame = (props) => {
             <p>STATISTICS</p>
             <p>
               Losses:{" "}
-              {" " + props.statisticsUser.statistics.single_player.losses}
+              {" " + props.statisticsUser.single_player.losses}
             </p>
             <p>
-              Wins: {" " + props.statisticsUser.statistics.single_player.wins}
+              Wins: {" " + props.statisticsUser.single_player.wins}
             </p>
             <div className={styles.progress}>
               <p>Progress:</p>
@@ -104,6 +91,7 @@ const mapStateToProps = (state) => {
   return {
     game: state.game.game,
     statisticsUser: state.game.statisticsUser,
+    avatar: state.users.avatar
   };
 };
 

@@ -2,8 +2,7 @@ const Question = require("../models/Question");
 
 const questionsControllers = {
   getQuestion: async (req, res) => {
-    const { category } = req.params;
-    const { game } = req.body;
+    const { category, game } = req.body;
     let questions;
     if (game.current_player) {
       questions =

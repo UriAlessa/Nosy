@@ -18,6 +18,10 @@ const AccountSection = (props) => {
     }, 2000);
   }, [])
 
+  useEffect(() => {
+    props.history.push("/accounts");
+  }, []);
+
   return (
     <div className={styles.mainContainer}>
       {loader && <Loader />}
@@ -28,7 +32,10 @@ const AccountSection = (props) => {
             <div className={styles.welcomeLogin}>
               <h2>Hello! New here?</h2>
               <p>Define your personal details and start journey with us</p>
-              <button onClick={() => setLogin(true)} className={styles.playButton}>
+              <button
+                onClick={() => setLogin(true)}
+                className={styles.playButton}
+              >
                 <svg
                   className={styles.buttonPlayButton}
                   xmlns="http://www.w3.org/1999/xlink"
@@ -47,7 +54,10 @@ const AccountSection = (props) => {
               <p>
                 To keep connected with us please login with your account info
               </p>
-              <button onClick={() => setLogin(false)} className={styles.playButton}>
+              <button
+                onClick={() => setLogin(false)}
+                className={styles.playButton}
+              >
                 <svg
                   className={styles.buttonPlayButton}
                   xmlns="http://www.w3.org/1999/xlink"

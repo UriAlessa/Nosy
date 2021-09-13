@@ -157,7 +157,7 @@ const QuestionCard = (props) => {
           <div className={styles.containerSeconds2}>
             <img
               className={styles.logo}
-              src="/assets/logoSoloLetras.png"
+              src="/assets/LogoRuleta.png"
               alt="logo"
             />
             <div className={styles.ContainerCoinsTimeLife}>
@@ -197,39 +197,39 @@ const QuestionCard = (props) => {
             <div ref={answersContainer} className={styles.containerButtons}>
               {bomb.length === 0
                 ? answers.map((string, index) => {
-                    return (
-                      <button
-                        key={index}
-                        className={
-                          answers.length === 2
-                            ? styles.button2option
-                            : styles.buttonOption
-                        }
-                        name={string}
-                        onClick={clickHandler}
-                        disabled={click}
-                      >
-                        {string}
-                      </button>
-                    );
-                  })
+                  return (
+                    <button
+                      key={index}
+                      className={
+                        answers.length === 2
+                          ? styles.button2option
+                          : styles.buttonOption
+                      }
+                      name={string}
+                      onClick={clickHandler}
+                      disabled={click}
+                    >
+                      {string}
+                    </button>
+                  );
+                })
                 : answers.map((string, index) => {
-                    return (
-                      <button
-                        key={index}
-                        className={
-                          bomb.includes(string)
-                            ? styles.buttonOptionBombed
-                            : styles.buttonOption
-                        }
-                        name={string}
-                        onClick={clickHandler}
-                        disabled={bomb.includes(string)}
-                      >
-                        {string}
-                      </button>
-                    );
-                  })}
+                  return (
+                    <button
+                      key={index}
+                      className={
+                        bomb.includes(string)
+                          ? styles.buttonOptionBombed
+                          : styles.buttonOption
+                      }
+                      name={string}
+                      onClick={clickHandler}
+                      disabled={bomb.includes(string)}
+                    >
+                      {string}
+                    </button>
+                  );
+                })}
             </div>
 
             <div className={styles.powersButtons}>

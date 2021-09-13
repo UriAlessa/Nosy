@@ -170,7 +170,7 @@ const usersActions = {
             fontFamily: "Ubuntu, sans-serif",
           },
         });
-        // return dispatch({ type: "LOG_OUT" });
+        return dispatch({ type: "LOG_OUT" });
       }
     };
   },
@@ -190,24 +190,30 @@ const usersActions = {
         );
         if (!response.data.success) throw new Error();
         if (accept) {
+          dispatch({
+            type: "SET_GAME",
+            payload: {
+              game: response.data.game,
+              coins: response.data.coins.invitated,
+              statistics: null,
+            },
+          });
           return dispatch({
             type: "ACCEPT_GAME_REQUEST",
             payload: {
               username,
-              friend_requests: response.data.friend_requests,
-              friends: response.data.friends,
+              playing_now: response.data.playing_now,
+              game_requests: response.data.game_requests,
+              game: response.data.game,
+              coins: response.data.coins.invitator,
             },
           });
         } else {
           return dispatch({
             type: "DECLINE_GAME_REQUEST",
-            payload: { friend_requests: response.data.friend_requests },
+            payload: { game_requests: response.data.game_requests },
           });
         }
-        dispatch({
-          type: "ANSWER_GAME_REQUEST",
-          payload: username,
-        });
       } catch (error) {
         toast.error("Session expired", {
           position: "top-right",
@@ -218,7 +224,7 @@ const usersActions = {
             fontFamily: "Ubuntu, sans-serif",
           },
         });
-        return dispatch({ type: "LOG_OUT" });
+        // return dispatch({ type: "LOG_OUT" });
       }
     };
   },
@@ -321,6 +327,21 @@ const usersActions = {
           return { success: true, response: response.data.response };
         } else {
           return { success: false, response: response.data.response };
+        }
+      } catch (error) {
+        return { success: false, response: error.message };
+      }
+    };
+  },
+  deleteReview: (id) => {
+    console.log(id)
+    return async () => {
+      try {
+        let response = await axios.delete("http://localhost:4000/api/review/" + id);
+        if (response.data.success) {
+          return { success: true };
+        } else {
+          return { success: false };
         }
       } catch (error) {
         return { success: false, response: error.message };

@@ -10,8 +10,8 @@ const questionActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/question/" + category,
-          { game }
+          "http://localhost:4000/api/question/",
+          { category, game }
         );
         return response.data.response;
       } catch (error) {
