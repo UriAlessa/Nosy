@@ -7,7 +7,6 @@ import QuestionCard from "./QuestionCard";
 import { toast } from "react-hot-toast";
 
 const Questions = (props) => {
-  const [allQuestions, setAllQuestions] = useState(props.questions)
   const [filtered, setFiltered] = useState(props.questions)
   const [newQuestion, setNewQuestion] = useState({})
   const correctInput = useRef()
@@ -53,7 +52,6 @@ const Questions = (props) => {
             height: "10vh"
           },
         });
-        // setFiltered(allQuestions.push(response.response))
       } else {
         throw new Error()
       }
@@ -72,22 +70,16 @@ const Questions = (props) => {
   }
 
   const filter = (e) => {
-    setFiltered(allQuestions.filter((question) => {
-      if (question.category === e.target.value) {
-        return question
-      }
-      if (e.target.value === 'View All') {
-        return question
-      }
-    }))
+    setFiltered(props.questions.filter((question) =>
+      question.category === e.target.value || e.target.value === 'View All'
+
+    ))
   }
 
   const reload = (_id) => {
-    setFiltered(filtered.filter((question) => {
-      if (question._id !== _id) {
-        return question
-      }
-    }))
+    setFiltered(filtered.filter((question) =>
+      question._id !== _id
+    ))
   }
 
 

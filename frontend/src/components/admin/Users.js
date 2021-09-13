@@ -14,11 +14,7 @@ const Users = (props) => {
     const avatarInput = useRef()
 
     const reload = (id) => {
-        setFiltered(filtered.filter((user) => {
-            if (user._id !== id) {
-                return user
-            }
-        }))
+        setFiltered(filtered.filter((user) => user._id !== id))
     }
 
     const inputHandler = (e) => {

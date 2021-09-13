@@ -10,7 +10,7 @@ const questionActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/question/",
+          "https://benosy.herokuapp.com/api/question/",
           { category, game }
         );
         return response.data.response;

@@ -15,11 +15,9 @@ const Dashboard = (props) => {
         try {
             await props.deleteReview(_id)
             props.setreload(!props.reload)
-            setAllReviews(allReviews.filter((review) => {
-                if (review._id !== _id) {
-                    return review
-                }
-            }))
+            setAllReviews(allReviews.filter((review) =>
+                review._id !== _id
+            ))
         } catch (error) {
             toast.error("Something went wrong. Try again Later", {
                 position: "top-left",

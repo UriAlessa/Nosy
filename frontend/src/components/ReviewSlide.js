@@ -68,10 +68,7 @@ const ReviewSlide = (props) => {
                 </div>
               )}
               <h4 className={styles.titleDescription}>"{review.title}"</h4>
-              <div
-                className={styles.picGame}
-                style={{ backgroundImage: `url("${review.img}}")` }}
-              ></div>
+              <div><img className={styles.picGame} src={review.img} alt="" /></div>
             </div>
             <div>
               <p className={styles.subtitleDescription}>

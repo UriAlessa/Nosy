@@ -4,7 +4,7 @@ const adminUsersActions = {
   getUsers: () => {
     let token = localStorage.getItem("token");
     return async (dispatch) => {
-      let response = await axios.get("http://localhost:4000/api/admin/user", {
+      let response = await axios.get("https://benosy.herokuapp.com/api/admin/user", {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -19,7 +19,7 @@ const adminUsersActions = {
     let token = localStorage.getItem("token");
     return async (dispatch) => {
       let response = await axios.post(
-        "http://localhost:4000/api/admin/user",
+        "https://benosy.herokuapp.com/api/admin/user",
         user,
         {
           headers: {
@@ -37,7 +37,7 @@ const adminUsersActions = {
     let token = localStorage.getItem("token");
     return async (dispatch) => {
       let response = await axios.put(
-        "http://localhost:4000/api/admin/user",
+        "https://benosy.herokuapp.com/api/admin/user",
         newUser,
         {
           headers: {
@@ -56,7 +56,7 @@ const adminUsersActions = {
     let token = localStorage.getItem("token");
     return async (dispatch) => {
       let response = await axios.delete(
-        "http://localhost:4000/api/admin/user/" + userId,
+        "https://benosy.herokuapp.com/api/admin/user/" + userId,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -72,7 +72,7 @@ const adminUsersActions = {
   getReviews: () => {
     return async (dispatch) => {
       let response = await axios.get(
-        "http://localhost:4000/api/review"
+        "https://benosy.herokuapp.com/api/review"
       );
       if (response.data.success) {
         dispatch({ type: "GET_REVIEWS", payload: response.data.response });

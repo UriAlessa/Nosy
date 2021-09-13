@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
 
 const ReviewAddNewOne = (props) => {
-  const [reviews, setReviews] = useState([]);
   const [msjR, setMsjR] = useState("")
 
   const [newReview, setNewReview] = useState({
@@ -35,7 +34,6 @@ const ReviewAddNewOne = (props) => {
       try {
         let response = await props.postNewReview(newReview, props.token);
         if (response.success) {
-          setReviews(response.response);
           toast.success(<div
             className={styles.reviewsPosted1}
           >
