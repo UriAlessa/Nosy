@@ -16,6 +16,8 @@ const Questions = (props) => {
   const incorrectInputTwo = useRef()
   const incorrectInputThree = useRef()
 
+  console.log(props.questions)
+
   const categories = ["Music", "General Knowledge", "Movies and series", "Science: Computers", "Animals"]
 
   const inputHandler = (e) => {
@@ -51,6 +53,7 @@ const Questions = (props) => {
             height: "10vh"
           },
         });
+        // setFiltered(allQuestions.push(response.response))
       } else {
         throw new Error()
       }
@@ -86,6 +89,7 @@ const Questions = (props) => {
       }
     }))
   }
+
 
   return (
     <div className={style.tableContainer}>
