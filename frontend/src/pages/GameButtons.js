@@ -46,6 +46,7 @@ const GameButtons = (props) => {
         {playWithFriend ? (
           <div
             style={{ display: "flex", width: "100%", justifyContent: "center" }}
+            className={styles.friendsContainer}
           >
             <div className={styles2.friendsList}>
               <h3 className={styles2.subtitle}>friends List</h3>
