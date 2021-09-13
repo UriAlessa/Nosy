@@ -94,7 +94,7 @@ const SignUp = (props) => {
       <h1>Create Account</h1>
       <div className={styles.socialMediaLogin}>
         <GoogleLogin
-          clientId="77261215194-7j5tq2uceto7ij1qbicghsdur34h9ogr.apps.googleusercontent.com"
+          clientId="77261215194-tja0kncgersfskhiapkts7m9a21g4dh3.apps.googleusercontent.com"
           buttonText="Sign up"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
