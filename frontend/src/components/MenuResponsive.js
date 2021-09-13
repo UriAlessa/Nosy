@@ -4,6 +4,7 @@ import usersActions from "../redux/actions/usersActions";
 import { NavLink, Link } from "react-router-dom";
 import { SocialMediaFooterButton } from "../components/Buttons";
 import otherActions from "../redux/actions/otherActions";
+import { useEffect } from 'react'
 
 const MenuResponsive = (props) => {
   const showMenu = () => {
@@ -46,11 +47,11 @@ const MenuResponsive = (props) => {
         </div>
       )}
       <nav>
-      {document.title != "Nosy" && (
-            <NavLink to="/">
-              <p>HOME</p>
-            </NavLink>
-          )}
+        {document.title != "Nosy" && (
+          <NavLink to="/">
+            <p>HOME</p>
+          </NavLink>
+        )}
         <a onClick={showMenu} href="#howToPlay">
           HOW TO PLAY
         </a>
@@ -60,8 +61,9 @@ const MenuResponsive = (props) => {
         <a onClick={showMenu} href="#reviews">
           REVIEWS
         </a>
+        {props.token && <NavLink to='/friends'>FRIENDS!</NavLink>}
         {props.token && (
-          
+
           <p
             className={styles.logout}
             onClick={() => {
@@ -77,7 +79,7 @@ const MenuResponsive = (props) => {
             <p>LOG IN/SIGN UP</p>
           </NavLink>
         )}
-        {props.token && <NavLink to='/friends'>FRIENDS!</NavLink>}
+
       </nav>
       <div className={styles.socialMediaResponsiveHeader}>
         <SocialMediaFooterButton icon="instagram" />

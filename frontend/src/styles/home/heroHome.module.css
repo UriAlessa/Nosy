@@ -158,20 +158,8 @@
 }
 @media (max-width:768px){
   .goGame {
-    top: 70vh;
-    right: 40vw;
+    top: 76%;
+    right: 43%;
     width: 16vmin;
-  }
-}
-@media (max-width:768px){
-  .goGame {
-    top: 70vh;
-    right: 40vw;
-    width: 16vmin;
-  }
-}
-@media (max-width:577px){
-  .goGame {
-    width: 23vmin;
   }
 }

@@ -125,6 +125,14 @@
   .logo {
     width: 20vw;
   }
+  .friendsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .friendsContainer>div{
+    width: 80%;
+  }
 }
 @media only screen and (max-width: 870px) {
   .logo {

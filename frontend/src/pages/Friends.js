@@ -37,6 +37,10 @@ const Friends = (props) => {
       );
       console.log(userSearched)
   };
+
+  const sendRequest = (e) => {
+    e.key === 'Enter' && clickHandler()
+  }
   return (
     <>
       <div
@@ -78,6 +82,7 @@ const Friends = (props) => {
                     className={styles.inputSearch}
                     type="text"
                     placeholder="Search your friend"
+                    onKeyDown={sendRequest}
                   />
                   <button onClick={clickHandler}>Search</button>
                 </div>
