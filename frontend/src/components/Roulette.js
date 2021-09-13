@@ -7,9 +7,9 @@ const Roulette = (props) => {
   const user_avatar = "/assets/avatars.png"
   const shadows = [
     { no: "shadow4.png", yes: "music.png", key: "Music" },
-    { no: "shadow1.png", yes: "computer.png", key: "Science: Computers" },
+    { no: "shadow5.png", yes: "computer.png", key: "Science: Computers" },
     { no: "shadow3.png", yes: "cultura.png", key: "General Knowledge" },
-    { no: "shadow5.png", yes: "animals.png", key: "Animals" },
+    { no: "shadow1.png", yes: "animals.png", key: "Animals" },
     { no: "shadow2.png", yes: "movies.png", key: "Movies and series" },
   ];
   let resultToRender = <div className={styles.shadows} ></div>
@@ -26,10 +26,10 @@ const Roulette = (props) => {
             shadows.map((shadow) => (
               <img
                 key={shadow.key}
-                className={styles.picShadow}
+                className={style.picShadow}
                 src={`assets/${props.game.player.medals.includes(shadow.key)
-                    ? shadow.yes
-                    : shadow.no
+                  ? shadow.yes
+                  : shadow.no
                   }`}
                 alt={shadow.key}
               />
@@ -43,8 +43,8 @@ const Roulette = (props) => {
                 key={shadow.key}
                 className={styles.picShadow}
                 src={`assets/${props.game.player.medals.includes(shadow.key)
-                    ? shadow.yes
-                    : shadow.no
+                  ? shadow.yes
+                  : shadow.no
                   }`}
                 alt={shadow.key}
               />
@@ -58,8 +58,8 @@ const Roulette = (props) => {
               key={shadow.key}
               className={styles.picShadow}
               src={`assets/${props.game.player.medals.includes(shadow.key)
-                  ? shadow.yes
-                  : shadow.no
+                ? shadow.yes
+                : shadow.no
                 }`}
               alt={shadow.key}
             />

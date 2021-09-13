@@ -26,6 +26,7 @@
 .videosHome > div > div {
     border-radius: 10px;
     background-color: #16183F;
+    padding: 3vmin;
 }
 
 .videosHome h3 {
@@ -50,6 +51,5 @@
     .videosHome iframe {
         height: 33.5vw;
     }
-
 
 }

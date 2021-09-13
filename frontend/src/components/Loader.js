@@ -2,7 +2,7 @@ import styles from "../styles/loader.module.css";
 
 const Loader = () => {
   return (
-    <div className={styles.loader} style={{backgroundImage: "url('/assets/gifGame.gif')"}}>
+    <div className={styles.loader} style={{ backgroundImage: "url('/assets/nosy.png')" }}>
       <h1>
         <span className={styles.let1}>l</span>
         <span className={styles.let2}>o</span>

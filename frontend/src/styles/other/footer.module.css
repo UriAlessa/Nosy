@@ -52,4 +52,7 @@ footer {
   .footerNav, .socialMedia {
     margin: 3vh 0;
   }
+  .footerMindHubLogo{
+    display: none;
+  }
 }

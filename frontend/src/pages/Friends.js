@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const Friends = (props) => {
   const [filtered, setFiltered] = useState();
-  const [userSearched, setUserSearched] = useState();
+  const [userSearched, setUserSearched] = useState(null);
   const friendSearched = useRef();
   const [switchOptions, setSwitchOptions] = useState(false);
 

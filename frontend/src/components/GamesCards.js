@@ -5,19 +5,19 @@ const GamesCards = () => {
     {
       title: "HISTORY",
       description:
-        "To the difficulties of drawing from your notebook, it is added that the words are selected by the opponent and on the screen different clues will appear for each participant. Laughing has never been easier! Are you interested?",
+        "Sabri los mandará",
       pic: "juego1.png",
     },
     {
       title: "SPORTS",
       description:
-        "The app has arrived that combines the classic games of the meeting with friends before leaving. There you can find several engines to activate the unspeakable laughter and confessions among your friends! Are you interested?",
+        "Sabri los mandará",
       pic: "otroJuego.png",
     },
   ];
   return (
     <section id="nextGames" className={styles.sectionGames}>
-      <h2>CATEGORIES TO COME!</h2>
+      <h2>COOMING SOON!</h2>
       <article className={styles.articleGames}>
         {data.map((data, index) => (
           <div key={index} className={styles.divGame}>
