@@ -33,14 +33,12 @@
   gap:1.5rem;
   height: auto;
   border-radius: 3%;
-  height: 480px;
   display:flex;
   flex-direction: column;
   align-items: center;
   border-radius: 3%;
   box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
   padding: 0.5rem;
-  
 }
 
 .card h3{
@@ -102,8 +100,6 @@
   }
   
 }
-
-
 
 @media only screen and (max-width: 768px) {
   .section h2 {
