@@ -4,6 +4,10 @@
   background-position: center;
   padding-top: 1rem;
   background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
 }
 .loader h1 {
   font-family: "Fredoka One", cursive;
@@ -11,6 +15,9 @@
   font-size: 3rem;
   color: #a3e1f0;
   text-align: center;
+  z-index: 1000;
+  position: relative;
+  top: 83.5vh;
 }
 .loader h1 span {
   display: inline-block;
@@ -20,7 +27,7 @@
 }
 .let1, .let2, .let3, .let4, .let5, .let6, .let7, .let8, .let9,.let10 {
         animation: drop 0.5s ease-in-out infinite;
-        animation-delay: 0.3s
+        animation-delay: 0.3s;
 }
 
 @keyframes drop {
