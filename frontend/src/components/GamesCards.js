@@ -3,16 +3,16 @@ import styles from "../styles/home/gamesCards.module.css";
 const GamesCards = () => {
   const data = [
     {
-      title: "HISTORY",
+      title: "CORONA-DATA",
       description:
-        "To the difficulties of drawing from your notebook, it is added that the words are selected by the opponent and on the screen different clues will appear for each participant. Laughing has never been easier! Are you interested?",
-      pic: "juego1.png",
+        "She was highly discriminated against because of her appearance until she learned to take advantage of her memory, and today she guards all the memorable events of the health catastrophe in recent years.",
+      pic: "history.png",
     },
     {
       title: "SPORTS",
       description:
-        "The app has arrived that combines the classic games of the meeting with friends before leaving. There you can find several engines to activate the unspeakable laughter and confessions among your friends! Are you interested?",
-      pic: "otroJuego.png",
+        "He was never adept at sports, however no one can beat his memory, and for this reason he guards this category and the most curious data about it! If you feel identified, do not stop entering the game because it is coming soon!",
+      pic: "sport3.png",
     },
   ];
   return (
