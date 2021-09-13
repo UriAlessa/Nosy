@@ -8,7 +8,7 @@ const PlayButton = ({ text, setPlayWithFriend }) => {
       onClick={() =>
         text === "PLAY W/ FRIEND"
           ? setPlayWithFriend(true)
-          : text === "PLAY ALONE" &&
+          : text === "PLAY NOW" &&
             !localStorage.getItem("token") &&
             toast.error("You need to log in to play game.", {
               position: "top-center",
