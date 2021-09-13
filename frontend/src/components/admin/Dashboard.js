@@ -19,7 +19,6 @@ const Dashboard = (props) => {
                 if (review._id !== _id) {
                     return review
                 }
-                return true
             }))
         } catch (error) {
             toast.error("Something went wrong. Try again Later", {
@@ -76,8 +75,8 @@ const Dashboard = (props) => {
                     })}
 
                 </div>
-                <div className={`${styles.questionsContainer} ${styles.reviews}`}>
-                </div>
+                {/* <div className={`${styles.questionsContainer} ${styles.reviews}`}>
+                </div> */}
             </div>
             <div></div>
             <div className={`${style.loginBox} ${style.connected}`} style={{ height: '90%' }}>

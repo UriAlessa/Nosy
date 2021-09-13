@@ -16,13 +16,7 @@ const Questions = (props) => {
   const incorrectInputTwo = useRef()
   const incorrectInputThree = useRef()
 
-  const categories = []
-  props.questions && props.questions.map((question) => {
-    if (!categories.includes(question.category)) {
-      categories.push(question.category)
-    }
-    return true
-  })
+  const categories = ["Music", "General Knowledge", "Movies and series", "Science: Computers", "Animals"]
 
   const inputHandler = (e) => {
     setNewQuestion({
@@ -82,7 +76,6 @@ const Questions = (props) => {
       if (e.target.value === 'View All') {
         return question
       }
-      return true
     }))
   }
 
@@ -91,7 +84,6 @@ const Questions = (props) => {
       if (question._id !== _id) {
         return question
       }
-      return true
     }))
   }
 
