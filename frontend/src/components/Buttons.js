@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import style from "../styles/other/buttons.module.css";
 
-const PlayButton = ({ text, setPlayWithFriend, ...props }) => {
+const PlayButton = ({ text, setPlayWithFriend }) => {
   return (
     <button
       className={style.playButton}
@@ -9,7 +9,7 @@ const PlayButton = ({ text, setPlayWithFriend, ...props }) => {
         text === "PLAY W/ FRIEND"
           ? setPlayWithFriend(true)
           : text === "PLAY ALONE" &&
-            !props.token &&
+            !localStorage.getItem("token") &&
             toast.error("You need to log in to play game.", {
               position: "top-center",
               style: {
