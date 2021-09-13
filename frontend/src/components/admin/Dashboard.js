@@ -9,9 +9,7 @@ let moment = require("moment");
 
 
 const Dashboard = (props) => {
-    const [reload, setReload] = useState(true)
     const [allReviews, setAllReviews] = useState(props.reviews)
-    console.log(props.reviews)
 
     const deleteReview = async (_id) => {
         try {
@@ -21,6 +19,7 @@ const Dashboard = (props) => {
                 if (review._id !== _id) {
                     return review
                 }
+                return true
             }))
         } catch (error) {
             toast.error("Something went wrong. Try again Later", {
@@ -58,7 +57,6 @@ const Dashboard = (props) => {
 
     return (
         <div className={`${style.tableContainer} ${styles.dashboardContainer}`}>
-            {console.log('hola')}
             <div className={`${style.cardsContainer} ${styles.resumeContainer}`}>
                 <div className={styles.resumeSection}>
                     <h2>Last Reviews</h2>
@@ -96,6 +94,7 @@ const Dashboard = (props) => {
                             </div>
                         )
                     }
+                    return true
                 })}
             </div>
         </div >

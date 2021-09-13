@@ -12,23 +12,18 @@ const transport = nodemailer.createTransport({
 
 const mailControllers = {
     sendMail: (req, res) => {
-        const {email, username} = req.body
+        const { email, username } = req.body
         let options = {
             from: 'Nosy <nosygame2021@gmail.com>',
-            to: email, 
+            to: email,
             subject: `Welcome to Nosy ${username}!`,
-            html: `<div style="background-color: #292657; min-height: 30vh; width: 50vw; display: flex; flex-direction: column; align-items: center;">
-            <h1 style="color: white; font-family: 'Fredoka One', cursive; color: #88f0c0; font-weight: 900;">WELCOME TO NOSY! ${username}</h1>
-            <p style="color: white; font-family: 'Ubuntu', sans-serif; ">Now, you can play, collect coins and more! Invite your friends!</p>
-            <div><img style="width: 100px;" src="https://cdn.discordapp.com/attachments/883719217290018827/885242238584627261/favicon.png" altName="logoMail"/></div>
-            <a style="color: white; font-family: 'Ubuntu', sans-serif; " href="https://benosy.herokuapp.com/">Play now!</a>
-            </div>`
+            html: `<a href='https://benosy.herokuapp.com/'><img style="width: 80%;" src='https://cdn.discordapp.com/attachments/883716109084287008/886835916960858112/Now_you_can_play_collect_coins_and_more_Invite_your_friends.png' alt='Welcome Mail'</a>`
         }
         transport.sendMail(options, (err, info) => {
             if (err) {
-                return res.json({success: false, response: err})
+                return res.json({ success: false, response: err })
             }
-            return res.json({success: true, response: info})
+            return res.json({ success: true, response: info })
         })
     }
 }

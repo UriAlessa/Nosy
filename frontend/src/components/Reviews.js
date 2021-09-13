@@ -98,31 +98,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Reviews);
-
-/**para Mongo*/
-const AllReviews = [
-  {
-    img: "https://i.postimg.cc/Zq2ptpcd/12.png" /**picture del id del author */,
-    author: "@campamberton" /**nombre del id del author */,
-    date: "23/08/2021" /**reservar la fecha en que se hizo la review */,
-    title: "Amazing night with friends",
-    description:
-      "That night we didn't know what to do ... when one of my friends recommended Nosy to us. It was starting and spending the whole night playing with each other until dawn! I can't wait to repeat!",
-  },
-  // {
-  //     src: "",
-  //     author:'', /**nombre del id del author */
-  //     date:'',
-  //     learningRate:'', /**número que se transformará en icono de aprehendizaje del 1 al 5*/
-  //     title:"One of the top ten",
-  //     description:"I was very bored that night, nothing would get me out of stillness, I didn't want to watch series and be passive in front of the screen. Then I found Nosy! and I spent hours playing and learning! I love it and recommend it!"
-  // },
-  // {
-  //     src: "",
-  //     author:'', /**nombre del id del author */
-  //     date:'',
-  //     learningRate:'', /**número que se transformará en icono de aprehendizaje del 1 al 5*/
-  //     title:"I went to try and today I am a fan",
-  //     description:"I had been told about this website but I did not know how interactive, intuitive and fun it was! It's been a month since I joined and I have a good place in the ranking, I think that says it all!"
-  // }
-];

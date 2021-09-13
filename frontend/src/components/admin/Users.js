@@ -18,6 +18,7 @@ const Users = (props) => {
             if (user._id !== id) {
                 return user
             }
+            return true
         }))
     }
 

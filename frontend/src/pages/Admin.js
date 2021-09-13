@@ -18,7 +18,8 @@ const AdminPanel = (props) => {
     const [reload, setReload] = useState(true)
 
     useEffect(() => {
-
+        document.title = 'Nosy - Admin Dashboard'
+        // eslint-disable-next-line
     }, [reload])
 
     const getUsers = async () => {
@@ -98,6 +99,7 @@ const AdminPanel = (props) => {
         getUsers()
         getQuestions()
         getReviews()
+        // eslint-disable-next-line
     }, [reload])
 
     if (loader) {
@@ -110,6 +112,9 @@ const AdminPanel = (props) => {
                 <div className={styles.headerContainer}>
                     <img className={styles.logo} src='/assets/LogoRuleta.png' alt="" />
                     <nav className={styles.navContainer}>
+                        <span className={styles.spanPanel} onClick={() => {
+                            props.history.push("/")
+                        }}>Home</span>
                         <span className={`${styles.spanPanel} ${document.title.includes('Dashboard') && styles.active}`} onClick={() => {
                             document.title = 'Nosy - Admin Dashboard'
                             setView('dashboard')

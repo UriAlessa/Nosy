@@ -17,10 +17,11 @@ const Questions = (props) => {
   const incorrectInputThree = useRef()
 
   const categories = []
-  props.questions.map((question) => {
+  props.questions && props.questions.map((question) => {
     if (!categories.includes(question.category)) {
       categories.push(question.category)
     }
+    return true
   })
 
   const inputHandler = (e) => {
@@ -74,24 +75,23 @@ const Questions = (props) => {
   }
 
   const filter = (e) => {
-    console.log(e.target.value)
     setFiltered(allQuestions.filter((question) => {
-      console.log(question.category)
       if (question.category === e.target.value) {
         return question
       }
       if (e.target.value === 'View All') {
         return question
       }
+      return true
     }))
   }
 
   const reload = (_id) => {
-    console.log('me ejecuto')
     setFiltered(filtered.filter((question) => {
       if (question._id !== _id) {
         return question
       }
+      return true
     }))
   }
 

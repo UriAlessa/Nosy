@@ -31,7 +31,6 @@ const Terms = () => {
         one: false,
       });
     }
-    console.log(items);
   };
 
   const showTwo = () => {

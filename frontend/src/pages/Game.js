@@ -98,31 +98,31 @@ const Game = (props) => {
     roulette.current.style.transform = "rotate(+" + rand + "deg)";
     setPlaying(!playing);
     switch (true) {
-      // case degrees > 30 && degrees <= 90:
-      //   setTimeout(() => {
-      //     setCategory("Movies and series");
-      //   }, 5000);
-      //   break;
-      // case degrees > 90 && degrees <= 150:
-      //   setTimeout(() => {
-      //     setCategory("Science: Computers");
-      //   }, 5000);
-      //   break;
-      // case degrees > 150 && degrees <= 210:
-      //   setTimeout(() => {
-      //     setCategory("General Knowledge");
-      //   }, 5000);
-      //   break;
-      // case degrees > 210 && degrees <= 270:
-      //   setTimeout(() => {
-      //     setCategory("Animals");
-      //   }, 5000);
-      //   break;
-      // case degrees > 270 && degrees <= 330:
-      //   setTimeout(() => {
-      //     setCategory("Music");
-      //   }, 5000);
-      //   break;
+      case degrees > 30 && degrees <= 90:
+        setTimeout(() => {
+          setCategory("Movies and series");
+        }, 5000);
+        break;
+      case degrees > 90 && degrees <= 150:
+        setTimeout(() => {
+          setCategory("Science: Computers");
+        }, 5000);
+        break;
+      case degrees > 150 && degrees <= 210:
+        setTimeout(() => {
+          setCategory("General Knowledge");
+        }, 5000);
+        break;
+      case degrees > 210 && degrees <= 270:
+        setTimeout(() => {
+          setCategory("Animals");
+        }, 5000);
+        break;
+      case degrees > 270 && degrees <= 330:
+        setTimeout(() => {
+          setCategory("Music");
+        }, 5000);
+        break;
       default:
         setTimeout(() => {
           setNosy(true);
@@ -204,9 +204,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
-{
-  /* <div
-            className={styles.gameover}
-            style={{ backgroundImage: 'url("/assets/gameover1.png")' }}
-          ></div> */
-}

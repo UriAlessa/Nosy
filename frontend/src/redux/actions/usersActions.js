@@ -334,7 +334,6 @@ const usersActions = {
     };
   },
   deleteReview: (id) => {
-    console.log(id)
     return async () => {
       try {
         let response = await axios.delete("http://localhost:4000/api/review/" + id);

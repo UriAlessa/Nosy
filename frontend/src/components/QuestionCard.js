@@ -64,8 +64,9 @@ const QuestionCard = (props) => {
       }, 2500);
     }
     return () => clearTimeout(timeOut.current);
+    // eslint-disable-next-line
   }, [seconds]);
-  //Borrar este comentario
+
   useEffect(() => {
     let questionAudio = new Audio("/assets/question.wav");
     let correctAudio = new Audio("/assets/correct.wav");

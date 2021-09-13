@@ -31,12 +31,12 @@ const Header = (props) => {
       ></div>
       <div className={styles.content}>
         <nav>
-          {document.title != "Nosy" && (
+          {document.title !== "Nosy" && (
             <NavLink to="/">
               <p>HOME</p>
             </NavLink>
           )}
-          {document.title == "Nosy" && (
+          {document.title === "Nosy" && (
             <>
               <a href="#howToPlay">HOW TO PLAY</a>
               <a href="#reviews">REVIEWS</a>
@@ -90,6 +90,10 @@ const Header = (props) => {
                     className={styles.logoutContainer}
                     onMouseLeave={showLogin}
                   >
+                    {props.userData.admin.flag &&
+                      <NavLink className={styles.navlinkFriends} to="/admin">
+                        ADMIN
+                      </NavLink>}
                     <NavLink className={styles.navlinkFriends} to="/friends">
                       FRIENDS!
                     </NavLink>
@@ -128,6 +132,7 @@ const mapStateToProps = (state) => {
     username: state.users.username,
     avatar: state.users.avatar,
     menu: state.other.menu,
+    userData: state.users.userData
   };
 };
 

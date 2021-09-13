@@ -40,7 +40,7 @@ router
     passport.authenticate("jwt", { session: false }),
     adminUsersControllers.createAdminUser
   )
-  .get(adminUsersControllers.getUsers)
+  .get(passport.authenticate("jwt", { session: false }), adminUsersControllers.getUsers)
   .put(adminUsersControllers.updateUser);
 
 router

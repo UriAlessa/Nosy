@@ -12,7 +12,6 @@ import MenuResponsive from "./components/MenuResponsive";
 import Game from "./pages/Game";
 import usersActions from "./redux/actions/usersActions";
 import otherActions from "./redux/actions/otherActions";
-import FriendCard from "./components/FriendCard";
 import GameButtons from "./pages/GameButtons";
 import toast, { Toaster } from "react-hot-toast";
 import AdminPanel from "./pages/Admin";
@@ -107,7 +106,7 @@ const App = (props) => {
           path="/selectgame"
           component={!props.token ? Account : GameButtons}
         />
-        <Route path="/admin" component={AdminPanel} />
+        <Route path="/admin" component={props.userData && props.userData.admin.flag ? AdminPanel : Home} />
         <Route path="/loader" component={Loader} />
         <Redirect to="/notFound" />
       </Switch>

@@ -3,11 +3,11 @@ import styles from "../styles/home/reviews.module.css";
 import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
 
-var i=0;
+var i = 0;
 
 const RankingCard = (props) => {
-  const [msj, setMsj]= useState("")
-  
+  const [msj, setMsj] = useState("")
+
   const emojiSelect = {
     first: "https://i.postimg.cc/3NyQhgb8/painfull.gif",
     second: "https://i.postimg.cc/c4qDnLF2/boring.gif",
@@ -16,20 +16,20 @@ const RankingCard = (props) => {
     fifth: "https://i.postimg.cc/QM2WrbMm/awesome.gif",
   };
 
-  const notLoggedIn ={
-    1:"https://i.postimg.cc/Qt1wq496/1.gif",
-    2:"https://i.postimg.cc/nVKNjWtr/5.gif",
-    3:"https://i.postimg.cc/HntNqrtX/3.gif",
+  const notLoggedIn = {
+    1: "https://i.postimg.cc/Qt1wq496/1.gif",
+    2: "https://i.postimg.cc/nVKNjWtr/5.gif",
+    3: "https://i.postimg.cc/HntNqrtX/3.gif",
     4: "https://i.postimg.cc/X7HH9S1j/4.gif",
     5: "https://i.postimg.cc/fb61mnLt/2.gif",
     6: "https://i.postimg.cc/ZqyMT7cT/6.gif",
-    7:"https://i.postimg.cc/G2dJZqgg/10.gif",
+    7: "https://i.postimg.cc/G2dJZqgg/10.gif",
     8: "https://i.postimg.cc/1RKY5NpN/7.gif",
     9: "https://i.postimg.cc/zvD7R0nH/8.gif",
 
   }
 
-  const voteMessage={
+  const voteMessage = {
     first: "Oh! We will try to be better in the future",
     second: "Ouch ... okay, let's cry and then try this topic",
     third: "Yeiii! We are glad you like it",
@@ -37,7 +37,7 @@ const RankingCard = (props) => {
     fifth: "Excellent! Invite your friends here!",
   }
 
-  const message={
+  const message = {
     1: "You need to login for this",
     2: "No, really, you have to ...",
     3: "Are you kidding me?",
@@ -67,14 +67,13 @@ const RankingCard = (props) => {
   const setEmojiFunction = async (emoji) => {
     if (!props.token) {
       i++
-      console.log(i)
-      setEmojiFace(notLoggedIn[i<8? i : 9])
-      setMsj(message[i<8? i : 9])
+      setEmojiFace(notLoggedIn[i < 8 ? i : 9])
+      setMsj(message[i < 8 ? i : 9])
     } else {
       await props.setEmoji(emoji)
     }
   };
-  
+
   return (
     <div>
       <div className={styles.rating}>

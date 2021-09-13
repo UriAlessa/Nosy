@@ -15,8 +15,8 @@ const usersReducer = (state = initialState, action) => {
       let socket = state.socket
         ? state.socket
         : io("http://localhost:4000/", {
-            query: "token=" + action.payload.token,
-          });
+          query: "token=" + action.payload.token,
+        });
       return {
         token: action.payload.token,
         username: action.payload.user.username,
@@ -50,7 +50,6 @@ const usersReducer = (state = initialState, action) => {
         },
       };
     case "SET_GAME_REQUESTS":
-      console.log(action.payload);
       return {
         ...state,
         userData: {
@@ -88,7 +87,6 @@ const usersReducer = (state = initialState, action) => {
         },
       };
     case "DECLINE_FRIEND_REQUEST":
-      console.log(action.payload);
       return {
         ...state,
         userData: {
@@ -109,7 +107,6 @@ const usersReducer = (state = initialState, action) => {
         },
       };
     case "ACCEPT_GAME_REQUEST":
-      console.log(action.payload);
       state.socket.emit("accepted_game_request", {
         username: action.payload.username,
         requests:

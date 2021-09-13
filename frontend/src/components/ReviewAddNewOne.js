@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
 
 const ReviewAddNewOne = (props) => {
-  const [reviews, setReviews] = useState([]);
 
   const [newReview, setNewReview] = useState({
     img: "",
@@ -20,6 +19,7 @@ const ReviewAddNewOne = (props) => {
     });
   };
 
+
   const formPostReview = async (e) => {
     setNewReview({
       img: "",
@@ -29,12 +29,10 @@ const ReviewAddNewOne = (props) => {
     try {
       let response = await props.postNewReview(newReview, props.token);
       if (response.success) {
-        setReviews(response.response);
         toast.custom((t) => (
           <div
-            className={`${
-              t.visible ? "animate-enter" : "animate-leave"
-            } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+            className={`${t.visible ? "animate-enter" : "animate-leave"
+              } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
           >
             <div className="flex-1 w-0 p-4">
               <div className="flex items-start">
@@ -67,7 +65,6 @@ const ReviewAddNewOne = (props) => {
           </div>
         ));
       } else {
-        console.log(response);
         toast.error("Something went wrong! try again later please!", {
           position: "top-center",
           style: {
@@ -79,7 +76,6 @@ const ReviewAddNewOne = (props) => {
         });
       }
     } catch (error) {
-      console.log(error);
       toast.error("Nup... we can´t do this in this moment, so so sorry", {
         position: "top-center",
         style: {
@@ -124,7 +120,7 @@ const ReviewAddNewOne = (props) => {
             onChange={inputHandler}
           />
 
-          <div className="joiErrors">{}</div>
+          <div className="joiErrors">{ }</div>
           <button className={styles.submitButton}>
             <small>
               <span onClick={formPostReview}>Send</span>

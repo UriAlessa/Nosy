@@ -3,7 +3,6 @@ import style from "../styles/game/questionCard.module.css";
 import { connect } from "react-redux";
 
 const Roulette = (props) => {
-  console.log(props.game)
   const user_avatar = "/assets/avatars.png"
   const shadows = [
     { no: "shadow4.png", yes: "music.png", key: "Music" },
@@ -21,7 +20,7 @@ const Roulette = (props) => {
           <div className={styles.userAvatar}
             style={{ backgroundImage: `url(${user_avatar})` }}
           ></div>
-          <img className={styles.userAvatar} src={user_avatar} />
+          <img className={styles.userAvatar} src={user_avatar} alt="User Avatar" />
           {props.game &&
             shadows.map((shadow) => (
               <img
@@ -36,7 +35,7 @@ const Roulette = (props) => {
             ))}
         </div>
         <div className={styles.shadowsMultiplayer}>
-          <img src={user_avatar} />
+          <img src={user_avatar} alt="User Avatar" />
           {props.game &&
             shadows.map((shadow) => (
               <img

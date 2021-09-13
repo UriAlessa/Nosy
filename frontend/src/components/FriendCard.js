@@ -17,13 +17,12 @@ const FriendCard = ({
     <div
       className={styles.logo}
       style={{
-        backgroundImage: `url('${
-          type === "sendRequest"
+        backgroundImage: `url('${type === "sendRequest"
             ? user.avatar
             : type === "friends"
-            ? friend.avatar
-            : request.user.avatar
-        }')`,
+              ? friend.avatar
+              : request.user.avatar
+          }')`,
       }}
     ></div>
   );
@@ -40,7 +39,7 @@ const FriendCard = ({
             onClick={(e) =>
               game
                 ? props.answerGameRequest(false, e.target.value, e.target.id) &&
-                  props.history.push("/game")
+                props.history.push("/game")
                 : props.answerFriendRequest(false, e.target.value)
             }
             className={styles.buttonRefuse}
@@ -143,11 +142,9 @@ const FriendCard = ({
   );
 };
 const mapStateToProps = (state) => {
-  {
-    return {
-      userData: state.users.userData,
-    };
-  }
+  return {
+    userData: state.users.userData,
+  };
 };
 const mapDispatchToProps = {
   addFriend: usersActions.addFriend,
