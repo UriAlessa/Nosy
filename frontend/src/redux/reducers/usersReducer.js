@@ -14,9 +14,9 @@ const usersReducer = (state = initialState, action) => {
       localStorage.setItem("token", action.payload.token);
       let socket = state.socket
         ? state.socket
-        : io("https://benosy.herokuapp.com/", {
-          query: "token=" + action.payload.token,
-        });
+        : io("http://localhost:4000/", {
+            query: "token=" + action.payload.token,
+          });
       return {
         token: action.payload.token,
         username: action.payload.user.username,

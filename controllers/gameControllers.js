@@ -168,6 +168,7 @@ const gameControllers = {
     });
   },
   answer: async (req, res) => {
+    console.log(req.body);
     const { question, answer, nosy, powers_used, coins_spent } = req.body;
     const { _id, playing_now } = req.user;
     const { game_id, multi_player } = playing_now;

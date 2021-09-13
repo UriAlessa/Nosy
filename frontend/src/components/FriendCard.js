@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
 import styles from "../styles/friendCard.module.css";
 import stylesConected from "../styles/usercard.module.css";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 
 const FriendCard = ({
   type,
@@ -18,12 +18,13 @@ const FriendCard = ({
     <div
       className={styles.logo}
       style={{
-        backgroundImage: `url('${type === "sendRequest"
-          ? user.avatar
-          : type === "friends"
+        backgroundImage: `url('${
+          type === "sendRequest"
+            ? user.avatar
+            : type === "friends"
             ? friend.avatar
             : request.user.avatar
-          }')`,
+        }')`,
       }}
     ></div>
   );
@@ -40,7 +41,7 @@ const FriendCard = ({
             onClick={(e) =>
               game
                 ? props.answerGameRequest(false, e.target.value, e.target.id) &&
-                props.history.push("/game")
+                  props.history.push("/game")
                 : props.answerFriendRequest(false, e.target.value)
             }
             className={styles.buttonRefuse}
@@ -119,8 +120,8 @@ const FriendCard = ({
             </div>
           }
           <button
-            onClick={(e) => {
-              Swal.fire('This feature is comming soon!')
+            onClick={() => {
+              Swal.fire("This feature is comming soon!");
             }}
             value={friend.username}
           >

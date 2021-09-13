@@ -9,10 +9,10 @@ const questionActions = {
   getQuestion: (category, game) => {
     return async (dispatch) => {
       try {
-        let response = await axios.post(
-          "https://benosy.herokuapp.com/api/question/",
-          { category, game }
-        );
+        let response = await axios.post("http://localhost:4000/api/question/", {
+          category,
+          game,
+        });
         return response.data.response;
       } catch (error) {
         alert("network error");

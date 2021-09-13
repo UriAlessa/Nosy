@@ -17,7 +17,15 @@ module.exports = passport.use(
           select: "username avatar connected",
         })
         .populate({
-          path: "friend_requests game_requests",
+          path: "friend_requests",
+          populate: {
+            path: "user",
+            model: "user",
+            select: "username avatar",
+          },
+        })
+        .populate({
+          path: "game_requests",
           populate: {
             path: "user",
             model: "user",

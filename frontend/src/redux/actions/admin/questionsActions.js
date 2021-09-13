@@ -4,7 +4,7 @@ const questionActions = {
   getQuestions: () => {
     return async () => {
       let response = await axios.get(
-        "https://benosy.herokuapp.com/api/admin/questions"
+        "http://localhost:4000/api/admin/questions"
       );
       return response;
     };
@@ -17,14 +17,14 @@ const questionActions = {
   createQuestion: (newQuestion) => {
     return async () => {
       let response = await axios.post(
-        "https://benosy.herokuapp.com/api/admin/questions",
+        "http://localhost:4000/api/admin/questions",
         newQuestion
       );
       return response;
     };
   },
   deleteQuestion: () => {
-    return async () => { };
+    return async () => {};
   },
 };
 export default questionActions;
