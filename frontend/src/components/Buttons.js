@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import style from "../styles/other/buttons.module.css";
 
-const PlayButton = ({ text, setPlayWithFriend }, props) => {
+const PlayButton = ({ text, setPlayWithFriend, ...props }) => {
   return (
     <button
       className={style.playButton}
