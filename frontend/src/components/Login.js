@@ -56,7 +56,7 @@ const Login = (props) => {
     };
     let res = await props.logInUser(loginUser);
     if (res.data.success) {
-      welcomeBack()
+      welcomeBack();
     }
   };
 
@@ -92,7 +92,7 @@ const Login = (props) => {
       <p>Or</p>
       <div className={styles.socialMediaLogin}>
         <GoogleLogin
-          clientId="1051031328805-p3ct45qtnohrsnsq8vu32eu3o648c3j9.apps.googleusercontent.com"
+          clientId="77261215194-7j5tq2uceto7ij1qbicghsdur34h9ogr.apps.googleusercontent.com"
           buttonText="Log in"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}

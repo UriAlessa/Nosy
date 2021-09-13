@@ -59,7 +59,7 @@ const SignUp = (props) => {
         });
       });
     } else {
-      await props.sendMail(newUser)
+      await props.sendMail(newUser);
       welcomeToast();
     }
   };
@@ -74,7 +74,7 @@ const SignUp = (props) => {
     };
     let res = await props.signUpUser(newUser);
     if (res.data.success) {
-      await props.sendMail(newUser)
+      await props.sendMail(newUser);
       welcomeToast();
     } else {
       toast.error(res.data.error[0].message, {
@@ -94,7 +94,7 @@ const SignUp = (props) => {
       <h1>Create Account</h1>
       <div className={styles.socialMediaLogin}>
         <GoogleLogin
-          clientId="1051031328805-p3ct45qtnohrsnsq8vu32eu3o648c3j9.apps.googleusercontent.com"
+          clientId="77261215194-7j5tq2uceto7ij1qbicghsdur34h9ogr.apps.googleusercontent.com"
           buttonText="Sign up"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
