@@ -314,6 +314,7 @@ const usersActions = {
           return { success: false, response: response.data.response };
         }
       } catch (err) {
+        console.log(err.message)
         return { success: false, response: err.message };
       }
     };
