@@ -40,7 +40,7 @@ router
     usersAccountsControllers.verifyToken
   );
 
-router.route("/question/:category").post(questionsControllers.getQuestion);
+router.route("/question").post(questionsControllers.getQuestion);
 
 router
   .route("/game/newgame")

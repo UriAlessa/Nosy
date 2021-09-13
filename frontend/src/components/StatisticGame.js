@@ -3,11 +3,11 @@ import styles2 from "../styles/accounts.module.css";
 import { connect } from "react-redux";
 
 const StatisticGame = (props) => {
-  console.log(props.game);
+  console.log(props);
   console.log(props.statisticsUser);
   console.log(props.game.player);
   let percent = Math.round(
-    props.statisticsUser.statistics.single_player.win_pct
+    props.statisticsUser.single_player.win_pct
   );
   console.log(percent);
 
@@ -53,7 +53,7 @@ const StatisticGame = (props) => {
           className={styles.srcUser}
           style={
             props.statisticsUser && {
-              backgroundImage: `url("${props.statisticsUser.avatar}")`,
+              backgroundImage: `url("${props.avatar}")`,
             }
           }
         ></div>
@@ -80,10 +80,10 @@ const StatisticGame = (props) => {
             <p>STATISTICS</p>
             <p>
               Losses:{" "}
-              {" " + props.statisticsUser.statistics.single_player.losses}
+              {" " + props.statisticsUser.single_player.losses}
             </p>
             <p>
-              Wins: {" " + props.statisticsUser.statistics.single_player.wins}
+              Wins: {" " + props.statisticsUser.single_player.wins}
             </p>
             <div className={styles.progress}>
               <p>Progress:</p>
@@ -104,6 +104,7 @@ const mapStateToProps = (state) => {
   return {
     game: state.game.game,
     statisticsUser: state.game.statisticsUser,
+    avatar: state.users.avatar
   };
 };
 

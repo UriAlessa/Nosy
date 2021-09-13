@@ -22,7 +22,7 @@ const Home = (props) => {
       className="body"
       style={{ backgroundImage: 'url("/assets/transparentSmall.png")' }}
     >
-      {props.game && props.game.status && (
+      {props.userData && props.userData.playing_now.status && (
         <Link to="/game">
           <img
             src="/assets/goback.png"
@@ -46,6 +46,8 @@ const Home = (props) => {
 const mapStateToProps = (state) => {
   return {
     game: state.game.game,
+    token: state.users.token,
+    userData: state.users.userData
   };
 };
 

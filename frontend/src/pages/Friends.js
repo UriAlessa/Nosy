@@ -40,7 +40,7 @@ const Friends = (props) => {
     <>
       <div
         className={styles.mainContainer}
-        style={{ backgroundImage: "url(https://i.postimg.cc/fL7dnP7m/13.png)" }}
+        style={{ backgroundImage: "url('/assets/background.png')" }}
       >
         <h1 className={styles.title}>FRIENDS</h1>
         <div className={styles.midContainer}>

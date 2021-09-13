@@ -21,7 +21,7 @@ const GameButtons = (props) => {
 
   useEffect(() => {
     setFiltered(props.userData && props.userData.friends);
-    if (props.userData.playing_now.status) props.history.push("/game");
+    // if (props.userData.playing_now.status) props.history.push("/game");
   }, [props.userData]);
 
   return (
