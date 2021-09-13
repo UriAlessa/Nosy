@@ -27,13 +27,20 @@ router
   );
 
 router
+  .route("/user/friend_list")
+  .get(
+    passport.authenticate("jwt", { session: false }),
+    usersAccountsControllers.getFriendsList
+  );
+
+router
   .route("/user/token")
   .get(
     passport.authenticate("jwt", { session: false }),
     usersAccountsControllers.verifyToken
   );
 
-router.route("/question/:category").get(questionsControllers.getQuestion);
+router.route("/question/:category").post(questionsControllers.getQuestion);
 
 router
   .route("/game/newgame")

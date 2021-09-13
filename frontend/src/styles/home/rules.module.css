@@ -25,8 +25,9 @@ html * {
 .containerCards{
   margin:3vmin auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 90%;
+  background-color: blanchedalmond;
 }
 .card{
   background-color: rgba(25, 22, 61, 0.912);
@@ -38,13 +39,13 @@ html * {
   gap:1.5rem;
   height: auto;
   border-radius: 3%;
-  /* height: 480px;
+  height: 480px;
   display:flex;
   flex-direction: column;
   align-items: center;
   border-radius: 3%;
   box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
-  padding: 0.5rem; */
+  padding: 0.5rem;
   
 }
 
@@ -65,105 +66,16 @@ html * {
   font-size: 3vmin;
   margin: 10px 20px;
   font-weight: 401;
-padding-bottom: 8vmin;
+  padding-bottom: 8vmin;
 }
 
-@media only screen and (max-width: 750px) {
-  .containerCards{
-    flex-direction: column;
-    gap:5vmin;
-  }
-  .card {
-    width: 100%
-  }
-  .card p {
-    font-size: 4vmin;
-  }
-}
-
-/* html * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.section {
-    font-family: 'Fredoka One', cursive;
-    width: 100%;
-}
-.section h2{
-    color:#84eeb7;
-    margin-top: 1rem;
-    font-size: 34px;
-    text-shadow: -1px 2px 0 #389067;
-}
-
-.section h2, .section p{
-    text-align: center;
-}
-
-.section p{
-    color: white;
-    margin-bottom: 50px;
-    font-size: 19px; 
-    font-family: 'Ubuntu', sans-serif;
-}
-
-.containerCards{
-    margin: 0 9%;
-    display: flex;
-    justify-content: center;
-    display: grid;
-    grid-template-columns: repeat(3, 28%);
-    gap: 6vmin;
-}
-.card{
-    background: rgba(18, 22, 58, 0.831);
-    font-family: 'Ubuntu', sans-serif;
-    background-image: url("https://i.postimg.cc/CKmJtj3M/bkg-Solo-Clouds.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 480px;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 3%;
-    box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
-    padding: 0.5rem;
-    
-}
-.card h3{
-    background-color: transparent;
-    color: #e3be31;
-    text-align: center;
-    font-size: 3vmin;
-    font-weight: bold;
-}
-
-.card img{
-    height: 50%;
-    margin: 25px 0;
-}
-.card img, .card p {
-  background-color: transparent;
-  font-family: "Ubuntu", sans-serif;
-}
-
-.card p{
-    font-size: 17px;
-    margin: 10px 20px;
-    font-weight: 400;
-}
-
-.card p {
-  font-size: 2.4vmin;
-}
 @media only screen and (max-width: 1335px) {
 @media only screen and (max-width: 1125px) {
   .containerCards {
       grid-template-columns: repeat(3, 33%);
       gap: 6vmin;
   }
+}
 }
 
 @media only screen and (max-width: 1024px) {
@@ -183,17 +95,21 @@ padding-bottom: 8vmin;
     gap: 2vmin;
 }
   .card p{
-    font-size: 2.4vmin;
+    font-size: 2vmin;
+    font-weight: 301;
+
   }
   
 }
 
 @media only screen and (max-width: 841px) {
   .card p{
-    font-size: 2.3vmin;
+    font-size: 2vmin;
   }
   
 }
+
+
 
 @media only screen and (max-width: 768px) {
   .section h2 {
@@ -212,6 +128,19 @@ padding-bottom: 8vmin;
   }
 }
 
+@media only screen and (max-width: 750px) {
+  .containerCards{
+    flex-direction: column;
+    gap:5vmin;
+  }
+  .card {
+    width: 100%
+  }
+  .card p {
+    font-size: 4vmin;
+  }
+}
+
 @media (min-width: 500px)  and (max-width: 600px) {
   .section p {
     font-size: 4vmim;
@@ -225,4 +154,3 @@ padding-bottom: 8vmin;
     font-size: 4vmin;
   }
 }
- */

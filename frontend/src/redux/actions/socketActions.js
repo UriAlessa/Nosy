@@ -1,4 +1,4 @@
-import toast from "react-hot-toast";
+import axios from "axios";
 
 const socketActions = {
   // reFetchGameRequests: () => {
@@ -62,44 +62,47 @@ const socketActions = {
   //   };
   // },
   setFriendRequests: (requests) => {
-    return async (dispatch) => {
-      dispatch({ type: "SET_FRIEND_REQUESTS", payload: requests });
-      try {
-      } catch (error) {
-        toast.error(
-          error.message.includes("User") ? error.message : "Session expired",
-          {
-            position: "top-right",
-            style: {
-              borderRadius: "10px",
-              background: "#453ab7",
-              color: "#fff",
-              fontFamily: "Ubuntu, sans-serif",
-            },
-          }
-        );
-        return dispatch({ type: "LOG_OUT" });
-      }
+    return (dispatch) => {
+      dispatch({
+        type: "SET_FRIEND_REQUESTS",
+        payload: { friend_requests: requests },
+      });
     };
   },
   setFriends: (requests, friends) => {
+    return (dispatch) =>
+      dispatch({
+        type: "SET_FRIENDS",
+        payload: { friend_requests: requests, friends },
+      });
+  },
+  setGameRequests: (requests) => {
+    return (dispatch) => {
+      dispatch({
+        type: "SET_GAME_REQUESTS",
+        payload: { game_requests: requests },
+      });
+    };
+  },
+  setFriendsList: () => {
     return async (dispatch) => {
+      let token = localStorage.getItem("token");
       try {
-        dispatch({ type: "SET_FRIENDS", payload: { requests, friends } });
-      } catch (error) {
-        toast.error(
-          error.message.includes("User") ? error.message : "Session expired",
+        let response = await axios.get(
+          "http://localhost:4000/api/user/friend_list",
           {
-            position: "top-right",
-            style: {
-              borderRadius: "10px",
-              background: "#453ab7",
-              color: "#fff",
-              fontFamily: "Ubuntu, sans-serif",
+            headers: {
+              Authorization: "Bearer " + token,
             },
           }
         );
-        return dispatch({ type: "LOG_OUT" });
+        if (!response.data.success) throw new Error();
+        return dispatch({
+          type: "SET_FRIENDS_LIST",
+          payload: response.data.friends_list,
+        });
+      } catch (error) {
+        console.error(error);
       }
     };
   },

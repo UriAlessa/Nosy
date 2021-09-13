@@ -31,7 +31,8 @@ const App = (props) => {
 
   useEffect(() => {
     if (props.socket && props.token) {
-      props.socket.on("game_request", (username) => {
+      props.socket.on("game_request", ({ username, requests }) => {
+        props.setGameRequests(requests);
         toast(username + " invited you to a game!", {
           icon: "🎮",
         });
@@ -60,15 +61,17 @@ const App = (props) => {
       );
       props.socket.on("connected", (username) => {
         username !== props.username &&
-          toast(username + " has connected", {
-            icon: "👋",
-          });
+          props.userData.friends.some(
+            (friend) => friend.username === username
+          ) &&
+          props.setFriendsList();
       });
       props.socket.on("disconnection", (username) => {
         username !== props.username &&
-          toast(username + " has disconnected", {
-            icon: "👋",
-          });
+          props.userData.friends.some(
+            (friend) => friend.username === username
+          ) &&
+          props.setFriendsList();
       });
     }
     // eslint-disable-next-line
@@ -109,11 +112,13 @@ const mapDispatchToProps = {
   logInLS: usersActions.logInLS,
   showMenuResponsive: otherActions.showMenu,
   setGame: gamesActions.setGame,
+  setFriendRequests: socketActions.setFriendRequests,
+  setFriends: socketActions.setFriends,
+  setGameRequests: socketActions.setGameRequests,
+  setFriendsList: socketActions.setFriendsList,
   // reFetchGameRequests: socketActions.reFetchGameRequests,
   // startGame: socketActions.startGame,
   // reFetchCurrentPlayer: socketActions.reFetchCurrentPlayer,
-  setFriendRequests: socketActions.setFriendRequests,
-  setFriends: socketActions.setFriends,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

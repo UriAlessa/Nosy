@@ -25,19 +25,24 @@ const Header = (props) => {
 
   return (
     <header>
-      <div className={styles.logo} style={{ backgroundImage: 'url("/assets/LogoRuleta.png")' }}></div>
+      <div
+        className={styles.logo}
+        style={{ backgroundImage: 'url("/assets/LogoRuleta.png")' }}
+      ></div>
       <div className={styles.content}>
         <nav>
-          {document.title != "Nosy" && <NavLink to="/">
-            <p>HOME</p>
-          </NavLink>}
-          {document.title == "Nosy" && 
+          {document.title != "Nosy" && (
+            <NavLink to="/">
+              <p>HOME</p>
+            </NavLink>
+          )}
+          {document.title == "Nosy" && (
             <>
               <a href="#howToPlay">HOW TO PLAY</a>
               <a href="#nextGames">NEXT GAMES</a>
               <a href="#reviews">REVIEWS</a>
             </>
-          }
+          )}
           {!props.token ? (
             <NavLink to="/accounts">LOG IN/SIGN UP</NavLink>
           ) : (
@@ -50,19 +55,27 @@ const Header = (props) => {
                   position: "relative",
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    cursor: "pointer",
+                  }}
+                >
                   <div
                     className={styles.logoUser}
                     style={{
                       backgroundImage: `url('${props.avatar}')`,
-                      height: "35px",
-                      width: "35px",
+                      height: "50px",
+                      width: "50px",
                       backgroundPosition: "center",
                       backgroundSize: "cover",
                       borderRadius: "50%",
                     }}
                   ></div>
-                  <p>Hello, {props.username}</p>
+                  <span style={{ fontSize: "1.2rem" }}>
+                    Hello, {props.username}
+                  </span>
                   <svg
                     className={styles.arrowDown}
                     xmlns="http://www.w3.org/2000/svg"
@@ -74,14 +87,18 @@ const Header = (props) => {
                 </div>
                 {props.token && login && (
                   <div
-                    onClick={() => props.logOutUser()}
                     className={styles.logoutContainer}
                     onMouseLeave={showLogin}
                   >
-                    <NavLink to='/friends'>
+                    <NavLink className={styles.navlinkFriends} to="/friends">
                       FRIENDS!
                     </NavLink>
-                    <p>LOG OUT</p>
+                    <p
+                      className={styles.logOutP}
+                      onClick={() => props.logOutUser()}
+                    >
+                      LOG OUT
+                    </p>
                   </div>
                 )}
               </div>

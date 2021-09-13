@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Review = require("../models/Review");
+const { use } = require("passport");
 
 const usersAccountControllers = {
   signUp: async (req, res) => {
@@ -97,14 +98,40 @@ const usersAccountControllers = {
             $push: { friend_requests: { user: req.user._id, creator: false } },
           },
           { new: true }
-        );
+        )
+          .populate({
+            path: "friends",
+            model: "user",
+            select: "username avatar connected",
+          })
+          .populate({
+            path: "friend_requests",
+            populate: {
+              path: "user",
+              model: "user",
+              select: "username avatar",
+            },
+          });
         let user = await User.findOneAndUpdate(
           { username: req.user.username },
           {
             $push: { friend_requests: { user: userAdded._id, creator: true } },
           },
           { new: true }
-        );
+        )
+          .populate({
+            path: "friends",
+            model: "user",
+            select: "username avatar connected",
+          })
+          .populate({
+            path: "friend_requests",
+            populate: {
+              path: "user",
+              model: "user",
+              select: "username avatar",
+            },
+          });
         res.json({
           success: true,
           friend_requests: {
@@ -121,38 +148,96 @@ const usersAccountControllers = {
   },
   acceptFriendRequest: async (req, res) => {
     const { username, accept } = req.body;
+    console.log(username);
     try {
       let user = await User.findOne({ username });
+      let userNotAdded;
+      let userAdded;
       if (accept) {
+        userAdded = await User.findOneAndUpdate(
+          { username: req.user.username },
+          {
+            $pull: { friend_requests: { user: user._id } },
+            $push: { friends: user._id },
+          },
+          { new: true }
+        )
+          .populate({
+            path: "friends",
+            model: "user",
+            select: "username avatar connected",
+          })
+          .populate({
+            path: "friend_requests",
+            populate: {
+              path: "user",
+              model: "user",
+              select: "username avatar",
+            },
+          });
         user = await User.findOneAndUpdate(
           { username: req.body.username },
           {
             $pull: { friend_requests: { user: req.user._id } },
             $push: { friends: req.user._id },
-          }
-        );
-        let userAdded = await User.findOneAndUpdate(
-          { username: req.user.username },
+          },
+          { new: true }
+        )
+          .populate({
+            path: "friends",
+            model: "user",
+            select: "username avatar connected",
+          })
+          .populate({
+            path: "friend_requests",
+            populate: {
+              path: "user",
+              model: "user",
+              select: "username avatar",
+            },
+          });
+      } else {
+        userNotAdded = await User.findOneAndUpdate(
+          { _id: req.user._id },
           {
             $pull: { friend_requests: { user: user._id } },
-            $push: { friends: user._id },
-          }
-        );
-        res.json({
-          success: accept,
-          friend_requests: {
-            invitator: user.friend_requests,
-            invitated: userAdded.friend_requests,
           },
-          friends: {
-            invitator: user.friends,
-            invitated: userAdded.friends,
+          { new: true }
+        ).populate({
+          path: "friend_requests",
+          populate: {
+            path: "user",
+            model: "user",
+            select: "username avatar",
           },
         });
       }
+      const response = accept
+        ? {
+            success: true,
+            friend_requests: {
+              invitator: user.friend_requests,
+              invitated: userAdded.friend_requests,
+            },
+            friends: {
+              invitator: user.friends,
+              invitated: userAdded.friends,
+            },
+          }
+        : {
+            success: true,
+            friend_requests: {
+              invitated: userNotAdded.friend_requests,
+            },
+          };
+      console.log("holas");
+      res.json(response);
     } catch (error) {
       res.json({ success: false, error: error.message });
     }
+  },
+  getFriendsList: async (req, res) => {
+    res.json({ success: true, friends_list: req.user.friends });
   },
 
   verifyToken: async (req, res) => {
@@ -221,7 +306,6 @@ const usersAccountControllers = {
     }
   },
   searchUsers: async (req, res) => {
-    console.log(req.body);
     const { username } = req.body;
     try {
       let user = await User.findOne({ username });
