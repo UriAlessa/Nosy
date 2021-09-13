@@ -24,8 +24,7 @@ const AccountSection = (props) => {
 
   return (
     <div className={styles.mainContainer}>
-      {loader && <Loader />}
-      <div className={styles.midContainer}>
+      {loader ? <Loader /> : <> <div className={styles.midContainer}>
         {!login ? (
           <>
             <Login />
@@ -73,8 +72,9 @@ const AccountSection = (props) => {
         )}
       </div>
       <Link to="/">
-        <PlayButton text="BACK TO HOME" />
-      </Link>
+      <PlayButton text="BACK TO HOME" />
+    </Link>
+    </>}
     </div>
   );
 };
