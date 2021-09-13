@@ -4,11 +4,11 @@ const bcrypt = require("bcryptjs");
 const AdminUsersControllers = {
   createAdminUser: async (req, res) => {
     const { username, password, email, avatar } = req.body;
-    // const { key } = req.user.admin;
+    const { key } = req.user.admin;
     const pw = bcrypt.hashSync(password);
     try {
-      // let match = key && bcrypt.compareSync(process.env.SECRETORKEY, key);
-      //if (!match) throw new Error("key error"); BORRAR PARA CREAR ADMIN DESDE INSOMNIA
+      let match = key && bcrypt.compareSync(process.env.SECRETORKEY, key);
+      if (!match) throw new Error("key error");// BORRAR PARA CREAR ADMIN DESDE INSOMNIA
       const nuevaKey = bcrypt.hashSync(process.env.SECRETORKEY);
       const newUser = new User({
         username,
@@ -28,10 +28,11 @@ const AdminUsersControllers = {
     }
   },
   getUsers: async (req, res) => {
-    // const { key } = req.user.admin;
+    const { key } = req.user.admin;
+    console.log(req.user.admin)
     try {
-      // let match = key && bcrypt.compareSync(process.env.SECRETORKEY, key);
-      // if (!match) throw new Error("key error");
+      let match = key && bcrypt.compareSync(process.env.SECRETORKEY, key);
+      if (!match) throw new Error("key error");
       let users = await User.find();
       res.json({ success: true, response: users });
     } catch (error) {

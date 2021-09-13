@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
 import styles from "../styles/friendCard.module.css";
 import stylesConected from "../styles/usercard.module.css";
+import Swal from "sweetalert2";
 
 const FriendCard = ({
   type,
@@ -119,12 +120,12 @@ const FriendCard = ({
             </div>
           }
           <button
-            onClick={(e) => {
-              game ? props.sendGameRequest(e.target.value) : props.chat();
+            onClick={() => {
+              Swal.fire("This feature is comming soon!");
             }}
             value={friend.username}
           >
-            {game ? "invite to play" : "invite to chat"}
+            {game ? "Invite to play" : "Invite to chat"}
           </button>
         </div>
       </div>
@@ -143,11 +144,9 @@ const FriendCard = ({
   );
 };
 const mapStateToProps = (state) => {
-  {
-    return {
-      userData: state.users.userData,
-    };
-  }
+  return {
+    userData: state.users.userData,
+  };
 };
 const mapDispatchToProps = {
   addFriend: usersActions.addFriend,

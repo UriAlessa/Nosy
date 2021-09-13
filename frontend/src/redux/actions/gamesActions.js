@@ -16,7 +16,6 @@ const gamesActions = {
         throw new Error();
       }
       const { game, coins } = response.data.response;
-      console.log(game);
       dispatch({
         type: "SET_GAME",
         payload: { game, coins, statistics: null },
@@ -61,7 +60,6 @@ const gamesActions = {
       if (!response.data.success) {
         throw new Error();
       }
-      console.log(response.data.response.game);
       dispatch({
         type: "SET_GAME",
         payload: {

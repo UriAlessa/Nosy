@@ -1,7 +1,7 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from "../styles/home/reviews.module.css";
-import React, { useState } from "react";
+import React from "react";
 let moment = require("moment");
 
 const ReviewSlide = (props) => {
@@ -60,7 +60,11 @@ const ReviewSlide = (props) => {
               {review.userId && (
                 <div className={styles.reviewsPosted}>
                   <div>
-                    <img className={styles.avatar} src={review.userId.avatar} />
+                    <img
+                      className={styles.avatar}
+                      src={review.userId.avatar}
+                      alt=""
+                    />
                   </div>
                   <p className={styles.pDescription}>
                     @{review.userId.username}
@@ -68,10 +72,9 @@ const ReviewSlide = (props) => {
                 </div>
               )}
               <h4 className={styles.titleDescription}>"{review.title}"</h4>
-              <div
-                className={styles.picGame}
-                style={{ backgroundImage: `url("${review.img}}")` }}
-              ></div>
+              <div>
+                <img className={styles.picGame} src={review.img} alt="" />
+              </div>
             </div>
             <div>
               <p className={styles.subtitleDescription}>

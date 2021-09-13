@@ -314,6 +314,7 @@ const usersActions = {
           return { success: false, response: response.data.response };
         }
       } catch (err) {
+        console.log(err.message);
         return { success: false, response: err.message };
       }
     };
@@ -334,10 +335,11 @@ const usersActions = {
     };
   },
   deleteReview: (id) => {
-    console.log(id)
     return async () => {
       try {
-        let response = await axios.delete("http://localhost:4000/api/review/" + id);
+        let response = await axios.delete(
+          "http://localhost:4000/api/review/" + id
+        );
         if (response.data.success) {
           return { success: true };
         } else {

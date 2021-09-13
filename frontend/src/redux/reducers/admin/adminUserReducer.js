@@ -20,6 +20,7 @@ const adminUserReducer = (state = {
                     if (user._id !== action.payload) {
                         return user
                     }
+                    return true
                 })
             }
         case "GET_REVIEWS":

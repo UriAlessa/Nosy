@@ -7,7 +7,6 @@ import QuestionCard from "./QuestionCard";
 import { toast } from "react-hot-toast";
 
 const Questions = (props) => {
-  const [allQuestions, setAllQuestions] = useState(props.questions)
   const [filtered, setFiltered] = useState(props.questions)
   const [newQuestion, setNewQuestion] = useState({})
   const correctInput = useRef()
@@ -16,12 +15,9 @@ const Questions = (props) => {
   const incorrectInputTwo = useRef()
   const incorrectInputThree = useRef()
 
-  const categories = []
-  props.questions.map((question) => {
-    if (!categories.includes(question.category)) {
-      categories.push(question.category)
-    }
-  })
+  console.log(props.questions)
+
+  const categories = ["Music", "General Knowledge", "Movies and series", "Science: Computers", "Animals"]
 
   const inputHandler = (e) => {
     setNewQuestion({
@@ -74,26 +70,18 @@ const Questions = (props) => {
   }
 
   const filter = (e) => {
-    console.log(e.target.value)
-    setFiltered(allQuestions.filter((question) => {
-      console.log(question.category)
-      if (question.category === e.target.value) {
-        return question
-      }
-      if (e.target.value === 'View All') {
-        return question
-      }
-    }))
+    setFiltered(props.questions.filter((question) =>
+      question.category === e.target.value || e.target.value === 'View All'
+
+    ))
   }
 
   const reload = (_id) => {
-    console.log('me ejecuto')
-    setFiltered(filtered.filter((question) => {
-      if (question._id !== _id) {
-        return question
-      }
-    }))
+    setFiltered(filtered.filter((question) =>
+      question._id !== _id
+    ))
   }
+
 
   return (
     <div className={style.tableContainer}>

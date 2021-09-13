@@ -71,9 +71,7 @@ const adminUsersActions = {
   },
   getReviews: () => {
     return async (dispatch) => {
-      let response = await axios.get(
-        "http://localhost:4000/api/review"
-      );
+      let response = await axios.get("http://localhost:4000/api/review");
       if (response.data.success) {
         dispatch({ type: "GET_REVIEWS", payload: response.data.response });
         return response.data;

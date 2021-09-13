@@ -27,7 +27,6 @@ const Privacy = () => {
                 one: false
             })
         }
-        console.log(items)
     }
 
     const showTwo = () => {

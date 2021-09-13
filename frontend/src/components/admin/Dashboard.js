@@ -9,19 +9,15 @@ let moment = require("moment");
 
 
 const Dashboard = (props) => {
-    const [reload, setReload] = useState(true)
     const [allReviews, setAllReviews] = useState(props.reviews)
-    console.log(props.reviews)
 
     const deleteReview = async (_id) => {
         try {
             await props.deleteReview(_id)
             props.setreload(!props.reload)
-            setAllReviews(allReviews.filter((review) => {
-                if (review._id !== _id) {
-                    return review
-                }
-            }))
+            setAllReviews(allReviews.filter((review) =>
+                review._id !== _id
+            ))
         } catch (error) {
             toast.error("Something went wrong. Try again Later", {
                 position: "top-left",
@@ -58,7 +54,6 @@ const Dashboard = (props) => {
 
     return (
         <div className={`${style.tableContainer} ${styles.dashboardContainer}`}>
-            {console.log('hola')}
             <div className={`${style.cardsContainer} ${styles.resumeContainer}`}>
                 <div className={styles.resumeSection}>
                     <h2>Last Reviews</h2>
@@ -78,8 +73,8 @@ const Dashboard = (props) => {
                     })}
 
                 </div>
-                <div className={`${styles.questionsContainer} ${styles.reviews}`}>
-                </div>
+                {/* <div className={`${styles.questionsContainer} ${styles.reviews}`}>
+                </div> */}
             </div>
             <div></div>
             <div className={`${style.loginBox} ${style.connected}`} style={{ height: '90%' }}>
@@ -96,6 +91,7 @@ const Dashboard = (props) => {
                             </div>
                         )
                     }
+                    return true
                 })}
             </div>
         </div >

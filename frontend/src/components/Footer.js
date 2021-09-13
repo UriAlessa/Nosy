@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer>
       <div className={styles.content}>
-        <div className={styles.footerLogo} style={{backgroundImage: `url('/assets/LogoFooter.png')`}}></div>
+        <div className={styles.footerLogo} style={{ backgroundImage: `url('/assets/LogoFooter.png')` }}></div>
         <div className={styles.navContainer}>
           <nav className={styles.footerNav}>
             <Link to="/terms">
@@ -16,11 +16,11 @@ const Footer = () => {
             <Link to="/privacy">
               <p>PRIVACY</p>
             </Link>
-            {document.title != "Nosy" && (
+            {document.title !== "Nosy" && (
               <NavLink to="/">
                 <p>HOME</p>
               </NavLink>
-          )}
+            )}
           </nav>
           <div className={styles.socialMedia}>
             <SocialMediaFooterButton icon="instagram" />
@@ -29,7 +29,7 @@ const Footer = () => {
             <SocialMediaFooterButton icon="twitter" />
           </div>
         </div>
-        <img className={styles.footerMindHubLogo} src='https://i.imgur.com/2qc4IrS.png' />
+        <img className={styles.footerMindHubLogo} src='https://i.imgur.com/2qc4IrS.png' alt="Logo Mindhub" />
       </div>
     </footer>
   );

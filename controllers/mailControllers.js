@@ -12,18 +12,22 @@ const transport = nodemailer.createTransport({
 
 const mailControllers = {
     sendMail: (req, res) => {
-        const {email, username} = req.body
+        const { email, username } = req.body
         let options = {
             from: 'Nosy <nosygame2021@gmail.com>',
-            to: email, 
+            to: email,
             subject: `Welcome to Nosy ${username}!`,
+<<<<<<< HEAD
             html: `<a href='https://benosy.herokuapp.com/'><img src='https://cdn.discordapp.com/attachments/883716109084287008/886835916960858112/Now_you_can_play_collect_coins_and_more_Invite_your_friends.png' alt='Welcome Mail'</a>`
+=======
+            html: `<a href='https://benosy.herokuapp.com/'><img style="width: 80%;" src='https://cdn.discordapp.com/attachments/883716109084287008/886835916960858112/Now_you_can_play_collect_coins_and_more_Invite_your_friends.png' alt='Welcome Mail'</a>`
+>>>>>>> beeeb0cd79f318e2a01292c9dae2d8cf7b28a61b
         }
         transport.sendMail(options, (err, info) => {
             if (err) {
-                return res.json({success: false, response: err})
+                return res.json({ success: false, response: err })
             }
-            return res.json({success: true, response: info})
+            return res.json({ success: true, response: info })
         })
     }
 }

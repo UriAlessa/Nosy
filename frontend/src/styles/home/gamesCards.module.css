@@ -35,11 +35,12 @@
   gap: 3vmin;
   box-shadow: 0 5px 16px 0 rgb(0 0 0 / 58%);
   padding: 2vmin;
+  height: 20rem;
 }
 
 .picGame {
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   height: 100%;
 }
@@ -61,6 +62,10 @@
 .pDescription {
   font-family: "Ubuntu", sans-serif;
   color: rgb(225, 223, 255);
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  text-align: center;
+  font-size: 1.15rem;;
 }
 
 @media (min-width: 916px) and (max-width: 1100px) {

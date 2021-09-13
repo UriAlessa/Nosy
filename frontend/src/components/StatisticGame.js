@@ -3,13 +3,9 @@ import styles2 from "../styles/accounts.module.css";
 import { connect } from "react-redux";
 
 const StatisticGame = (props) => {
-  console.log(props);
-  console.log(props.statisticsUser);
-  console.log(props.game.player);
   let percent = Math.round(
     props.statisticsUser.single_player.win_pct
   );
-  console.log(percent);
 
   let img =
     props.game.lifes === 0 ? "/assets/gameover.png" : "/assets/winner.png";

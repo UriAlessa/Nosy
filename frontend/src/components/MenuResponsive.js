@@ -1,10 +1,9 @@
 import styles from "../styles/other/header.module.css";
 import { connect } from "react-redux";
 import usersActions from "../redux/actions/usersActions";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { SocialMediaFooterButton } from "../components/Buttons";
 import otherActions from "../redux/actions/otherActions";
-import { useEffect } from 'react'
 
 const MenuResponsive = (props) => {
   const showMenu = () => {
@@ -47,7 +46,7 @@ const MenuResponsive = (props) => {
         </div>
       )}
       <nav>
-        {document.title != "Nosy" && (
+        {document.title !== "Nosy" && (
           <NavLink to="/">
             <p>HOME</p>
           </NavLink>
