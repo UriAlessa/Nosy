@@ -10,10 +10,6 @@ module.exports = passport.use(
       secretOrKey: process.env.SECRETORKEY,
     },
     (payload, done) => {
-      const model =
-        payload._doc.playing_now.status && payload._doc.playing_now.multiplayer
-          ? "multiplayer game"
-          : "singleplayer game";
       User.findOne({ _id: payload._doc._id })
         .populate({
           path: "friends",
@@ -21,21 +17,16 @@ module.exports = passport.use(
           select: "username avatar connected",
         })
         .populate({
-          path: "friend_requests",
+          path: "friend_requests game_requests",
           populate: {
             path: "user",
             model: "user",
             select: "username avatar",
           },
         })
-        .populate({ path: "playing_now", populate: { path: "game_id", model } })
         .populate({
-          path: "game_requests",
-          populate: {
-            path: "user",
-            model: "user",
-            select: "username avatar connected",
-          },
+          path: "playing_now",
+          populate: { path: "game_id", model: "singleplayer game" },
         })
         .then((response) => {
           if (!response) {

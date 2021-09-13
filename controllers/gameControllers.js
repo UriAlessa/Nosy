@@ -271,13 +271,16 @@ const gameControllers = {
               $inc: { "statistics.single_player.losses": 1 },
               $inc: { "statistics.single_player.win_pct": win_pct },
               $set: { "playing_now.status": false },
-              $set: { "playing_now.game_id": "" },
+              $set: { "playing_now.game_id": null },
               $set: { "playing_now.multi_player": true },
             },
             { new: true }
           );
         }
-        res.json({ success: true, response: { newGameState, newUserState } });
+        res.json({
+          success: true,
+          response: { newGameState, newUserState, statistics: null },
+        });
       }
     } catch (error) {
       res.json({ success: false });
