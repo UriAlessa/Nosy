@@ -6,7 +6,7 @@ const StatisticGame = (props) => {
   let percent = Math.round(
     props.statisticsUser.single_player.win_pct
   );
-
+  
   let img =
     props.game.lifes === 0 ? "/assets/gameover.png" : "/assets/winner.png";
 

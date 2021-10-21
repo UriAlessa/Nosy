@@ -1,10 +1,10 @@
-import React from "react";
-import styles from "../styles/accounts.module.css";
-import { useState } from "react";
-import { connect } from "react-redux";
-import usersActions from "../redux/actions/usersActions";
-import GoogleLogin from "react-google-login";
-import toast from "react-hot-toast";
+import React from "react"
+import styles from "../styles/accounts.module.css"
+import { useState } from "react"
+import { connect } from "react-redux"
+import usersActions from "../redux/actions/usersActions"
+import GoogleLogin from "react-google-login"
+import toast from "react-hot-toast"
 
 const SignUp = (props) => {
   const [newUser, setNewUser] = useState({
@@ -12,14 +12,14 @@ const SignUp = (props) => {
     password: "",
     email: "",
     avatar: "",
-  });
+  })
 
   const inputHandler = (e) => {
     setNewUser({
       ...newUser,
       [e.target.name]: e.target.value,
-    });
-  };
+    })
+  }
 
   const welcomeToast = () => {
     toast.success("Welcome!", {
@@ -29,11 +29,11 @@ const SignUp = (props) => {
         color: "#fff",
         fontFamily: "Ubuntu, sans-serif",
       },
-    });
-  };
+    })
+  }
 
   const submitButton = async () => {
-    const { username, password, email, avatar } = newUser;
+    const { username, password, email, avatar } = newUser
     if (username === "" || password === "" || email === "" || avatar === "") {
       return toast.error("There can be no empty fields", {
         position: "top-right",
@@ -43,9 +43,9 @@ const SignUp = (props) => {
           color: "#fff",
           fontFamily: "Ubuntu, sans-serif",
         },
-      });
+      })
     }
-    let response = await props.signUpUser(newUser);
+    let response = await props.signUpUser(newUser)
     if (!response.data.success) {
       response.data.error.forEach((error) => {
         toast.error(error.message, {
@@ -56,13 +56,13 @@ const SignUp = (props) => {
             color: "#fff",
             fontFamily: "Ubuntu, sans-serif",
           },
-        });
-      });
+        })
+      })
     } else {
-      await props.sendMail(newUser);
-      welcomeToast();
+      await props.sendMail(newUser)
+      welcomeToast()
     }
-  };
+  }
 
   const responseGoogle = async (response) => {
     let newUser = {
@@ -71,11 +71,11 @@ const SignUp = (props) => {
       email: response.profileObj.email,
       avatar: response.profileObj.imageUrl,
       google: true,
-    };
-    let res = await props.signUpUser(newUser);
+    }
+    let res = await props.signUpUser(newUser)
     if (res.data.success) {
-      await props.sendMail(newUser);
-      welcomeToast();
+      await props.sendMail(newUser)
+      welcomeToast()
     } else {
       toast.error(res.data.error[0].message, {
         position: "top-right",
@@ -85,9 +85,9 @@ const SignUp = (props) => {
           color: "#fff",
           fontFamily: "Ubuntu, sans-serif",
         },
-      });
+      })
     }
-  };
+  }
 
   return (
     <div className={styles.signup}>
@@ -143,12 +143,12 @@ const SignUp = (props) => {
         <strong>SIGN UP</strong>
       </button>
     </div>
-  );
-};
+  )
+}
 
 const mapDispatchToProps = {
   signUpUser: usersActions.signUpUser,
   sendMail: usersActions.sendMail,
-};
+}
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(null, mapDispatchToProps)(SignUp)

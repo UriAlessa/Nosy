@@ -7,7 +7,6 @@ const HeroHome = (props) => {
   return (
     <div className={style.container}>
       <h1 className={style.title}>PLAYING IS MORE FUN IF YOU AREN'T ALONE!</h1>
-      {/* <p className={style.description}> */}
       <p className={style.pDescription}>
         The well-known wonder game comes to your hands! so that you entertain
         moments, awaken your mind and learn by playing.
@@ -16,12 +15,6 @@ const HeroHome = (props) => {
         <Link to="/selectgame">
           <PlayButton text="PLAY NOW" token={props.token} />
         </Link>
-        {/* <p>or access with:</p>
-        <div className={style.socialMedia}>
-          <SocialMediaHeroButton icon="facebook" />
-          <SocialMediaHeroButton icon="twitter" />
-          <SocialMediaHeroButton icon="google" />
-        </div> */}
       </div>
     </div>
   );
