@@ -32,4 +32,4 @@ Nosy es una trivia online, fue desarrollado en una semana en el primer Challenge
 
 ## Expresiones de Gratitud 🎁
 
-Gracias a MindHub por la oportunida de formación, aFernando Biaus por la enseñanza y a los demás miembros del equipo.
+Gracias a MindHub por la oportunidad de formación, a Fernando Biaus por la enseñanza y a los demás miembros del equipo.
