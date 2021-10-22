@@ -24,11 +24,12 @@ Nosy es una trivia online, fue desarrollado en una semana en el primer Challenge
 ## Equipo
 
 * Daniel Sepulveda (Team Leader) (https://github.com/DanSepulveda)
-* Uriel Alessandro
 * Sabrina Calivar (https://github.com/sabricalivar)
 * Sebastían Campos (https://github.com/bastiampos)
 * Micaela Torres (https://github.com/micaela-torre)
 * Rafael Mian (https://github.com/rafaelmian1)
+* Gabriela Svanhild Felix (https://github.com/GabrielaSvanhild)
+* Uriel Alessandro
 
 ## Expresiones de Gratitud 🎁
 
