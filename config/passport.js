@@ -38,11 +38,11 @@ module.exports = passport.use(
         })
         .then((response) => {
           if (!response) {
-            return done(null, false);
+            return done(null, false)
           }
-          return done(null, response);
+          return done(null, response)
         })
-        .catch((err) => done(err, false));
+        .catch((err) => done(err, false))
     }
   )
 );
