@@ -1,6 +1,6 @@
 # Nosy
 
-Nosy es una trivia online, fue desarrollado en una semana en el primer Challenge grupal del Bootcam Full Stack MERN de MindHub.
+Nosy es una trivia online, fue desarrollado en una semana en el primer Challenge grupal del Bootcamp Full Stack MERN de MindHub.
 
 * Demo: https://nosygame.herokuapp.com/
 
